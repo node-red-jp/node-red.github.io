@@ -13,12 +13,14 @@ redirect_from:
 Since Node-RED 1.1.0, `node-red-admin` is now built into the `node-red` command -
 you do not need to install it separately.
 
-To run it, you use `node-red admin` instead of `node-red-admin`.
+To use the version included with `node-red`, use the command `node-red admin`.
+
+If you install it separately, you would use the command `node-red-admin`.
 
 
 ### インストール
 
-`node-red-admin`コマンドを使用可能にするため、
+`node-red-admin`コマンドを個別にインストールしたい場合、
 Adminツールをグローバルnpmインストールします。
 
     npm install -g --unsafe-perm node-red-admin
