@@ -180,11 +180,12 @@ this.on('close', function(done) {
 登録されたリスナーが2つの引数を受け入れる場合、
 最初の引数はノードが完全に削除されたことでノードが閉じられたのか、
 ただ再起動されているためにノードが閉じられているかを示すbooleanフラグとなります。
+ノードが無効された場合にも、 *true* がセットされます。
 
 {% highlight javascript %}
 this.on('close', function(removed, done) {
     if (removed) {
-        // This node has been deleted
+        // This node has been disabled/deleted
     } else {
         // This node is being restarted
     }
@@ -201,8 +202,6 @@ Node-RED 0.17以前は、ランタイムは`done`関数が呼び出されるま�
 
 0.17以降では、ランタイムは15秒以上かかるとノードをタイムアウトさせます。
 エラーが記録され、ランタイムは引き続き動作します。
-
-
 
 
 ### ロギングイベント

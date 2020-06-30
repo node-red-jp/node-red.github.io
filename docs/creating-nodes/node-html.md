@@ -80,29 +80,17 @@ slug: .html
 
 ノードの編集テンプレートは編集ダイアログの内容を記述します。
 
+```html
+<script type="text/html" data-template-name="node-type">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips"><b>Tip:</b> This is here to help.</div>
+</script>
+```
 
-    <script type="text/html" data-template-name="node-type">
-        <div class="form-row">
-            <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-            <input type="text" id="node-input-name" placeholder="Name">
-        </div>
-        <div class="form-tips"><b>Tip:</b> This is here to help.</div>
-    </script>
-
-いくつかの簡単な慣例があります:
-
- - ダイアログの各行を割り付けるには、
-   class属性に`form-row`を持つ`<div>`を使用する必要があります。
- - 典型的な行では、アイコンを含む`<label>`と、プロパティ名の後ろに`<input>`が続きます。
-   アイコンは、[Font Awesome 4.7](https://fontawesome.com/v4.7.0/icons/)から
-   入手可能なアイコンフォントから取得したclass属性を持つ`<i>`要素を使用して作成されます。
- - もしインタラクティブ性が必要な場合、
-   `oneditprepare`を使用してダイアログ要素に任意のイベントハンドラを割り当てることができます。
-
-
-編集テンプレートの使用方法の詳細については、
-[こちら](properties#プロパティ編集ダイアログ)をご覧ください。
-
+編集ダイアログについてのさらなる情報は[こちら](edit-dialog)で入手できます。
 
 ### ヘルプテキスト
 

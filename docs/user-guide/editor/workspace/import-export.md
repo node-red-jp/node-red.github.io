@@ -44,6 +44,15 @@ JSON形式でフローをエディタにインポートしたりエクスポー�
  <tr><td>動作</td><td><code>core:show-library-import-dialog</code></td></tr>
 </table>
 
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><i>none</i></td></tr>
+ <tr><td>Action</td><td><code>core:show-examples-import-dialog</code></td></tr>
+</table>
+
+
+
 <br style="clear:both" />
 
 ### フローをエクスポートする

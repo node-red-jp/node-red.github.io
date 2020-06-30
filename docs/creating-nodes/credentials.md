@@ -12,38 +12,39 @@ slug: クレデンシャル
 資格情報をノードに追加するには、次の手順を実行します:
 
 1. 新しい`credentials`エントリをノードに定義します:
-
-        credentials: {
-            username: {type:"text"},
-            password: {type:"password"}
-        },
-
+   ```javascript
+    credentials: {
+       username: {type:"text"},
+       password: {type:"password"}
+    },
+   ```
    エントリには１つのオプションがあります。
    `type`は`text`か`password`です。
 
 2. ノードの編集テンプレートに適切なエントリを追加します
-
-        <div class="form-row">
-            <label for="node-input-username"><i class="icon-tag"></i> Username</label>
-            <input type="text" id="node-input-username">
-        </div>
-        <div class="form-row">
-            <label for="node-input-password"><i class="icon-tag"></i> Password</label>
-            <input type="password" id="node-input-password">
-        </div>
-
+    ```html
+    <div class="form-row">
+        <label for="node-input-username"><i class="icon-tag"></i> Username</label>
+        <input type="text" id="node-input-username">
+    </div>
+    <div class="form-row">
+        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <input type="password" id="node-input-password">
+    </div>
+    ```
     テンプレートは、
     通常のノードのプロパティと同様の要素`id`規則に従うことに注意してください。
 
 3. ノードの`.js`ファイルで、
    `RED.nodes.registerType`への呼び出しに資格情報を含むように変更しなければなりません:
-
-        RED.nodes.registerType("my-node",MyNode,{
-            credentials: {
-                username: {type:"text"},
-                password: {type:"password"}
-            }
-        });
+   ```javascript
+    RED.nodes.registerType("my-node",MyNode,{
+        credentials: {
+            username: {type:"text"},
+            password: {type:"password"}
+        }
+    });
+    ```
 
 ### 資格情報へのアクセス
 

@@ -10,6 +10,12 @@ redirect_from:
 [node-red-admin](http://npmjs.org/package/node-red-admin)コマンドラインツールを使用すると、
 リモートのNode-REDインスタンスを管理することができます。
 
+Since Node-RED 1.1.0, `node-red-admin` is now built into the `node-red` command -
+you do not need to install it separately.
+
+To run it, you use `node-red admin` instead of `node-red-admin`.
+
+
 ### インストール
 
 `node-red-admin`コマンドを使用可能にするため、
@@ -46,11 +52,13 @@ Windowsで実行するときは、<a href="https://technet.microsoft.com/en-gb/l
 
 このツールは以下のコマンドを提供します。:
 
- - `list` - インストール済みノードの一覧を表示する
- - `info` - モジュールまたはノードセットの詳細情報を表示する
- - `enable` - 指定したモジュールまたはノードセットを有効にする
+ - `target`  - ターゲットURLおよびポートをhttp://localhost:1880 のように設定もしくは確認する
+ - `login`   - Node-RED管理APIのターゲットにログインする
+ - `list`    - インストール済みノードの一覧を表示する
+ - `info`    - モジュールまたはノードの詳細情報を表示する
+ - `enable`  - 指定したモジュールまたはノードセットを有効にする
  - `disable` - 指定したモジュールまたはノードセットを無効にする
- - `search` - npm公開リポジトリで指定したキーワードに関連するNode-REDモジュールを検索する
- - `install` - npm公開リポジトリからNode-REDモジュールをインストールする
- - `remove` - npm公開リポジトリからインストールしたNode-REDモジュールを削除する
+ - `search`  - インストールしたいNode-REDモジュールを検索する
+ - `install` - Node-REDにNPMからモジュールをインストールする
+ - `remove`  - Node-REDからNPMモジュールを削除する
  - `hash-pw` - `adminAuth`および`httpNodeAuth`プロパティに利用可能なパスワードのハッシュ値を生成する

@@ -156,19 +156,43 @@ doSomeAsyncWork(msg, function(result) {
 return;
 {% endhighlight %}
 
+### Running code on start
 
+*Since Node-RED 1.1.0*
+
+With the 1.1.0 release, the Function node provides a `Setup` tab where you can
+provide code that will run whenever the node is started. This can be used to
+setup any state the Function node requires.
+
+For example, it can initialise values in local context that the main Function
+will use:
+```
+if (context.get("counter") === undefined) {
+    context.set("counter", 0)
+}
+```
+
+The Setup function can return a Promise if it needs to complete asynchronous work
+before the main Function can start processing messages. Any messages that arrive
+before the Setup function has completed will be queued up and handled when its ready.
 
 ### 片付け
 
 Functionノードの中で非同期のコールバックを用いる場合、
 フローが再デプロイされる際に処理中のリクエストや使用中のコネクションなどを後片付けする必要があります。
-この後片付けは、`close`イベントハンドラを追加することで行うことができます。
+この後片付けは、2種類の方法で実施できます。
+
+`close`イベントハンドラを追加します:
 
 {% highlight javascript %}
 node.on('close', function() {
     // コネクションの切断など、全ての非同期コードの後片付けをここで行う
 });
 {% endhighlight %}
+
+
+Or, *since Node-RED 1.1.0*, you can add code to the `Close` tab in the node's edit
+dialog.
 
 ### イベントのログ
 

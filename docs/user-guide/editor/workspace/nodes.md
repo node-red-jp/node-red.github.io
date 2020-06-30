@@ -65,7 +65,8 @@ InjectノードやDebugノードはボタンを持っているコアノードで
 ダイアログの上部には一覧をフィルタリングし、素早くノードを発見するための入力欄があります。
 
 ノード一覧で`Ctrl`または`Command`キーを押しながらクリックすると、
-ノードクイック追加ダイアログが開いたままノードが追加され、フローの次のノードが追加されます。
+ノードクイック追加ダイアログが開いたままノードが追加され、
+フローの次のノードが追加されます。
 
 ダイアログをトリガーするときにワイヤーがクリックされると、
 追加されたノードにワイヤーが繋がれます。
@@ -90,6 +91,17 @@ InjectノードやDebugノードはボタンを持っているコアノードで
   <img style="width: calc(30% - 10px); margin-left: 10px; display: inline-block;"  src="../images/editor-edit-node-appearance.png" alt="Node edit dialog - appearance">
   <p class="caption">Node edit dialog - properties, description and appearance tabs</p>
 </div>
+<div style="float: right; width: 400px;">
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:show-selected-node-labels</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:hide-selected-node-labels</code></td></tr>
+</table>
+</div>
 
 外観タブには次のオプションがあります:
 
@@ -99,23 +111,21 @@ InjectノードやDebugノードはボタンを持っているコアノードで
 
 #### ノードの有効化・無効化
 
-ノードはダイアログの最下部のトグルボタンで有効化・無効化できます。
-ノードが無効化されている場合、フローがデプロイされるときには作成されません。
-フローの途中に無効化されたノードがある場合は、メッセージは通過しません。
-
+<div style="float: right; width: 400px;">
 <table class="action-ref inline">
  <tr><th colspan="2">リファレンス</th></tr>
- <tr><td>ショートカットキー</td><td><i>none</i></td></tr>
- <tr><td>メニューオプション</td><td><i>none</i></td></tr>
  <tr><td>動作</td><td><code>core:enable-selected-nodes</code></td></tr>
 </table>
 
 <table class="action-ref inline">
  <tr><th colspan="2">リファレンス</th></tr>
- <tr><td>ショートカットキー</td><td><i>none</i></td></tr>
- <tr><td>メニューオプション</td><td><i>none</i></td></tr>
  <tr><td>動作</td><td><code>core:disable-selected-nodes</code></td></tr>
 </table>
+</div>
+
+ノードはダイアログの最下部のトグルボタンで有効化・無効化できます。
+ノードが無効化されている場合、フローがデプロイされるときには作成されません。
+フローの途中に無効化されたノードがある場合は、メッセージは通過しません。
 
 #### 設定ノード
 

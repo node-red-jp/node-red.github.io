@@ -125,8 +125,7 @@ Welcome to Node-RED
  - 利用しているフローファイルの名称
 
 Node-REDはデフォルトのフローファイルとして`flows_<hostname>.json`を利用します。
-`node-red`[コマンド](/docs/getting-started/local#command-line-usage)の引数としてフローファイル名を渡すことで、
-これを変更することができます。
+`node-red`[コマンド](/docs/getting-started/local#command-line-usage)の引数としてフローファイル名を渡すことで、これを変更することができます。
 
 ### コマンドラインの使い方
 
@@ -134,10 +133,10 @@ Node-REDは`node-red`コマンドを使うことで起動できます。
 このコマンドは様々な引数をとることができます:
 
 ```
-node-red [-v] [-?] [--port PORT] [--safe] [--settings settings.js]
-         [--title TITLE] [--userDir DIR] [flows.json|projectName]
+node-red [-v] [-?] [--settings settings.js] [--userDir DIR]
+         [--port PORT] [--title TITLE] [--safe] [flows.json|projectName]
+         [-D X=Y|@file]
 ```
-
 
 オプション                  | 詳細     |
 ------------------------|-----------------|
@@ -147,16 +146,43 @@ node-red [-v] [-?] [--port PORT] [--safe] [--settings settings.js]
 `--title TITLE`         | プロセスウィンドウタイトルを設定する。 |
 `-u`, `--userDir DIR`   | 利用するユーザディレクトリを設定する。デフォルト: `~/.node-red` |
 `-v`                    | 冗長な出力を取得します。 |
+`-D X=Y|@file`          | [個別に設定を上書きする](#個別に設定を上書きする) |
 `-?`, `--help`          | コマンドラインの使い方を表示し、終了します。 |
 `flows.json|projectName`| プロジェクト機能を有効にしていない場合、作業したいフローファイルをこのオプションで指定します。プロジェクト機能が有効な場合、どのプロジェクトを利用するのかを指定します。 |
-
 
 Node-REDはデフォルトのフローファイルとして`flows_<hostname>.json`を利用します。
 実行しているコンピュータがホスト名を変更した場合、
 静的なファイル名をコマンドライン引数または[設定ファイル](/docs/user-guide/runtime/settings-file)内の`flowsFile`オプションとして、
 提供することを保証する必要があります。
 
+#### 個別に設定を上書きする
+
+*Since Node-RED 1.1.0*
+
+You can override individual settings on the command-line using the `-D` (or `--define`)
+option.
+
+For example, to change the logging level you can use:
+```
+-D logging.console.level=trace
+```
+
+You can also provide the custom settings as a file:
+```
+-D @./custom-settings.txt
+```
+
+The file should contain a list of the settings to override:
+```
+logging.console.level=trace
+logging.console.audit=true
+```
+
+
+
+
 ### 基盤であるNode.jsプロセスに引数を渡す
+
 
 基盤であるNode.jsプロセスに引数を渡さなければならない機会はあります。
 例えば、Raspberry PiやBeagleBone Blackのように、
