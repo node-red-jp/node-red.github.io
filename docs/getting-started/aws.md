@@ -59,7 +59,7 @@ SSHを利用したい場合、新規のキーペアを生成するのであれ�
         "node": "10.x"
     },
     "dependencies": {
-        "node-red": "0.20.x",
+        "node-red": "1.1.x",
         "aws-sdk": "2.4.x",
         "node-red-contrib-storage-s3": "0.0.x",
         "when": "3.7.x"
@@ -135,7 +135,7 @@ AWSガイド[Linuxインスタンスへの接続](http://docs.aws.amazon.com/ja_
 
 ログインしたら、node.jsとNode-REDをインストールする必要があります
 
-       curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+       curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
        sudo apt-get install -y nodejs build-essential
        sudo npm install -g --unsafe-perm node-red
 
