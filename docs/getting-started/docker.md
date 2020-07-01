@@ -35,17 +35,17 @@ redirect_from:
         Welcome to Node-RED
         ===================
 
-        03 Jun 12:57:10 - [info] Node-RED version: v1.0.6
-        03 Jun 12:57:10 - [info] Node.js  version: v10.18.0
-        03 Jun 12:57:10 - [info] Linux 4.9.184-linuxkit x64 LE
-        03 Jun 12:57:11 - [info] Loading palette nodes
-        03 Jun 12:57:16 - [info] Settings file  : /data/settings.js
-        03 Jun 12:57:16 - [info] Context store  : 'default' [module=memory]
-        03 Jun 12:57:16 - [info] User directory : /data
-        03 Jun 12:57:16 - [warn] Projects disabled : editorTheme.projects.enabled=false
-        03 Jun 12:57:16 - [info] Flows file     : /data/flows.json
-        03 Jun 12:57:16 - [info] Creating new flow file
-        03 Jun 12:57:17 - [warn]
+        30 Jun 12:57:10 - [info] Node-RED version: v1.1.0
+        30 Jun 12:57:10 - [info] Node.js  version: v10.21.0
+        30 Jun 12:57:10 - [info] Linux 4.9.184-linuxkit x64 LE
+        30 Jun 12:57:11 - [info] Loading palette nodes
+        30 Jun 12:57:16 - [info] Settings file  : /data/settings.js
+        30 Jun 12:57:16 - [info] Context store  : 'default' [module=memory]
+        30 Jun 12:57:16 - [info] User directory : /data
+        30 Jun 12:57:16 - [warn] Projects disabled : editorTheme.projects.enabled=false
+        30 Jun 12:57:16 - [info] Flows file     : /data/flows.json
+        30 Jun 12:57:16 - [info] Creating new flow file
+        30 Jun 12:57:17 - [warn]
 
         ---------------------------------------------------------------------
         Your flow credentials file is encrypted using a system-generated key.
@@ -59,9 +59,9 @@ redirect_from:
         file using your chosen key the next time you deploy a change.
         ---------------------------------------------------------------------
 
-        03 Jun 12:57:17 - [info] Starting flows
-        03 Jun 12:57:17 - [info] Started flows
-        03 Jun 12:57:17 - [info] Server now running at http://127.0.0.1:1880/
+        30 Jun 12:57:17 - [info] Starting flows
+        30 Jun 12:57:17 - [info] Started flows
+        30 Jun 12:57:17 - [info] Server now running at http://127.0.0.1:1880/
 
         [...]
 
@@ -93,18 +93,18 @@ Alpine Linuxを使用するとビルドされるイメージのサイズを小�
 
 詳細なイメージ、タグ、マニフェスト情報については[Github project README](https://github.com/node-red/node-red-docker/blob/master/README.md)を参照してください。
 
-例えば: アーキテクチャとして`arm32v7`を持つRaspberry PI 3Bで実行するとしましょう。そして、以下のコマンドでイメージ(`1.0.2-10-arm32v7`とタグ付けされた)をプルし、コンテナを起動します。
+例えば: アーキテクチャとして`arm32v7`を持つRaspberry PI 3Bで実行するとしましょう。そして、以下のコマンドでイメージ(`1.1.0-10-arm32v7`とタグ付けされた)をプルし、コンテナを起動します。
 ```
 docker run -it -p 1880:1880 --name mynodered nodered/node-red:latest
 ```
 
-同じコマンドはamd64システムで実行している場合でも利用することができますが、これはDockerがamd64ホストで実行されていることを検出し、一致するタグ(`1.0.2-10-amd64`)のイメージをプルするからです。
+同じコマンドはamd64システムで実行している場合でも利用することができますが、これはDockerがamd64ホストで実行されていることを検出し、一致するタグ(`1.1.0-10-amd64`)のイメージをプルするからです。
 
 これは自身が実行しているアーキテクチャを知る/指定する必要がないという利点を有しており、docker runコマンドとDockerコンポーズファイルをより柔軟に、システム間の互換を可能にします。
 
 **Note**: 現在Dockerのアーキテクチャ検出に、`arm32v6` - 例えばRaspberry Pi Zeroまたは1について失敗するというバグがあります。現状、以下のようにこれらのデバイスではフルイメージタグを指定する必要があります。:
 ```
-docker run -it -p 1880:1880 --name mynodered nodered/node-red:1.0.2-10-arm32v6
+docker run -it -p 1880:1880 --name mynodered nodered/node-red:1.1.0-10-arm32v6
 ```
 
 ### ユーザデータを管理する
