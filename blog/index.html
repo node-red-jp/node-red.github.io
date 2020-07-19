@@ -1,0 +1,56 @@
+---
+layout: barebones
+---
+<div class="blog-posts-title">
+</div>
+<div class="docs blog-posts">
+  <div class="grid docs-content">
+    <div class="col-1-1">
+        {% for post in paginator.posts %}
+          {% assign author = site.authors[post.author] %}
+          <div class="post-preview">
+              <a href="{{ post.url }}">
+            <div class="post-header">
+              <h2>{{ post.title }}</h2>
+              <div class="post-meta">{{ post.date | date_to_long_string }}{% if author %} &bull; {{author.display_name}}{% endif %}</div>
+            </div>
+            <div class="post-content">
+              {{ post.excerpt| strip_html }}
+            </div>
+            </a>
+          </div>
+        {% endfor %}
+
+
+        {% if paginator.total_pages > 1 %}
+        <div class="pagination">
+          {% if paginator.previous_page == 1 %}
+            <a href="/blog">&larr;</a>
+          {% elsif paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;</a>
+          {% else %}
+            <span>&larr;</span>
+          {% endif %}
+
+          {% for page in (1..paginator.total_pages) %}
+            {% if page == paginator.page %}
+              {{ page }}
+            {% elsif page == 1 %}
+              <a href="/blog">{{ page }}</a>
+            {% else %}
+              <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          {% endfor %}
+
+          {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&rarr;</a>
+          {% else %}
+            <span>&rarr;</span>
+          {% endif %}
+        </div>
+        {% endif %}
+
+
+    </div>
+  </div>
+</div>
