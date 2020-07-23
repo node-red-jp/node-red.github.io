@@ -278,7 +278,7 @@ module.exports = {
 docker build -t your-image-name:your-tag .
 ```
 
-作業しているローカルディレクトリでの変更だけをすぐに開発目的でローカルで_実行_するためには、`cd`を使ってプロジェクトのディレクトリに移動し、以下のように実行します:
+作業しているローカルディレクトリでの変更だけをすぐに開発目的でローカルで _実行_ するためには、`cd`を使ってプロジェクトのディレクトリに移動し、以下のように実行します:
 
 ```bash
 docker run --rm -e "NODE_RED_CREDENTIAL_SECRET=your_secret_goes_here" -p 1880:1880 -v `pwd`:/data --name a-container-name your-image-name
@@ -323,7 +323,7 @@ docker run -d -p 1880:1880 --name mynodered nodered/node-red
 ヘッドレスで実行した場合、コンテナにアクセスし直すためには以下のコマンドを利用します。
 ```
 $ docker exec -it mynodered /bin/bash
-bash-4.4$ 
+bash-4.4$
 ```
 
 コンテナ内のコマンドラインを表示します - 実行したいnpm installコマンドを実行できます
