@@ -27,7 +27,7 @@ slug: プロパティ
 2. ノードの編集テンプレートにエントリを追加します
     ```html
     <div class="form-row">
-        <label for="node-input-prefix"><i class="icon-tag"></i> Prefix</label>
+        <label for="node-input-prefix"><i class="fa fa-tag"></i> Prefix</label>
         <input type="text" id="node-input-prefix">
     </div>
     ```

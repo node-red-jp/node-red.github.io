@@ -24,11 +24,11 @@ slug: クレデンシャル
 2. ノードの編集テンプレートに適切なエントリを追加します
     ```html
     <div class="form-row">
-        <label for="node-input-username"><i class="icon-tag"></i> Username</label>
+        <label for="node-input-username"><i class="fa fa-tag"></i> Username</label>
         <input type="text" id="node-input-username">
     </div>
     <div class="form-row">
-        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <label for="node-input-password"><i class="fa fa-tag"></i> Password</label>
         <input type="password" id="node-input-password">
     </div>
     ```
