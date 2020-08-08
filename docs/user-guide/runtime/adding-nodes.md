@@ -34,16 +34,11 @@ Node-REDプロジェクトおよびより多くのコミュニティの両方か
 
 そして、新しいノードを見つけるためにNode-REDを再起動する必要があります。
 
-`npm`の近年のバージョンは、
-ユーザディレクトリ内の`package.json`ファイルのdependenciesセクションに自動的にモジュールを追加します。
+### The package.json file
 
-### 個々のノードファイルをインストールする
+When first started, or a new project created, Node-RED will create an initial `package.json` file in your user directory, or project directory. This allows you to manage your additional dependencies, and release versions of your project, using standard npm practices. The initial version is 0.0.1 but should be edited according to your project release requirements.
 
-また、開発時にユーザディレクトリの`nodes`ディレクトリに`.js`と`.html`ファイルをコピーすることで
-ノードをインストールすることができます。
-このノードがnpm依存関係を持っていた場合、その依存関係もユーザディレクトリ内でインストールする必要があります。
-これは開発目的のためだけに本当に推奨されます。
-
+`npm` will automatically add additional installed modules to the dependencies section of the `package.json` file in your user directory.
 
 ### ノードをアップグレードする
 
@@ -61,7 +56,7 @@ npm outdated
 モジュールの最新バージョンをインストールためには、以下のコマンドを実行します:
 
 ```
-npm install <name-of-module>
+npm install <name-of-module>@latest
 ```
 
 どちらの方法でも、アップデートをロードするためにはNode-REDを再起動する必要があります。
