@@ -5,6 +5,18 @@ title: エラーをハンドリングする
 slug: handling-errors
 ---
 
+Whilst it is easy to create flows that do the right thing when everything works,
+it is also important to think about what could go wrong.
+
+For example, if the flow interacts with an external database or API, what happens
+if it stops responding to requests? Or what if the MQTT nodes lose their connection
+to a broker?
+
+Error handling in any application is essential to ensure these sorts of events
+are handled properly. What it means to handle the error will depend on the
+requirements of the application. You may want to try an action that failed, or
+trigger a separate alert, or maybe the error is an entirely expected event that
+is just another part of the application logic.
 
 Node-REDはエラーを送出するためのふたつの方法をノードに提供しています。
 それは、ログにメッセージを書くか、または、ランタイムにエラーを送出してフローがトリガーされるかです。
