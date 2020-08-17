@@ -89,7 +89,7 @@ redirect_from:
 ### イメージのバリエーション
 
 Node-REDイメージは、可能な限り小さく保つために[official Node JS Alpine Linux](https://hub.docker.com/_/node/)イメージに基づいています。
-Alpine Linuxを使用するとビルドされるイメージのサイズを小さくすることができますが、ネイティブモジュールのコンパイルに必要な一般的な依存関係は除去されています。これらの依存関係を加えたい場合、実行しているコンテナで除外したパッケージでNode-REDイメージを拡張するか、[docker-custom](docker-custom/README.md)を参考に新たなイメージをビルドします。
+Alpine Linuxを使用するとビルドされるイメージのサイズを小さくすることができますが、ネイティブモジュールのコンパイルに必要な一般的な依存関係は除去されています。これらの依存関係を加えたい場合、実行しているコンテナで除外したパッケージでNode-REDイメージを拡張するか、[docker-custom](https://github.com/node-red/node-red-docker/tree/master/docker-custom)を参考に新たなイメージをビルドします。
 
 詳細なイメージ、タグ、マニフェスト情報については[Github project README](https://github.com/node-red/node-red-docker/blob/master/README.md)を参照してください。
 
