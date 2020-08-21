@@ -1,41 +1,50 @@
 ---
 layout: docs-developing-flows
 toc: toc-developing-flows.html
-title: Flow structure
-slug: flow structure
+title: フローの構造
+slug: フローの構造
 ---
 
-When you first start using Node-RED, you probably start adding all of your nodes to the same tab in the editor. You may import some example flows others have shared, or build prototype flows to test different things out.
+Node-REDを初めて使う時は、おそらくエディタ内の同じタブに全てのノードを追加することから始めるでしょう。
+他のユーザが共有したフローの例を読み込んだり、様々なものをテストするためにプロトタイプのフローを構築したりすることもあります。
 
-Over time, that can lead to a mess of nodes and wires that make it hard to find particular parts of the flow.
+時が経つにつれて、これがノードやワイヤーの混在を引き起こし、フローの特定部分を探すことが困難になります。
 
-Putting some thought into how to structure your flows at the start of any development project can help keep them organised and make them easier to maintain.
+開発プロジェクトを始める時に、フローをどの様に構造化するかについて検討しておくと、フローが整理されている状態を維持することを助け、保守も容易になります。
 
-The main method of organising flows in Node-RED is by separating them across multiple tabs within the editor. There are a few different strategies that can be used to do that.
+Node-REDでフローを整理する主な方法は、エディタ内で複数のタブにフローを分けることです。
+それを行うために用いることができるいくつかの異なる戦略があります。
 
-If you can identify separate logical components of your application, consider putting them on separate tabs.
+もし、アプリケーションが分離された構成要素を特定できる場合は、これらを分離された各タブに配置することを検討してください。
 
-For a home-automation application, you could put the flow logic for each room on a separate tab to reflect the physical space. Or you may want to separate the flows based on function - so all lighting-related flows go on one tab and heating on another.
+ホームオートションのアプリケーションの場合は、物理スペースを反映するために、各部屋のフローロジックを分離されたタブに配置します。
+もしくは、全ての照明に関するフローを一つのタブに配置し、暖房装置に関するフローを他のもう1つのタブに配置する様に、機能に基づいてフローを分離することもできます。
 
-If you are building an HTTP API backend, each tab could represent a separate type of resource the API accesses.
+もし、HTTP APIのバックエンドを構築している場合は、各タブはAPIが接続する分離されたリソースのタイプを表すこともあります。
 
-The goal should be to make it easy to “read” an individual flow from start to finish. Keeping it on a single tab can help do that.
+この目標は、個別のフローの初めから最後まで「読む」ことを容易にすることです。
+単一のタブに配置することは、これを手助けします。
 
-Another consideration is whether you are working alongside other developers on the same Node-RED application. It is much easier to manage the merging of changes if they are on separate tabs. If you have developers with different roles or specialisations, consider how that may affect how your flows are organised.
+他に考慮すべきことは、同一のNode-REDアプリケーション上で、他の開発者と共同作業をしているかどうかです。
+この場合は、開発者がそれぞれのタブを使用すると、変更のマージが容易となります。
+異なる役割や専門分野がある開発者がいる場合は、それがフローの構成にどの様に影響するか検討してください。
 
 
-### Making reusable flows
+### 再利用できるフローの作成
 
-As you build your flows, you may find some common parts that you want to reuse in multiple places. You should avoid having multiple copies of those common parts spread across your flows as they become harder to maintain - you end up with multiple places to apply fixes and could easily overlook one.
+フローを作成する時に、複数の場所で再利用したいと思う共通部分を見つけることがあります。
+フローをメンテナンスするすことが難しくなるため、これら共通部分のコピーがフロー内に複数作成させることは避ける様にしてください。
+修正をする時に変更箇所が複数となり、見落とす可能性があります。
 
-Node-RED provides two different ways of creating reusable flows - Links nodes and Subflows.
+Node-REDでは、再利用できるフローを作成する2つの異なる方法を提供しています。それは、リンクノードとサブフローです。
 
 <div style="width: 300px" class="figure align-right">
   <img src="images/link-nodes.png" alt="Link nodes">
   <p class="caption">Link nodes</p>
 </div>
 
-**Link nodes** let you create a flow that can jump between tabs in the editor - they add a virtual wire from the end of one flow to the start of another.
+**リンクノード** によって、エディタのタブ間をジャンプできるフローを作成できます。
+フローの終了点から別のフローの開始点までの仮想的なワイヤーを追加できます。
 
 <div style="clear:both"></div>
 
@@ -44,11 +53,18 @@ Node-RED provides two different ways of creating reusable flows - Links nodes an
   <p class="caption">Subflows</p>
 </div>
 
-**Subflows** let you create a new node in the palette whose internal implementation is described as a flow. You can then add new instances of the subflow wherever you would a normal node.
+**サブフロー** によって、フローとして作成した内部実装を持つ新しいノードをパレットに作成できます。
+作成後は、通常のノードと同じ場所にサブフローの新規インスタンスを追加できるようになります。
 
 
 
-There are some important differences between the two approaches. Link nodes cannot be used in the middle of a flow, where messages are passed over the link and then return when the other flow completes. They can only be used to start or end a flow. They can also be connected to more than one other link node. This lets you pass messages out to multiple other flows, or have multiple flows pass messages into a single flow. They can be used within a single tab to help flows wrap across the workspace without having lots of wires crossing from right to left.
+これら2つのアプローチの間には、いくつかの重要な違いがあります。
+リンクノードは、メッセージがリンクを介して渡されるフローの中では使うことができません。
+リンクノードは、フローの開始点と終了点のみ使うことができます。
+また、リンクノードは1つ以上の他のリンクノードと接続することもできます。
+これによって、メッセージを他の複数のフローへ渡したり、複数のフローが一つのフローにメッセージを渡したりできる様になります。
+それらを単一タブで用いる
+右から左へ向かうワイヤーが沢山存在することをなくし、ワークスペース上でフローがまとまることを助けます。
 
 Subflows appear as regular nodes so can be used at any point in a flow. However each instance of the subflow is independent of the others. Any flow context inside the subflow will be scoped to the individual instances. If the subflow creates a connection to a remote system, each instance will create its own connection.
 
