@@ -40,7 +40,7 @@ Node-REDでは、再利用できるフローを作成する2つの異なる方�
 
 <div style="width: 300px" class="figure align-right">
   <img src="images/link-nodes.png" alt="Link nodes">
-  <p class="caption">Link nodes</p>
+  <p class="caption">リンクノード</p>
 </div>
 
 **リンクノード** によって、エディタのタブ間をジャンプできるフローを作成できます。
@@ -50,7 +50,7 @@ Node-REDでは、再利用できるフローを作成する2つの異なる方�
 
 <div style="width: 300px" class="figure align-right">
   <img src="images/subflow.png" alt="Subflows">
-  <p class="caption">Subflows</p>
+  <p class="caption">サブフロー</p>
 </div>
 
 **サブフロー** によって、フローとして作成した内部実装を持つ新しいノードをパレットに作成できます。
@@ -66,78 +66,94 @@ Node-REDでは、再利用できるフローを作成する2つの異なる方�
 それらを単一タブで用いる
 右から左へ向かうワイヤーが沢山存在することをなくし、ワークスペース上でフローがまとまることを助けます。
 
-Subflows appear as regular nodes so can be used at any point in a flow. However each instance of the subflow is independent of the others. Any flow context inside the subflow will be scoped to the individual instances. If the subflow creates a connection to a remote system, each instance will create its own connection.
+サブフローは通常のノードとして表示されるため、フロー中のどこでも利用できます。
+ただし、サブフローの各インスタンスは他のインスタンスから独立して存在しています。
+サブフロー内のフローコンテキストは、各インスタンスにスコープされます。
+また、サブフローが外部システムとの接続を作成する場合は、各インスタンスは独自の接続を生成します。
 
-### Customising subflows
+### サブフローのカスタマイズ
 
-When creating subflows, you may want to be able to customise their behaviour in some way. For example, changing what MQTT topic it publishes to.
+サブフローを作成する時、何らかの方法で動作をカスタマイズできる様にしたい場合があります。
+例えば、バブリッシュするMQTTトピックを変えたい場合です。
 
-One pattern for doing that is by setting `msg.topic` on every message passed to the subflow. But that requires adding a Change node ange node in front of every subflow instance in order to set the desired value.
+それを行うための一つのバターンは、サブフローへ渡される各メッセージに `msg.topic` を設定することです。
+ただし、目的の値を設定するためには、各サブフローの前にChangeノードを追加する必要があります。
 
-An easier way for doing this is by using Subflow properties. These are properties that can be set on the subflow instance and appear as environment variables inside the subflow.
+これを行う簡単な方法は、サブフロープロパティを用いることです。
+これらは、サブフローインスタンス上で設定でき、サブフロー内で環境変数として用いることができるプロパティです。
 
-In the MQTT example, you could first configure the node to publish to `${MY_TOPIC}`.
+MQTTの例では、 `${MY_TOPIC}` にパブリッシュする様にノードを最初に設定できます。
 
 <div class="figure">
   <img src="images/mqtt-envvar.png" alt="MQTT topic set by environment variables">
-  <p class="caption">MQTT topic set by environment variables</p>
+  <p class="caption">環境変数によって設定されたMQTTトピック</p>
 </div>
 
 <div style="width: 400px" class="figure align-right">
   <img src="images/subflow-envvar.png" alt="Adding a subflow property">
-  <p class="caption">Adding a subflow property</p>
+  <p class="caption">サブフロープロパティの追加</p>
 </div>
 
-Then add `MY_TOPIC` as a subflow property.
+次に、サブフロープロパティとして `MY_TOPIC` を追加します。
 
 <div style="clear:both"></div>
 
-When a user edits an individual instance they can then provide a custom value for `MY_TOPIC` for that instance.
+ユーザが個々のインスタンスを編集すると、そのインスタンスのために `MY_TOPIC` というカスタム値が提供されます。
 
 
 <div class="figure">
   <img src="images/subflow-instance-envvar.png" alt="Customising a subflow instance property">
-  <p class="caption">Customising a subflow instance property</p>
+  <p class="caption">サブフローインスタンスプロパティのカスタマイズ</p>
 
 </div>
 
+このやり方は、値を直接できる任意のノード設定フィールドに対して、用いることができます。
+ただし現在、チェックボックスや他のカスタムUI要素として提供されているフィールドに対しては機能しません。
 
-This pattern can be applied to any node configuration field that lets you enter the value directly. It doesn’t currently work for fields that are exposed as checkboxes or other custom UI elements.
+### 状態情報の管理
 
-### Managing state information
+もう一つの考慮すべきことは、フロー内の状態情報をどの様に管理するかです。
+例えば、フローを通過したメッセージの総数や、外部センサの状態をどのように保持するかが挙げられます。
 
-Another consideration is how to manage any state information in your flows. For example, keeping a count of how many messages pass through a flow, or the current state of an external sensor.
+Node-REDではランタイム内で状態管理をするためにコンテキストシステムが提供されています。
+このコンテキストシステムは、同一タブやサブフローのスコープとするか、グローバルに利用可能なものにするかを選択できます。
 
-Node-RED provides the Context system for managing state within the runtime. The context can be scoped to the same tab, subflow or made available globally.
+もし、状態情報が特定の一つのタブ上のノード群で必要とされる場合は、グローバルではなく、フローのスコープのコンテストを用いる必要があります。
+また、コンテキストの変数名は、分かりやすく簡単に識別できる様に、慎重に決める必要があります。
 
-If a piece of state information is only needed by nodes on a particular tab, you should use flow-scoped rather than global. You should also choose context variable names with care - make sure they are descriptive and easy to identify.
+別の方法は、保持されたMQTTメッセージやデータベースの様なものを利用してNode-REDの外部で状態を管理する方法です。
+この方法は、管理を外部に依存するとになり、コンテキストほど便利に統合されていないものですが、完全な代替手段ではなく、コンテキストと合わせて利用することもできます。
+例えば、複数のNode-REDインスタンス間で状態情報を共有したい場合、MQTTを用いることで値が変更される度にフローを実行することもできます。
 
-Another option is to manage the state outside of Node-RED - such as using retained MQTT messages, or a database of some sort. Those options do add an external dependency to manage and aren’t as conveniently integrated as Context, but they can also be used alongside context and not as a complete replacement. For example, where you want to share the state information across multiple Node-RED instances, or in the case of MQTT, be able to trigger a flow whenever a value changes.
 
+### 別のプラットフォーム向けのフローのカスタマイズ
 
-### Customising flows for different platforms
+手動によるフローの変更なく、別のプラットフォーム向けにフローをカスタマイズするために、Node-REDでは環境変数が多くの場所で用いられています。
 
-Environment variables can be used more widely within Node-RED to create flows that can be customised for different platforms without having to make manual changes.
+例えば、複数のデバイス上で同一のフローを動作させる場合、各デバイス上のフローはデバイス固有のMQTTトピックをサブスクライブする必要があります。
 
-For example, you may have a flow that you plan to run on multiple devices, but each device should subscribe to its own unique MQTT topic.
+前述のサブフローの例の様に、 ${MY_TOPIC} にパプリッシュするようMQTTノードの設定をした後、Node-REDの起動前に環境変数としてその値を設定します。
+これによって、デバイス固有のカスタマイズを、全デバイス共通のフローと分離して管理できるようになります。
 
-As with the subflow example above, you could configure the MQTT node to publish to ${MY_TOPIC} and then set that as an environment variable before running Node-RED. That allows those device-specific customisations to be maintained separately to the flows that should be common to all devices.
+同様の方法は、異なるオペレーティングシステム上のフローにおいても利用できるでしょう。
+ただし、フローで用いられているファイルパスにおいては、OSによって異なる場合があります。
 
-The same approach can be used when the flows might run on different operating systems - where the path to a file used by the flows may be different depending on the OS.
+InjectノードとChangeノードでは、TypedInputにある"環境変数"オプションを用いて環境変数を参照できます。
+また、Functionノードにおいては、 `env.get()` 関数を使用できます。
 
-The Inject and Change nodes are able to access environment variables using either the "env" option in their TypedInput. The Function node can use the `env.get()` function.
+### エラーハンドリング
 
-### Error handling
+Node-REDでは、エラーに対応するフローを作成するために、CatchノードとStatusノードを提供しています。
+それらをどの様に使うかについてのより詳細な情報は、[ユーザガイド](/docs/user-guide/handling-errors)を参照してください。
 
-Node-RED provides the Catch and Status nodes as ways of building flows that can respond to errors. For more information about how they can be used, refer to the [user guide](/docs/user-guide/handling-errors).
+Catchノードと、それが対象とするノードの間には、直接的に視覚的な関連が見えないため、フローを読みやすさを維持するために配置をよく検討しておく必要があります。
 
-As there is no direct visual association between a Catch node and the nodes it targets, you should consider how to position them in order to keep the flows readable.
+Catchノードを、それが対象とするフローの一部分の近くに配置することは有効ですが、フローが過密になり過ぎない様に注意する必要があります。
 
-Placing them close to the parts of the flow they correspond to can help, but you should take care not cause your flows to become overcrowded.
+別の方法は、全てのエラーハンドリングのフローをグループとしてメインフローの下に配置する方法です。
+これによって、'正常'パスとエラーパスを明確に区別できます。
 
-Another approach is to group all of the error handling flows below the main flow - making the 'good' path clearly distinct from the error paths.
+Catchノードに対して分かりやすい名前をつけることも 処理対象のシナリオを容易に特定するために、 とても重要です。
 
-Giving your Catch nodes a clear name is also very important to help easily identify the scenarios they are intended to handle.
-
-Which ever approach you choose, try to be consistent across your different flows.
+以上のどのアプローチを選択する場合でも、異なるフロー間で一貫性を保つ様にしてください。
 
