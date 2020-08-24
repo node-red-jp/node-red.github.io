@@ -1,68 +1,74 @@
 ---
 layout: docs-developing-flows
 toc: toc-developing-flows.html
-title: Message design
-slug: message design
+title: メッセージの設計
+slug: メッセージの設計
 ---
 
-The messages that pass through a flow are plain JavaScript objects that can have
-properties set on them.
+フローを通過するメッセージは、プロパティを設定できるJavaScriptオブジェクトです。
 
-They usually have a `payload` property - this is the default property that most nodes
-will work with.
+それらメッセージは、通常 `payload` プロパティを持っています。
+これは、ほとんどのノードが使用するデフォルトのプロパティです。
 
-For more information about messages in Node-RED you should read the [Working with messages](/docs/user-guide/messages)
-section of the user guide.
+Node-REDでのメッセージの詳細情報については、ユーザガイドの [メッセージを利用する](/docs/user-guide/messages) のセクションをお読みください。
 
-This section looks at some of the choices you need to make when deciding how to
-stucture the messages in your flows.
+このセクションでは、フロー内のメッセージの構造化を決定する時に、行う必要があるいくつかの方法について説明します。
 
-### Working with `msg.payload`
+### `msg.payload` の利用
 
-When creating flows, the choice of properties used on a message will largely
-be determined by what the nodes in the flow require.
+フローを作成する時、メッセージが用いるプロパティは、主にフロー内のノードが必要とするかによって選択されます。
 
-Most nodes will expect to work with `msg.payload` and that will guide most of the choices you make.
+ほとんどのノードは、 `msg.paylod` を用いることを想定しているため、これは選択の指針になります。
 
-For example, consider a flow that receives an id in the payload of an MQTT message. It then uses that id to query a database to find a matching record.
+例えば、MQTTメッセージのpayloadにidが含まれたメッセージを受け取るフローを考えてみます。
+まず、そのidを用いて、一致するレコードを探すためにデータベースを問い合わせます。
 
 <div class="figure">
   <img src="images/mqtt-query.png" alt="MQTT to database query">
-  <p class="caption">MQTT to database query</p>
+  <p class="caption">MQTTからデータベースへのクエリ</p>
 </div>
 
-The database node will put its result in the payload of the message it sends - overwritting the original id value. If the flow needs to be able to reference that id value later on, it can use a Change node to copy the value to another property that will not get overwritten.
+このデータベースノードは、送信メッセージのペイロードに問合せ結果を格納します。
+つまり、ペイロードに格納されたidを上書きします。
+もし、後続のフローがそのid値を参照することがある場合は、上書きしないようにChangeノードを用いて他のプロパティへ値をコピーします。
 
 <div class="figure">
   <img src="images/mqtt-query-save-id.png" alt="Using a Change node to copy the payload to msg.id">
-  <p class="caption">Using a Change node to copy the payload to <code>msg.id</code></p>
+  <p class="caption">Changeノードを用いて、ペイロードの値を <code>msg.id</code> へコピー</p>
 </div>
 
 
-This highlights an important principle: nodes should not modify or remove properties on messages that are not related to their functionality.
+ここには重要な原則があります。それは、ノードはノードの機能に関係しないプロパティをメッセージから削除したり、修正したりしてはなならないということです。
 
-For example, in most cases, a Function node should send on the same message object it received rather than create a new message object.
+例えば、ほとんどの場合、functionノードは新しいメッセージオブジェクトを内部で定義するのではなく、受け取ったメッセージオブジェクトと同じオプジェクトを送信する必要があります。
 
 
-### Using `msg.topic`
+### `msg.topic` の利用
 
 <div style="width: 343px" class="figure align-right">
   <img src="images/debug-topic.png" alt="msg.topic shown in debug sidebar message">
-  <p class="caption"><code>msg.topic</code> shown in debug sidebar message</p>
+  <p class="caption">デバッグサイドバーに表示された <code>msg.topic</code> メッセージ</p>
 </div>
 
-A number of nodes also treat `msg.topic` as having special meaning. It might be used to identify the source of the message, or to identify different 'streams' of messages on the same flows. It also gets displayed in the Debug sidebar with every message.
+多くのノードは `msg.topic` においても特別な意味を持って扱います。
+メッセージのソースを特定する目的や、または同一のフロー上で別々のメッセージの'流れ'を特定したい目的で、使用される場合があります。
+また、デバックサイドバーには、メッセージと合わせて出力されます。
 
-For example, the MQTT In node will set `msg.topic` to topic the message was received on. The Delay node can then be configured to rate limit messages according to their topic.
+例えば、MQTT Inノードは、受信したメッセージのトピックに `msg.topic` を設定します。
+その後のDelayノードは、メッセージの流量をトピック毎に制限できます。
 
-Whilst your flow may not use nodes that depend on `msg.topic` directly, it can be used to give extra contextual information about a message. But you should take care if you later introduce nodes to the flow that do depend on its value.
+フローに直接 `msg.topic` を用いるノードがない場合、メッセージに関する追加情報を与えるために使用できます。
+ただし、この値を用いる後続のフローがある場合は、注意が必要です。
 
 
-### Designing message properties
+### メッセージプロパティの設計
 
-When designing a node or subflow for reuse, the message properties it works with and the properties it sets are all part of the API it exposes. As with all APIs, it needs to be designed with care and attention. This applies to flows as well.
+再利用するためにノードやサブフローを設計する際は、処理対象のメッセージのプロパティや、値が設定されるプロパティは、全て公開するAPIの様に扱います。
+全てのAPIの様に、注意深く設計する必要があります。
+これは、フローに対しても同様に適用されます。
 
-One approach is to put everything under the payload. For example:
+一つの方法は、全てのプロパティをpayloadの中に入れる方法です。
+例えば:
 
 ```json
 {
@@ -74,12 +80,17 @@ One approach is to put everything under the payload. For example:
 }
 ```
 
-This may be convenient to keep the data together, but it can also lead to a lot of moving properties around as later nodes expect to operate on `msg.payload` and not a property underneath it.
+この方法は、データをまとめて保持するのには便利ですが、一方で後続のノードが `msg.payload` の値に対して操作することを期待していると、プロパティを他に移動する操作が必要となってきます。
 
-A different approach, as seen by the Twitter node, is to put the most 'interesting' information into the payload, in this case the text of a tweet, and put the complete metadata the API also provides into a separate `msg.tweet` property.
+他の方法としては、Twitterノードに見られる様な方法があります。
+この方法では、最も'興味がある'情報であるツイートのテキストがpayloadに格納されます。
+同時に、APIから提供される完全なメタデータは、分離された `msg.tweet` プロパティに格納されます。
 
-There is not a single right answer to how to structure the message, but it should focus on how the node or flow is going to be used in the most common cases.
+メッセージをどの様に設計するかについての正しい答えは一つではありませんが、最も一般的なケースで、ノードやフローをどの様に用いるかについて焦点を当てて検討する必要があります。
 
-As with programming in general, the choice of good property names is also important. They should be self-describing to help with later debugging and understanding of the flow. For example, `msg.temperature` is much more understandable than `msg.t`.
+一般的なプログラミングと同様に、良いプロパティの名前を選択することも重要です。
+後からデバッグやフローの理解で役立つ様に、ブロパティ自体を説明する名前であるべきです。
+例えば、 `msg.t` よりも `msg.temperature` の方がより理解しやすいです。
 
-They should also avoid commonly used properties such as `reset` and `parts` that have special meaning with some nodes.
+また、いくつかのノードにおいて `reset` や `parts` は特別な意味を持っています。
+この様な一般的に使われているプロパティ名も避けるべきです。
