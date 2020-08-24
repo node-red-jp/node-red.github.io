@@ -1,73 +1,89 @@
 ---
 layout: docs-developing-flows
 toc: toc-developing-flows.html
-title: Documenting flows
-slug: documenting flows
+title: フローのドキュメント
+slug: フローのドキュメント
 ---
 
-In any programming language, a vital part of creating easy-to-maintain code is to ensure it is also well documented.
+どのプログラミング言語においても、保守が容易なコードを作成するために必要不可欠なことの一部は、よくドキュメント化されているかを確認することです。
 
-Good documentation serves a number of purposes:
+良いドキュメンテーションは、以下の様な多くの目的のために役立ちます:
 
-1. Whilst everything may seem obvious as you are building a flow, your future self will thank you for providing some description of the details when you come back to it later.
-2. If you are sharing a flow with others, it will help them understand what it is doing and how it works.
-3. If a flow provides an external API you will want to document how that API should be used - what properties or parameters are expected.
-4. When you write documentation, the act of writing out the behaviour could well help you identify parts that could be improved.
+1. フロー作成者地震であれば全てが明らかなことに見えるかもしれませんが、いくらかの詳細説明が提供されていることは、将来に後から見返す時に自分にとっても役立つでしょう。
+2. もしフローを他の開発者と共有している場合、ドキュメンテーションはフローが何をしているか、またどの様に動作するかを理解してもらうのに役立つでしょう。
+3. もしフローが外部へAPIを提供する場合、APIがどの様なプロパティやパラメータを期待するか等、使い方をドキュメント化したいでしょう。
+4. ドキュメントとして動作を書き出すことにより、改善点を特定できることがあります。
 
-In a visual programming environment like Node-RED, the documentation can take a number of forms.
+Node-REDの様なビジュアルプログラミング環境においては、ドキュメンテーションはいくつかの方法があります。
 
-- The flows can be read in the workspace to see the logical flow of events. You should make sure the purpose of each node is easily identified and that they are well laid out to minimise how much wires cross each other.
-- Groups can be used to identify discrete sections of the flows.
-- Moving commonly used parts into subflows can help reduce the visual complexity of the flow.
-- More complete documentation can be added at the node, group or tab level
+- イベントのロジカルな流れを把握するために、ワークスペース上でフローを読むことができます。各ノードは目的は簡単に把握できる様に、また交差するフローを最小限にする様に、それらを適切に配置します。
+- グループは、フローの一部を特定できるようにするために用いることができます。
+- 共通で利用する部分をサブフロー内へ移動することで、フローの視覚的な複雑さを減らすことができます。
+- より完全なドキュメントは、ノード、グループ、タブに追加できます。
 
 
-### Laying out flows
+### フローの配置
 
-The [flow structure](flow-structure) section of this guide looked at how to arrange the logical components of your flows. This section considers the visual appearance of the flow layout.
+このガイドの[フローの構造](flow-structure)のセクションでは、どの様にフローのコンポーネントを整えるかについて説明しました。
+このセクションでは、フローの配置の見た目について考えてゆきます。
 
-The goal is to make it easy to follow the flow without having to jump around the workspace or have to follow multiple wires that cross each other and appear tangled.
+ここでの目標は、ワークスペース内を飛び回るこなく、また互いに交差して絡まった様に見える複数のワイヤーを辿ることなく、フローを簡単に辿れる様にすることです。
 
-The approach that gives the greatest legibility is to keep each unit of processing on a single horizontal line wherever possible. The editor's default behaviour of snapping nodes to a grid on the tab helps keep them aligned.
+最も読みやすくする方法は、可能な限り各処理単位を水平に配置する方法です。
+エディタのデフォルトの動作である「ノードの配置を補助」の機能は、タブ上のグリッドを用いてノードを整理するのに役立ちます。
 
 <div class="figure">
     <img src="./images/node-arrangement.png" alt="Aligning flows in horizontal rows"/>
-    <p class="caption">Aligning flows in horizontal rows</p>
+    <p class="caption">フローを水平に整列</p>
 </div>
 
-If there is a node that has more than one output port, aligning the branched flow vertically makes it easy to compare and contrast the flows.
+もし複数の出力ポートがあるノードが存在する場合、後続の複数の分岐フローを垂直に並べることで、フローの比較が容易となります。
 
 <div style="width: 600px" class="figure">
   <img src="images/node-arrangement-sample-align.png" alt="Aligning branched flows">
-  <p class="caption">Aligning branched flows</p>
+  <p class="caption">分岐フローの整列</p>
 </div>
 
-When a flow gets too long, arranging some nodes vertically can be used to good effect. In the following figure, some of the nodes are arranged vertically to imply a relationship between them. It is easier to understand the nature of the overall flow if it is visually obvious what smaller sections it is comprised of and how they relate to each other.
+フローが長い場合は、いくつかのノードを縦に配置すると良いでしょう。
+下の図では、いくつかののノードを縦に配置し、それらの関係を表現しています。
+もし、フローの各部がお互いにどの様に関係しているか視覚的に明らかである場合は、フロー全体の性質を理解しやすくなります。
 
 <div class="figure">
     <img src="./images/node-vertical-arrangement.png" alt="Vertically aligning logical segements of a long flow"/>
-    <p class="caption">Vertically aligning logical segements of a long flow</p>
+    <p class="caption">長いフローの一部を縦に整列</p>
 </div>
 
-In some cases, these smaller sections may be candidates for moving to subflows that will reduce the visual complexity of the flow. That is particular true if that smaller section could be reused elsewhere in the flows.
+場合によっては、これらフローの一部は、視覚的な複雑さを減らすために、サブフロー化の対象になることもあります。
+フローの一部が他の場所で再利用できる場合は、特に当てはまります。
 
-### Naming nodes
+### ノード名
 
-Most nodes have a `name` property that can be used to customise the label they display in the workspace. This should be used to properly label the key points of a flow.
+ほぼ全てのノードは、ワークスペース上に表示するラベルをカスタマイズするために `名前` プロパティを持っています。
+これは、フロー内の重要なポイントで、適切に名前をつける必要があります。
 
-For example, if a Change node has a single rule that sets `msg.payload` to the current time, its default label will be `set msg.payload`. That helps somewhat, but it doesn't reveal the full purpose of the node. A name of `Get current time` would be much clearer.
+例えば、Changeノードへ `msg.payload` に現在時刻を格納するルールが設定されている場合、デフォルトで `set msg.payload` というラベルになります。
+これはいくらか役に立つラベルですが、このノードの全ての目的を表すものではありません。
+そのため、 `Get current time` という名前の方がより的確でしょう。
 
-There is a balance to be considered here. The longer the label, the more space it needs in the flow. The shorter the label, the less information it can share.
+ここには、考慮すべきバランスがあります。
+長いラベルは、フローにおいてより多くの場所を必要とします。
+一方で、ラベルが短すぎると共有できる情報が少なくなってしまいます。
 
-For some nodes, it might be appropriate to hide the label altogether to minimise the horizontal space it uses in the flow - giving more room to other nodes.
+一部のノードにおいては、フローで使用できる水平方向のスペースを他のノードに割り当てるために、ラベルを非表示にすることが適切である場合があります。
 
-Along with the label, nodes can also have a custom icon. For example, if you have a number of MQTT In nodes for different types of device, customising the icon to match the type of device could be helpful. This should be used with care as the icon is one of the main ways of identifying the type of a particular node
+ラベルに加えて、ノードはタスタムアイコンを持つこともできます。
+例えば、様々なタイプのデバイスからデータを取得するMQTT Inノードが沢山ある場合、デバイスのタイプと一致するアイコンを選択することで、より分かりやすくなります。
+ただし、アイコンはノードの種類を特定する主な手段であるため、注意してこの機能を利用してください。
 
-Choosing good names for things applies just as much to the tabs and subflows used.
+適切な名前を選択することは、タブやサブフローについても言えることです。
 
-It also very important for Link nodes. Without a name set, you have to use the Link node's internal ID when creating links between different tabs. That makes it hard to identify the right target node and mistakes can happen. If you consider the Link nodes as providing APIs between the different tabs, then a good choice of naming scheme will be needed. The names should clearly identify the start and end point of each flow.
+また、リンクノードにおいても適切な名前はとても重要です。
+名前が設定されていないと、リンクノードを用いて異なるタブ間でリンクを作成した時に、リンクノードの内部IDを用いる必要が出てきてしまいます。
+これによってユーザは対象のリンクノードを正しく特定することが難しくなり、間違いが生じる可能性があります。
+タブ間を接続するAPIの様にリンクノードを用いることを考えている場合は、名前を適切に選択する必要があります。
+リンクノードには、各フローの開始点と終了点が明確に分かる様に名前を付けるべきです。
 
-### Adding port labels
+### ポートラベルの追加
 
 If a node has multiple outputs it can be hard to follow the logic if it is not clear on what condition a message may be sent from a particular output.
 
