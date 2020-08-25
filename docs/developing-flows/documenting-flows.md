@@ -16,7 +16,7 @@ slug: フローのドキュメント
 
 Node-REDの様なビジュアルプログラミング環境においては、ドキュメンテーションはいくつかの方法があります。
 
-- イベントのロジカルな流れを把握するために、ワークスペース上でフローを読むことができます。各ノードは目的は簡単に把握できる様に、また交差するフローを最小限にする様に、それらを適切に配置します。
+- イベントのロジカルな流れを把握するために、ワークスペース上でフローを読むことができます。各ノードの目的を簡単に把握できる様に、また交差するフローを最小限にする様に、それらを適切に配置します。
 - グループは、フローの一部を特定できるようにするために用いることができます。
 - 共通で利用する部分をサブフロー内へ移動することで、フローの視覚的な複雑さを減らすことができます。
 - より完全なドキュメントは、ノード、グループ、タブに追加できます。
@@ -27,7 +27,7 @@ Node-REDの様なビジュアルプログラミング環境においては、ド
 このガイドの[フローの構造](flow-structure)のセクションでは、どの様にフローのコンポーネントを整えるかについて説明しました。
 このセクションでは、フローの配置の見た目について考えてゆきます。
 
-ここでの目標は、ワークスペース内を飛び回るこなく、また互いに交差して絡まった様に見える複数のワイヤーを辿ることなく、フローを簡単に辿れる様にすることです。
+ここでの目標は、ワークスペース内を飛び回ることなく、また互いに交差して絡まった様に見える複数のワイヤーを辿ることなく、フローを簡単に辿れる様にすることです。
 
 最も読みやすくする方法は、可能な限り各処理単位を水平に配置する方法です。
 エディタのデフォルトの動作である「ノードの配置を補助」の機能は、タブ上のグリッドを用いてノードを整理するのに役立ちます。
@@ -85,47 +85,51 @@ Node-REDの様なビジュアルプログラミング環境においては、ド
 
 ### ポートラベルの追加
 
-If a node has multiple outputs it can be hard to follow the logic if it is not clear on what condition a message may be sent from a particular output.
+ノードが複数の出力ポートを持つ場合、出力ポートから送信されるメッセージの条件が明確でないと、ロジックを追うのが困難になることがあります。
 
-This is where adding port labels can help document the intended logic.
+その時は、ポートラベルを追加することで、ロジックをドキュメント化できます。
 
-For example, the Switch node provides default labels for its outputs that are shown when the mouse hovers over them. They can help quickly identify the purpose of each branch in the flow.
+例えば、Switchノードでは、出力ポートの上にマウスポインタを置くと、デフォルトで出力のラベルを表示します。
+この機能は、フロー内の各分岐の目的を素早く理解するのに役立ちます。
 
-Whilst the default labels may be sufficient in the context of the flow itself, it is also possible to customise labels to provide more detailed information.
+デフォルトのラベルでもフロー自身を説明するのに十分な場合もありますが、より詳細な情報を追加するために、ラベルをカスタマイズすることもできます。
 
 <div  class="figure">
   <img src="images/node-output-labels.png" alt="Custom output labels on the Switch node's Appearance tab">
-  <p class="caption">Custom output labels on the Switch node's Appearance tab</p>
+  <p class="caption">Switchノードの外観タブにあるカスタム出力ラベル</p>
 </div>
 
-### Inline Comments
+### インラインコメント
 
-The Comment node can be used to add inline comments to the flow - both the node's label, but also its description that will show in the Information sidebar when selected.
+Commentノードを用いることで、フローに対して(本ノードのラベルだけでなく、本ノードを選択した時に情報サイドバーに表示される「詳細」にも)インラインのコメントを追加できます。
 
-By indenting the flows on the page, you can indicate an implied grouping of the different components.
+複数のフローに対してインデントすることで、異なる部品に対してグループの意味を持たせることができます。
 
 <div class="figure">
   <img src="images/comment-nodes.png" alt="Documenting flows with the Comment node">
-  <p class="caption">Documenting flows with the Comment node</p>
+  <p class="caption">Commentノードを用いたフローのドキュメンティング</p>
 </div>
 
-### Grouping nodes
+### ノードのグループ化
 
-A more explicit arrangement of the flows can be achieved by grouping related nodes together.
+フローのより明示的な配置は、関連するノードのグループ化することで実現できます。
 
-The background colour of each group can also be used to highlight different types of group.
+各グループの背景色を用いることで、異なるタイプのグループを強調することもできます。
 
 <div class="figure">
   <img src="images/grouping-nodes.png" alt="Grouping nodes">
-  <p class="caption"> Grouping nodes</p>
+  <p class="caption">ノードのグループ化</p>
 </div>
 
-### Adding longer documentation
+### さらに長いドキュメントを追加
 
-All of the techniques discussed so far relate to the visual appearance of the flows. In order to add more in depth documentation, something more is needed.
+ここまでに説明したテクニックは全て、フローの視覚的な外観と関係するものでした。
+詳細なドキュメントを更に追加するには、さらに方法が必要です。
 
-Every node, group and tab can have longer-form documentation added under the [Description tab in their edit dialog](/docs/user-guide/editor/workspace/nodes#editing-node-properties). This help can be formatted using Markdown and including lists, tables and links. This documentation is then displayed in the [Information sidebar](/docs/user-guide/editor/sidebar/info) when the item is selected.
+ノード、グループ、タブには、[編集ダイアログにある外観タブ](/docs/user-guide/editor/workspace/nodes#editing-node-properties)に、長いドキュメントを追加できる機能を持っています。
+このヘルプはMarkdown形式で記述されるドキュメントのため、リスト、表、リンクを含めることができます。
+本ドキュメントは、要素が選択された時に[情報サイドバー](/docs/user-guide/editor/sidebar/info)へ表示されます。
 
-This longer format of documentation is useful where more explanation is needed of a flow's purpose, or some more complex logic needs to be described.
+この長い形式のドキュメントは、フローの目的をより詳細に説明する場合や、より複雑なロジックを説明する場合に、便利に使えます。
 
-It is also useful where a flow provides an external API of some sort - providing as much detail as it needed for other developers to use the API.
+また、外部APIを提供するフローの時は、APIを使用する他の開発者が必要とする詳細を提供するためにも、役立ちます。
