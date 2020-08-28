@@ -85,13 +85,13 @@ GitHubまたはIBM DevOpsサービスにGitリポジトリを生成し、
 
 ### IBMクラウドへデプロイ
 
-[IBMクラウドへデプロイできるリポジトリ](https://github.com/node-red/node-red-bluemix-starter)を用いると、
+[IBMクラウドへデプロイできるリポジトリ](https://github.com/IBM/node-red-app)を用いると、
 カスタマイズしたNode-REDアプリケーションを作成し、
 数クリックでIBMクラウドへデプロイできます。
 
 以下をクリックすることで、すぐにデプロイを試すことができます:
 
-[![IBMクラウドへデプロイ](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibmets/node-red-bluemix-starter.git)
+[![IBMクラウドへデプロイ](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/node-red-app.git)
 
 このボタンをクリックすると、
 IBMクラウドへ移動し、引き継き先のアプリケーション名を入力できます。
