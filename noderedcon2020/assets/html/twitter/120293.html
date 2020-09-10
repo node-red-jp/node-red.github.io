@@ -5,23 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="SORACOMのGPSマルチユニットとNode-REDを組み合わせた子どもの見守りシステム">
     <meta property="og:type" content="Conference">
-    <meta property="og:url" content="https://nodered.jp/noderedcon2020/">
-    <meta property="og:image" content="https://nodered.jp/about/resources/media/node-red-icon-2.png">
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/120293.html">
+    <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/120293.png">
     <meta property="og:site_name" content="Node-RED Con Tokyo 2020">
-    <meta property="og:description" content="小学一年生の子供が学校から毎日決まった時間に帰って来るのですが、ある日帰宅時間から１５分を過ぎても帰ってこず不安になり、打ち合わせを中断して迎えに行ったことがありました。その時はたまたま友達と公園で虫を観察して遅くなっただけでしたが、同じようなことが起きるたびに作業を中断するわけにもいきません。そこで、ソラコムが販売しているGPSマルチユニットを使い、常に子供の状況が分かるシステムをNode-REDで開発しました。Node-REDであればフローを共有できるので、誰でも似たようなシステムを作れるようになります。また、システムを作る過程で見つけた知見や、思わぬ副産物などについても共有します。">
+    <meta property="og:description" content="見守りシステムの開発### 開発の背景子供が小学一年生で、学校から毎日決まった時間に帰ってきていたのですが、ある日帰宅時間から１５分を過ぎても全然帰ってこず不安になり、打ち合わせを中断して迎えに行ったことがありました。その時はたまたま友達と公園で虫を観察して遅くなっただけでしたが、同じようなことが起きるたびに作業を中断するわけにもいきません。そこで今回、Node-REDを利用して開発した見守りシステムを説明します。実現したいことの整理一言で見守りと言っても、「どのように見守れば良いか」「何かあった時にどうすれば気付けるか」など考慮すべきことはたくさんあります。それらについて説明します。SORACOM GPSマルチユニットについてSORACOMが販売しているGPSマルチユニットは、「位置情報（GPS）」「温度」「湿度」「加速度」の4つのセンサーと充電式バッテリーを内蔵し、セルラー通信で場所を問わずデータを送ることができるデバイスです。今回の見守りシステムで利用したこのデバイスについて説明します。Node-REDフローの開発### システム構成今回開発したシステムについて、どのようにデバイスやサービスを連携させたかを示す全体構成について説明します。利用したノードNode-REDには便利なノードがたくさんあります。今回、見守りシステムを作る際に利用したノードを紹介します。フローの説明最終的に完成したフローの説明をします。機能ごとにサブフローで処理を分けたので、それぞれについて説明します。成果物の説明### デモ今回作ったシステムが動いている様子を紹介します。副産物の紹介今回見守りシステムを開発したことで、思わぬ副産物がありました。それについて共有します。フローの共有今回作成したフローはNode-REDのフローライブラリに登録する予定です。これを利用すれば、どなたでもGPSマルチユニットを使って見守りシステムを作ることができます。">
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:url" content="https://nodered.jp/noderedcon2020/#schedules" />
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/120293.html" />
     <meta property="og:title" content="SORACOMのGPSマルチユニットとNode-REDを組み合わせた子どもの見守りシステム" />
-    <meta property="og:description" content="小学一年生の子供が学校から毎日決まった時間に帰って来るのですが、ある日帰宅時間から１５分を過ぎても帰ってこず不安になり、打ち合わせを中断して迎えに行ったことがありました。その時はたまたま友達と公園で虫を観察して遅くなっただけでしたが、同じようなことが起きるたびに作業を中断するわけにもいきません。そこで、ソラコムが販売しているGPSマルチユニットを使い、常に子供の状況が分かるシステムをNode-REDで開発しました。Node-REDであればフローを共有できるので、誰でも似たようなシステムを作れるようになります。また、システムを作る過程で見つけた知見や、思わぬ副産物などについても共有します。" />
+    <meta property="og:description" content="見守りシステムの開発### 開発の背景子供が小学一年生で、学校から毎日決まった時間に帰ってきていたのですが、ある日帰宅時間から１５分を過ぎても全然帰ってこず不安になり、打ち合わせを中断して迎えに行ったことがありました。その時はたまたま友達と公園で虫を観察して遅くなっただけでしたが、同じようなことが起きるたびに作業を中断するわけにもいきません。そこで今回、Node-REDを利用して開発した見守りシステムを説明します。実現したいことの整理一言で見守りと言っても、「どのように見守れば良いか」「何かあった時にどうすれば気付けるか」など考慮すべきことはたくさんあります。それらについて説明します。SORACOM GPSマルチユニットについてSORACOMが販売しているGPSマルチユニットは、「位置情報（GPS）」「温度」「湿度」「加速度」の4つのセンサーと充電式バッテリーを内蔵し、セルラー通信で場所を問わずデータを送ることができるデバイスです。今回の見守りシステムで利用したこのデバイスについて説明します。Node-REDフローの開発### システム構成今回開発したシステムについて、どのようにデバイスやサービスを連携させたかを示す全体構成について説明します。利用したノードNode-REDには便利なノードがたくさんあります。今回、見守りシステムを作る際に利用したノードを紹介します。フローの説明最終的に完成したフローの説明をします。機能ごとにサブフローで処理を分けたので、それぞれについて説明します。成果物の説明### デモ今回作ったシステムが動いている様子を紹介します。副産物の紹介今回見守りシステムを開発したことで、思わぬ副産物がありました。それについて共有します。フローの共有今回作成したフローはNode-REDのフローライブラリに登録する予定です。これを利用すれば、どなたでもGPSマルチユニットを使って見守りシステムを作ることができます。" />
     <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/120293.png" />
 
     <title>SORACOMのGPSマルチユニットとNode-REDを組み合わせた子どもの見守りシステム</title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/bootstrap.min.css">
+    <!-- Icon -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/fonts/line-icons.css">
+    <!-- Nivo Lightbox -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/nivo-lightbox.css">
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/animate.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/main.css">
+    <!-- Responsive Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://nodered.jp/noderedcon2020/favicon.ico">
+
   </head>
   <body>
 
-    <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/120293.png" style="width:100%">
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg bg-inverse fixed-top scrolling-navbar top-nav-collapse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a href="https://nodered.jp/noderedcon2020/index.html" class="navbar-brand"><img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt=""></a>       
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lni-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#header-wrap">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#about">
+                  About
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#schedules">
+                  Sessions
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#speaker">
+                  Speakers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#gallery">
+                  Gallery
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#sponsors">
+                  Support
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#organizer">
+                  Organizer
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#contactus">
+                  Contact us
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/120293.png" style="width:100%">
+
+    </header>
+    <!-- Header Area wrapper End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin-top:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Title</h2>
+        <p class="banner-desc">SORACOMのGPSマルチユニットとNode-REDを組み合わせた子どもの見守りシステム</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Description</h2>
+        <p class="banner-desc">見守りシステムの開発### 開発の背景子供が小学一年生で、学校から毎日決まった時間に帰ってきていたのですが、ある日帰宅時間から１５分を過ぎても全然帰ってこず不安になり、打ち合わせを中断して迎えに行ったことがありました。その時はたまたま友達と公園で虫を観察して遅くなっただけでしたが、同じようなことが起きるたびに作業を中断するわけにもいきません。そこで今回、Node-REDを利用して開発した見守りシステムを説明します。実現したいことの整理一言で見守りと言っても、「どのように見守れば良いか」「何かあった時にどうすれば気付けるか」など考慮すべきことはたくさんあります。それらについて説明します。SORACOM GPSマルチユニットについてSORACOMが販売しているGPSマルチユニットは、「位置情報（GPS）」「温度」「湿度」「加速度」の4つのセンサーと充電式バッテリーを内蔵し、セルラー通信で場所を問わずデータを送ることができるデバイスです。今回の見守りシステムで利用したこのデバイスについて説明します。Node-REDフローの開発### システム構成今回開発したシステムについて、どのようにデバイスやサービスを連携させたかを示す全体構成について説明します。利用したノードNode-REDには便利なノードがたくさんあります。今回、見守りシステムを作る際に利用したノードを紹介します。フローの説明最終的に完成したフローの説明をします。機能ごとにサブフローで処理を分けたので、それぞれについて説明します。成果物の説明### デモ今回作ったシステムが動いている様子を紹介します。副産物の紹介今回見守りシステムを開発したことで、思わぬ副産物がありました。それについて共有します。フローの共有今回作成したフローはNode-REDのフローライブラリに登録する予定です。これを利用すれば、どなたでもGPSマルチユニットを使って見守りシステムを作ることができます。</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <footer>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <div class="footer-logo">
+              <img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt="">
+            </div>
+            <div class="social-icons-footer">
+              <ul>
+                <li class="facebook"><a target="_blank" href="https://www.facebook.com/groups/noderedjp/"><i class="lni-facebook-filled"></i></a></li>
+                <li class="twitter"><a target="_blank" href="https://twitter.com/noderedjp"><i class="lni-twitter-filled"></i></a></li>
+                <!-- <li class="linkedin"><a target="_blank" href="3"><i class="lni-linkedin"></i></a></li> -->
+              </ul>
+            </div>
+            <div class="site-info">
+              <p>Copyright© Node-RED Con 2020. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>

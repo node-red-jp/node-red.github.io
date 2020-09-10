@@ -5,23 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="Web of Things標準によるIoT相互運用とNode-REDの活用">
     <meta property="og:type" content="Conference">
-    <meta property="og:url" content="https://nodered.jp/noderedcon2020/">
-    <meta property="og:image" content="https://nodered.jp/about/resources/media/node-red-icon-2.png">
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/120237.html">
+    <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/120237.png">
     <meta property="og:site_name" content="Node-RED Con Tokyo 2020">
-    <meta property="og:description" content="W3C Web of ThingsではIoT相互運用のための標準化を進めている。Web of Thingsは、Thing Descriptionと呼ばれる記述方法で各IoTデバイスのメタデータと接続手段を明示的に表現し、IoTデバイスとアプリの間の接続を容易化する。本発表では、Web of ThingsとNode-REDを組み合わせ、IoTデバイスを組み合わせたアプリ構築を容易化するツールNode Generatorについて述べる。このツールは、Thing DescriptionからNode-REDのノードを自動生成し、IoTデバイスをフロー内の1つのノードとして利用可能とする。">
+    <meta property="og:description" content="Web of Thingsとは  World Wide Web ConsortiumのWeb of Things Interest Group&#x2F;Working Groupでは、IoT相互運用のための標準化を行っている。Web of Thingsは、新たなプラットフォームやプロトコルを規定するのではなく、既存のプラットフォーム上のIoTデバイスへの接続手段、そのデバイス自体の情報、そのデバイスがもつデータの情報を記述する方法を標準化することでIoTプラットフォーム間の橋渡しをするという特徴がある。  Web of Thingsは2015年にInterest Groupが立ち上がり、2020年4月9日に主要な文書であるArchitecture, Thing Descriptionが標準化文書であるW3C Recommendationとなった。現在、標準化内容の拡張と、Web of Thing対応システムの普及を行っている。Node GeneratorとそのWeb of Things対応  Web of ThingsのThing Descriptionは、IoTデバイスの情報を機械可読なJSON-LDフォーマットで記述するため、あるIoTデバイスがThing Descriptionで記述されていれば、それを解釈してそのIoTデバイスと相互作用するための方法が明確にわかる。  Thing Descriptionで記述されたIoTデバイスNode-REDのノードとして抽象化してを扱うことができれば、IoTアプリケーション開発がより容易になる。  Node Generetorは、Swagger&#x2F;OpenAPIによるインターフェース定義やfunctionノードの定義から、Node-REDの独自ノードを作成する機能を持っている。これに着想を得て、Thing Descriptionからノードを生成する仕組みを拡張した。  単にIoTデバイスにアクセス可能となるだけではなく、Thing DescriptionにはそのIoTデバイスの情報や得られるデータに関する情報も記述されているので、その情報を利用してNode-REDのヘルプ画面にIoTデバイスの詳細情報を表示できる。これにより、Node-RED上で完結したIoTアプリケーション開発環境が構築できる。Web of Things標準化内でのNode-REDの活用事例  標準化の初期段階から、Node-REDのLow-codeの特性を利用して標準化を推進している。例えば、IoTデバイス側の制御プログラムをNode-REDで迅速に作って相互接続試験を行ったり、IoTアプリケーションのテンプレートから具体的なアプリケーションを少ない工数で作成するような試みも行われている。おわりに  Thing Descriptionを記述すれば簡単にIoTデバイスをNode-REDから扱える枠組みが整いましたので、Web of Thingsに興味を持たれた方は試しに使ってみていただければ幸いです。">
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:url" content="https://nodered.jp/noderedcon2020/#schedules" />
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/120237.html" />
     <meta property="og:title" content="Web of Things標準によるIoT相互運用とNode-REDの活用" />
-    <meta property="og:description" content="W3C Web of ThingsではIoT相互運用のための標準化を進めている。Web of Thingsは、Thing Descriptionと呼ばれる記述方法で各IoTデバイスのメタデータと接続手段を明示的に表現し、IoTデバイスとアプリの間の接続を容易化する。本発表では、Web of ThingsとNode-REDを組み合わせ、IoTデバイスを組み合わせたアプリ構築を容易化するツールNode Generatorについて述べる。このツールは、Thing DescriptionからNode-REDのノードを自動生成し、IoTデバイスをフロー内の1つのノードとして利用可能とする。" />
+    <meta property="og:description" content="Web of Thingsとは  World Wide Web ConsortiumのWeb of Things Interest Group&#x2F;Working Groupでは、IoT相互運用のための標準化を行っている。Web of Thingsは、新たなプラットフォームやプロトコルを規定するのではなく、既存のプラットフォーム上のIoTデバイスへの接続手段、そのデバイス自体の情報、そのデバイスがもつデータの情報を記述する方法を標準化することでIoTプラットフォーム間の橋渡しをするという特徴がある。  Web of Thingsは2015年にInterest Groupが立ち上がり、2020年4月9日に主要な文書であるArchitecture, Thing Descriptionが標準化文書であるW3C Recommendationとなった。現在、標準化内容の拡張と、Web of Thing対応システムの普及を行っている。Node GeneratorとそのWeb of Things対応  Web of ThingsのThing Descriptionは、IoTデバイスの情報を機械可読なJSON-LDフォーマットで記述するため、あるIoTデバイスがThing Descriptionで記述されていれば、それを解釈してそのIoTデバイスと相互作用するための方法が明確にわかる。  Thing Descriptionで記述されたIoTデバイスNode-REDのノードとして抽象化してを扱うことができれば、IoTアプリケーション開発がより容易になる。  Node Generetorは、Swagger&#x2F;OpenAPIによるインターフェース定義やfunctionノードの定義から、Node-REDの独自ノードを作成する機能を持っている。これに着想を得て、Thing Descriptionからノードを生成する仕組みを拡張した。  単にIoTデバイスにアクセス可能となるだけではなく、Thing DescriptionにはそのIoTデバイスの情報や得られるデータに関する情報も記述されているので、その情報を利用してNode-REDのヘルプ画面にIoTデバイスの詳細情報を表示できる。これにより、Node-RED上で完結したIoTアプリケーション開発環境が構築できる。Web of Things標準化内でのNode-REDの活用事例  標準化の初期段階から、Node-REDのLow-codeの特性を利用して標準化を推進している。例えば、IoTデバイス側の制御プログラムをNode-REDで迅速に作って相互接続試験を行ったり、IoTアプリケーションのテンプレートから具体的なアプリケーションを少ない工数で作成するような試みも行われている。おわりに  Thing Descriptionを記述すれば簡単にIoTデバイスをNode-REDから扱える枠組みが整いましたので、Web of Thingsに興味を持たれた方は試しに使ってみていただければ幸いです。" />
     <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/120237.png" />
 
     <title>Web of Things標準によるIoT相互運用とNode-REDの活用</title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/bootstrap.min.css">
+    <!-- Icon -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/fonts/line-icons.css">
+    <!-- Nivo Lightbox -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/nivo-lightbox.css">
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/animate.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/main.css">
+    <!-- Responsive Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://nodered.jp/noderedcon2020/favicon.ico">
+
   </head>
   <body>
 
-    <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/120237.png" style="width:100%">
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg bg-inverse fixed-top scrolling-navbar top-nav-collapse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a href="https://nodered.jp/noderedcon2020/index.html" class="navbar-brand"><img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt=""></a>       
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lni-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#header-wrap">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#about">
+                  About
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#schedules">
+                  Sessions
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#speaker">
+                  Speakers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#gallery">
+                  Gallery
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#sponsors">
+                  Support
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#organizer">
+                  Organizer
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#contactus">
+                  Contact us
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/120237.png" style="width:100%">
+
+    </header>
+    <!-- Header Area wrapper End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin-top:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Title</h2>
+        <p class="banner-desc">Web of Things標準によるIoT相互運用とNode-REDの活用</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Description</h2>
+        <p class="banner-desc">Web of Thingsとは  World Wide Web ConsortiumのWeb of Things Interest Group&#x2F;Working Groupでは、IoT相互運用のための標準化を行っている。Web of Thingsは、新たなプラットフォームやプロトコルを規定するのではなく、既存のプラットフォーム上のIoTデバイスへの接続手段、そのデバイス自体の情報、そのデバイスがもつデータの情報を記述する方法を標準化することでIoTプラットフォーム間の橋渡しをするという特徴がある。  Web of Thingsは2015年にInterest Groupが立ち上がり、2020年4月9日に主要な文書であるArchitecture, Thing Descriptionが標準化文書であるW3C Recommendationとなった。現在、標準化内容の拡張と、Web of Thing対応システムの普及を行っている。Node GeneratorとそのWeb of Things対応  Web of ThingsのThing Descriptionは、IoTデバイスの情報を機械可読なJSON-LDフォーマットで記述するため、あるIoTデバイスがThing Descriptionで記述されていれば、それを解釈してそのIoTデバイスと相互作用するための方法が明確にわかる。  Thing Descriptionで記述されたIoTデバイスNode-REDのノードとして抽象化してを扱うことができれば、IoTアプリケーション開発がより容易になる。  Node Generetorは、Swagger&#x2F;OpenAPIによるインターフェース定義やfunctionノードの定義から、Node-REDの独自ノードを作成する機能を持っている。これに着想を得て、Thing Descriptionからノードを生成する仕組みを拡張した。  単にIoTデバイスにアクセス可能となるだけではなく、Thing DescriptionにはそのIoTデバイスの情報や得られるデータに関する情報も記述されているので、その情報を利用してNode-REDのヘルプ画面にIoTデバイスの詳細情報を表示できる。これにより、Node-RED上で完結したIoTアプリケーション開発環境が構築できる。Web of Things標準化内でのNode-REDの活用事例  標準化の初期段階から、Node-REDのLow-codeの特性を利用して標準化を推進している。例えば、IoTデバイス側の制御プログラムをNode-REDで迅速に作って相互接続試験を行ったり、IoTアプリケーションのテンプレートから具体的なアプリケーションを少ない工数で作成するような試みも行われている。おわりに  Thing Descriptionを記述すれば簡単にIoTデバイスをNode-REDから扱える枠組みが整いましたので、Web of Thingsに興味を持たれた方は試しに使ってみていただければ幸いです。</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <footer>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <div class="footer-logo">
+              <img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt="">
+            </div>
+            <div class="social-icons-footer">
+              <ul>
+                <li class="facebook"><a target="_blank" href="https://www.facebook.com/groups/noderedjp/"><i class="lni-facebook-filled"></i></a></li>
+                <li class="twitter"><a target="_blank" href="https://twitter.com/noderedjp"><i class="lni-twitter-filled"></i></a></li>
+                <!-- <li class="linkedin"><a target="_blank" href="3"><i class="lni-linkedin"></i></a></li> -->
+              </ul>
+            </div>
+            <div class="site-info">
+              <p>Copyright© Node-RED Con 2020. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>
