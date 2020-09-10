@@ -5,23 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="Deploying Successful Core Business Applications with Node-RED">
     <meta property="og:type" content="Conference">
-    <meta property="og:url" content="https://nodered.jp/noderedcon2020/">
-    <meta property="og:image" content="https://nodered.jp/about/resources/media/node-red-icon-2.png">
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/119067.html">
+    <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/119067.png">
     <meta property="og:site_name" content="Node-RED Con Tokyo 2020">
-    <meta property="og:description" content="Many developers do not yet realise that the clarity of Node-RED makes it perfect for developing apps that relate directly with the running of an enterprise. This talk will explain how this is done, including developing the architecture for it, through using CI&#x2F;CD pipelines for deployment, and more.">
+    <meta property="og:description" content="The modern company requires solutions that are able to deliver quickly and cleanly while also emphasising on clarity from the code which can be reusable among other developers within the company. This is where Node-Red comes in; where it can pull the strings from the hardware which we depend on, such as Raspberry Pis, and essentially work to connect different services together, including with the database of the company’s choice. Understanding how this can be made possible is crucial for any company that operates&#x2F;are looking to operate with Node-RED so that they are able to make the most optimal use with the language.In this talk, I will discuss how modern company structures are changing, and how it will look like when Node-RED is added into the mix to be a part of core business services. I will cover design patterns with the architecture that will be able to achieve this, while also talking in depth in regards to deployment procedures such as those involving CI&#x2F;CD pipelines. Alongside this, I will also talk about how monitoring tools from cloud-based platforms such as AWS can be used to monitor the progress of deploying the made service on the cloud and how the business can best make use of the analytics to adapt the service to the environment. This will encourage developers and business owners to incorporate Node-RED into their own businesses.To support this, I will also go over a case study of one of the projects that I have handled as well. I will talk about issues that I have encountered in different parts of the development of the service. This will also help the audience to see firsthand how the architecture talked about would be applied in a real-life context, and help them think how they can adopt the methodology to their own needs as well. I will also discuss different options for deployment, and show a live demo of how it would look like when it is done.">
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:url" content="https://nodered.jp/noderedcon2020/#schedules" />
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/119067.html" />
     <meta property="og:title" content="Deploying Successful Core Business Applications with Node-RED" />
-    <meta property="og:description" content="Many developers do not yet realise that the clarity of Node-RED makes it perfect for developing apps that relate directly with the running of an enterprise. This talk will explain how this is done, including developing the architecture for it, through using CI&#x2F;CD pipelines for deployment, and more." />
+    <meta property="og:description" content="The modern company requires solutions that are able to deliver quickly and cleanly while also emphasising on clarity from the code which can be reusable among other developers within the company. This is where Node-Red comes in; where it can pull the strings from the hardware which we depend on, such as Raspberry Pis, and essentially work to connect different services together, including with the database of the company’s choice. Understanding how this can be made possible is crucial for any company that operates&#x2F;are looking to operate with Node-RED so that they are able to make the most optimal use with the language.In this talk, I will discuss how modern company structures are changing, and how it will look like when Node-RED is added into the mix to be a part of core business services. I will cover design patterns with the architecture that will be able to achieve this, while also talking in depth in regards to deployment procedures such as those involving CI&#x2F;CD pipelines. Alongside this, I will also talk about how monitoring tools from cloud-based platforms such as AWS can be used to monitor the progress of deploying the made service on the cloud and how the business can best make use of the analytics to adapt the service to the environment. This will encourage developers and business owners to incorporate Node-RED into their own businesses.To support this, I will also go over a case study of one of the projects that I have handled as well. I will talk about issues that I have encountered in different parts of the development of the service. This will also help the audience to see firsthand how the architecture talked about would be applied in a real-life context, and help them think how they can adopt the methodology to their own needs as well. I will also discuss different options for deployment, and show a live demo of how it would look like when it is done." />
     <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/119067.png" />
 
     <title>Deploying Successful Core Business Applications with Node-RED</title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/bootstrap.min.css">
+    <!-- Icon -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/fonts/line-icons.css">
+    <!-- Nivo Lightbox -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/nivo-lightbox.css">
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/animate.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/main.css">
+    <!-- Responsive Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://nodered.jp/noderedcon2020/favicon.ico">
+
   </head>
   <body>
 
-    <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/119067.png" style="width:100%">
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg bg-inverse fixed-top scrolling-navbar top-nav-collapse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a href="https://nodered.jp/noderedcon2020/index.html" class="navbar-brand"><img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt=""></a>       
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lni-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#header-wrap">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#about">
+                  About
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#schedules">
+                  Sessions
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#speaker">
+                  Speakers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#gallery">
+                  Gallery
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#sponsors">
+                  Support
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#organizer">
+                  Organizer
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#contactus">
+                  Contact us
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/119067.png" style="width:100%">
+
+    </header>
+    <!-- Header Area wrapper End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin-top:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Title</h2>
+        <p class="banner-desc">Deploying Successful Core Business Applications with Node-RED</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Description</h2>
+        <p class="banner-desc">The modern company requires solutions that are able to deliver quickly and cleanly while also emphasising on clarity from the code which can be reusable among other developers within the company. This is where Node-Red comes in; where it can pull the strings from the hardware which we depend on, such as Raspberry Pis, and essentially work to connect different services together, including with the database of the company’s choice. Understanding how this can be made possible is crucial for any company that operates&#x2F;are looking to operate with Node-RED so that they are able to make the most optimal use with the language.In this talk, I will discuss how modern company structures are changing, and how it will look like when Node-RED is added into the mix to be a part of core business services. I will cover design patterns with the architecture that will be able to achieve this, while also talking in depth in regards to deployment procedures such as those involving CI&#x2F;CD pipelines. Alongside this, I will also talk about how monitoring tools from cloud-based platforms such as AWS can be used to monitor the progress of deploying the made service on the cloud and how the business can best make use of the analytics to adapt the service to the environment. This will encourage developers and business owners to incorporate Node-RED into their own businesses.To support this, I will also go over a case study of one of the projects that I have handled as well. I will talk about issues that I have encountered in different parts of the development of the service. This will also help the audience to see firsthand how the architecture talked about would be applied in a real-life context, and help them think how they can adopt the methodology to their own needs as well. I will also discuss different options for deployment, and show a live demo of how it would look like when it is done.</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <footer>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <div class="footer-logo">
+              <img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt="">
+            </div>
+            <div class="social-icons-footer">
+              <ul>
+                <li class="facebook"><a target="_blank" href="https://www.facebook.com/groups/noderedjp/"><i class="lni-facebook-filled"></i></a></li>
+                <li class="twitter"><a target="_blank" href="https://twitter.com/noderedjp"><i class="lni-twitter-filled"></i></a></li>
+                <!-- <li class="linkedin"><a target="_blank" href="3"><i class="lni-linkedin"></i></a></li> -->
+              </ul>
+            </div>
+            <div class="site-info">
+              <p>Copyright© Node-RED Con 2020. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>
