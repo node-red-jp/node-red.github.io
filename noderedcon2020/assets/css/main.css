@@ -2370,7 +2370,8 @@ footer {
 3. Hero Area
 ========================================================================== */
 .hero-area-bg {
-  background: url(../img/hero-area.png) no-repeat;
+  /* background: url(../img/hero-area.png) no-repeat; */
+  background: url(../img/hero-area2.jpg) no-repeat;
   background-size: cover;
 }
 
