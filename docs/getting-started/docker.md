@@ -13,39 +13,37 @@ redirect_from:
 [Docker Hub](https://hub.docker.com/r/nodered/node-red/)に存在する現在のNode-RED 1.0のリポジトリは、
 `nodered/node-red`にリネームされています。
 
-0.20.x以前のバージョンはhttps://hub.docker.com/r/nodered/node-red-dockerから入手可能です。
-
 ### クイックスタート
 
 最も簡単な方法によってDockerで実行するには、次のようにします:
 
-    docker run -it -p 1880:1880 --name mynodered nodered/node-red
+        docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
 
 このコマンドを詳細に見てみましょう:
 
-    docker run              - run this container... initially building locally if necessary
-    -it                     - attach a terminal session so we can see what is going on
-    -p 1880:1880            - connect local port 1880 to the exposed internal port 1880
-    --name mynodered        - give this machine a friendly local name
-    nodered/node-red        - the image to base it on
-
+        docker run              - run this container, initially building locally if necessary
+        -it                     - attach a terminal session so we can see what is going on
+        -p 1880:1880            - connect local port 1880 to the exposed internal port 1880
+        -v node_red_data:/data  - mount the host node_red_data directory to the container /data directory so any changes made to flows are persisted
+        --name mynodered        - give this machine a friendly local name
+        nodered/node-red        - the image to base it on - currently Node-RED v1.2.0
 
 コマンドを実行するとNode-REDのインスタンスを実行するターミナルウィンドウが開かれます。
 
         Welcome to Node-RED
         ===================
 
-        30 Jun 12:57:10 - [info] Node-RED version: v1.1.0
-        30 Jun 12:57:10 - [info] Node.js  version: v10.21.0
-        30 Jun 12:57:10 - [info] Linux 4.9.184-linuxkit x64 LE
-        30 Jun 12:57:11 - [info] Loading palette nodes
-        30 Jun 12:57:16 - [info] Settings file  : /data/settings.js
-        30 Jun 12:57:16 - [info] Context store  : 'default' [module=memory]
-        30 Jun 12:57:16 - [info] User directory : /data
-        30 Jun 12:57:16 - [warn] Projects disabled : editorTheme.projects.enabled=false
-        30 Jun 12:57:16 - [info] Flows file     : /data/flows.json
-        30 Jun 12:57:16 - [info] Creating new flow file
-        30 Jun 12:57:17 - [warn]
+        10 Oct 12:57:10 - [info] Node-RED version: v1.2.0
+        10 Oct 12:57:10 - [info] Node.js  version: v10.22.1
+        10 Oct 12:57:10 - [info] Linux 4.19.76-linuxkit x64 LE
+        10 Oct 12:57:11 - [info] Loading palette nodes
+        10 Oct 12:57:16 - [info] Settings file  : /data/settings.js
+        10 Oct 12:57:16 - [info] Context store  : 'default' [module=memory]
+        10 Oct 12:57:16 - [info] User directory : /data
+        10 Oct 12:57:16 - [warn] Projects disabled : editorTheme.projects.enabled=false
+        10 Oct 12:57:16 - [info] Flows file     : /data/flows.json
+        10 Oct 12:57:16 - [info] Creating new flow file
+        10 Oct 12:57:17 - [warn]
 
         ---------------------------------------------------------------------
         Your flow credentials file is encrypted using a system-generated key.
@@ -59,9 +57,9 @@ redirect_from:
         file using your chosen key the next time you deploy a change.
         ---------------------------------------------------------------------
 
-        30 Jun 12:57:17 - [info] Starting flows
-        30 Jun 12:57:17 - [info] Started flows
-        30 Jun 12:57:17 - [info] Server now running at http://127.0.0.1:1880/
+        10 Oct 12:57:17 - [info] Starting flows
+        10 Oct 12:57:17 - [info] Started flows
+        10 Oct 12:57:17 - [info] Server now running at http://127.0.0.1:1880/
 
         [...]
 
@@ -93,18 +91,18 @@ Alpine Linuxを使用するとビルドされるイメージのサイズを小�
 
 詳細なイメージ、タグ、マニフェスト情報については[Github project README](https://github.com/node-red/node-red-docker/blob/master/README.md)を参照してください。
 
-例えば: アーキテクチャとして`arm32v7`を持つRaspberry PI 3Bで実行するとしましょう。そして、以下のコマンドでイメージ(`1.1.0-10-arm32v7`とタグ付けされた)をプルし、コンテナを起動します。
+例えば: アーキテクチャとして`arm32v7`を持つRaspberry PI 3Bで実行するとしましょう。そして、以下のコマンドでイメージ(`1.2.0-10-arm32v7`とタグ付けされた)をプルし、コンテナを起動します。
 ```
-docker run -it -p 1880:1880 --name mynodered nodered/node-red:latest
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red:latest
 ```
 
-同じコマンドはamd64システムで実行している場合でも利用することができますが、これはDockerがamd64ホストで実行されていることを検出し、一致するタグ(`1.1.0-10-amd64`)のイメージをプルするからです。
+同じコマンドはamd64システムで実行している場合でも利用することができますが、これはDockerがamd64ホストで実行されていることを検出し、一致するタグ(`1.2.0-10-amd64`)のイメージをプルするからです。
 
 これは自身が実行しているアーキテクチャを知る/指定する必要がないという利点を有しており、docker runコマンドとDockerコンポーズファイルをより柔軟に、システム間の互換を可能にします。
 
 **Note**: 現在Dockerのアーキテクチャ検出に、`arm32v6` - 例えばRaspberry Pi Zeroまたは1について失敗するというバグがあります。現状、以下のようにこれらのデバイスではフルイメージタグを指定する必要があります。:
 ```
-docker run -it -p 1880:1880 --name mynodered nodered/node-red:1.1.0-10-arm32v6
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red:1.2.0-10-arm32v6
 ```
 
 ### ユーザデータを管理する
@@ -292,7 +290,7 @@ docker run --rm -e "NODE_RED_CREDENTIAL_SECRET=your_secret_goes_here" -p 1880:18
 デフォルトでは*'flows.json'*となっている環境変数(**FLOWS**)を使うことで設定します。
 以下のコマンドラインフラグによって実行時に変更することができます。
 ```
-docker run -it -p 1880:1880 -e FLOWS=my_flows.json nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data -e FLOWS=my_flows.json nodered/node-red
 ```
 
 **Note**: `-e FLOWS=""`を指定した場合、
@@ -307,7 +305,7 @@ Node.jsの実行時引数は環境変数(**NODE_OPTIONS**)を使うことでコ�
 例えば、Node.jsガーベージコレクタを使うことでヒープサイズの修正をおこなうためには
 以下のコマンドを使用します。
 ```
-docker run -it -p 1880:1880 -e NODE_OPTIONS="--max_old_space_size=128" nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data -e NODE_OPTIONS="--max_old_space_size=128" nodered/node-red
 ```
 
 ### ヘッドレスで実行する
@@ -315,7 +313,7 @@ docker run -it -p 1880:1880 -e NODE_OPTIONS="--max_old_space_size=128" nodered/n
 ヘッドレス（つまりバックグラウンド）で実行するには、前述のほとんどのコマンドで`-d`を`-it`に置換するだけであり、
 以下の例のようになります:
 ```
-docker run -d -p 1880:1880 --name mynodered nodered/node-red
+docker run -d -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
 ```
 
 ### コンテナシェル
@@ -367,7 +365,7 @@ CONTAINER ID  IMAGE             COMMAND                 CREATED         STATUS  
 
 そしてnode-red dockerを実行します - しかし今回はlinkパラメータ(name:alias)を使います
 
-    docker run -it -p 1880:1880 --name mynodered --link mybroker:broker nodered/node-red
+    docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered --link mybroker:broker nodered/node-red
 
 ここでの魔法は、外部のmybrokerインスタンスにリンクしている*ブローカー*と呼ばれるnode-redインスタンスのホストファイルに、
 `--link`でエントリを追加することです。
@@ -406,7 +404,7 @@ CONTAINER ID  IMAGE             COMMAND                 CREATED         STATUS  
 
 ホストシリアルポートへアクセスするためには、`dialout`グループにコンテナを追加する必要があります。起動コマンドに`--group-add dialout`を追加することで有効できます。例は以下の通りです。
 ```
-docker run -it -p 1880:1880 --group-add dialout --name mynodered nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data --group-add dialout --name mynodered nodered/node-red
 ```
 
 ---
@@ -423,7 +421,7 @@ docker run -it -p 1880:1880 --group-add dialout --name mynodered nodered/node-re
 *権限拒否*エラーを確認した場合、ファイルを開くかホストデバイスにアクセスし、ルートユーザとしてコンテナを起動してみてください。
 
 ```
-docker run -it -p 1880:1880 --name mynodered -u node-red:dialout nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -u node-red:dialout nodered/node-red
 ```
 
 リファレンス:
@@ -437,7 +435,7 @@ https://github.com/node-red/node-red-docker/issues/8
 コンテナ内のホストからデバイスにアクセスしたい、例えばシリアルポートの場合、以下のコマンドラインフラグを使ってアクセスします。
 
 ```
-docker run -it -p 1880:1880 --name mynodered --device=/dev/ttyACM0 nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered --device=/dev/ttyACM0 nodered/node-red
 ```
 リファレンス:
 https://github.com/node-red/node-red/issues/15
@@ -446,7 +444,7 @@ https://github.com/node-red/node-red/issues/15
 
 デフォルトのタイムゾーンを変更したい場合、[相対タイムゾーン](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)を用いたTZ環境変数を使用します。
 ```
-docker run -it -p 1880:1880 --name mynodered -e TZ=Europe/London nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -e TZ=Europe/London nodered/node-red
 ```
 
 リファレンス:
