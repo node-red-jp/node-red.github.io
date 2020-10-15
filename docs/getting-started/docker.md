@@ -355,28 +355,32 @@ CONTAINER ID  IMAGE             COMMAND                 CREATED         STATUS  
 
 ### コンテナのリンク
 
---linkオプションを使用することでDocker実行環境の「内部に」コンテナをリンクすることができます。
+Docker [user-defined bridges](https://docs.docker.com/network/bridge/)を使用することでDocker実行環境の「内部に」コンテナをリンクすることができます。
 
-例えば、次のように利用できるシンプルなMQTTブローカーコンテナがあります。
+ブリッジを使う前に作成する必要があります。以下のコマンドは **iot** と呼ばれる新たなブリッジを作成します。
 
-    docker run -it --name mybroker eclipse-mosquitto
+    docker network create iot
+
+Then all containers that need to communicate need to be added to the same bridge using the **--network** command line option
+
+    docker run -itd --network iot --name mybroker eclipse-mosquitto
 
 (望まない限り、ポート1883をグローバルに公開する必要はありません。後で魔法をかけます。)
 
-そしてnode-red dockerを実行します - しかし今回はlinkパラメータ(name:alias)を使います
+そしてnodered dockerを実行し、同じブリッジに追加します
 
-    docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered --link mybroker:broker nodered/node-red
+    docker run -itd -p 1880:1880 --network iot --name mynodered nodered/node-red
 
-ここでの魔法は、外部のmybrokerインスタンスにリンクしている*ブローカー*と呼ばれるnode-redインスタンスのホストファイルに、
-`--link`でエントリを追加することです。
-しかし、ポート1880で公開しており、node-redの編集のために外部のブラウザを使うことができます。
+containers on the same user-defined bridge can take advantage of the built in name resolution provided by the bridge and use the container name (specified using the **--name** option) as the target hostname.
 
-そして、以下のようなシンプルなフローは動作するはずです - つい先程設定したエイリアス*ブローカー*を使います
+In the above example the broker can be reached from the Node-RED application using hostname *mybroker*.
 
-        [{"id":"190c0df7.e6f3f2","type":"mqtt-broker","broker":"broker","port":"1883","clientid":""},{"id":"37963300.c869cc","type":"mqtt in","name":"","topic":"test","broker":"190c0df7.e6f3f2","x":226,"y":244,"z":"f34f9922.0cb068","wires":[["802d92f9.7fd27"]]},{"id":"edad4162.1252c","type":"mqtt out","name":"","topic":"test","qos":"","retain":"","broker":"190c0df7.e6f3f2","x":453,"y":135,"z":"f34f9922.0cb068","wires":[]},{"id":"13d1cf31.ec2e31","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":226,"y":157,"z":"f34f9922.0cb068","wires":[["edad4162.1252c"]]},{"id":"802d92f9.7fd27","type":"debug","name":"","active":true,"console":"false","complete":"false","x":441,"y":261,"z":"f34f9922.0cb068","wires":[]}]
+Then a simple flow like below show the mqtt nodes connecting to the broker
+
+        [{"id":"c51cbf73.d90738","type":"mqtt in","z":"3fa278ec.8cbaf","name":"","topic":"test","broker":"5673f1d5.dd5f1","x":290,"y":240,"wires":[["7781c73.639b8b8"]]},{"id":"7008d6ef.b6ee38","type":"mqtt out","z":"3fa278ec.8cbaf","name":"","topic":"test","qos":"","retain":"","broker":"5673f1d5.dd5f1","x":517,"y":131,"wires":[]},{"id":"ef5b970c.7c864","type":"inject","z":"3fa278ec.8cbaf","name":"","repeat":"","crontab":"","once":false,"topic":"","payload":"","payloadType":"date","x":290,"y":153,"wires":[["7008d6ef.b6ee38"]]},{"id":"7781c73.639b8b8","type":"debug","z":"3fa278ec.8cbaf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","statusVal":"payload","statusType":"auto","x":505,"y":257,"wires":[]},{"id":"5673f1d5.dd5f1","type":"mqtt-broker","z":"","name":"","broker":"mybroker","port":"1883","clientid":"","usetls":false,"compatmode":false,"keepalive":"15","cleansession":true,"birthTopic":"","birthQos":"0","birthRetain":"false","birthPayload":"","closeTopic":"","closeRetain":"false","closePayload":"","willTopic":"","willQos":"0","willRetain":"false","willPayload":""}]
 
 この方法は内部ブローカーをDockerホスト外に公開しません - 
-もちろん公開したいのであれば、`-p 1883:1883`などをブローカーに追加してコマンドを実行することができます。
+自身のコンピュータ以外の他のシステムにブローカーを利用させたい場合、`-p 1883:1883`などをブローカーに追加してコマンドを実行することができます。
 
 ### Raspberry PI - ネイティブGPIOサポート
 
