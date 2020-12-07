@@ -10,10 +10,6 @@ redirect_from:
 
 ---
 
-### 必須条件
-
-ローカル環境にNode-REDをインストールするためには[サポートされているNode.jsのバージョン](/docs/faq/node-versions)が必要です。
-
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px;"><img src="/images/logos/raspberrypi.svg" height="30">
 <img src="/images/logos/debian.svg" height="30">
@@ -32,6 +28,17 @@ RedHat、FedoraおよびCentOSを含むRPMベースのオペレーティング�
 <a href="https://github.com/node-red/linux-installers">こちら</a>で入手できるRPMのインストールスクリプトを利用することができます。
 </div>
 
+<div class="doc-callout">
+<div style="float: left; margin-right: 10px; margin-bottom: 10px;">
+<img src="/images/logos/windows.svg" height="30">
+</div>
+If you are using Windows, detailed instructions for installing Node-RED can be found <a href="/docs/getting-started/windows">here</a>.
+</div>
+
+### 必須条件
+
+ローカル環境にNode-REDをインストールするためには[サポートされているNode.jsのバージョン](/docs/faq/node-versions)が必要です。
+
 ### npmによってインストールする
 
 Node-REDをインストールするため、Node.jsに同梱の`npm`コマンドを利用できます:
@@ -40,13 +47,7 @@ Node-REDをインストールするため、Node.jsに同梱の`npm`コマンド
 sudo npm install -g --unsafe-perm node-red
 ```
 
-<div class="doc-callout">
-<div style="float: left; margin-right: 10px; margin-bottom: 10px;">
-<img src="/images/logos/windows.svg" height="30">
-</div>
 Windowsを利用している場合、このコマンドを<code>sudo</code>からは始めません。
-WindowsへのNode-REDのインストールに関する追加情報は<a href="/docs/getting-started/windows">こちら</a>で確認できます。
-</div>
 
 このコマンドは、依存関係とともにNode-REDをグローバルモジュールとしてインストールします。
 
@@ -217,13 +218,7 @@ Raspberry Piスクリプトを利用してNode-REDをインストールした場
 sudo npm install -g --unsafe-perm node-red
 ```
 
-<div class="doc-callout">
-<div style="float: left; margin-right: 10px; margin-bottom: 10px;">
-<img src="/images/logos/windows.svg" height="30">
-</div>
 Windowsを利用している場合、コマンドの先頭に<code>sudo</code>は不要です。
-</div>
-
 
 
 
