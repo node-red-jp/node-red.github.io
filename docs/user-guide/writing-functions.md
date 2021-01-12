@@ -46,6 +46,14 @@ return newMsg;
 一般論として、Functionノードはどんな変更をプロパティに行っても、
 受け取ったメッセージオブジェクトを返す<em>べき</em>です。</div>
 
+Use node.warn() to show warnings in the sidebar to help you debug. For example:
+
+{% highlight javascript %}
+node.warn("my var xyz = " + xyz);
+{% endhighlight %}
+
+See logging section below for more details.
+
 ### 複数の出力に送る
 
 Functionノードの編集ダイアログで出力の数を変更することができます。
@@ -121,7 +129,7 @@ doSomeAsyncWork(msg, function(result) {
 return;
 {% endhighlight %}
 
-**Node-RED 1.0以降**
+*Since Node-RED 1.0*
 
 Functionノードは`node.send`に渡されたメッセージオブジェクトを全てクローンします。
 これは関数内で再利用されるメッセージオブジェクトが意図しない変更がされないようにするためです。
@@ -139,7 +147,7 @@ node.send(msg,false);
 
 #### メッセージで終了する
 
-**Node-RED 1.0以降**
+*Since Node-RED 1.0*
 
 Functionノードはメッセージについて非同期処理をおこなう場合、
 メッセージ処理が終了したとき実行環境は自動的に検知します。
@@ -190,7 +198,6 @@ node.on('close', function() {
 });
 {% endhighlight %}
 
-
 Or, *since Node-RED 1.1.0*, you can add code to the `Close` tab in the node's edit
 dialog.
 
@@ -204,7 +211,11 @@ node.warn("知っておくべき何かが起きました");
 node.error("なんてこった、何か良くないことが起きました");
 {% endhighlight %}
 
-`warn`と`error`メッセージはフローエディタのデバッグタブにも送られます。
+Where the console output appears will depend on how your opearting sustem and how you start Node-RED.
+If you start using a command line - that is the console where logging will appear. If you run as a
+system service then it may appear in the system log. If you run under an app like PM2 it will have it's own way for showing logs. On a Pi the install script adds a `node-red-log` command that will display the log.
+
+`warn`と`error`メッセージはフローエディタ右側のデバッグタブにも送られます。
 
 より詳細なログには、`node.trace()`および`node.debug()`が利用できます。
 これらのレベルを出力するようにログが設定されていない場合、ログには出力されません。
