@@ -49,6 +49,8 @@ title: フロー
 <div style="width:350px" class="figure align-right">
   <img src="../images/editor-edit-flow.png" alt="Flow properties editor">
   <p class="caption">フロープロパティエディタ</p>
+  <img src="../images/editor-sidebar-info.png" alt="Information Sidebar">
+  <p class="caption">情報サイドバー</p>
 </div>
 
 フローのプロパティを編集するには、上部バーのタブをダブルクリックします。
@@ -67,7 +69,12 @@ title: フロー
 #### フローを有効化または無効化する
 
 フローは、ダイアログの最下部のトグルボタンによって有効化・無効化できます。
-フローが無効化されていれば、ノードはがデプロイされたときに、フロー内のノードは作成されません。
+フローが無効化されていれば、
+ノードはがデプロイされたときに、フロー内のノードは作成されません。
+
+*Since Node-RED 1.1.0*
+
+[情報サイドバー](../sidebar/info)の<i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-circle-thin"></i>ボタンはノード/フローの有効化または無効化をおこなうこともできます。
 
 <table class="action-ref inline">
  <tr><th colspan="2">リファレンス</th></tr>

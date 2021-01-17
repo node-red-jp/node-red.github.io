@@ -1,7 +1,7 @@
 ---
 layout: docs-developing-flows
 toc: toc-developing-flows.html
-title: フローの開発
+title: フローの開発 
 ---
 
 Node-REDでは、ノードをドラックしてつないでフローを作ることで、アプリケーションを素早く開発できます。

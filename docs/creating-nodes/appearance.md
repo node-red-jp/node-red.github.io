@@ -16,9 +16,12 @@ slug: 外観
 
 プロパティの値が文字列の場合は、その文字列をアイコン名として扱います。
 
-プロパティの値が関数の場合は、ノードが最初に読み込まれた時、またはノードが編集された後に評価されます。関数はアイコン名として使う文字列を返すようにしてください。
+プロパティの値が関数の場合は、
+ノードが最初に読み込まれた時、またはノードが編集された後に評価されます。
+関数はアイコン名として使う文字列を返すようにしてください。
 
-関数は、ワークスペース上のノード（`this`が参照するノードインスタンス）と、パレット上のノードの両方のアイコンを表示するために使用されます。
+関数は、ワークスペース上のノード（`this`が参照するノードインスタンス）と、
+パレット上のノードの両方のアイコンを表示するために使用されます。
 パレット上のノード向けの場合、`this`は特定のノードインスタンスを参照しません。
 関数は有効な値を返す*必要があります。*
 
@@ -55,22 +58,22 @@ icon: "file.png",
 </style>
 
 <ul class="nr-icon-list">
-<li><img src="images/alert.svg"/> alert.png</li>
-<li><img src="images/arrow-in.svg"/> arrow-in.png</li>
-<li><img src="images/bridge-dash.svg"/> bridge-dash.png</li>
-<li><img src="images/bridge.svg"/> bridge.png</li>
-<li><img src="images/db.svg"/> db.png</li>
-<li><img src="images/debug.svg"/> debug.png</li>
-<li><img src="images/envelope.svg"/> envelope.png</li>
-<li><img src="images/feed.svg"/> feed.png</li>
-<li><img src="images/file.svg"/> file.png</li>
-<li><img src="images/function.svg"/> function.png</li>
-<li><img src="images/hash.svg"/> hash.png</li>
-<li><img src="images/inject.svg"/> inject.png</li>
-<li><img src="images/light.svg"/> light.png</li>
-<li><img src="images/serial.svg"/> serial.png</li>
-<li><img src="images/template.svg"/> template.png</li>
-<li><img src="images/white-globe.svg"/> white-globe.png</li>
+<li><img src="images/alert.svg"/> alert.svg</li>
+<li><img src="images/arrow-in.svg"/> arrow-in.svg</li>
+<li><img src="images/bridge-dash.svg"/> bridge-dash.svg</li>
+<li><img src="images/bridge.svg"/> bridge.svg</li>
+<li><img src="images/db.svg"/> db.svg</li>
+<li><img src="images/debug.svg"/> debug.svg</li>
+<li><img src="images/envelope.svg"/> envelope.svg</li>
+<li><img src="images/feed.svg"/> feed.svg</li>
+<li><img src="images/file.svg"/> file.svg</li>
+<li><img src="images/function.svg"/> function.svg</li>
+<li><img src="images/hash.svg"/> hash.svg</li>
+<li><img src="images/inject.svg"/> inject.svg</li>
+<li><img src="images/light.svg"/> light.svg</li>
+<li><img src="images/serial.svg"/> serial.svg</li>
+<li><img src="images/template.svg"/> template.svg</li>
+<li><img src="images/white-globe.svg"/> white-globe.svg</li>
 </ul>
 
 **注意**: Node-RED 1.0では、これらすべてのアイコンはより良い表示のためSVGに代替されました。
@@ -94,7 +97,7 @@ icon: "font-awesome/fa-automobile",
 アイコンのファイル名を指定すると、エディタは本ディレクトリ内からアイコンを探し出します。
 そのため、アイコンのファイル名は一意にする必要があります。
 
-アイコンは、背景を透過色にした40 x 60ピクセルの白い画像にしてください。
+アイコンは、背景を透過色にしたアスクペクト比2:3、最小でも40 x 60ピクセルの白い画像にしてください。
 
 #### ユーザ定義アイコン
 

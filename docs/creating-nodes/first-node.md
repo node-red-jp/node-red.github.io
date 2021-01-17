@@ -127,7 +127,7 @@ module.exports = function(RED) {
 
 <script type="text/html" data-template-name="lower-case">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>

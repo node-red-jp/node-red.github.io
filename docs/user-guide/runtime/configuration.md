@@ -208,7 +208,7 @@ functionGlobalContext
  <pre>context.global.foo = "bar";
  var osModule = context.global.osModule;</pre>
  この方法はまだサポートされていますが、非推奨であり、<code>global.get</code>/<code>global.set</code>
- でのアクセスが推奨されます。これは将来のリリースでコンテキストデータが永続化できることを見越しています。
+ でのアクセスが推奨されます。この方法で保存されたデータは再起動後には取得できず、サイドバーのコンテキストビューアには表示されません。
  </div>
 
 debugMaxLength

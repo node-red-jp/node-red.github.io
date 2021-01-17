@@ -23,6 +23,10 @@ slug:
     <div class="col-4-12">
         <h3>メソッド</h3>
         <table>
+            <tr><td><a href="#methods-disable">disable</a></td></tr>
+            <tr><td><a href="#methods-disabled-get">disabled</a></td></tr>           
+            <tr><td><a href="#methods-hide">hide</a></td></tr>
+            <tr><td><a href="#methods-show">show</a></td></tr>
             <tr><td><a href="#methods-type">type</a></td></tr>
             <tr><td><a href="#methods-types">types</a></td></tr>
             <tr><td><a href="#methods-validate">validate</a></td></tr>
@@ -80,8 +84,11 @@ $(".input").typedInput({
 `json` | 有効なJSON文字列
 `bin` | Node.js Buffer
 `re` | 正規表現
+`jsonata` | Jsonata式
 `date` | 現在のタイムスタンプ
 `env` | 環境変数
+`node` | `node.`プロパティ式
+`cred` | セキュアクレデンシャル
 
 ```javascript
 $(".input").typedInput({
@@ -107,6 +114,44 @@ $(".input").typedInput({
 ### メソッド
 
 <a name="methods-type"></a>
+
+#### <a href="#methods-disable" name="methods-disable">disable()</a>
+
+*Since Node-RED 1.2.7*
+
+Disable the typedInput when it is currently enabled.
+
+```javascript
+$(".input").typedInput('disable');
+```
+
+#### <a href="#methods-disabled-get" name="methods-disabled-get">disabled()</a>
+
+*Since Node-RED 1.2.7*
+
+<span class="method-return">Returns: Boolean</span>
+
+Gets whether the typedInput is currently disabled or not.
+
+```javascript
+$(".input").typedInput('disabled');
+```
+
+#### <a href="#methods-hide" name="methods-hide">hide()</a>
+
+Hide the typedInput when it is currently visible.
+
+```javascript
+$(".input").typedInput('hide');
+```
+
+#### <a href="#methods-show" name="methods-show">show()</a>
+
+Show the typedInput when it is currently hidden.
+
+```javascript
+$(".input").typedInput('show');
+```
 
 #### <a href="#methods-type-get" name="methods-type-get">type()</a>
 

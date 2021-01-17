@@ -46,6 +46,14 @@ return newMsg;
 一般論として、Functionノードはどんな変更をプロパティに行っても、
 受け取ったメッセージオブジェクトを返す<em>べき</em>です。</div>
 
+Use node.warn() to show warnings in the sidebar to help you debug. For example:
+
+{% highlight javascript %}
+node.warn("my var xyz = " + xyz);
+{% endhighlight %}
+
+See logging section below for more details.
+
 ### 複数の出力に送る
 
 Functionノードの編集ダイアログで出力の数を変更することができます。
@@ -121,7 +129,7 @@ doSomeAsyncWork(msg, function(result) {
 return;
 {% endhighlight %}
 
-**Node-RED 1.0以降**
+*Since Node-RED 1.0*
 
 Functionノードは`node.send`に渡されたメッセージオブジェクトを全てクローンします。
 これは関数内で再利用されるメッセージオブジェクトが意図しない変更がされないようにするためです。
@@ -139,7 +147,7 @@ node.send(msg,false);
 
 #### メッセージで終了する
 
-**Node-RED 1.0以降**
+*Since Node-RED 1.0*
 
 Functionノードはメッセージについて非同期処理をおこなう場合、
 メッセージ処理が終了したとき実行環境は自動的に検知します。
@@ -156,19 +164,42 @@ doSomeAsyncWork(msg, function(result) {
 return;
 {% endhighlight %}
 
+### Running code on start
 
+*Since Node-RED 1.1.0*
+
+With the 1.1.0 release, the Function node provides a `Setup` tab where you can
+provide code that will run whenever the node is started. This can be used to
+setup any state the Function node requires.
+
+For example, it can initialise values in local context that the main Function
+will use:
+```
+if (context.get("counter") === undefined) {
+    context.set("counter", 0)
+}
+```
+
+The Setup function can return a Promise if it needs to complete asynchronous work
+before the main Function can start processing messages. Any messages that arrive
+before the Setup function has completed will be queued up, and handled when it is ready.
 
 ### 片付け
 
 Functionノードの中で非同期のコールバックを用いる場合、
 フローが再デプロイされる際に処理中のリクエストや使用中のコネクションなどを後片付けする必要があります。
-この後片付けは、`close`イベントハンドラを追加することで行うことができます。
+この後片付けは、2種類の方法で実施できます。
+
+`close`イベントハンドラを追加します:
 
 {% highlight javascript %}
 node.on('close', function() {
     // コネクションの切断など、全ての非同期コードの後片付けをここで行う
 });
 {% endhighlight %}
+
+Or, *since Node-RED 1.1.0*, you can add code to the `Close` tab in the node's edit
+dialog.
 
 ### イベントのログ
 
@@ -180,7 +211,11 @@ node.warn("知っておくべき何かが起きました");
 node.error("なんてこった、何か良くないことが起きました");
 {% endhighlight %}
 
-`warn`と`error`メッセージはフローエディタのデバッグタブにも送られます。
+Where the console output appears will depend on how your opearting sustem and how you start Node-RED.
+If you start using a command line - that is the console where logging will appear. If you run as a
+system service then it may appear in the system log. If you run under an app like PM2 it will have it's own way for showing logs. On a Pi the install script adds a `node-red-log` command that will display the log.
+
+`warn`と`error`メッセージはフローエディタ右側のデバッグタブにも送られます。
 
 より詳細なログには、`node.trace()`および`node.debug()`が利用できます。
 これらのレベルを出力するようにログが設定されていない場合、ログには出力されません。
@@ -425,7 +460,7 @@ Functionノード内では以下のオブジェクトが利用できます。
  * `RED.util.cloneMessage(..)` : メッセージオブジェクトを再利用できるように安全にクローンします  
 
 #### `env`
- * `get(..)` : 環境変数を取得する
+ * `env.get(..)` : 環境変数を取得する
 
 
 #### その他のモジュールと関数

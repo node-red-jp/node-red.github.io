@@ -11,18 +11,20 @@ Node-REDを拡張する主な方法は、パレットに新しいノードを追
  - [はじめてのノード開発](first-node)
  - [JavaScriptファイル](node-js)
  - [HTMLファイル](node-html)
- - [ノードコンテキスト](context)
+ - [パッケージング](packaging)
  - [ノードプロパティ](properties)
+ - [ノードのクレデンシャル]](credentials)
  - [ノードの外観](appearance)
+ - [ノードの編集ダイアログ](edit-dialog)
+ - [コンテキストの保存](context)
  - [ノードのステータス](status)
  - [設定ノード](config-nodes)
  - [ヘルプのスタイルガイド](help-style-guide)
- - [フローの例示](examples)
- - [パッケージング](packaging)
+ - [例の追加](examples)
  - [国際化](i18n)
 
 
-これからすべきこと(To Do):
+To Do:
 
 1. ライブラリ
 2. カスタムHTTPエンドポイント

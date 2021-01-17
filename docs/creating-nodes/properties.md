@@ -14,36 +14,39 @@ slug: プロパティ
 このセクションでは、ノードに`prefix`という新しいプロパティを追加します:
 
 1. `defaults`オブジェクトに新しいエントリを追加します:
-
-        defaults: {
-            name: {value:""},
-            prefix: {value:""}
-        },
+    ```javascript
+    defaults: {
+        name: {value:""},
+        prefix: {value:""}
+    },
+    ```
 
    エントリには、このタイプの新しいノードがワークスペースにドラッグされたときに
    使用されるデフォルト値`value`が含まれます。
 
 2. ノードの編集テンプレートにエントリを追加します
-
-        <div class="form-row">
-            <label for="node-input-prefix"><i class="icon-tag"></i> Prefix</label>
-            <input type="text" id="node-input-prefix">
-        </div>
+    ```html
+    <div class="form-row">
+        <label for="node-input-prefix"><i class="fa fa-tag"></i> Prefix</label>
+        <input type="text" id="node-input-prefix">
+    </div>
+    ```
 
     テンプレートには、`id`に`node-input-<propertyname>`が設定された
     `<input>`要素が含まれていなければなりません。
 
 3. ノード内のプロパティを使用します
-
-        function LowerCaseNode(config) {
-            RED.nodes.createNode(this,config);
-            this.prefix = config.prefix;
-            var node = this;
-            this.on('input', function(msg) {
-                msg.payload = node.prefix + msg.payload.toLowerCase();
-                node.send(msg);
-            });
-        }
+    ```javascript
+    function LowerCaseNode(config) {
+        RED.nodes.createNode(this,config);
+        this.prefix = config.prefix;
+        var node = this;
+        this.on('input', function(msg) {
+            msg.payload = node.prefix + msg.payload.toLowerCase();
+            node.send(msg);
+        });
+    }
+    ```
 
 ### プロパティ定義
 
@@ -59,9 +62,11 @@ slug: プロパティ
 
 ### 予約済みのプロパティ名
 
-使用してはいけないプロパティの予約名がいくつかあります:
+**使用してはいけない** プロパティの予約名がいくつかあります:
 
-> `type`, `x`, `y`, `z`, `wires`, `outputs`
+ - 全ての1文字 - `x`, `y`, `z`, `d`, `g`, `l`は既に使用されています。
+   その他も将来使用する予約語です。
+ - `id`, `type`, `wires`, `inputs`, `outputs`
 
 
 ノードが提供する出力の数を設定可能にしたい場合、
@@ -120,13 +125,11 @@ defaults: {
 エディタはノードの編集テンプレートをダイアログに入力します。
 
 `defaults`配列の各プロパティについて、
-`id`が`node-input-<propertyname>`に設定されている`<input>`要素を探します。
+`id`が`node-input-<propertyname>`、または設定ノードでは`node-config-input-<propertyname>`に設定されている`<input>`要素を探します。
 この入力には、プロパティの現在の値が自動的に入力されます。
-編集ダイアログが正常になると、プロパティは入力にある値を取ります。
+編集ダイアログが閉じられると、プロパティは入力にある値を取ります。
 
-`<input>`のtype属性は、文字列/数値プロパティの`text`か、
-booleanプロパティの`checkbox`です。
-あるいは、選択肢が限られている場合には`<select>`要素を使用することができます。
+編集ダイアログについての更なる情報は[こちら](edit-dialog)で入手できます。
 
 #### カスタム編集の動作
 

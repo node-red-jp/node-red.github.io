@@ -10,10 +10,6 @@ redirect_from:
 
 ---
 
-### 必須条件
-
-ローカル環境にNode-REDをインストールするためには[サポートされているNode.jsのバージョン](/docs/faq/node-versions)が必要です。
-
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px;"><img src="/images/logos/raspberrypi.svg" height="30">
 <img src="/images/logos/debian.svg" height="30">
@@ -32,6 +28,17 @@ RedHat、FedoraおよびCentOSを含むRPMベースのオペレーティング�
 <a href="https://github.com/node-red/linux-installers">こちら</a>で入手できるRPMのインストールスクリプトを利用することができます。
 </div>
 
+<div class="doc-callout">
+<div style="float: left; margin-right: 10px; margin-bottom: 10px;">
+<img src="/images/logos/windows.svg" height="30">
+</div>
+If you are using Windows, detailed instructions for installing Node-RED can be found <a href="/docs/getting-started/windows">here</a>.
+</div>
+
+### 必須条件
+
+ローカル環境にNode-REDをインストールするためには[サポートされているNode.jsのバージョン](/docs/faq/node-versions)が必要です。
+
 ### npmによってインストールする
 
 Node-REDをインストールするため、Node.jsに同梱の`npm`コマンドを利用できます:
@@ -40,20 +47,14 @@ Node-REDをインストールするため、Node.jsに同梱の`npm`コマンド
 sudo npm install -g --unsafe-perm node-red
 ```
 
-<div class="doc-callout">
-<div style="float: left; margin-right: 10px; margin-bottom: 10px;">
-<img src="/images/logos/windows.svg" height="30">
-</div>
 Windowsを利用している場合、このコマンドを<code>sudo</code>からは始めません。
-WindowsへのNode-REDのインストールに関する追加情報は<a href="/docs/getting-started/windows">こちら</a>で確認できます。
-</div>
 
 このコマンドは、依存関係とともにNode-REDをグローバルモジュールとしてインストールします。
 
 コマンドの出力の最後が以下のようになった場合、インストールが成功したと確認できます。
 
 ```
-+ node-red@1.0.0
++ node-red@1.1.0
 added 332 packages from 341 contributors in 18.494s
 found 0 vulnerabilities
 ```
@@ -99,20 +100,20 @@ $ node-red
 Welcome to Node-RED
 ===================
 
-11 Oct 23:43:39 - [info] Node-RED version: v1.0.2
-11 Oct 23:43:39 - [info] Node.js  version: v10.16.3
-11 Oct 23:43:39 - [info] Darwin 18.7.0 x64 LE
-11 Oct 23:43:39 - [info] Loading palette nodes
-11 Oct 23:43:44 - [warn] rpi-gpio : Raspberry Pi specific node set inactive
-11 Oct 23:43:44 - [info] Settings file  : /Users/nol/.node-red/settings.js
-11 Oct 23:43:44 - [info] HTTP Static    : /Users/nol/node-red/web
-11 Oct 23:43:44 - [info] Context store  : 'default' [module=localfilesystem]
-11 Oct 23:43:44 - [info] User directory : /Users/nol/.node-red
-11 Oct 23:43:44 - [warn] Projects disabled : set editorTheme.projects.enabled=true to enable
-11 Oct 23:43:44 - [info] Creating new flows file : flows_noltop.json
-11 Oct 23:43:44 - [info] Starting flows
-11 Oct 23:43:44 - [info] Started flows
-11 Oct 23:43:44 - [info] Server now running at http://127.0.0.1:1880/red/
+30 Jun 23:43:39 - [info] Node-RED version: v1.1.0
+30 Jun 23:43:39 - [info] Node.js  version: v10.21.0
+30 Jun 23:43:39 - [info] Darwin 18.7.0 x64 LE
+30 Jun 23:43:39 - [info] Loading palette nodes
+30 Jun 23:43:44 - [warn] rpi-gpio : Raspberry Pi specific node set inactive
+30 Jun 23:43:44 - [info] Settings file  : /Users/nol/.node-red/settings.js
+30 Jun 23:43:44 - [info] HTTP Static    : /Users/nol/node-red/web
+30 Jun 23:43:44 - [info] Context store  : 'default' [module=localfilesystem]
+30 Jun 23:43:44 - [info] User directory : /Users/nol/.node-red
+30 Jun 23:43:44 - [warn] Projects disabled : set editorTheme.projects.enabled=true to enable
+30 Jun 23:43:44 - [info] Creating new flows file : flows_noltop.json
+30 Jun 23:43:44 - [info] Starting flows
+30 Jun 23:43:44 - [info] Started flows
+30 Jun 23:43:44 - [info] Server now running at http://127.0.0.1:1880/red/
 ```
 
 そして、ブラウザで<http://localhost:1880>を指定することでNode-REDエディタにアクセスすることができます。
@@ -125,8 +126,7 @@ Welcome to Node-RED
  - 利用しているフローファイルの名称
 
 Node-REDはデフォルトのフローファイルとして`flows_<hostname>.json`を利用します。
-`node-red`[コマンド](/docs/getting-started/local#command-line-usage)の引数としてフローファイル名を渡すことで、
-これを変更することができます。
+`node-red`[コマンド](/docs/getting-started/local#command-line-usage)の引数としてフローファイル名を渡すことで、これを変更することができます。
 
 ### コマンドラインの使い方
 
@@ -134,10 +134,10 @@ Node-REDは`node-red`コマンドを使うことで起動できます。
 このコマンドは様々な引数をとることができます:
 
 ```
-node-red [-v] [-?] [--port PORT] [--safe] [--settings settings.js]
-         [--title TITLE] [--userDir DIR] [flows.json|projectName]
+node-red [-v] [-?] [--settings settings.js] [--userDir DIR]
+         [--port PORT] [--title TITLE] [--safe] [flows.json|projectName]
+         [-D X=Y|@file]
 ```
-
 
 オプション                  | 詳細     |
 ------------------------|-----------------|
@@ -147,16 +147,43 @@ node-red [-v] [-?] [--port PORT] [--safe] [--settings settings.js]
 `--title TITLE`         | プロセスウィンドウタイトルを設定する。 |
 `-u`, `--userDir DIR`   | 利用するユーザディレクトリを設定する。デフォルト: `~/.node-red` |
 `-v`                    | 冗長な出力を取得します。 |
+`-D X=Y|@file`          | [個別に設定を上書きする](#個別に設定を上書きする) |
 `-?`, `--help`          | コマンドラインの使い方を表示し、終了します。 |
 `flows.json|projectName`| プロジェクト機能を有効にしていない場合、作業したいフローファイルをこのオプションで指定します。プロジェクト機能が有効な場合、どのプロジェクトを利用するのかを指定します。 |
-
 
 Node-REDはデフォルトのフローファイルとして`flows_<hostname>.json`を利用します。
 実行しているコンピュータがホスト名を変更した場合、
 静的なファイル名をコマンドライン引数または[設定ファイル](/docs/user-guide/runtime/settings-file)内の`flowsFile`オプションとして、
 提供することを保証する必要があります。
 
+#### 個別に設定を上書きする
+
+*Since Node-RED 1.1.0*
+
+You can override individual settings on the command-line using the `-D` (or `--define`)
+option.
+
+For example, to change the logging level you can use:
+```
+-D logging.console.level=trace
+```
+
+You can also provide the custom settings as a file:
+```
+-D @./custom-settings.txt
+```
+
+The file should contain a list of the settings to override:
+```
+logging.console.level=trace
+logging.console.audit=true
+```
+
+
+
+
 ### 基盤であるNode.jsプロセスに引数を渡す
+
 
 基盤であるNode.jsプロセスに引数を渡さなければならない機会はあります。
 例えば、Raspberry PiやBeagleBone Blackのように、
@@ -191,13 +218,7 @@ Raspberry Piスクリプトを利用してNode-REDをインストールした場
 sudo npm install -g --unsafe-perm node-red
 ```
 
-<div class="doc-callout">
-<div style="float: left; margin-right: 10px; margin-bottom: 10px;">
-<img src="/images/logos/windows.svg" height="30">
-</div>
 Windowsを利用している場合、コマンドの先頭に<code>sudo</code>は不要です。
-</div>
-
 
 
 

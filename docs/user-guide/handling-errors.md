@@ -8,25 +8,34 @@ slug: handling-errors
 全てが正常に動作する場合に、正しいことを行うフローを作ることは簡単です。
 一方で、上手く動作しない場合についても考慮することも重要です。
 
-例えば、フローが外部のデータベースやAPIと連携する場合、もしリクエストに対する応答がない時に何が起こるでしょうか。
+例えば、フローが外部のデータベースやAPIと連携する場合、
+もしリクエストに対する応答がない時に何が起こるでしょうか。
 もしくは、MQTTノードがブローカとの接続を失った時にどうなるでしょうか。
 
-この様な事象を正しくハンドリングするために、どの様なアプリケーションにおいてもエラーハンドリングは必要不可欠です。
+この様な事象を正しくハンドリングするために、
+どの様なアプリケーションにおいてもエラーハンドリングは必要不可欠です。
 エラーのハンドリングは、アプリケーションの要件によって異なるものになります。
-失敗した動作を再度試したり、警告やエラーを出したりと、アプリケーションのロジックとは別の予測されたイベントです。
+失敗した動作を再度試したり、警告やエラーを出したりと、
+アプリケーションのロジックとは別の予測されたイベントです。
 
 Node-REDはエラーを送出するためのふたつの方法をノードに提供しています。
-それは、ログにメッセージを書くか、または、ランタイムにエラーを送出してフローがトリガーされるかです。
+それは、ログにメッセージを書くか、
+または、ランタイムにエラーを送出してフローがトリガーされるかです。
 
 エラーがログに書かれるだけであれば、サイドバーのデバッグで出力されたログが確認できますが、
-フローをハンドリングすることはできません。[catchできないエラー](#catchできないエラー)に記載のとおりです。
+フローをハンドリングすることはできません。
+[catchできないエラー](#catchできないエラー)に記載のとおりです。
 
-ランタイムに適切に送出するには、[catchできるエラー](#catchできるエラー)として、エラーハンドリングのフローをトリガーします。
+ランタイムに適切に送出するには、
+[catchできるエラー](#catchできるエラー)として、エラーハンドリングのフローをトリガーします。
 
 Node-REDのランタイムが停止してしまう3番目のエラーもあります。
-ノードに含まれるバグなどにより引き起こされる [`uncaughtException`エラー](#uncaughtexception-エラー) は、フロー内ではハンドリングできません。
+ノードに含まれるバグなどにより引き起こされる [`uncaughtException`エラー](#uncaughtexception-エラー) は、
+フロー内ではハンドリングできません。
 
 このガイドは、それぞれの種類のエラーについて詳しく説明し、ハンドリングするための方法について示します。
+[予期せぬイベントをハンドリング](#handling-status-changes)するフローを作成するため、
+ノードのStatusイベントが利用されることｗ確認します。
 
 
 ### エラーロギング
@@ -106,6 +115,13 @@ catchノードが全てのノードによりトリガーされるよう設定し
 "その他すべて"のエラーをキャッチするエラーハンドラーも作成できます。
 
 
+#### Errors in subflows
+
+If an error is logged from inside a subflow, the runtime will first check for any
+Catch nodes inside the subflow. If there are none there, the error will propagate
+up to the flow containing the subflow instance.
+
+
 ### catchできないエラー
 
 これは、ノードがランタイムに正しく通知することなくログに書き出すエラーです。
@@ -115,17 +131,20 @@ catchノードでハンドリングすることができません。
 たとえば、(statusノードでモニターした)ノードのステータスとなるプロパティを更新するなどです。
 これは、通常通りメッセージを送信することもありますし、エラー発生を示すプロパティーが追加されているかもしれません。
 
-ノードの作成者に、エラーを適切にログに書き出すよう連絡をしてみるのもよいでしょう。
+ノードの作成者に、
+エラーを適切にログに書き出すよう連絡をしてみるのもよいでしょう。
 
 
 ### `uncaughtException` エラー
 
 これはノードが内部エラーを適切に扱えなかったことにより発生するNode.jsのエラーです。
-Node-REDランタイム全体が停止しますが、これ以外に安全な方法がないためです。
+Node-REDランタイム全体が停止しますが、
+これ以外に安全な方法がないためです。
 
 極端に思えますが、[Node.jsのドキュメント](https://nodejs.org/api/process.html#process_warning_using_uncaughtexception_correctly) にはこう書いてあります:
 
 > Attempting to resume normally after an uncaught exception can be similar to pulling out the power cord when upgrading a computer. Nine out of ten times, nothing happens. But the tenth time, the system becomes corrupted.
+
 
 典型的な例は、ノードが非同期処理のタスクを呼び出してそれが失敗する場合です。
 丁寧に実装されているノードであれば、そのタスクをエラーハンドラに登録しますが、
@@ -137,3 +156,29 @@ Node-REDランタイム全体が停止しますが、これ以外に安全な方
 Node-REDのログにあるスタックトレースは、
 エラーが発生したノードを特定し、非同期タスクのエラーの原因を特定するための
 糸口になるかもしれません。
+
+### Handling Status Changes
+
+Not all errors conditions will appear as error events that can be caught be a
+Catch node. For example, the MQTT nodes losing their connection will not trigger
+an error, but they will trigger a change of their status.
+
+Just as the Catch node can be used to handle error events, the Status node can
+be used to handle changes in a node's status.
+
+The message sent by the Status node includes the `status` property that gives
+information about the status and the node that triggered the event.
+
+```json
+{
+    "status": {
+        "fill": "red",
+        "shape": "ring",
+        "text": "node-red:common.status.disconnected",
+        "source": {
+            "id": "27bbb5b1.d3eb3a",
+            "type": "mqtt out"
+        }
+    }
+}
+```

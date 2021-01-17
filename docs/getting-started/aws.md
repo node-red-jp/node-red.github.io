@@ -59,7 +59,7 @@ SSHを利用したい場合、新規のキーペアを生成するのであれ�
         "node": "10.x"
     },
     "dependencies": {
-        "node-red": "0.20.x",
+        "node-red": "1.1.x",
         "aws-sdk": "2.4.x",
         "node-red-contrib-storage-s3": "0.0.x",
         "when": "3.7.x"
@@ -99,7 +99,7 @@ Node-REDインスタンスがEBS上で実行できました。作成したフロ
 
 この開発選択肢は、Amazon Elastic File System (EFS)を利用することで共有ファイルシステムによってNode-REDがセットアップされた複数のノードが提供されます。ロードバランサの背後で複数ノードを実行するため、高い可用性を得ることができます - 或るノードが故障した場合、Elastic Beanstalkが自動的に切り替えをおこないます。
 
-![solution diagram](/images/node-red-ha-on-aws.png "Node-RED on Elastic Beanstalk with High Availabilty")
+![solution diagram](/images/node-red-ha-on-aws.png "Node-RED on Elastic Beanstalk with High availability")
 
 始めるには、このリポジトリ[https://github.com/guysqr/node-red-ha-on-aws](https://github.com/guysqr/node-red-ha-on-aws)をクローンして簡単な指示に従います。CloudFormationによってインフラストラクチャが作成されるため、セットアップのためにAWSについて多くのことを知る必要はありません
 
@@ -135,7 +135,7 @@ AWSガイド[Linuxインスタンスへの接続](http://docs.aws.amazon.com/ja_
 
 ログインしたら、node.jsとNode-REDをインストールする必要があります
 
-       curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+       curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
        sudo apt-get install -y nodejs build-essential
        sudo npm install -g --unsafe-perm node-red
 

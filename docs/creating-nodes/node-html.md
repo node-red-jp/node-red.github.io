@@ -43,11 +43,6 @@ slug: .html
 対応する`.js`ファイルの`RED.nodes.registerType`への呼び出しで使用される値と
 一致しなければなりません。
 
-このタイプは、パレット内のノードのラベルとしても使用されます。
-タイプが" in"または" out"で終わる場合、これはラベルから外されます。
-例えば、"mqtt in"ノードと"mqtt out"ノードの両方が"mqtt"とラベル付けされ、
-入力ポートと出力ポートの表示が"in"または"out"コンテキストを提供します。
-
 #### ノードの定義
 
 ノード定義には、エディタに必要なノードに関するすべての情報が含まれています。
@@ -80,29 +75,17 @@ slug: .html
 
 ノードの編集テンプレートは編集ダイアログの内容を記述します。
 
+```html
+<script type="text/html" data-template-name="node-type">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips"><b>Tip:</b> This is here to help.</div>
+</script>
+```
 
-    <script type="text/html" data-template-name="node-type">
-        <div class="form-row">
-            <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-            <input type="text" id="node-input-name" placeholder="Name">
-        </div>
-        <div class="form-tips"><b>Tip:</b> This is here to help.</div>
-    </script>
-
-いくつかの簡単な慣例があります:
-
- - ダイアログの各行を割り付けるには、
-   class属性に`form-row`を持つ`<div>`を使用する必要があります。
- - 典型的な行では、アイコンを含む`<label>`と、プロパティ名の後ろに`<input>`が続きます。
-   アイコンは、[Font Awesome 4.7](https://fontawesome.com/v4.7.0/icons/)から
-   入手可能なアイコンフォントから取得したclass属性を持つ`<i>`要素を使用して作成されます。
- - もしインタラクティブ性が必要な場合、
-   `oneditprepare`を使用してダイアログ要素に任意のイベントハンドラを割り当てることができます。
-
-
-編集テンプレートの使用方法の詳細については、
-[こちら](properties#プロパティ編集ダイアログ)をご覧ください。
-
+編集ダイアログについてのさらなる情報は[こちら](edit-dialog)で入手できます。
 
 ### ヘルプテキスト
 

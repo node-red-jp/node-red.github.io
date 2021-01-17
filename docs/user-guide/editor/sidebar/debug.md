@@ -43,7 +43,8 @@ title: 'サイドバー: デバッグメッセージ'
 
 **Note:** Debugノードは最新100件分のメッセージを表示します。
 現在のサイドバーにフィルタリングされたメッセージの一覧が表示されている場合、隠されているメッセージも100件の制限に含めてカウントされます。
-フローに出力の多いDebugノードが存在する場合、サイドバーでフィルダリングするよりもワークスペースでそのノードのボタンをクリックして無効化することをお勧めします。
+フローに出力の多いDebugノードが存在する場合、
+サイドバーでフィルダリングするよりもワークスペースでそのノードのボタンをクリックして無効化することをお勧めします。
 
 サイドバーは <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-trash"></i>ボタンをクリックすることでいつでもクリアできます。
 
@@ -53,5 +54,35 @@ title: 'サイドバー: デバッグメッセージ'
  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Alt-l</code></td></tr>
 </table>
 
+
 サイドバーのフッタの<i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-desktop"></i>ボタンは、
 デバッグサイドバーを持つブラウザウィンドウを別で開くために利用することができます。
+
+
+
+
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:activate-selected-debug-nodes</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:activate-all-debug-nodes</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:activate-all-flow-debug-nodes</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:deactivate-selected-debug-nodes</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:deactivate-all-debug-nodes</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:deactivate-all-flow-debug-nodes</code></td></tr>
+</table>
