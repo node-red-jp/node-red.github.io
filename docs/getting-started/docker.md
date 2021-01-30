@@ -335,7 +335,7 @@ $ docker start mynodered
 
 そして、ブラウザページを更新することでパレットに新しく追加したノードが現れるはずです。
 
-### Multiple Instances
+### 複数インスタンス
 
 以下のように実行すると、
 ```
@@ -361,7 +361,7 @@ Docker [user-defined bridges](https://docs.docker.com/network/bridge/)を使用�
 
     docker network create iot
 
-Then all containers that need to communicate need to be added to the same bridge using the **--network** command line option
+連携する必要のある全てのコンテナは、**--network**というコマンドラインオプションを利用して同一ブリッジに追加する必要があります。
 
     docker run -itd --network iot --name mybroker eclipse-mosquitto
 
@@ -371,11 +371,11 @@ Then all containers that need to communicate need to be added to the same bridge
 
     docker run -itd -p 1880:1880 --network iot --name mynodered nodered/node-red
 
-containers on the same user-defined bridge can take advantage of the built in name resolution provided by the bridge and use the container name (specified using the **--name** option) as the target hostname.
+同一ユーザー定義ブリッジ上のコンテナは、ブリッジによって提供される名前解決を利用し、ターゲットホスト名としてコンテナ名（ **--name**オプションを利用して特定される）を利用できます。
 
-In the above example the broker can be reached from the Node-RED application using hostname *mybroker*.
+上述の例では、*mybroker*というホスト名を使ってNode-REDアプリケーションからブローカーに到達できます。
 
-Then a simple flow like below show the mqtt nodes connecting to the broker
+以下にMQTTノードがブローカーに接続するシンプルなフローを示します
 
         [{"id":"c51cbf73.d90738","type":"mqtt in","z":"3fa278ec.8cbaf","name":"","topic":"test","broker":"5673f1d5.dd5f1","x":290,"y":240,"wires":[["7781c73.639b8b8"]]},{"id":"7008d6ef.b6ee38","type":"mqtt out","z":"3fa278ec.8cbaf","name":"","topic":"test","qos":"","retain":"","broker":"5673f1d5.dd5f1","x":517,"y":131,"wires":[]},{"id":"ef5b970c.7c864","type":"inject","z":"3fa278ec.8cbaf","name":"","repeat":"","crontab":"","once":false,"topic":"","payload":"","payloadType":"date","x":290,"y":153,"wires":[["7008d6ef.b6ee38"]]},{"id":"7781c73.639b8b8","type":"debug","z":"3fa278ec.8cbaf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","statusVal":"payload","statusType":"auto","x":505,"y":257,"wires":[]},{"id":"5673f1d5.dd5f1","type":"mqtt-broker","z":"","name":"","broker":"mybroker","port":"1883","clientid":"","usetls":false,"compatmode":false,"keepalive":"15","cleansession":true,"birthTopic":"","birthQos":"0","birthRetain":"false","birthPayload":"","closeTopic":"","closeRetain":"false","closePayload":"","willTopic":"","willQos":"0","willRetain":"false","willPayload":""}]
 
