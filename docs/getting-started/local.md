@@ -32,7 +32,7 @@ RedHat、FedoraおよびCentOSを含むRPMベースのオペレーティング�
 <div style="float: left; margin-right: 10px; margin-bottom: 10px;">
 <img src="/images/logos/windows.svg" height="30">
 </div>
-If you are using Windows, detailed instructions for installing Node-RED can be found <a href="/docs/getting-started/windows">here</a>.
+Windowsを利用している場合、Node-REDをインストールするための詳細な手順は<a href="/docs/getting-started/windows">こちら</a>で見つけることができます。
 </div>
 
 ### 必須条件
