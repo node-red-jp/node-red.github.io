@@ -115,11 +115,11 @@ catchノードが全てのノードによりトリガーされるよう設定し
 "その他すべて"のエラーをキャッチするエラーハンドラーも作成できます。
 
 
-#### Errors in subflows
+#### サブフロー内のエラー
 
-If an error is logged from inside a subflow, the runtime will first check for any
-Catch nodes inside the subflow. If there are none there, the error will propagate
-up to the flow containing the subflow instance.
+サブフロー内からのエラーがロギングされた場合、
+ラインタイムはサブフロー内のCatchノードでまずチェックされます。
+Catchノードがなかった場合、エラーはサブフローインスタンを含むフローにでんぱします。
 
 
 ### catchできないエラー
@@ -157,17 +157,17 @@ Node-REDのログにあるスタックトレースは、
 エラーが発生したノードを特定し、非同期タスクのエラーの原因を特定するための
 糸口になるかもしれません。
 
-### Handling Status Changes
+### ステータス変更をハンドリングする
 
-Not all errors conditions will appear as error events that can be caught be a
-Catch node. For example, the MQTT nodes losing their connection will not trigger
-an error, but they will trigger a change of their status.
+全てのエラー状態がCatchノードでキャッチできるエラーイベントを発生させるわけではありません。
+例えば、接続切断されたMQTTノードはエラーを出力しませんが、
+ステータスの変化をトリガーします。
 
-Just as the Catch node can be used to handle error events, the Status node can
-be used to handle changes in a node's status.
+Catchノードはエラーイベントをハンドリングするために利用されるのと同じく、
+Statusノードもノードの状態の変化をハンドリングするために利用されます。
 
-The message sent by the Status node includes the `status` property that gives
-information about the status and the node that triggered the event.
+Statusノードから送出されたメッセージは`status`プロパティを持ち、
+それはステータスとイベントをトリガーしたノードについての情報を提供します。
 
 ```json
 {
