@@ -35,10 +35,10 @@ Node-REDを最大限に活用する方法を学ぶことができます。
 <div class="post-preview">
   <a href="https://www.youtube.com/channel/UCQaB8NXBEPod7Ab8PPCLLAA">
     <div class="post-header">
-      <h2>YouTube channel</h2>
+      <h2>YouTubeチャンネル</h2>
     </div>
     <div class="post-content">
-    Our YouTube channel contains a series of short videos covering all the basics, as well as what is new in each release. Total viewing time less than an hour.
+    我々にYoutubeチャンネルには全ての基本情報およびリリースごとの新しいことをカバーする短い動画があります。全てを視聴しても1時間もありません。
     </div>
   </a>
 </div>
