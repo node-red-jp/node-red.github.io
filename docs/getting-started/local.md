@@ -32,7 +32,7 @@ RedHat、FedoraおよびCentOSを含むRPMベースのオペレーティング�
 <div style="float: left; margin-right: 10px; margin-bottom: 10px;">
 <img src="/images/logos/windows.svg" height="30">
 </div>
-If you are using Windows, detailed instructions for installing Node-RED can be found <a href="/docs/getting-started/windows">here</a>.
+Windowsを利用している場合、Node-REDをインストールするための詳細な手順は<a href="/docs/getting-started/windows">こちら</a>で見つけることができます。
 </div>
 
 ### 必須条件
@@ -160,20 +160,20 @@ Node-REDはデフォルトのフローファイルとして`flows_<hostname>.jso
 
 *Since Node-RED 1.1.0*
 
-You can override individual settings on the command-line using the `-D` (or `--define`)
-option.
+コマンドライン上で`-D`（もしくは`--define`）オプションを使うことで
+個別に設定を上書きすることができます。
 
-For example, to change the logging level you can use:
+例えば、ログレベルを変更することができます:
 ```
 -D logging.console.level=trace
 ```
 
-You can also provide the custom settings as a file:
+また、ファイルによって設定をカスタマイズできます:
 ```
 -D @./custom-settings.txt
 ```
 
-The file should contain a list of the settings to override:
+ファイルには上書きする設定の一覧を含んでいる必要があります:
 ```
 logging.console.level=trace
 logging.console.audit=true

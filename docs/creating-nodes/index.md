@@ -13,7 +13,7 @@ Node-REDを拡張する主な方法は、パレットに新しいノードを追
  - [HTMLファイル](node-html)
  - [パッケージング](packaging)
  - [ノードプロパティ](properties)
- - [ノードのクレデンシャル]](credentials)
+ - [ノードのクレデンシャル](credentials)
  - [ノードの外観](appearance)
  - [ノードの編集ダイアログ](edit-dialog)
  - [コンテキストの保存](context)

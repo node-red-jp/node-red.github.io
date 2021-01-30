@@ -10,12 +10,12 @@ redirect_from:
 [node-red-admin](http://npmjs.org/package/node-red-admin)コマンドラインツールを使用すると、
 リモートのNode-REDインスタンスを管理することができます。
 
-Since Node-RED 1.1.0, `node-red-admin` is now built into the `node-red` command -
-you do not need to install it separately.
+Node-RED 1.1.0から、今や`node-red-admin`は`node-red`コマンドに組み込まれています - 
+個別にインストールする必要はありません。
 
-To use the version included with `node-red`, use the command `node-red admin`.
+`node-red`に含まれているバージョンで使うには、`node-red admin`コマンドを使います。
 
-If you install it separately, you would use the command `node-red-admin`.
+個別にインストールする場合、`node-red-admin`コマンドを利用します。
 
 
 ### インストール

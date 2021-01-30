@@ -36,7 +36,7 @@ Injectノードから送出されるメッセージには、
  - 文字列型、数値型、Boolean型、バッファ型、オブジェクト型
  - 1970年1月1日からのミリ秒で表現されるタイムスタンプ型
 
-*Since Node-RED 1.1.0*, the Inject node can now set any property on the message.
+*Node-RED 1.1.0から*、Injectノードはメッセージに全てのプロパティをセットできます。
 
 ***
 
