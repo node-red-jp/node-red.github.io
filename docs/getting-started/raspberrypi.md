@@ -10,7 +10,7 @@ redirect_from:
 
 ### 必須条件
 
-Raspbianを利用している場合、最低でもRaspbian Jessie以降のバージョンが必要です。
+Raspbianを利用している場合、最低でもRaspbian Stretch以降のバージョンが必要です。
 Raspbian Busterは現在サポートされています。
 
 ### Node-REDをインストール・アップグレードする
