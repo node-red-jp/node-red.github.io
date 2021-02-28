@@ -363,7 +363,7 @@ Docker [user-defined bridges](https://docs.docker.com/network/bridge/)を使用�
 
 連携する必要のある全てのコンテナは、**--network**というコマンドラインオプションを利用して同一ブリッジに追加する必要があります。
 
-    docker run -itd --network iot --name mybroker eclipse-mosquitto
+    docker run -itd -e NO_AUTHENTICATION=1 --network iot --name mybroker eclipse-mosquitto
 
 (望まない限り、ポート1883をグローバルに公開する必要はありません。後で魔法をかけます。)
 
