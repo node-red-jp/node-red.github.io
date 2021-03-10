@@ -66,6 +66,76 @@ Header                     | Value
 }
 {% endhighlight %}
 
+#### ノードクレデンシャルを設定する
+
+リクエストでクレデンシャルを提示するには2つの方法があります。
+`flows`配列のノードオブジェクトは`credentials`プロパティを持っており、
+このプロパティはノードのクレデンシャルを保持しています。
+
+また、トップレベルオブジェクトも`credentials`プロパティを持っており、
+各々のノードのクレデンシャルまたは完全に暗号化された一連のクレデンシャルを持ちます。
+
+**インラインノードクレデンシャル :**
+
+{% highlight json %}
+{
+    "rev": "abc-123",
+    "flows": [
+      {
+        "type": "tab",
+        "id": "396c2376.c693dc",
+        "label": "Sheet 1",
+        "credentials": {
+            "user": "my-username",
+            "pass": "my-password"
+        }
+      }
+    ]
+}
+{% endhighlight %}
+
+**分割されたノードクレデンシャル :**
+
+
+{% highlight json %}
+{
+    "rev": "abc-123",
+    "flows": [
+      {
+        "type": "tab",
+        "id": "396c2376.c693dc",
+        "label": "Sheet 1"
+      }
+    ],
+    "credentials": {
+        "396c2376.c693dc": {
+            "user": "my-username",
+            "pass": "my-password"
+        }
+    }
+}
+{% endhighlight %}
+
+**暗号化されたノードクレデンシャル:**
+
+{% highlight json %}
+{
+    "rev": "abc-123",
+    "flows": [
+      {
+        "type": "tab",
+        "id": "396c2376.c693dc",
+        "label": "Sheet 1"
+      }
+    ],
+    "credentials": {
+        "$": "beea417990012379ca6d4116bd1fda5bOWbwy7UnQvccxAEH1V1pSEETTfSNerYGvP4Aai6RT/DNpnjCCP/fdzildzlJhFjYcRKdO1Q="
+    }
+}
+{% endhighlight %}}
+
+
+
 ### Response
 
 Status Code | Reason              | Response
