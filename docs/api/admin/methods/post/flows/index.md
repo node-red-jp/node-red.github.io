@@ -66,16 +66,16 @@ Header                     | Value
 }
 {% endhighlight %}
 
-#### Setting node credentials
+#### ノードクレデンシャルを設定する
 
-There are two ways to provide credentials with this request. The individual node
-objects in the `flows` array can contain a `credentials` property containing the
-credentials for that node.
+リクエストでクレデンシャルを提示するには2つの方法があります。
+`flows`配列のノードオブジェクトは`credentials`プロパティを持っており、
+このプロパティはノードのクレデンシャルを保持しています。
 
-Alternatively, the top level object can include a `credentials` property that has
-credentials for individual nodes, or a complete encrypted set.
+また、トップレベルオブジェクトも`credentials`プロパティを持っており、
+各々のノードのクレデンシャルまたは完全に暗号化された一連のクレデンシャルを持ちます。
 
-**Inline node credentials :**
+**インラインノードクレデンシャル :**
 
 {% highlight json %}
 {
@@ -94,7 +94,7 @@ credentials for individual nodes, or a complete encrypted set.
 }
 {% endhighlight %}
 
-**Separate node credentials :**
+**分割されたノードクレデンシャル :**
 
 
 {% highlight json %}
@@ -116,7 +116,7 @@ credentials for individual nodes, or a complete encrypted set.
 }
 {% endhighlight %}
 
-**Encrypted node credentials:**
+**暗号化されたノードクレデンシャル:**
 
 {% highlight json %}
 {
