@@ -416,27 +416,43 @@ MD5によるハッシュ値が利用されました。これは暗号論的に�
 後方互換性を確保するため、MD5ハッシュもサポートされていますが、推奨できません。
 </div>
 
-### Custom Middleware
+### カスタムミドルウエア
 
-It is possible to provide custom HTTP middleware that will be added in front of
-all `HTTP In` nodes and, since Node-RED 1.1.0, in front of all admin/editor routes.
+`HTTP In` ノードにおいては全て、admin/エディタのルートにおいてはNode-RED 1.1.0以降から、前面にカスタムHTTPミドルウェアを追加できます。
 
-For the `HTTP In` nodes, the middleware is provided as the `httpNodeMiddleware` setting.
+##### http-in ノード向けのカスタムミドルウエア
 
-For the admin/editor routes, the middleware is provided as the `httpAdminMiddleware` setting.
+`HTTP In` ノードに対しては、`httpNodeMiddleware` 設定でミドルウエアを提供できます。
 
-For example, the following middleware could be used to set the `X-Frame-Options` http header
-on all admin/editor requests. This can be used to control how the editor is embedded on
-other pages.
+以下の設定は、http-in ノードのHTTPアクセスレートを制限する例です。
 
+```javascript
+// 事前に `~/.node-red/` ディレクトリにて `npm install express-rate-limit` コマンドを実行します。
+var rateLimit = require("express-rate-limit");
+module.exports = {
+    httpNodeMiddleware: rateLimit({
+        windowMs: 1000, // ウィンドウ時間として、1000ミリ秒を設定します。
+        max: 10 // アクセスレートを10リクエスト/秒に制限します。
+    })
+}
 ```
+
+この設定を用いることで、Node-REDプロセスは、http-inノードで始まるフローが処理に時間がかかる場合でも、メモリが枯渇する問題を回避できます。
+制限に達すると、本エンドポイントは 「Too many requests, please try again later.」というデフォルトのメッセージを返します。
+
+##### Admin API向けのカスタムミドルウエア
+
+admin/エディタのルートに対しては、`httpAdminMiddleware`設定でミドルウエアを提供できます。
+
+例えば、以下のミドルウエアは、全てのadmin/エディタへのリクエストに対して、`X-Frame-Options` HTTPヘッダを設定するために使われます。
+この方法を用いて、エディタを他のページに埋め込むことを制御できます。
+
+```javascript
 httpAdminMiddleware: function(req, res, next) {
-    // Set the X-Frame-Options header to limit where the editor
-    // can be embedded
+    // エディタを埋め込む場所を制限するため、X-Frame-Optionsヘッダを設定します。
     res.set('X-Frame-Options', 'sameorigin');
     next();
 },
 ```
 
-Other possible uses would be to add additional layers of security or request verification
-to the routes.
+その他の考えられるミドルウエアの利用方法は、セキュリティーのレイヤーを追加したり、ルートの検証要求などが挙げられます。
