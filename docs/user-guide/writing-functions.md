@@ -166,10 +166,10 @@ return;
 
 ### 起動時にコードを実行する
 
-*Since Node-RED 1.1.0*
+*Node-RED 1.1.0以降*
 
 1.1.0リリースによって、
-Functionノードはノードが起動されたときに実行されるコードを提供する`Setup`タブを提供しています。
+Functionノードはノードが起動されたときに実行されるコードを提供する`初期化処理`タブを提供しています。
 これはFunctionノードが必要とする状態にセットアップするために利用されます。
 
 例えば、
@@ -180,9 +180,9 @@ if (context.get("counter") === undefined) {
 }
 ```
 
-セットアップ関数は、
+初期化処理関数は、
 メインの関数がメッセージを処理し始める前に非同期ジョブを完了させておく必要がある場合にPromiseを返却できます。
-セットアップ関数が完了する前に到達した全てのメッセージはキューに蓄積され、準備ができたら処理されます。
+初期化処理関数が完了する前に到達した全てのメッセージはキューに蓄積され、準備ができたら処理されます。
 
 ### 片付け
 
@@ -199,7 +199,7 @@ node.on('close', function() {
 {% endhighlight %}
 
 もしくは、*Node-RED 1.1.0から*、
-ノードの編集ダイアログに`Close`タブにコードを追加できるようになりました。
+ノードの編集ダイアログに`終了処理`タブにコードを追加できるようになりました。
 
 ### イベントのログ
 
@@ -399,6 +399,8 @@ node.status({});   // 状態をクリアします
 
 ### 追加モジュールのロード
 
+### `functionGlobalContext` オプションの利用 
+
 Functionノードに追加モジュールを直接ロードすることはできません。
 *settings.js*ファイルでロードし、
 `functionGlobalContext`プロパティに追加される必要があります。
@@ -420,6 +422,28 @@ functionGlobalContext: {
 
     cd ~/.node-red
     npm install name_of_3rd_party_module
+
+### Using the `functionExternalModules` option
+
+*Since Node-RED 1.3.0*
+
+By setting `functionExternalModules` to `true` in you *settings.js* file, the Function
+node's edit dialog will provide a list where you can add additional modules
+that should be available to the node. You also specify the variable that will
+be used to refer to the module in the node's code.
+
+<img style="margin-left: 20px;" src="/docs/user-guide/images/function_external_modules.png" width="500px">
+
+The modules are automatically installed under `~/.node-red/externalModules/` when the node is deployed.
+
+
+
+
+
+
+
+
+
 
 ***
 
