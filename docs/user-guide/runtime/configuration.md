@@ -59,6 +59,15 @@ httpAdminAuth
 
   *スタンドアローンのみ*.
 
+httpAdminMiddleware
+: an HTTP middleware function, or array of functions, that is added to all admin routes.
+  The format of the middleware function is documented [here](http://expressjs.com/guide/using-middleware.html#middleware.application).
+
+      httpAdminMiddleware: function(req,res,next) {
+          // Perform any processing on the request.
+          // Be sure to call next() if the request should be passed on
+      }
+
 httpNodeRoot
 : HTTP InノードのHTTPエンドポイントのルートURLを指定できます。`false`が設定されている場合、すべてのノードのHTTPエンドポイントは無効になります。デフォルト: `/`
 
@@ -92,7 +101,8 @@ httpNodeCors
   詳細は[こちら](https://github.com/troygoode/node-cors#configuration-options)。
 
 httpNodeMiddleware
-: HTTP InノードのHTTPエンドポイントにHTTPミドルウェアを追加できます。これにより、認証などノードに必要なカスタム処理がすべて可能になります。
+
+: HTTP InノードのHTTPエンドポイントにHTTPミドルウェア機能、またはその機能の配列を追加できます。これにより、認証などノードに必要なカスタム処理がすべて可能になります。
   ミドルウェア機能の形式は[こちら](http://expressjs.com/guide/using-middleware.html#middleware.application)で文書化されています。
   HTTPエンドポイントでセッションとクッキーのハンドラを利用したい場合は以下のように設定します。
 
@@ -113,6 +123,30 @@ logging
  - **trace** - 非常に詳細な情報 + debug + info + warn + error + fatalを記録
 
 デフォルトのレベルは `info` です。限られたフラッシュストレージの組込みデバイスではディスクへの書き込みを最小限にするために `fatal` を設定することもできます。
+
+externalModules
+: Configure how the runtime will handle external npm modules. This covers:
+     - whether the editor will allow new node modules to be installed
+     - whether nodes, such as the Function node are allowed to have their own dynamically configured dependencies.
+
+  The allow/denyList options can be used to limit what modules the runtime
+  will install/load. It can use `*` as a wildcard that matches anything.
+
+      externalModules: {
+         autoInstall: false,
+         autoInstallRetry: 30,
+         palette: {
+            allowInstall: true,
+            allowUpload: true,
+            allowList: [],
+            denyList: []
+         },
+         modules: {
+            allowInstall: true,
+            allowList: [],
+            denyList: []
+         }
+      }
 
 ### フローエディタの設定
 
@@ -168,7 +202,7 @@ paletteCategories
             redirect: "http://example.com"
         },
         palette: {
-            editable: true, // Enable/disable the Palette Manager
+            editable: true, // *Deprecated* - use externalModules.palette.allowInstall instead
             catalogues: [   // Alternative palette manager catalogues
                 'https://catalogue.nodered.org/catalogue.json'
             ],

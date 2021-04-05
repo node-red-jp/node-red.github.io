@@ -17,8 +17,29 @@ title: 選択
 ノードをクリックするときに`Ctrl`または`Command`キーを押した場合、
 このノードが追加選択されます（または既にこのノードが選択状態であれば選択から外されます）。
 
+<div style="float: right; width: 400px; margin-left: 10px;">
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:select-connected-nodes</code></td></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-s c</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:select-upstream-nodes</code></td></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-s u</code></td></tr>
+</table>
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Action</td><td><code>core:select-downstream-nodes</code></td></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-s d</code></td></tr>
+</table>
+</div>
+
 ノードをクリックするときに`Shift`キーを押した場合、
 このノードおよび接続しているすべてのノードが選択されます。
+Clicking on the left-hand side of the node, it will select
+that node and all nodes that come before it in the flow - "upstream" nodes. Clicking on the right-hand
+side of the node, it will select that node and all nodes that come after it in the flow - "downstream" nodes.
 
 ワイヤーをクリックすると、ワイヤーが選択状態になります。
 ノードとは異なり、一度に1つのワイヤーしか選択できません。
@@ -47,6 +68,8 @@ title: 選択
  <tr><td>動作</td><td><code>core:select-all-nodes</code></td></tr>
  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-a</code></td></tr>
 </table>
+
+
 
 ### フローの選択
 
