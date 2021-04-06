@@ -448,7 +448,14 @@ https://github.com/node-red/node-red/issues/15
 
 デフォルトのタイムゾーンを変更したい場合、[相対タイムゾーン](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)を用いたTZ環境変数を使用します。
 ```
-docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -e TZ=Europe/London nodered/node-red
+docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -e TZ=America/New_York nodered/node-red
+```
+
+or within a docker-compose file
+```
+  node-red:
+    environment:
+      - TZ=America/New_York
 ```
 
 リファレンス:
