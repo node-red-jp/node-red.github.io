@@ -80,6 +80,29 @@ var newMsg = { payload: msg.payload.length };
 return [msg, newMsg];
 {% endhighlight %}
 
+#### Handling arbituary number of outputs
+
+*Since Node-RED 1.3*
+
+`node.outputCount` contains the number of outputs configured for the function node.
+
+This makes it possible to write generic functions that can handle variable number of outputs set from the edit dialog.
+
+For example if you wish to spread incoming messages randomly between outputs, you could:
+
+{% highlight javascript %}
+// Create an array same length as there are outputs
+const messages = new Array(node.outputCount)
+// Choose random output number to send the message to
+const chosenOutputIndex = Math.floor(Math.random() * node.outputCount);
+// Send the message only to chosen output
+messages[chosenOutputIndex] = msg;
+// Return the array containing chosen output
+return messages;
+{% endhighlight %}
+
+You can now configure number of outputs solely via edit dialog without making changes to the function itself.
+
 ### 複数のメッセージを送る
 
 複数メッセージの配列を含む一つの配列を返すことで、
@@ -129,7 +152,6 @@ doSomeAsyncWork(msg, function(result) {
 return;
 {% endhighlight %}
 
-*Since Node-RED 1.0*
 
 Functionノードは`node.send`に渡されたメッセージオブジェクトを全てクローンします。
 これは関数内で再利用されるメッセージオブジェクトが意図しない変更がされないようにするためです。
@@ -213,8 +235,7 @@ node.error("なんてこった、何か良くないことが起きました");
 
 コンソール出力がどこに表示されるのかはどのOSを利用しているかとどのようにNode-REDを起動したかに依ります。
 コマンドラインを使って起動した場合 - ログはコンソールに出力されます。
-システムサービスとして実行した場合、システムログに出力されます。
-PM2のようにアプリの元で実行した場合、独自のログ表示になります。ラズベリーパイ上のインストールスクリプトは、ログを表示させる`node-red-log`コマンドを追加します。
+システムサービスとして実行した場合、システムログに出力されます。PM2のようにアプリの元で実行した場合、独自のログ表示になります。ラズベリーパイ上のインストールスクリプトは、ログを表示させる`node-red-log`コマンドを追加します。
 
 `warn`と`error`メッセージはフローエディタ右側のデバッグタブにも送られます。
 
@@ -454,6 +475,7 @@ Functionノード内では以下のオブジェクトが利用できます。
 #### `node`
  * `node.id` : FunctionノードのID - *0.19で導入*
  * `node.name` : Functionノードの名前 - *0.19で導入*
+ * `node.outputCount` : number of outputs set for Function node - *added in 1.3*
  * `node.log(..)` : [メッセージをログ出力する](#logging-events)
  * `node.warn(..)` : [warnレベルでメッセージをログ出力する](#logging-events)
  * `node.error(..)` : [errorレベルでメッセージをログ出力する](#logging-events)
