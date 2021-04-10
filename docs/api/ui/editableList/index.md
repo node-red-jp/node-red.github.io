@@ -100,17 +100,17 @@ $("ol.list").editableList({
 
 #### <a href="#options-buttons" name="options-buttons">buttons( array )</a>
 
-<span class="method-return">Type: Array</span>
+<span class="method-return">型: Array</span>
 
-An array of button objects, that need to be added at the bottom of the editableList.
-Each button object can have the following properties:
+ボタンオブジェクトの配列で、EditableListのボタンを追加する必要があります。
+それぞれのボタンオブジェクトは以下のプロパティを持つことができます。
 
- - `label` - the (optional) button label
- - `icon` - the (optional) button icon
- - `title` - the (optional) button tooltip text
- - `click` - the callback function that will be executed when the button is clicked
+ - `label` - （オプション）ボタンのラベル
+ - `icon` - （オプション）ボタンのアイコン
+ - `title` - （オプション）ボタンのツールチップテキスト
+ - `click` - ボタンがクリックされたときに実行されるコールバック関数
 
-Note that the 'add button' is added implicit to this array, when the `addButton` is activated.
+`addButton`が有効化されたとき、暗黙的にこの配列に対して「add button」が追加されることに注意してください。
 
 ```javascript
 $("ol.list").editableList({
