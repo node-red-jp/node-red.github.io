@@ -111,6 +111,7 @@ title: フロー
 
 #### フローを切り替える
 
+
 有効なフローのリストを表示するには、バー上部の
 <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-list-ul"></i> ボタンをクリックします。
 
@@ -123,14 +124,14 @@ title: フロー
 
 <table class="action-ref inline">
  <tr><th colspan="2">リファレンス</th></tr>
- <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Shift-j</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-[</code></td></tr>
  <tr><td>メニューオプション</td><td><i>none</i></td></tr>
  <tr><td>動作</td><td><code>core:show-previous-tab</code></td></tr>
 </table>
 
 <table class="action-ref inline">
  <tr><th colspan="2">リファレンス</th></tr>
- <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Shift-k</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-]</code></td></tr>
  <tr><td>メニューオプション</td><td><i>none</i></td></tr>
  <tr><td>動作</td><td><code>core:show-next-tab</code></td></tr>
 </table>

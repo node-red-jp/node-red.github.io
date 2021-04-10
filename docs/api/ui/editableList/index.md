@@ -18,6 +18,7 @@ slug:
         <table>
             <tr><td><a href="#options-addButton">addButton</a></td></tr>
             <tr><td><a href="#options-addItem">addItem</a></td></tr>
+            <tr><td><a href="#options-buttons">buttons</a></td></tr>
             <tr><td><a href="#options-connectWith">connectWith</a></td></tr>
             <tr><td><a href="#options-header">header</a></td></tr>
             <tr><td><a href="#options-height">height</a></td></tr>
@@ -94,6 +95,36 @@ $("ol.list").editableList({
     addItem: function(row, index, data) {
         $(row).html("Item "+index);
     }
+});
+```
+
+#### <a href="#options-buttons" name="options-buttons">buttons( array )</a>
+
+<span class="method-return">型: Array</span>
+
+ボタンオブジェクトの配列で、EditableListのボタンを追加する必要があります。
+それぞれのボタンオブジェクトは以下のプロパティを持つことができます。
+
+ - `label` - （オプション）ボタンのラベル
+ - `icon` - （オプション）ボタンのアイコン
+ - `title` - （オプション）ボタンのツールチップテキスト
+ - `click` - ボタンがクリックされたときに実行されるコールバック関数
+
+`addButton`が有効化されたとき、暗黙的にこの配列に対して「add button」が追加されることに注意してください。
+
+```javascript
+$("ol.list").editableList({
+    addItem: function(row, index, data) {
+        $(row).html("Item "+index);
+    }
+    buttons: [{
+        label: "with icon",
+        icon: "fa fa-star",
+        title: "my custom button",
+        click: function(evt) { 
+            alert("button clicked");
+        }
+   }]
 });
 ```
 
