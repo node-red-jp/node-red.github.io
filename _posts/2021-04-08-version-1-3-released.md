@@ -1,30 +1,30 @@
 ---
 layout: blog
-title: Version 1.3 released
+title: バージョン1.3がリリースされました
 author: nick
 ---
 
-Node-RED 1.3 is now available to [install](https://npmjs.org/package/node-red). If upgrading, please read the [upgrade instructions](http://nodered.org/docs/getting-started/upgrading.html).
+Node-RED 1.3が[インストール](https://npmjs.org/package/node-red)できるようになりました。もし、アップデートをしたい場合は、[アップグレード手順](http://nodered.jp/docs/getting-started/upgrading.html)を参照してください。
 
-The [Change Log](https://github.com/node-red/node-red/blob/28bfa8e4186e63c60894d8f34a1ff9a5838fa917/CHANGELOG.md) has the full list of changes in this release, but here are the highlights.
+[Change Log](https://github.com/node-red/node-red/blob/28bfa8e4186e63c60894d8f34a1ff9a5838fa917/CHANGELOG.md)には、本リリースの全ての変更内容が掲載されています。ここでは、概要を紹介します。
 
 
-**Please note this is the last release that will run on Node 8 or 10.**
+**このリリースは、Node 8や10で実行できる最後のリリースであることにご注意ください**
 
-Next month we will be releasing Node-RED 2.0 that drops support for those versions of Node as they have reached end-of-life.
-
----
-
-*Release video coming soon - [subscribe to the channel](https://www.youtube.com/channel/UCQaB8NXBEPod7Ab8PPCLLAA) so you don't miss it!*
+これらのバージョンのNodeはEnd-of-lifeになるため、これらをサポート外とするNode-RED 2.0を来月にリリースする予定です。
 
 ---
-- [Headline features](#headline-features)
-  - [Function node use of npm modules](#function-node-use-of-npm-modules)
+
+*リリースに関する動画は近々公開します - 見逃さないよう、[チャンネル登録をしてください。](https://www.youtube.com/channel/UCQaB8NXBEPod7Ab8PPCLLAA)
+
+---
+- [注目機能](#headline-features)
+  - [Functionノードにおけるnpmモジュールの利用](#function-node-use-of-npm-modules)
   - [Referencing msg properties in Change/Switch nodes](#referencing-msg-properties-in-change-switch-nodes)
-  - [Node-RED Plugins framework](#node-red-plugins-framework)
+  - [Node-REDプラグインフレームワーク](#node-red-plugins-framework)
     - [Adding extra resources](#adding-extra-resources)
   - [npm packaged subflows](#npm-packaged-subflows)
-- [Editor Features](#editor-features)
+- [エディタの機能](#editor-features)
   - [Export preview](#export-preview)
   - [Selecting nodes](#selecting-nodes)
   - [Opening a subflow](#opening-a-subflow)
@@ -38,118 +38,117 @@ Next month we will be releasing Node-RED 2.0 that drops support for those versio
 
 
 
-## Headline features
+## 注目機能
 
-### Function node use of npm modules
+### Functionノードにおけるnpmモジュールの利用
 
-We've made it much easier for a Function node to use extra npm modules.
+Functionノードにおいて、外部のnpmモジュールをより簡単に利用できるようになりました。
 
-By setting `functionExternalModules` to `true` in your settings file, you will then be able to configure your function nodes with a list of additional modules it will use. The runtime will automatically try to install those modules when you deploy the flow.
+settingsファイルで `functionExternalModules` を `true` に変更することで、functionノードにおいて、利用したい追加モジュールをリストとして設定できるようになります。フローをデプロイした際に、ランタイムは自動的にこれらのモジュールのインストールを試みるようになります。
 
-Unlike the `functionGlobalContext` approach, where your Function node would have to retrieve the module from global context before using it, the modules loaded by this new feature are automatically required and defined in your code.
+functionノードでモジュールを使用する前に、グローバルコンテキストからモジュールを取得する必要がある `functionGlobalContext` のアプローチとは異なり、本新機能では読み込むモジュールはコードに定義し、自動的に取得されます。
 
-The edit dialog has a new `setup` tab where the number of node outputs and the list of modules used by the node can be configured. (If you haven't enabled the `functionExternalModules` setting, you'll only see the Outputs field).
+エディタダイアログには新たに `設定` タブが追加され、ノードの出力数やノードで用いるモジュールのリストを設定できるようになっています(もし `functionExternalModules` の設定を有効にしていない場合は、出力数のフィールドのみが表示されます)。
 
-You'll see we've relabelled the other tabs to try to make it clearer when the code in those tabs is run.
+他のタブにおいては、各タブ内のコードがいつ実行されるか分かりやすくなるように、名前が付け替えられています。
 
 ![](/blog/content/images/2021/04/function-modules.png)
 
 
-[More details](https://github.com/node-red/node-red/pull/2873)
+[詳細](https://github.com/node-red/node-red/pull/2873)
 
 
-### Referencing msg properties in Change/Switch nodes
+### Change/Switchノードでのmsgプロパティの参照
 
-It is now possible to nest references to message properties in the Change and Switch nodes.
+ChangeノードとSwitchノードにおいて、メッセージのプロパティのネストした参照ができるようになりました。
 
-For example, if you are receiving temperatures from a number of sensors. Each message has `msg.topic` set to the room the sensor is in and `msg.payload` is the value. You want to store the current temperature of each room in context under `flow.rooms` - for example `flow.rooms.kitchen` and `flow.rooms.garage`.
+例えば、複数のセンサーから温度を取得する場合です。
+各メッセージは、センサーが設置された部屋が設定された `msg.topic` と、値である `msg.payload` を持っています。
+例えば `flow.rooms.kitchen` や `flow.rooms.garage` のような `flow.rooms` のコンテキストに、各部屋の現在の温度を保存したいとします。
 
-To do this with the Change node in previous versions of Node-RED required the use of JSONata. For example:
+これを以前のバージョンのNode-REDのChangeノードで行うには、JSONataを使用する必要がありました。例えば:
 
- - set `flow.rooms` to the Expression `$merge([$flowContext('rooms'),{$.topic:$.payload}])`
+ - `flow.rooms` に、式 `$merge([$flowContext('rooms'),{$.topic:$.payload}])` を代入
 
-More likely, users would fall back to a Function node - something it would be nice to avoid.
+多くの場合、ユーザはfunctionノードでの実装に陥りますが、これは避けた方が良いでしょう。
 
-With 1.3, it is now possible to configure the Change node as:
+1.3では、次のようにChangeノードで設定できるようになりました:
 
- - set `flow.rooms[msg.topic]` to the value of `msg.payload`.
+ - `flow.rooms[msg.topic]` に `msg.payload` の値を代入
 
+実際には `RED.util.getMessageProperty(...)` ユーティリティを用いる全てのノードが、この機能を持っています。
 
-In fact, any node that uses the `RED.util.getMessageProperty(...)` utility under the covers will gain this functionality.
-
-[More details](https://github.com/node-red/node-red/pull/2822)
-
-
-### Node-RED Plugins framework
-
-We've introduced a new plugin framework for Node-RED to make it easier to customise
-and add new features. Its very early days for this feature - but will form the basis for lots of new things in the future. By delivering extra function via plugins rather than core code, it keeps the core smaller and makes it easier for applications that embed Node-RED to be more selective over what 'extra' features then want.
-
-[More details](https://github.com/node-red/node-red/pull/2779)
-
-Taking advantage of this new framework, there are two new types of plugin available today:
-
- - **Editor theme** plugins, making is easier for users to install new themes and enable them in their settings file. [More details](https://github.com/node-red/node-red/pull/2836).
-
-    There's a nice collection of contributed themes available [here](https://github.com/node-red-contrib-themes/). Keep an eye out for updated plugin versions of those themes.
-
- - **Library source** plugins. These will allow users to configure additional libraries that will appear in the import/export dialogs within the editor. We're publishing a local file system plugin ([@node-red/library-file-store](https://www.npmjs.com/package/@node-red/library-file-store)) as a first example. [More details](https://github.com/node-red/node-red/pull/2785)
-
-#### Adding extra resources
-
-A common requirement for both plugins and Nodes is to be able to load additional
-resources into the editor. This could be images in the help text, or extra JavaScript libraries.
-
-Previously this has required lots of additional work by the Node to make those resources available
-to be loaded.
-
-With the plugins framework we've made this easier to do - and this applies to Nodes as well as plugins.
-
-Now, if a module has a folder called `resources` at the top level, the runtime will automatically make its contents available to be loaded over the Admin HTTP api.
-
-The node/plugin is still responsible for doing the loading of that content in the editor, but now they don't need to create the routes to do in the runtime.
-
-The Creating Nodes documentation has been [updated with more details](https://nodered.org/docs/creating-nodes/resources).
+[詳細](https://github.com/node-red/node-red/pull/2822)
 
 
-### npm packaged subflows
+### Node-REDプラグインフレームワーク
 
-It is now possible to package a subflow as a module and publish it to npm to be installed in the palette just like any other node.
+Node-REDのカスタマイズや新機能追加を容易にするため、プラグインフレームワークを新たに導入しました。この機能は初期段階ですが、将来的には、沢山の新しいものをへ追加するための基礎をとなります。追加機能を本体のコードではなくプラグインとして提供することで、本体を小さく保ち、Node-REDを組み込んだアプリケーションが、より簡単に「追加」機能を選択できるようになります。
 
-As part of this, the subflow property edit dialog has a new 'module properties' tab where you can set optional meta-data about the subflow that can be used when generating an npm module.
+[詳細](https://github.com/node-red/node-red/pull/2779)
 
-The process for generating the module is currently entirely manual. We've added
-[a section to the Creating Nodes guide](https://nodered.org/docs/creating-nodes/subflow-modules) that details the process.
+この新しいフレームワークを用いた、2つの種類のプラグインが今日利用できます:
 
-[More details](https://github.com/node-red/node-red/pull/2690)
+ - **エディタテーマ** プラグイン　新しいテーマのインストールや、settingsファイルでの有効化を簡単にします。 [詳細](https://github.com/node-red/node-red/pull/2836).
+
+    コントリビューションテーマの良いコレクションが [ここ](https://github.com/node-red-contrib-themes/)にあります。これらテーマは更新されており、プラグインのバージョンに注意してください。
+
+ - **ライブラリソース** プラグイン　エディタ内の読み込み/書き出しダイアログに表示される追加ライブラリを構成できます。最初の例として、ローカルファイルシステムプラグイン ([@node-red/library-file-store](https://www.npmjs.com/package/@node-red/library-file-store)) を公開しています。 [詳細](https://github.com/node-red/node-red/pull/2785)
+
+#### リソースを追加
+
+プラグインとノードには、エディタに追加のリソースを読み込めるようにするという共通の要件があります。
+これは、ヘルプのテキストに画像やJavaScriptライブラリを追加するものです。
+
+以前は、ノードでリソースを読み込めるようにするために、沢山の追加作業が必要でした。
+
+プラグインフレームワークでは、これを簡単に実現できます。ノードにおいても同様に適用できるようになっています。
+
+現在、モジュールが一番上の階層に `resources` というフォルダを持つ場合は、ランタイムは自動的にその中のコンテンツをAdmin HTTP APIを介して読み込めるようにします。
+
+ノード/プラグインは、エディタでコンテンツをロードすることは必要ですが、ランタイムにおいてコンテンツを提供するルートを作成する必要はありません。
+
+ノードの開発に関するドキュメントは、[さらに詳細を追加して更新されています](https://nodered.jp/docs/creating-nodes/resources)。
 
 
-## Editor Features
+### npmパッケージ化されたサブフロー
 
-### Export preview
+現在、サブフローをモジュールとしてパッケージ化してnpmに公開し、他のノードと同じようにパレットにインストールできるようになっています。
 
-The Export dialog now shows a structured list of what you are exporting. The raw JSON can still be seen on a second tab in the dialog. This should help users understand what they are exporting.
+この一環として、サブフローのプロパティ編集ダイアログは、新しい 'モジュールプロパティ' タブを持っています。ここに、npmモジュールを生成する際に使われるサブフローに関する任意のメタデータを設定することができます。
+
+モジュールを生成する手順は、現在は完全に手作業です。手順の詳細は、[ノードの開発ガイドのセクション](https://nodered.org/docs/creating-nodes/subflow-modules)に追加されています。
+
+[詳細](https://github.com/node-red/node-red/pull/2690)
+
+
+## エディタの機能
+
+### 書き出しプレビュー
+
+書き出しダイアログは、現在書き出そうとしているものを表示する構造化された一覧を表示します。素のJSONは、タブ内の2つ目に引き続き表示されます。これは、ユーザが何を書き出そうとしているか理解するために役立ちます。
 
 ![](/blog/content/images/2021/04/export-preview.png)
 
-### Selecting nodes
+### ノードの選択
 
-If you shift-click on a node, we would already automatically select all of the nodes in its flow.
+シフトキーを押しながらノードをクリックすると、フロー内の全てのノードが自動的に選択される機能は以前から実現されています。
 
-With this release, if you shift-click on the left-hand side of the node, we will select all of the up-stream nodes. If you shift-click on the right-hand side, we will select all of the down-stream nodes. Shift-clicking on the middle of the node will select the whole flow as before.
+このリリースでは、シフトキーを押しながらノードの右側をクリックすると、フローの前側の全てのノードが選択されます。
+もし、シフトキーを押しながらノードの右側をクリックすると、フローの後ろ側の全てのノードが選択されます。
+シフトキーを押しながらノードの中心をクリックした場合は、以前と同様にフロー全体を選択します。
 
-We've also added corresponding actions and default keyboard shortcuts for these:
+これらに対応するデフォルトのキーボードショートカットが追加されています:
 
- - `core:select-connected-nodes` - `alt-s c` - selects all nodes connected to the current selected node(s).
- - `core:select-upstream-nodes`- `alt-s u` - selects all nodes reachable from the input of any currently selected node
- - `core:select-downstream-nodes` - `alt-s d` - selects all nodes reachable from the outputs of any currently selected node
+ - `core:select-connected-nodes` - `alt-s c` - 現在選択されているノードに接続されている全てのノードを選択
+ - `core:select-upstream-nodes`- `alt-s u` - 現在選択されているノードの入力から到達可能な全てのノードを選択
+ - `core:select-downstream-nodes` - `alt-s d` - 現在選択されているノードの全ての出力から到達できる全てのノードを選択
 
-[More details](https://github.com/node-red/node-red/pull/2877)
+[詳細]https://github.com/node-red/node-red/pull/2877)
 
-### Opening a subflow
+### サブフローの開き方
 
-Previously, to open up a subflow you'd first have to double-click on an instance of it in your workspace,
-then click the 'Edit subflow template' button in the edit dialog that appears.
+以前は、サブフローを開くために、最初にワークスベース上のインスタンスをダブルクリックする必要がありました。その後、編集ダイアログにある「サブフローを編集」ボタンをクリックしていました。
 
 With this release, if you press Ctrl (or Cmd on Mac) when you double-click on the node, it will take you straight to the subflow template tab. Similarly, if the subflow instance is selected, holding Ctrl (or Cmd) when you press the Enter key will do the same thing.
 
@@ -192,7 +191,7 @@ This new setting replaces some existing settings which are now deprecated.
  - `editorTheme.palette.upload` for `externalModules.palette.allowUpload`
 
 
-[More details](https://github.com/node-red/node-red/pull/2797)
+[詳細](https://github.com/node-red/node-red/pull/2797)
 
 ### Other Runtime updates
 
