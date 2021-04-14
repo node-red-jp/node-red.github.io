@@ -8,10 +8,9 @@ Node-RED 1.3が[インストール](https://npmjs.org/package/node-red)できる
 
 [Change Log](https://github.com/node-red/node-red/blob/28bfa8e4186e63c60894d8f34a1ff9a5838fa917/CHANGELOG.md)には、本リリースの全ての変更内容が掲載されています。ここでは、概要を紹介します。
 
+**このリリースは、Node.js 8と10で実行できる最後のリリースであることにご注意ください。**
 
-**このリリースは、Node 8や10で実行できる最後のリリースであることにご注意ください**
-
-これらのバージョンのNodeはEnd-of-lifeになるため、これらをサポート外とするNode-RED 2.0を来月にリリースする予定です。
+これらのバージョンのNode.jsはEnd-of-lifeになるため、来月にリリースするNode-RED 2.0では、これらをサポート外とする予定です。
 
 ---
 
@@ -20,35 +19,34 @@ Node-RED 1.3が[インストール](https://npmjs.org/package/node-red)できる
 ---
 - [注目機能](#headline-features)
   - [Functionノードにおけるnpmモジュールの利用](#function-node-use-of-npm-modules)
-  - [Referencing msg properties in Change/Switch nodes](#referencing-msg-properties-in-change-switch-nodes)
+  - [Change/Switchノードでのmsgプロパティの参照](#referencing-msg-properties-in-change-switch-nodes)
   - [Node-REDプラグインフレームワーク](#node-red-plugins-framework)
-    - [Adding extra resources](#adding-extra-resources)
-  - [npm packaged subflows](#npm-packaged-subflows)
+    - [リソースの追加](#adding-extra-resources)
+  - [npmパッケージ化されたサブフロー](#npm-packaged-subflows)
 - [エディタの機能](#editor-features)
-  - [Export preview](#export-preview)
-  - [Selecting nodes](#selecting-nodes)
-  - [Opening a subflow](#opening-a-subflow)
-  - [Navigating around the workspace](#navigating-around-the-workspace)
-  - [Keyboard shortcuts](#keyboard-shortcuts)
-  - [Other Editor updates](#other-editor-updates)
-- [Runtime Features](#runtime-features)
-  - [New `externalModules` setting](#new-externalmodules-setting)
-  - [Other Runtime updates](#other-runtime-updates)
-- [Node Features](#node-features)
+  - [書き出しのプレビュー](#export-preview)
+  - [ノードの選択](#selecting-nodes)
+  - [サブフローの開き方](#opening-a-subflow)
+  - [ワークスペースのナビゲート](#navigating-around-the-workspace)
+  - [キーボードショートカット](#keyboard-shortcuts)
+  - [その他のエディタの更新](#other-editor-updates)
+- [ランタイムの機能](#runtime-features)
+  - [新しい`externalModules`設定](#new-externalmodules-setting)
+  - [その他のランタイムの更新](#other-runtime-updates)
+- [ノードの機能](#node-features)
 
-
-
+<a name="headline-features"></a>
 ## 注目機能
-
+<a name="function-node-use-of-npm-modules"></a>
 ### Functionノードにおけるnpmモジュールの利用
 
 Functionノードにおいて、外部のnpmモジュールをより簡単に利用できるようになりました。
 
-settingsファイルで `functionExternalModules` を `true` に変更することで、functionノードにおいて、利用したい追加モジュールをリストとして設定できるようになります。フローをデプロイした際に、ランタイムは自動的にこれらのモジュールのインストールを試みるようになります。
+settingsファイルで `functionExternalModules` を `true` に変更することで、functionノードにおいて、利用したい追加モジュールを設定できるようになります。フローをデプロイした際に、ランタイムは自動的にこれらのモジュールのインストールを試みるようになります。
 
-functionノードでモジュールを使用する前に、グローバルコンテキストからモジュールを取得する必要がある `functionGlobalContext` のアプローチとは異なり、本新機能では読み込むモジュールはコードに定義し、自動的に取得されます。
+functionノードでモジュールを使用する前に、グローバルコンテキストからモジュールを取得する必要がある `functionGlobalContext` のアプローチとは異なり、本新機能では読み込むモジュールはコードに定義され、自動的に取得されます。
 
-エディタダイアログには新たに `設定` タブが追加され、ノードの出力数やノードで用いるモジュールのリストを設定できるようになっています(もし `functionExternalModules` の設定を有効にしていない場合は、出力数のフィールドのみが表示されます)。
+編集ダイアログには新たに `設定` タブが追加され、ノードの出力数やノードで用いるモジュールを設定できるようになっています(もし `functionExternalModules` の設定を有効にしていない場合は、出力数のフィールドのみが表示されます)。
 
 他のタブにおいては、各タブ内のコードがいつ実行されるか分かりやすくなるように、名前が付け替えられています。
 
@@ -57,7 +55,7 @@ functionノードでモジュールを使用する前に、グローバルコン
 
 [詳細](https://github.com/node-red/node-red/pull/2873)
 
-
+<a name="referencing-msg-properties-in-change-switch-nodes"></a>
 ### Change/Switchノードでのmsgプロパティの参照
 
 ChangeノードとSwitchノードにおいて、メッセージのプロパティのネストした参照ができるようになりました。
@@ -80,10 +78,10 @@ ChangeノードとSwitchノードにおいて、メッセージのプロパテ�
 
 [詳細](https://github.com/node-red/node-red/pull/2822)
 
-
+<a name="node-red-plugins-framework"></a>
 ### Node-REDプラグインフレームワーク
 
-Node-REDのカスタマイズや新機能追加を容易にするため、プラグインフレームワークを新たに導入しました。この機能は初期段階ですが、将来的には、沢山の新しいものをへ追加するための基礎をとなります。追加機能を本体のコードではなくプラグインとして提供することで、本体を小さく保ち、Node-REDを組み込んだアプリケーションが、より簡単に「追加」機能を選択できるようになります。
+Node-REDのカスタマイズや新機能追加を容易にするため、プラグインフレームワークを新たに導入しました。この機能は初期段階ですが、将来的には、沢山の新しいもの追加するための基礎となります。追加機能を本体のコードではなくプラグインとして提供することで、本体を小さく保ち、Node-REDを組み込んだアプリケーションが、より簡単に「追加」機能を選択できるようになります。
 
 [詳細](https://github.com/node-red/node-red/pull/2779)
 
@@ -91,11 +89,12 @@ Node-REDのカスタマイズや新機能追加を容易にするため、プラ
 
  - **エディタテーマ** プラグイン　新しいテーマのインストールや、settingsファイルでの有効化を簡単にします。 [詳細](https://github.com/node-red/node-red/pull/2836).
 
-    コントリビューションテーマの良いコレクションが [ここ](https://github.com/node-red-contrib-themes/)にあります。これらテーマは更新されており、プラグインのバージョンに注意してください。
+    コントリビューションされたテーマの良いコレクションが [ここ](https://github.com/node-red-contrib-themes/)にあります。これらテーマは更新されるため、プラグインのバージョンに注意してください。
 
  - **ライブラリソース** プラグイン　エディタ内の読み込み/書き出しダイアログに表示される追加ライブラリを構成できます。最初の例として、ローカルファイルシステムプラグイン ([@node-red/library-file-store](https://www.npmjs.com/package/@node-red/library-file-store)) を公開しています。 [詳細](https://github.com/node-red/node-red/pull/2785)
 
-#### リソースを追加
+<a name="adding-extra-resources"></a>
+#### リソースの追加
 
 プラグインとノードには、エディタに追加のリソースを読み込めるようにするという共通の要件があります。
 これは、ヘルプのテキストに画像やJavaScriptライブラリを追加するものです。
@@ -104,38 +103,39 @@ Node-REDのカスタマイズや新機能追加を容易にするため、プラ
 
 プラグインフレームワークでは、これを簡単に実現できます。ノードにおいても同様に適用できるようになっています。
 
-現在、モジュールが一番上の階層に `resources` というフォルダを持つ場合は、ランタイムは自動的にその中のコンテンツをAdmin HTTP APIを介して読み込めるようにします。
+現在、モジュールが一番上の階層に `resources` というフォルダを持つ場合は、ランタイムは自動的にその中のコンテンツをAdmin HTTP APIを介して読み込めるようになっています。
 
-ノード/プラグインは、エディタでコンテンツをロードすることは必要ですが、ランタイムにおいてコンテンツを提供するルートを作成する必要はありません。
+エディタでコンテンツをロードすることは必要ですが、ノード/プラグインはランタイムにおいてコンテンツを提供するルートを作成する必要はありません。
 
-ノードの開発に関するドキュメントは、[さらに詳細を追加して更新されています](https://nodered.jp/docs/creating-nodes/resources)。
+ノードの開発に関するドキュメントは、[さらに詳細が追加され更新されています](https://nodered.jp/docs/creating-nodes/resources)。
 
-
+<a name="npm-packaged-subflows"></a>
 ### npmパッケージ化されたサブフロー
 
 現在、サブフローをモジュールとしてパッケージ化してnpmに公開し、他のノードと同じようにパレットにインストールできるようになっています。
 
 この一環として、サブフローのプロパティ編集ダイアログは、新しい 'モジュールプロパティ' タブを持っています。ここに、npmモジュールを生成する際に使われるサブフローに関する任意のメタデータを設定することができます。
 
-モジュールを生成する手順は、現在は完全に手作業です。手順の詳細は、[ノードの開発ガイドのセクション](https://nodered.org/docs/creating-nodes/subflow-modules)に追加されています。
+モジュールを生成する手順は、現在は完全に手作業です。手順の詳細は、[ノードの開発ガイドのセクション](https://nodered.jp/docs/creating-nodes/subflow-modules)に追加されています。
 
 [詳細](https://github.com/node-red/node-red/pull/2690)
 
-
+<a name="editor-features"></a>
 ## エディタの機能
-
-### 書き出しプレビュー
+<a name="export-preview"></a>
+### 書き出しのプレビュー
 
 書き出しダイアログは、現在書き出そうとしているものを表示する構造化された一覧を表示します。素のJSONは、タブ内の2つ目に引き続き表示されます。これは、ユーザが何を書き出そうとしているか理解するために役立ちます。
 
 ![](/blog/content/images/2021/04/export-preview.png)
 
+<a name="selecting-nodes"></a>
 ### ノードの選択
 
 シフトキーを押しながらノードをクリックすると、フロー内の全てのノードが自動的に選択される機能は以前から実現されています。
 
 このリリースでは、シフトキーを押しながらノードの右側をクリックすると、フローの前側の全てのノードが選択されます。
-もし、シフトキーを押しながらノードの右側をクリックすると、フローの後ろ側の全てのノードが選択されます。
+一方、シフトキーを押しながらノードの右側をクリックすると、フローの後ろ側の全てのノードが選択されます。
 シフトキーを押しながらノードの中心をクリックした場合は、以前と同様にフロー全体を選択します。
 
 これらに対応するデフォルトのキーボードショートカットが追加されています:
@@ -144,68 +144,73 @@ Node-REDのカスタマイズや新機能追加を容易にするため、プラ
  - `core:select-upstream-nodes`- `alt-s u` - 現在選択されているノードの入力から到達可能な全てのノードを選択
  - `core:select-downstream-nodes` - `alt-s d` - 現在選択されているノードの全ての出力から到達できる全てのノードを選択
 
-[詳細]https://github.com/node-red/node-red/pull/2877)
+[詳細](https://github.com/node-red/node-red/pull/2877)
 
+<a name="opening-a-subflow"></a>
 ### サブフローの開き方
 
-以前は、サブフローを開くために、最初にワークスベース上のインスタンスをダブルクリックする必要がありました。その後、編集ダイアログにある「サブフローを編集」ボタンをクリックしていました。
+以前は、サブフローを開くために、最初にワークスペース上のインスタンスをダブルクリックする必要がありました。その後、編集ダイアログにある「サブフローを編集」ボタンをクリックしていました。
 
-With this release, if you press Ctrl (or Cmd on Mac) when you double-click on the node, it will take you straight to the subflow template tab. Similarly, if the subflow instance is selected, holding Ctrl (or Cmd) when you press the Enter key will do the same thing.
+このリリースでは、ノードをダブルクリックする時に、Ctrlキー(MacではCmdキー)を押していると、直接サブフローのテンプレートタブに移動できます。同じように、サブフローのインスタンスが選択された状態で、Ctrlキー(Cmdキー)を押しながらエンターキーを押すと、同様の動作となります。
 
-### Navigating around the workspace.
+<a name="navigating-around-the-workspace"></a>
+### ワークスペースのナビゲート
 
-We've added some keyboard shortcuts to help navigating around the workspace.
+ワークスペース内を移動するのを助けるキーボードショートカットがいくつか追加されています。
 
- - You can use the cursor keys to change what node is selected in the workspace.
- - You can switch between tabs using `Ctrl/Cmd-[` and `Ctrl/Cmd-]`
- - When you jump between tabs, such as using `Ctrl-Enter` to go to a subflow template tab, you can use `Ctrl/Cmd-Shift-ArrowLeft` to go back to the last tab you were on. If you do use that to go back, you can then use `Ctrl/Cmd-Shift-ArrowRight` to go forwards in the tab history.
+ - ワークスペースで選択されているノードを矢印キーで切り替え。
+ - `Ctrl/Cmd-[` や `Ctrl/Cmd-]` を用いてタブ間を切り替え。
+ - `Ctrl-Enter` を用いてサブフローのテンプレートタブへ移動、`Ctrl/Cmd-Shift-左矢印キー` を用いて最後に開いていたタブへ移動。元のタブに戻った場合は、`Ctrl/Cmd-Shift-右矢印キー` を用いて、タブの履歴上で前に戻ることもできます。
 
+<a name="keyboard-shortcuts"></a>
+### キーボードショートカット
 
-### Keyboard shortcuts
+settingsファイルの `editorTheme` オプションを介して、カスタムのキーボードショートカットを設定できるようになりました。
+これによって、複数のインスタンス間でカスタマイズをより簡単に反映できるようになりました。 [詳細](https://github.com/node-red/node-red/pull/2843)
 
-It is now possible to set custom keyboard shortcuts via the `editorTheme` option in the settings file. This means you can more easily copy your customisations between instances. [More details](https://github.com/node-red/node-red/pull/2843)
+<a name="other-editor-updates"></a>
+### その他のエディタの更新
 
-### Other Editor updates
+ - エディタをリロードした時に、常に直近使ったタブを表示するようになりました。
+ - サブフローを削除する時に、使用中のインスタンスがある場合、確認ダイアログを表示します。
+ - 情報サイドバーにあるアウトラインビューに、各サブフローが使用されているインスタンスの数を表示するようになりました。この数値をクリックすると、それらを一覧表示する検索ダイアログが表示されます。
+ - アウトラインビューでクリックするのみで、グループ内のコンテンツに対して、状態の有効/無効の切り替えができます。
+ 
+<a name="runtime-features"></a>
+## ランタイムの機能
+<a name="new-externalmodules-setting"></a>
+### 新しい`externalModules`設定
 
- - If you reorder the sidebar tabs, we now ensure the first tab is always the one shown when you reload the editor.
- - Add confirm dialog when deleting subflows with instances in use
- - The Outline view in the info sidebar now shows how many instances of each subflow there are. Clicking on the number will open up the search dialog listing them all.
- - You can toggle the enable/disabled state of a groups contents with a single click in the Outline view
+Node-REDにインストールできるものを管理するための新しい設定、`externalModules` を利用できるようになりました。
 
+この設定は、2つの別々のものをカバーしています。1つ目は、パレットマネージャを介してインストールできる新しいノードです。2つ目は、functionノードによって読み込むことのできるモジュールです。
 
-## Runtime Features
+この設定で、ランタイムによって読み込むことのできるモジュールを決定するために使われる `allow` と `deny` リストを提供できます。これらは、パレットマネージャーに表示されるノードの一覧を絞り込むために、エディタにおいても利用されます。
 
-### New `externalModules` setting
+この新しい設定は、現在非推奨となっているいくつかの既存設定を置き換えるものです。
 
-There is a new setting available that governs what can be installed into Node-RED - `externalModules`.
-
-This covers two separate things - what new nodes can be installed via the palette manager, and what modules can be loaded by the Function node.
-
-Under this setting, you can provide `allow` and `deny` lists that are used to determine what modules can be loaded by the runtime. These lists are also used by the editor to filter the list of nodes the palette manager shows.
-
-This new setting replaces some existing settings which are now deprecated.
-
- - `editorTheme.palette.editable` for `externalModules.palette.allowInstall`
- - `autoInstallModules` for `externalModules.palette.allowInstall = true` and `externalModules.autoInstall = true`
- - `autoInstallModulesRetry` for `externalModules.autoInstallRetry`
- - `editorTheme.palette.upload` for `externalModules.palette.allowUpload`
+ - `editorTheme.palette.editable` は `externalModules.palette.allowInstall`　に置き換え
+ - `autoInstallModules` は、 `externalModules.palette.allowInstall = true` と `externalModules.autoInstall = true` に置き換え
+ - `autoInstallModulesRetry` は `externalModules.autoInstallRetry` に置き換え
+ - `editorTheme.palette.upload` は `externalModules.palette.allowUpload` に置き換え
 
 
 [詳細](https://github.com/node-red/node-red/pull/2797)
 
-### Other Runtime updates
+<a name="other-runtime-updates"></a>
+### その他のランタイムの更新
 
- - You can now explicitly set what language you want the runtime to use via the `lang` option in the settings file. [More details](https://github.com/node-red/node-red/pull/2796)
- - When stopping flows, configuration nodes are now stopped last so that flow nodes can rely on them still existing whilst trying to stop themselves. [More details](https://github.com/node-red/node-red/pull/2880)
- - You can now default to the simplified git workflow via your settings file with the `editorTheme.projects.workflow` option. [More details](https://github.com/node-red/node-red/pull/2763)
- - `httpAdminMiddleware` and `httpNodeMiddleware` can now be an array of middleware to apply, rather than just a single function. [More details](https://github.com/node-red/node-red/pull/2788)
+ - settingsファイルの `lang` オプションを介して、ランタイムが使用する言語を明示的に設定できるようになりました。 [詳細](https://github.com/node-red/node-red/pull/2796)
+ - フローが停止される時に、設定ノードは最後に停止されるようになりました。これによってフローのノードは停止される時に、設定ノードに頼る処理を行えます。 [詳細](https://github.com/node-red/node-red/pull/2880)
+ - settingsファイルの `editorTheme.projects.workflow` オプションを介して、簡素化されたgitワークフローをデフォルトに設定できます。 [詳細](https://github.com/node-red/node-red/pull/2763)
+ - `httpAdminMiddleware` と `httpNodeMiddleware` は、1つの関数のみしか使えませんでしたが、現在は配列として複数のミドルウエアを設定できるようになりました。 [詳細](https://github.com/node-red/node-red/pull/2788)
 
+<a name="node-features"></a>
+## ノードの機能
 
-## Node Features
-
- - The MQTT nodes now support MQTTv5 and the vast majority of the new features v5 introduces.
- - A number of the core nodes have been updated to support triggering the Complete node - Batch, Delay, Split, Join, Trigger
- - The Exec node no longer appends `msg.payload` by default - this routinely caught users out. This only applies to *newly added* nodes - existing nodes won't be affected.
-   We've also updated the Exec node so you chose to append a message property other than `msg.payload`.
- - The Inject and Change nodes will now highlight any errors in their configuration when the edit dialog is closed.
- - The Function node now exposes `node.outputCount` so your code can know how many outputs the node has been configured with.
+ - MQTTノードはMQTTv5をサポートし、v5で提供されている新機能の大部分を使えるようになりました。
+ - Batch、Delay、Split、Join、Triggerなど、多くのコアノードがCompleteノードへトリガできるよう更新が入りました。
+ - Execノードは、コマンド引数に `msg.payload` をデフォルトで追加しなくなりました。これは、ユーザによってよく除かれているためです。これは *新しく追加された* ノードにおいてのみ適用され、既存のノードについては影響を受けません。また、`msg.payload` だけではなく、任意のメッセージプロパティを追加できるようExecノードが更新されました。
+ - InjectやChangeノードは、編集ダイアログを閉じた時に、設定のエラーをハイライト表示するようになりました。
+ - Functionノードでは、設定されたポートの出力数をコードから参照できるように `node.outputCount` が利用できるようになりました。
+ 
