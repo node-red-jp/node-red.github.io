@@ -1,69 +1,69 @@
 ---
 layout: docs-getting-started
-title: Running on Microsoft Azure
+title: Microsoft Azureで実行する
 slug: azure
 toc: toc-user-guide.html
 redirect_from:
   - /docs/platforms/azure
 ---
 
-This guide takes you through the steps to get Node-RED running on an Azure
-Virtual Machine instance.
+このガイドでは、Azure 仮想マシンのインスタンスで
+Node-REDを実行する手順を紹介します。
 
-#### Create the base image
+#### ベースの仮想マシンイメージを作成する
 
-1. Log in to the [Azure console](https://portal.azure.com/)
+1. [Azure ポータル](https://portal.azure.com/) にログインします。
 
-2. Click to add a New ... Virtual Machine
+2. 「新規」をクリックします。
 
-3. In the list of Virtual Machines, select **Ubuntu Server**, then click 'Create'
+3. 仮想マシンのリストから、**Ubuntu Server**を選択し、「作成」をクリックします。（訳注: 「Marketplace を検索」欄で`Ubuntu Server`と検索すると候補が表示されます。）
 
-4. Give your machine a name, the username you want to use and the authentication
-   details you want to use to access the instance
+4. 「基本」の手順で、利用したいマシン名とユーザー名を入力し、インスタンスへアクセスするための認証情報を入力します。
+   （訳注: 後述の手順で仮想マシンサイズにAシリーズを利用する場合は、「VM ディスクの種類」オプションに「HDD」を指定してください。）
 
-5. Choose the Size of your instance. Remember that node.js is single-threaded so
-   there's no benefit to picking a size with multiple cores for a simple node-red
-   instance. `A1 Basic` is a good starting point
+5. 「サイズ」の手順で、仮想マシンのサイズを選択します。 単純な Node-RED のインスタンスをたてる場合、
+   node.js はシングルスレッドで動作するので、マルチコアのサイズを選択しても恩恵を得られないことにご留意ください。
+   初めての場合は、「すべて表示」をクリックし、`A1 Basic`を選択すると良いでしょう。
 
-6. On the 'Settings' step, click on the 'Network security group' option. Add a
-   new 'Inbound rule' with the options set as:
-     - Name: node-red-editor
-     - Priority: 1010
-     - Protocol: TCP
-     - Destination port range: 1880
+6. 「設定」の手順で、「ネットワーク セキュリティ グループ」を新規作成し、以下の内容で、新しい「受信規則」を追加します。
+   （訳注: このほか、適宜「Virtual Network」や「サブネット」を作成してください。）
+     - 名前: node-red-editor
+     - 優先度: 1010
+     - プロトコル: TCP
+     - ポート範囲: 1880
 
-7. Click 'Ok' on the Settings page, check the Summary then click 'Ok' to deploy
-   the new instance
+7. 「設定」の手順で、「OK」をクリックします。
+   概要を確認したのち、「OK」をクリックして、新しいインスタンスをデプロイしましょう。
 
-After a couple of minutes your instance will be running. In the console
-you can find your instance's IP address
+数分後、インスタンスが起動します。
+インスタンスのIPアドレスは、ポータルから確認することができます。
 
-#### Setup Node-RED
+#### Node-RED のセットアップ
 
-The next task is to log into the instance then install node.js and Node-RED.
+次はインスタンスにログインし、node.jsとNode-REDをインストールします。
 
-Log into your instance using the authentication details you specified in the
-previous stage.
+前のステップで指定した認証情報を使って、
+インスタンスにログインしてください。
 
-Once logged in you need to install node.js and Node-RED
+ログインしたら、node.jsとNode-REDをインストールする必要があります。
 
        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
        sudo apt-get install -y nodejs build-essential
        sudo npm install -g --unsafe-perm node-red
 
 
-At this point you can test your instance by running `node-red`. *Note*: you may
-get some errors regarding the Serial node - that's to be expected and can be
-ignored.
+この時点で`node-red`を起動してインスタンスをテストすることができます。
+*Note*: シリアルノードに関するいくつかのエラーが発生する可能性があります。
+これは予想されうるもので、無視することができます。
 
-Once started, you can access the editor at `http://<your-instance-ip>:1880/`.
+起動したら、`http://<your-instance-ip>:1880/`のエディタにアクセスできます。
 
-To get Node-RED to start automatically whenever your instance is restarted, you
-can use pm2:
+インスタンスが再起動されるたびにNode-REDが自動的に起動するようにするには
+pm2を利用できます。:
 
        sudo npm install -g --unsafe-perm pm2
        pm2 start `which node-red` -- -v
        pm2 save
        pm2 startup
 
-*Note:* this final command will prompt you to run a further command - make sure you do as it says.
+*Note:* この最後のコマンドでさらにコマンドを実行するように促されるので、従って実行して下さい。

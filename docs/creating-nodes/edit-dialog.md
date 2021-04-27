@@ -1,7 +1,7 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Node edit dialog
+title: 編集ダイアログ
 slug: edit dialog
 ---
 <script src="js/jquery-ui.min.js"></script>
@@ -15,14 +15,14 @@ slug: edit dialog
 <script src="js/popover.js"></script>
 <link rel="stylesheet" href="/css/editor-style.min.css">
 
-The edit dialog for a node is the main way a user can configure the node to
-do what they want.
+ノードの編集ダイアログの主な用途は、
+ユーザーが望む動作をノードに設定することです。
 
-The dialog should be intuitive to use and be consistent in its design and appearance
-when compared to other nodes.
+ダイアログは直感的に利用でき、
+そのデザインおよび外見が他のノードと一貫性がなければなりません。
 
-The edit dialog is provided in the [node's HTML file](node-html), inside a
-`<script>` tag:
+編集ダイアログは[ノードのHTMLファイル](node-html)内の
+`<script>`タグから生成されます。
 
 ```html
 <script type="text/html" data-template-name="node-type">
@@ -30,15 +30,15 @@ The edit dialog is provided in the [node's HTML file](node-html), inside a
 </script>
 ```
 
- - The `<script>` tag should have a `type` of `text/html` - this will help most
-   text editors to provide proper syntax highlighting. It also prevents the browser
-   from treating it like normal HTML content when the node is loaded into the editor.
- - The tag should have its `data-template-name` set to the type of the node its
-   the edit dialog for. This is how the editor knows what content to show when
-   editing a particular node.
+ - `<script>`タグの`type`は`text/html`にします - これにより、テキストエディタが適したテキストハイライトをおこないます。
+   また、ノードがエディタに読み込まれた際、
+   通常のHTMLコンテンツとなることからブラウザを保護します。
+ - タグには編集ダイアログのためにノードの種類を示す`data-template-name`属性をセットします。
+   特定のノードを編集するときに
+   どのようなコンテンツを表示すべきかをエディタに伝えます。
 
-The edit dialog will typically be made up from a series of rows - each containing
-a label and input for a different property
+編集ダイアログは一般的に行から構成されます。
+それぞれの行には異なるプロパティに対するlabelとinputが含まれます。
 
 ```html
 <div class="form-row">
@@ -47,28 +47,29 @@ a label and input for a different property
 </div>
 ```
 
-- Each row is created by a `<div>` with class `form-row`
-- A typical row will have a `<label>` that contains an icon and the name of the
-  property followed by an `<input>`. The icon is created using an `<i>` element
-  with a class taken from those available from [Font Awesome 4.7](https://fontawesome.com/v4.7.0/icons/).
-- The form element containing the property must have an id of `node-input-<propertyname>`. In the case of Configuration nodes, the id must be `node-config-input-<property-name>`.
-- The `<input>` type can be either `text` for string/number properties, or
-`checkbox` for boolean properties. Alternatively, a `<select>` element can be
-used if there is a restricted set of choices.
+- 各行は`form-row`クラスをもつ`<div>`から生成されます。
+- 一般的な行はアイコンと`<input>`と一致するプロパティの名称を含んだ`<label>`を持ちます。
+  アイコンは`<i>`要素を利用して生成され、
+  [Font Awesome 4.7](https://fontawesome.com/v4.7.0/icons/)から利用可能なクラスを持ちます。
+- プロパティを含むフォーム要素は`node-input-<propertyname>`というid属性が必須です。
+  設定ノードの場合、id属性は`node-config-input-<property-name>`となります。
+- `<input>`のtype属性は、
+  stringおよびnumberのプロパティには`text`、booleanのプロパティには`checkbox`とします。
+  また、選択肢が制限されている場合には`<select>`要素を使うことができます。
 
 
-Node-RED provides some standard UI widgets that can be used by nodes to create a
-richer and more consistent user experience.
+Node-REDはいくつかの標準UIウィジェットを提供しており、
+よりリッチで一貫性のあるユーザーエクスペリエンスを作り出すことができます。
 
-### Buttons
+### ボタン
 
-To add a button to the edit dialog, use the standard `<button>` HTML element and
-give it the class `red-ui-button`.
+編集ダイアログにボタンを追加するには、
+一般的な`<button>`HTML要素を利用し、`red-ui-button`クラスを付与します。
 
 <table class="ui-examples">
 <tr>
 <td>
-    <h5>Plain button</h5>
+    <h5>プレーンボタン</h5>
     <button type="button" class="red-ui-button">Button</button>
 </td>
 <td>
@@ -77,7 +78,7 @@ give it the class `red-ui-button`.
 </tr>
 <tr>
 <td>
-    <h5>Small button</h5>
+    <h5>スモールボタン</h5>
     <button type="button" class="red-ui-button red-ui-button-small">Button</button>
 </td>
 <td>
@@ -86,7 +87,7 @@ give it the class `red-ui-button`.
 </tr>
 <tr>
 <td>
-<h5>Toggle button group</h5>
+<h5>トグルボタングループ</h5>
 <span class="button-group">
 <button type="button" class="red-ui-button toggle my-button-group selected">b1</button><button type="button" class="red-ui-button toggle my-button-group">b2</button><button type="button" class="red-ui-button toggle my-button-group">b3</button>
 </span>
@@ -106,9 +107,9 @@ give it the class `red-ui-button`.
 })</pre>
 <p class="caption">oneditprepare</p>
 </div>
-<p>To toggle the <code>selected</code> class on the active button, you will need to add code to
-the <code>oneditprepare</code> function to handle the events.</p>
-<p><i>Note:</i> avoid whitespace between the <code>&lt;button&gt;</code> elements as the <code>button-group</code> span does not currently collapse whitespace properly. This will be addressed in the future.</p>
+<p>活性化しているボタンに<code>selected</code>クラスをトグルさせるため、you will need to add code to
+イベントを制御する<code>oneditprepare</code>関数をコードに追加する必要があります。</p>
+<p><i>注意:</i> <code>button-group</code>とする<code>&lt;button&gt;</code>要素同士のあいだに空白を避けるため、現時点ではspan要素は空白を適切に省略していません。これは将来的に対応します。</p>
 </td>
 </tr>
 
@@ -117,31 +118,31 @@ the <code>oneditprepare</code> function to handle the events.</p>
 
 
 
-### Inputs
+### 入力
 
-For simple text entry, the standard `<input>` element can be used.
+シンプルなテキスト入力には、標準的な`<input>`要素を利用することができます。
 
-In some cases, Node-RED provides the `TypedInput` widget as an alternative.
-It allows the user a way to specify the type of the property as well as its value.
+場合によっては、Node-REDは代替として`TypedInput`ウィジェットを提供しています。
+これによってユーザーはプロパティとその値の型を指定することができます。
 
-For example, if a property could be a String, number or boolean. Or if the property
-is being used to identify message, flow or global context property.
+例えば、プロパティをString、Number、booleanに指定できます。
+また、メッセージプロパティ、フローまたはグローバルコンテキストプロパティを指定するように利用できます。
 
-It is a jQuery widget that requires code to be added to the node's `oneditprepare` function
-in order to add it to the page.
+このjQueryウィジェットを編集ダイアログページに追加するためには、
+ノードの`oneditprepare`関数にコードを追加する必要があります。
 
-Full API documentation for the `TypedInput` widget, including a list of the available
-built-in types is available [here](/docs/api/ui/typedInput/).
+`TypedInput`ウィジェットの全APIドキュメントは、
+利用可能なビルトインされている型一覧も含めて[こちら](/docs/api/ui/typedInput/)で入手できます。
 
-<i>Note we are aware the drop-down menus included with the `TypedInput` are
-not embedding well on this page - they cause the page to jump around when being clicked.
-That will get fixed. </i>
+<i>`TypedInput`に含まれているドロップダウンメニューが
+このページにうまく組み込めていないことを認識しています。 - クリックされたときにページが移動してしまいます。
+これは修正される予定です。</i>
 
 
 <table class="ui-examples">
 <tr>
     <td>
-        <h5>Plain HTML Input</h5>
+        <h5>プレーンなHTML Input</h5>
         <span class="red-ui-editor"><input type="text" id="node-input-name"></span>
     </td>
     <td>
@@ -168,9 +169,9 @@ That will get fixed. </i>
 })</pre>
             <p class="caption">oneditprepare</p>
 
-            When the TypedInput can be set to multiple types, an extra node
-            property is required to store information about the type. This
-            is added to the edit dialog as a hidden <code>&lt;input&gt;</code>.
+            TypedInputに複数の型をセットするとき、
+            型に関する情報をストアするための追加プロパティが必要となります。
+            これはhidden属性をもつ<code>&lt;input&gt;</code>として編集ダイアログに追加されます。
          </div>
     </td>
 </tr>
@@ -191,8 +192,8 @@ That will get fixed. </i>
     types:["json"]
 })</pre>
             <p class="caption">oneditprepare</p>
-        The JSON type includes a button that will open up a dedicated JSON Edit
-        Dialog (disabled in this demo).
+        JSON型には専用のJSON編集ダイアログを開くボタンが含まれます
+        （このデモでは無効化されています）。
          </div>
     </td>
 </tr>
@@ -231,26 +232,26 @@ $(function() {
 })
 </script>
 
-### Multi-line Text Editor
+### 複数行テキストエディタ
 
-Node-RED includes a multi-line text editor based on the [Ace code editor](https://ace.c9.io/).
+Node-REDは[Aceコードエディタ](https://ace.c9.io/)を元にした複数行テキストエディタを持っています。
 
 <div style="width: 467px" class="figure align-centre">
   <img src="images/ace-editor.png" alt="Multi-line Text Editor">
-  <p class="caption">Multi-line Text Editor</p>
+  <p class="caption">複数行テキストエディタ</p>
 </div>
 
-In the following example, the node property that we will edit is called `exampleText`.
+以下の例では、編集するノードのプロパティを`exampleText`と呼びます。
 
-In your HTML, add a `<div>` placeholder for the editor. This must have the css class
-`node-text-editor`. You will also need to set a `height` on the element.
+HTMLに、エディタのための`<div>`プレースホルダーを追加します。
+この要素にはCSSクラスの`node-text-editor`が必須です。また、要素に`height`を設定する必要があります。
 
 ```html
 <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-example-editor"></div>
 ```
 
-In the node's `oneditprepare` function, the text editor is initialised using the `RED.editor.createEditor`
-function:
+ノードの`oneditprepare`関数において、
+`RED.editor.createEditor`関数を使ってテキストエディタのイニシャライズをおこないます:
 
 ```javascript
 this.editor = RED.editor.createEditor({
@@ -260,9 +261,9 @@ this.editor = RED.editor.createEditor({
 });
 ```
 
-The `oneditsave` and `oneditcancel` functions are also needed to get the value
-back from the editor when the dialog is closed, and ensure the editor is properly
-removed from the page.
+ダイアログを閉じる際にエディタから値を取得するため、
+ページからエディタを適切に消すために
+`oneditsave`および`oneditcancel`関数も設定する必要があります。
 
 ```javascript
 oneditsave: function() {

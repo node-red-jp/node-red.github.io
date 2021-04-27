@@ -6,6 +6,6 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - get credentials
 ---

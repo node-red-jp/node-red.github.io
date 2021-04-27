@@ -1,125 +1,125 @@
 ---
 layout: docs-getting-started
-title: Running on IBM Cloud
+title: IBMクラウドで実行する
 toc: toc-user-guide.html
 slug: ibm cloud
 redirect_from:
   - /docs/platforms/bluemix
 ---
 
-Node-RED is available on the IBM Cloud platform as one of the [Starter Kits applications](#starter-kit-application)
-in the catalog.
+Node-REDは、IBMクラウドプラットフォーム上で、
+[スターターキットプリケーション](#スターターキットプリケーション)のカタログの1つとして利用可能です。
 
-We also provide a '[Deploy To IBM Cloud](#deploy-to-ibm-cloud)' enabled repository.
+また、私たちは数クリックで「[IBMクラウドへデプロイ](#ibmクラウドへデプロイ)」できるリポジトリも提供しています。
 
 ---
 
-### Starter Kit application
+### スターターキットプリケーション
 
-1. Log in or sign-up for an account at [cloud.ibm.com](https://cloud.ibm.com)
+1. [cloud.ibm.com](https://cloud.ibm.com)でログインまたはサインアップします
 
-2. Navigate to the catalog and [search for 'Node-RED'](https://cloud.ibm.com/catalog?search=node-red).
-   This will present you with the **Node-RED Starter**. This gives you a Node-RED instance running as a Cloud Foundry 
-   application. It also provides a Cloudant database instance
-   and a collection of nodes that make it easy to access various IBM Cloud services.
+2. カタログに移動して、['Node-RED'で検索](https://cloud.ibm.com/catalog?search=node-red)します。
+   これによって**Node-REDスターター**が提供されます。
+   これはCloud Foundryアプリケーションとして実行できるNode-REDインスタンスが提供されます。
+   また、Cloudantデータベースインスタンスが提供され、各種IBMクラウドサービスに簡単にアクセスできるノード一覧が提供されます。
 
-3. Click the starter application you want to use, give it a name and click create.
+3. 使いたいときにスターターアプリケーションをクリックし、名前をつけて作成をクリックします。
 
-A couple of minutes later, you'll be able to access your instance of Node-RED at `https://<yourAppName>.mybluemix.net`
+数分後、`https://<yourAppName>.mybluemix.net`というURLから、Node-REDインスタンスへアクセスできます。
 
-#### Customising your Node-RED application
+#### Node-REDアプリケーションをカスタマイズ
 
-To start customising your instance of Node-RED, you can either download the application locally or you can enable the Continuous Delivery integration option via your application's IBM Cloud dashboard page. That will create a git repository on either GitHub or IBM DevOps services, from where you can customize your Node-RED, save the changes and automatically update the application in IBM Cloud.
+Node-REDインスタンスをカスタマイズするため、アプリケーションをローカルにダウンロードするか、アプリケーションのIBM Cloud dashboardページからContinuous Delivery integrationオプションを有効化することができます。GitHubまたはIBM DevOpsサービスにGitリポジトリを生成し、そのリポジトリでNode-REDをカスタマイズ、変更の保存、IBMクラウドのアプリケーションの自動更新をおこなうことができます。
 
-##### Securing the editor
+##### フローエディタにログイン認証を追加
 
-When you first ran the Node-RED instance you were presented with some options to secure the editor.
-To change those options, you can set some environment variables from either the IBM Cloud console or the cf command-line
+Node-REDインスタンスを初めて実行したとき、エディタを保護するためのいくつかのオプションが表示されます。
+これらのオプションを変更するため、IBM Cloudコンソールまたはcfコマンドで環境変数を設定します。
 
-1. In the IBM Cloud dashboard, select the 'Environment Variables' page for your application
-2. Add the required user-defined variables:
-    - `NODE_RED_USERNAME` - the username to secure the editor with
-    - `NODE_RED_PASSWORD` - the password to secure the editor with
-    - `NODE_RED_GUEST_ACCESS` - set to true to allow anonymous users to have read-only access to the editor
-3. Click Save.
+1. IBMクラウドダッシュボードにて、アプリケーションの"環境変数"ページに移動
+2. 以下のユーザ定義変数を追加:
+    - `NODE_RED_USERNAME` - フローエディタのログインに用いるユーザ名
+    - `NODE_RED_PASSWORD` - フローエディタのログインに用いるパスワード
+    - `NODE_RED_GUEST_ACCESS` - trueの場合、フローエディタに読み取り専用権限を持つ匿名ユーザを許可します
+3. 保存をクリック
 
-##### Adding nodes
+##### ノードの追加
 
-You can add nodes from within the editor. Select the `manage palette` option from
-the dropdown menu within the editor.
+エディタのドロップダウンメニューから`manage palette`オプションを選択することで、
+ノードを追加することができます。
 
-Alternatively, you can edit the application's `package.json` file and
-add the required node modules in the `dependencies` section. The format is:
-`"node-red-node-package-name":"x.x.x"` Where x.x.x is the desired version number.
+他には、Node-REDアプリケーションの`package.json`ファイルを編集します。
+具体的には、`package.json`ファイルの`dependencies` セクションに必要なノードモジュールを追加します。
+追加するフォーマットは、`"node-red-node-package-name":"x.x.x"`です。フォーマット中のx.x.xには追加したいノードのバージョン番号を記載します。
 
-##### Upgrading the version of Node-RED
+##### Node-REDを最新バージョンへ更新
 
-The application's package.json is setup to grab the latest stable release of Node-RED.
-To trigger an upgrade following a new release being made available:
+アプリケーションのpackage.jsonは、常に最新の安定版Node-REDを取得するように設定されています。
+新しいリリースが利用可能になった場合にアップグレードを実行させるには以下のようにします。:
 
-1. Applications running in the Cloud Foundry space of IBM Cloud maintain a cache directory per node application, to store resolved dependencies so they are not downloaded and installed every time the application is restaged. To update the dependencies, including the version of node-RED, this cache must be disabled. Set the NODE_MODULES_CACHE environment variable to false. You can either do this on your application's IBM Cloud console page (Runtime -> Environment Variables), or by using the cf command-line:
+1. IBMクラウドのCloud Foundryスペース内のアプリケーション実行はノードアプリケーションごとにキャッシュディレクトリを保有し、既に解決された依存関係を毎回ダウンロードしてインストールすることがないように、保管しています。Node-REDのバージョンを含めて依存関係を更新するには、このキャッシュを無効にしなくていけません。環境変数NODE_MODULES_CACHEをfalseに設定します。この設定は、自分のアプリケーションのIBM Cloudコンソールページ（Runtime -> Environment Variables）またはcfコマンドラインツールで以下のように実行することで設定できます。:
 
         cf set-env [APPLICATION_NAME] NODE_MODULES_CACHE false
 
-2. Trigger a restage of your application. This cannot be done using the IBM Cloud console, so the cf command-line should be used:
+2. アプリケーションを再起動します。このときIBM Cloudコンソールは利用できないため、cfコマンドラインツールを使用しなくてはいけません。:
 
         cf restage [APPLICATION_NAME]
 
-3. If you are upgrading to Node-RED 0.20 or later, you **must** ensure your application is running on Node.js 10 or later. To do that, edit your application `package.json` file - see below for how to edit the file. Update the `engines` property to `10.x` if it is not currently set to that.
+3. Node-RED 0.20以降にアップグレードする場合、アプリケーションがNode.js 10以降で動作していることを確認してください。そうするためには、アプリケーションの`package.json`ファイルを編集 - 以下のファイルの編集方法を参照してください。`engines`プロパティが設定されていない場合、`10.x`に更新します。
 
-In order to edit the file, you must enable the Continuous Delivery integration
-option via your application's IBM Cloud dashboard page. That will create a git repository
-on either GitHub or IBM DevOps services, from where you can edit the file, save the
-changes and automatically update the application in IBM Cloud.
+このファイルを編集するため、アプリケーションのIBM Cloud dashboardページから
+Continuous Delivery integrationオプションを有効にする必要があります。
+GitHubまたはIBM DevOpsサービスにGitリポジトリを生成し、
+そのリポジトリでNode-REDをカスタマイズ、変更の保存、IBMクラウドのアプリケーションの自動更新をおこなうことができます。
 
 
-##### Changing the static web content
+##### 静的なウェブコンテンツを変更
 
-The landing page of your instance is provided by static content with the application.
-This can be replaced with whatever content you want in the `public` directory.
+インスタンスのランディングページは、アプリケーションの静的コンテンツから提供されます。
+静的なウェブコンテンツは`public`ディレクトリ内に保存します。
 
-If you want to remove the static web content and serve the flow editor from the
-root path, delete the `httpStatic` and `httpAdminRoot` entries in the `bluemix-settings.js` file.
+もし、ルートパスの静的なウェブコンテンツを削除し、ルートパスをフローエディタに変更したい場合は、
+`bluemix-settings.js`ファイル内の`httpStatic`と`httpAdminRoot`エントリを削除します。
 
 ---
 
-### Deploy To IBM Cloud
+### IBMクラウドへデプロイ
 
-The [Deploy To IBM Cloud enabled repository](https://github.com/IBM/node-red-app)
-lets you create your own customised Node-RED application that can then
-be deployed to IBM Cloud with a couple of clicks.
+[IBMクラウドへデプロイできるリポジトリ](https://github.com/IBM/node-red-app)を用いると、
+カスタマイズしたNode-REDアプリケーションを作成し、
+数クリックでIBMクラウドへデプロイできます。
 
-You can try it out now by clicking here:
+以下をクリックすることで、すぐにデプロイを試すことができます:
 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/node-red-app.git)
+[![IBMクラウドへデプロイ](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/node-red-app.git)
 
-When you click the button, you are taken to IBM Cloud where you get a pick a name
-for your application at which point the platform takes over, grabs the code from
-this repository and deploys it.
+このボタンをクリックすると、
+IBMクラウドへ移動し、引き継き先のアプリケーション名を入力できます。
+その後、リポジトリからコードを取得し、デプロイされます。
 
-It will automatically create an instance of the Cloudant service, call it
-`sample-node-red-cloudantNoSQLDB` and bind it to your application. This is where your
-Node-RED instance will store its data. If you deploy multiple instances of
-Node-RED from this repository, they will share the one Cloudant instance.
+この手順では、自動的に`sample-node-red-cloudantNoSQLDB`という名前のCloudantサービスのインスタンスが作成され、
+アプリケーションとバインドされます。
+Node-REDインスタンスは、Cloudantサービスへデータを保存します。
+もし、このリポジトリから複数のNode-REDインスタンスをデプロイする場合、複数のNode-REDインスタンス間で1つのCloudantインスタンスを共有することもできます。
 
-It includes a set of default flows that are automatically deployed the first time
-Node-RED runs.
+この手順では、Node-REDを初めて起動した際に、
+デフォルトのフローが自動的にデプロイされます。
 
-#### Customising your Node-RED repository
+#### Node-REDリポジトリをカスタマイズ
 
-The repository is there to be cloned, modified and re-used to allow anyone to create
-their own Node-RED based application that can be quickly deployed to IBM Cloud.
+Node-REDリポジトリは、すぐにIBMクラウドへデプロイ可能な
+あなた自身のNode-REDベースのアプリケーションを誰でも作成できるよう、複製、修正、再利用ができます。
 
-The default flows are stored in the `defaults` directory in the file called `flow.json`.
+デフォルトのフローは、`defaults`ディレクトリ内の`flow.json`ファイルに保存します。
 
-The web content you get when you go to the application's URL is stored under the
-`public` directory.
+アプリケーションのURLへアクセスした時に参照できる静的ウェブコンテンツは、
+`public`ディレクトリ以下に保存します。
 
-Additional nodes can be added to the `package.json` file and all other Node-RED
-configuration settings can be set in `bluemix-settings.js`.
+追加ノードがある場合は、`package.json`ファイルに追加します。
+その他の全てのNode-REDの設定は、`bluemix-settings.js`へ設定します。
 
-If you do clone the repository, make sure you update the `README.md` file to point
-the `Deploy to IBM Cloud` button at your repository.
+もし、リポジトリをクローンした場合は、
+`IBMクラウドへデプロイ`ボタンの参照先があなたがCloneしたリポジトリとなるよう`README.md`ファイルを更新してください。
 
-If you want to change the name of the Cloudant instance that gets created, the memory
-allocated to the application or other deploy-time options, have a look in `manifest.yml`.
+もし、作成するCloudantインスタンス名、アプリケーションに割り当てるメモリ量、デプロイ時の他のオプションを変更したい場合は、
+`manifest.yml`を参照し、変更してください。

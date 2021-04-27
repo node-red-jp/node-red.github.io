@@ -1,22 +1,22 @@
 ---
 layout: docs-api
 toc: toc-api-context.html
-title: Memory Context Store
+title: Memoryストア
 slug:
   - url: "/docs/api/context"
-    label: "context"
-  - 'memory'
+    label: "コンテキスト"
+  - 'メモリ'
 ---
 
-**New in 0.19**
+**バージョン0.19の新機能**
 
-The Memory Context store is the default store used by Node-RED. It holds all
-context data in memory and is wiped whenever Node-RED restarts. It provides both
-synchronous and asynchronous access.
+メモリコンテキストストアは、Node-REDによって使用されるデフォルトストアです。
+すべてのコンテキストデータをメモリに保持し、Node-REDが再起動すると消去されます。
+同期的アクセスも非同期的アクセスもサポートしています。
 
-### Configuration
+### 設定
 
-To create a memory store, the following configuration can be used.
+メモリストアを作成する際、次の設定が利用できます。
 
 {% highlight javascript %}
 contextStorage: {
@@ -26,6 +26,6 @@ contextStorage: {
 }
 {% endhighlight %}
 
-### Options
+### オプション
 
-The memory store does not provide any configuration options.
+メモリストアにはオプションとして指定できるものはありません。

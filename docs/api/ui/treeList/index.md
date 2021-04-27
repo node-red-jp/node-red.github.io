@@ -1,26 +1,26 @@
 ---
 layout: docs-api
 toc: toc-api-ui.html
-title: TreeList Widget
+title: TreeListウィジェット
 slug:
   - url: "/docs/api/ui"
-    label: "ui widgets"
+    label: "uiウィジェット"
   - 'treelist'
 ---
 
-__Since 0.20.0__
+__0.20.0版から__
 
-A list for displaying tree-structured data. This was added in 0.20.0 and has quite a minimal functionality.
+ツリー構造のデータを表示するためのリストです。これは0.20.0版で追加され、非常に最小限の機能を持っています。
 
 <div class="widget">
     <div class="col-4-12">
-        <h3>Options</h3>
+        <h3>オプション</h3>
         <table>
             <tr><td><a href="#options-data">data</a></td></tr>
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Methods</h3>
+        <h3>メソッド</h3>
         <table>
             <tr><td><a href="#methods-data">data</a></td></tr>
             <tr><td><a href="#methods-empty">empty</a></td></tr>
@@ -28,28 +28,28 @@ A list for displaying tree-structured data. This was added in 0.20.0 and has qui
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Events</h3>
+        <h3>イベント</h3>
         <table>
             <tr><td><a href="#events-treelistselect">treelistselect</a></td></tr>
             <tr><td><a href="#events-treelistmouseout">treelistmouseout</a></td></tr>
             <tr><td><a href="#events-treelistmouseover">treelistmouseover</a></td></tr>
         </table>
-        <h3>Types</h3>
+        <h3>型</h3>
     </div>
 </div>
 
 
-### Options
+### オプション
 
 #### <a href="#options-data" name="options-data">data</a>
 
-<span class="method-return">Type: Array</span>
+<span class="method-return">型: Array</span>
 
-The initial data for the treelist.
+ツリーリストの初期データです。
 
-The tree is represented as an Array of items. These are the top-most items in the
-tree structure. Each item may have a `children` property that identifies the children
-of the item.
+このツリーは項目の配列として表示されます。
+これらはツリー構造内で最上位項目となります。
+各項目は`children`プロパティを持ち、項目の子要素を識別しています。
 
 ```javascript
 [
@@ -64,23 +64,23 @@ of the item.
 ]
 ```
 
-Each item can have the following properties:
+各項目は以下のプロパティを持つことができます。:
 
-Property   | Description
+プロパティ   | 説明
 -----------|--------------------------
-`label`    | The label for the item.
-`id`       | (optional) A unique identifier for the item
-`class`    | (optional) A css class to apply to the item
-`icon`     | (optional) A css class to apply as the icon, for example `"fa fa-rocket"`.
-`selected` | (optional) if set, display a checkbox next to the item. Its state is set to the boolean value of this property
-`children` | (optional) Identifies the child items of this one. Can be provided as an array if the children are immediately known, or as a function to get the children asynchronously. See below for details.
-`expanded` | (optional) If the item has children, set whether to display the children
+`label`    | 項目のラベル
+`id`       | (オプション) 項目のユニークな識別子
+`class`    | (オプション) 項目に適用するCSSのクラス
+`icon`     | (オプション) アイコンとして適用するCSSのクラス、例としては`"fa fa-rocket"`
+`selected` | (オプション) 設定されている場合、項目の横にチェックボックスを表示します。その状態はこのプロパティのブール値が設定されます。
+`children` | (オプション) この項目の子要素を特定します。子要素がすぐに分かる場合、配列として提供され、そうでない場合、非同期に子要素を取得できる関数として提供されます。詳細は以下を参照してください。
+`expanded` | (オプション) この項目が子要素を持つ場合、子要素を表示するかどうかを設定します
 
 
-If the `children` property is provided as a function, that function should accept
-a single argument of a callback function. That callback function should be called
-with the array of child items. This allows for the items to be retrieved asynchronously,
-such as via HTTP request.
+`children`プロパティが関数として提供された場合、
+この関数はコールバック関数の唯一の引数を受け取る必要があります。
+このコールバック関数は子要素の配列によって呼び出される必要があります。
+これにより、HTTPリクエストなどを利用して項目を非同期的に取得することができます。
 
 ```javascript
 children: function(done) {
@@ -90,22 +90,22 @@ children: function(done) {
 }
 ```
 
-### Methods
+### メソッド
 
 <a name="methods-data"></a>
 
 #### <a href="#methods-data-get" name="methods-data">data()</a>
 
-Returns the data the treeList is displaying.
+表示しているツリーリストのデータを返します。
 
-If any items had the `selected` property set on them, its value will reflect
-the current checkbox state.
+項目に`selected`プロパティが設定されている場合、
+その値は現在のチェックボックスの状態を反映します。
 
 #### <a href="#methods-data-set" name="methods-data">data( items )</a>
 
-Sets the data to be displayed by the list.
+リストに表示するデータを設定します。
 
-See the [`data` option](#options-data) for details of the `items` argument.
+`item`引数の詳細については[`data`オプション](#options-data)を参照してください。
 
 ```javascript
 $(".input").treeList('data',[{label:"Colours"}]);
@@ -113,7 +113,7 @@ $(".input").treeList('data',[{label:"Colours"}]);
 
 #### <a href="#methods-empty" name="methods-empty">empty()</a>
 
-Removes all items from the list.
+リストからすべての項目を削除します。
 
 ```javascript
 $(".input").treeList('empty');
@@ -121,22 +121,22 @@ $(".input").treeList('empty');
 
 #### <a href="#methods-show" name="methods-show">show( itemId )</a>
 
-Ensures an item is visible in the list. The argument `itemId` must correspond
-with the `id` property of an item in the list.
+リストに項目が表示されるようにします。
+引数`itemId`はリスト内の項目の`id`プロパティと対応しなければなりません。
 
-*Note:* This currently only works for the topmost items in the list. It cannot
-be used to reveal items below the top level of the tree.
+*Note:* 現在、これはリスト内の最上位の項目だけに作用します。
+ツリーのトップレベル以下の項目を表示するために利用することはできません。
 
 ```javascript
 $(".input").treeList('show','my-red-item');
 ```
 
-### Events
+### イベント
 
 #### <a href="#events-treelistselect" name="events-treelistselect">treelistselect( event, item )</a>
 
-Triggered when an item is clicked. If the item had the `selected` property set originally,
-its value will be updated to reflect the state of the item's checkbox.
+項目がクリックされたとき、呼び出されます。
+項目が`selected`プロパティがもともと設定されていた場合、その値は項目のチェックボックスの状態を反映するように更新されます。
 
 ```javascript
 $(".input").on('treelistselect', function(event, item) {
@@ -150,7 +150,7 @@ $(".input").on('treelistselect', function(event, item) {
 
 #### <a href="#events-treelistmouseout" name="events-treelistmouseout">treelistmouseout( event, item )</a>
 
-Triggered when the mouse moves out of the item.
+マウスが項目外に移動したとき、呼び出されます。
 
 ```javascript
 $(".input").on('treelistmouseout', function(event, item) { });
@@ -158,7 +158,7 @@ $(".input").on('treelistmouseout', function(event, item) { });
 
 #### <a href="#events-treelistmouseover" name="events-treelistmouseover">treelistmouseover( event, item )</a>
 
-Triggered when the mouse moves over an item.
+マウスが項目の上に移動したとき、呼び出されます。
 
 ```javascript
 $(".input").on('treelistmouseover', function(event, item) { });

@@ -1,15 +1,15 @@
 ---
 layout: docs-dev
-title: Developing Node-RED
+title: Node-REDの開発
 ---
 
-Eventually, we will have some good documentation on the internals of Node-RED to
-make it easier for anyone to get involved with its development.
+いずれは、Node-REDの内部に関する優れた資料が作成され、
+開発に関わりやすくなるでしょう。
 
-In the meantime:
+それまでの間は以下を参照してください。:
 
- - Here are our [Contribution Guidelines](/about/contribute/)
- - Various design notes are on the [wiki](https://github.com/node-red/node-red/wiki)
+ - 我々の[コントリビューションガイドライン](/about/contribute/)です
+ - 多くのデザインノードが[wiki](https://github.com/node-red/node-red/wiki)に存在します
 
-If this is an area you are interested in, come talk to us in the [forum](https://discourse.nodered.org)
-or [Slack team](/slack).
+この分野に関心があれば、[フォーラム](https://discourse.nodered.org)
+または[Slackチーム](http://nodered.org/slack/)で語り合いましょう。

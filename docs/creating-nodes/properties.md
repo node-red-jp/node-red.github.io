@@ -1,19 +1,19 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Node properties
-slug: properties
+title: プロパティ
+slug: プロパティ
 ---
 
-A node's properties are defined by the `defaults` object in its html definition.
-These are the properties that get passed to the node constructor function when
-an instance of the node is created in the runtime.
+ノードのプロパティは、html定義の`defaults`オブジェクトによって定義されています。
+これらはノードのインスタンスがランタイムで作成された時、
+ノードコンストラクタ関数に渡されるプロパティです。
 
-In the example from the [creating your first node section](first-node), the
-node had a single property called `name`. In this section, we'll add a new
-property called `prefix` to the node:
+[はじめてのノード開発](first-node)の例では、
+ノードには`name`という単一のプロパティがありました。
+このセクションでは、ノードに`prefix`という新しいプロパティを追加します:
 
-1. Add a new entry to the `defaults` object:
+1. `defaults`オブジェクトに新しいエントリを追加します:
     ```javascript
     defaults: {
         name: {value:""},
@@ -21,10 +21,10 @@ property called `prefix` to the node:
     },
     ```
 
-   The entry includes the default `value` to be used when a new node of this type
-   is dragged onto the workspace.
+   エントリには、このタイプの新しいノードがワークスペースにドラッグされたときに
+   使用されるデフォルト値`value`が含まれます。
 
-2. Add an entry to the edit template for the node
+2. ノードの編集テンプレートにエントリを追加します
     ```html
     <div class="form-row">
         <label for="node-input-prefix"><i class="fa fa-tag"></i> Prefix</label>
@@ -32,10 +32,10 @@ property called `prefix` to the node:
     </div>
     ```
 
-    The template should contain an `<input>` element with an `id` set to
-    `node-input-<propertyname>`.
+    テンプレートには、`id`に`node-input-<propertyname>`が設定された
+    `<input>`要素が含まれていなければなりません。
 
-3. Use the property in the node
+3. ノード内のプロパティを使用します
     ```javascript
     function LowerCaseNode(config) {
         RED.nodes.createNode(this,config);
@@ -48,61 +48,61 @@ property called `prefix` to the node:
     }
     ```
 
-### Property definitions
+### プロパティ定義
 
-The entries in the `defaults` object must be objects and can have the following attributes:
+`defaults`オブジェクト内のエントリはオブジェクトである必要があり、以下の属性を持つことができます:
 
-- `value` : (any type) the default value the property takes
-- `required` : (boolean) *optional* whether the property is required. If set to
-  true, the property will be invalid if its value is null or an empty string.
-- `validate` : (function) *optional* a function that can be used to validate the
-  value of the property.
-- `type` : (string) *optional* if this property is a pointer to a
-  [configuration node](config-nodes),  this identifies the type of the node.
+- `value` : (任意の型) プロパティが持つデフォルト値
+- `required` : (boolean) *オプション* プロパティが必須かどうか。
+　trueにすると、値がnullまたは空文字列の場合、プロパティが無効になります。
+- `validate` : (function) *オプション* プロパティの値を
+　検証するために使用する関数。
+- `type` : (string) *オプション* このプロパティが設定ノードへのポインタである場合、
+　これはノードのタイプを識別します。
 
-### Reserved property names
+### 予約済みのプロパティ名
 
-There are some reserved names for properties that **must not be used**. These are:
+**使用してはいけない** プロパティの予約名がいくつかあります:
 
- - Any single character - `x`, `y`, `z`, `d`, `g`, `l` are already used. Others are
-   reserved for future use.
+ - 全ての1文字 - `x`, `y`, `z`, `d`, `g`, `l`は既に使用されています。
+   その他も将来使用する予約語です。
  - `id`, `type`, `wires`, `inputs`, `outputs`
 
 
-If a node wants to allow the number of outputs it provides to be configurable
-then `outputs` may be included in the `defaults` array. The Function node is
-an example of how this works.
+ノードが提供する出力の数を設定可能にしたい場合、
+`outputs`を`defaults`配列に含めることができます。
+Functionノードは、これがどのように機能しているかを示す例です。
 
-### Property validation
+### プロパティ検証
 
-The editor attempts to validate all properties to warn the user if invalid values
-have been given.
+エディタは無効な値が与えられた場合にユーザに警告するため、
+すべてのプロパティを検証しようとします。
 
-The `required` attribute can be used to indicate a property must be non-null and
-non-blank.
+`required`属性は、
+プロパティが非nullで非blankでなければならないことを示すために使用できます。
 
-If more specific validation is required, the `validate` attribute can be used to
-provide a function that will check the value is valid. The function is passed the
-value and should return either true or false. It is called within the context of
-the node which means `this` can be used to access other properties of the node.
-This allows the validation to depend on other property values.
-While editing a node the `this` object reflects the current configuration of the
-node and **not** the current form element value. The validator function should
-try to access the property configuration element and take the `this` object as
-a fallback to achieve the right user experience.
+より具体的な検証が必要な場合、`validate`属性を使用して値が有効であることを確認する関数を提供することができます。
+この関数には値が渡され、trueまたはfalseが返却する必要があります。
+これはノードコンテキスト内で呼び出されるため、
+ノードの他のプロパティにアクセスするために`this`を利用できることを意味します。
+これにより、検証は他のプロパティ値に依存することができるようになります。
+ノードを編集しているあいだ、`this`オブジェクトはノードの現在の設定を反映しており、
+現在のフォームの要素の値**ではありません**。
+バリデータ関数はプロパティ設定要素にアクセスしようとし、
+`this`オブジェクトを正しいユーザエクスペリエンスを成し遂げるための予備とします。
 
-There is a group of common validation functions provided.
+共通の検証関数が用意されています。
 
- - `RED.validators.number()` - check the value is a number
- - `RED.validators.regex(re)` - check the value matches the provided regular
-   expression
+ - `RED.validators.number()` - 値が数字であることを確認する
+ - `RED.validators.regex(re)` - 指定された正規表現に一致する値を
+ 　チェックする
 
-Both methods - `required` attribute and `validate` attribute - are reflected by
-the UI in the same way. The missing configuration marker on the node is triggered
-and the corresponding input is red surrounded when a value is not valid or missing.
+`required`属性および`validate`属性どちらのメソッドでも同じ方法でUIに反映されます。
+値が不正または欠落しているとき、ノードの欠落設定マーカーが呼び出され、
+対応する入力が赤で囲まれます。
 
 
-The following example shows how each of these validators can be applied.
+次の例では、これらのバリデータのそれぞれを適用することができる方法を示しています。
 
 ```javascript
 defaults: {
@@ -115,41 +115,41 @@ defaults: {
 },
 ```
 
-Note how the `custom` property is only valid if its length is greater than the
-current value of the `minimumLength` property or the value of the minimumLength
-form element.
+`custom`プロパティは、`minimumLength`プロパティの現在の値、
+またはminimumLengthフォーム要素の値よりも大きい場合のみ有効であることに
+注意してください。
 
-### Property edit dialog
+### プロパティ編集ダイアログ
 
-When the edit dialog is opened, the editor populates the dialog with the edit
-template for the node.
+編集ダイアログが開かれると、
+エディタはノードの編集テンプレートをダイアログに入力します。
 
-For each of the properties in the `defaults` array, it looks for an `<input>`
-element with an `id` set to `node-input-<propertyname>`, or `node-config-input-<propertyname>` in the case of Configuration nodes. This input is then
-automatically populated with the current value of the property. When the edit
-dialog is closed, the property takes whatever value is in the input.
+`defaults`配列の各プロパティについて、
+`id`が`node-input-<propertyname>`、または設定ノードでは`node-config-input-<propertyname>`に設定されている`<input>`要素を探します。
+この入力には、プロパティの現在の値が自動的に入力されます。
+編集ダイアログが閉じられると、プロパティは入力にある値を取ります。
 
-More information about the edit dialog is available [here](edit-dialog).
+編集ダイアログについての更なる情報は[こちら](edit-dialog)で入手できます。
 
-#### Custom edit behavior
+#### カスタム編集の動作
 
-The default behavior works in many cases, but sometimes it is necessary to
-define some node-specific behavior. For example, if a property cannot be
-properly edited as a simple `<input>` or `<select>`, or if the edit dialog
-content itself needs to have certain behaviors based on what options are
-selected.
+デフォルトの動作は多くの場合で動作しますが、
+場合によってはいくつかのノード固有の動作を定義します。
+たとえば、プロパティを簡単な`<input>`や`<select>`として適切に編集できない場合や、
+編集ダイアログのコンテンツ自体に、
+選択されているオプションに基づいて特定の動作を持っている必要があります。
 
-A node definition can include two functions to customize the edit behavior.
+ノード定義には、編集動作をカスタマイズする2つの関数を含めることができます。
 
- - `oneditprepare` is called immediately before the dialog is displayed.
- - `oneditsave` is called when the edit dialog is okayed.
- - `oneditcancel` is called when the edit dialog is canceled.
- - `oneditdelete` is called when the delete button in a configuration node's edit
-   dialog is pressed.
- - `oneditresize` is called when the edit dialog is resized.
+ - `oneditprepare`は編集ダイアログが表示される直前に呼び出されます。
+ - `oneditsave`は編集ダイアログで完了ボタンが押された時に呼び出されます。
+ - `oneditcancel`は編集ダイアログがキャンセルボタンが押された時に呼び出されます。
+ - `oneditdelete`は設定ノードの編集ダイアログの削除ボタンが押された時に
+   呼び出されます。
+ - `oneditresize`は編集ダイアログがリサイズされた時に呼び出されます。
 
-For example, when the Inject node is configured to repeat, it stores the
-configuration as a cron-like string: `1,2 * * * *`. The node defines an
-`oneditprepare` function that can parse that string and present a more
-user-friendly UI. It also has an `oneditsave` function that compiles the options
-chosen by the user back into the corresponding cron string.
+例えばInjectノードが繰り返すように設定されている場合、
+それはcronのような文字列として設定を保存します: `1,2 * * * *`
+ノードは、その文字列を解析してよりユーザフレンドリなUIを提示できる`oneditprepare`関数を定義します。
+また、ユーザが選択したオプションを
+対応するcron文字列にコンパイルする`oneditsave`関数もあります。

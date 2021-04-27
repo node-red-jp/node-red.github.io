@@ -1,39 +1,39 @@
 ---
 layout: docs-api
-toc: toc-api-admin.html
-title: Authentication
+title: 認証
+title: 認証
 slug:
   - url: "/docs/api/admin"
     label: "admin"
-  - auth
+  - 認証
 
 ---
-The Node-RED admin API is secured using the `adminAuth` property in your `settings.js`
-file. The [security](/docs/user-guide/runtime/securing-node-red) section describes how that property
-should be configured.
+Node-REDのAdmin APIは`settings.js`ファイルの`adminAuth`プロパティによって保護できます。
+[セキュリティ](/docs/user-guide/runtime/securing-node-red)では
+このプロパティの設定方法について説明しています。
 
-If that property is not set the Node-RED admin API is accessible to anyone with
-network access to Node-RED.
+このプロパティが設定されていない場合、
+Node-REDのAdmin APIは誰からでもネットーワークを介してアクセスできることになります。
 
 
-### Step 0 - Check the authentication scheme
+### Step 0 - 認証方式の確認
 
-An HTTP GET to `/auth/login` returns the active authentication scheme.
+`/auth/login`に対するHTTP GETメソッドで有効な認証方式が返されます。
 
-<div class="doc-callout"><em>curl example</em>:
+<div class="doc-callout"><em>curlコマンドの例</em>:
 <pre>curl http://localhost:1880/auth/login</pre>
 </div>
 
-In the current version of the API, there are two possible results:
+現バージョンのこのAPIでは、2つの結果が想定されます。:
 
-##### No active authentication
+##### 有効な認証方式が存在しない場合
 
     {}
 
-All API requests can be made without providing any further authentication
-information.
+すべてのAPIリクエストが、
+さらなる認証についての情報を提供していません。
 
-##### Credential based authentication
+##### 認証情報による認証がおこなわれた場合
 
 {% highlight json %}
 {
@@ -53,27 +53,27 @@ information.
 }
 {% endhighlight %}
 
-The API is secured by an access token.
+APIはアクセストークンによって保護されます。
 
 
-### Step 1 - Obtain an access token
+### Step 1 - アクセストークンの取得
 
-An HTTP POST to `/auth/token` is used to exchange user credentials for an access
-token.
+`/auth/token`に対するHTTP POSTメソッドはユーザの認証情報によって、
+アクセストークンを取得するために利用されます。
 
-The following parameters must be provided:
+以下のパラメータを提供しなくてはなりません。:
 
- - `client_id` - identifies the client. Currently, must be either `node-red-admin` or `node-red-editor`.
- - `grant_type` - must be `password`
- - `scope` - a space-separated list of permissions being requested. Currently, must be either `*` or `read`.
- - `username` - the username to authenticate
- - `password` - the password to authenticate
+ - `client_id` - クライアントを特定します。現在は`node-red-admin`または`node-red-editor`を設定します。
+ - `grant_type` - 必ず`password`にします。
+ - `scope` - 必要な権限を空白区切りのリストにします。現在は`*`または`read`に設定しなくてはなりません。
+ - `username` - 認証に用いるユーザ名
+ - `password` - 認証に用いるパスワード
 
-<div class="doc-callout"><em>curl example</em>:
+<div class="doc-callout"><em>curlコマンドの例</em>:
 <pre>curl http://localhost:1880/auth/token --data 'client_id=node-red-admin&grant_type=password&scope=*&username=admin&password=password'</pre>
 </div>
 
-If successful, the response will contain the access token:
+認証に成功した場合、レスポンスにはアクセストークンが含まれています。:
 
 {% highlight json %}
 {
@@ -83,20 +83,20 @@ If successful, the response will contain the access token:
 }
 {% endhighlight %}
 
-### Step 2 - Using the access token
+### Step 2 - アクセストークンの利用
 
-All subsequent API calls should then provide this token in the `Authorization`
-header.
+その後のすべてのAPI呼び出しでは`Authorization`ヘッダに
+取得したアクセストークン含めて提供します。
 
-<div class="doc-callout"><em>curl example</em>:
+<div class="doc-callout"><em>curlコマンドの例</em>:
 <pre>curl -H "Authorization: Bearer A_SECRET_TOKEN" http://localhost:1880/settings</pre>
 </div>
 
-### Revoking the token
+### アクセストークンの削除
 
-To revoke the token when it is no longer required, it should be sent in an HTTP
-POST to `/auth/revoke`:
+アクセストークンが不要になったときにトークンを削除するため、
+HTTP POSTで`/auth/revoke`を送ります。:
 
-<div class="doc-callout"><em>curl example</em>:
+<div class="doc-callout"><em>curlコマンドの例</em>:
 <pre>curl --data 'token=A_SECRET_TOKEN' -H "Authorization: Bearer A_SECRET_TOKEN" http://localhost:1880/auth/revoke</pre>
 </div>

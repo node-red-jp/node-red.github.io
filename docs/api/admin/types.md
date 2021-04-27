@@ -1,27 +1,27 @@
 ---
 layout: docs-api
 toc: toc-api-admin.html
-title: Types
+title: 型
 slug:
   - url: "/docs/api/admin"
     label: "admin"
-  - types
+  - 型
 ---
 
-The following types can be used with the API methods.
+以下の型は、APIメソッドで利用することができます。
 
-Traditionally, a flow configuration has been represented as a flat array of
-node objects.
+慣習的に、フロー設定はノードオブジェクトのフラットな配列として
+表現されてきました。
 
-From Node-RED 0.13, an api was added to allow flows (aka tabs) to be maintained
-individually. Those apis use a richer format for the flow configuration. We will
-be updating the main flow configuration to use this richer format in the future,
-but for now the two formats have to co-exist.
+Node-RED 0.13以降、フロー（またはタブ）ごとに個別管理されるようにAPIが追加されました。
+それらのAPIは、フロー設定により豊富なフォーマットを利用できます。
+将来的には更に多くのフォーマットを利用できるように主なフロー設定を開発していきますが、
+現在は2つのフォーマットを共存させなければなりません。
 
 
 ### Node
 
-A Node represents the configuration of a single node within a flow.
+Nodeはフロー内の単一のノードの設定を表します。
 
 {% highlight json %}
 {
@@ -34,20 +34,20 @@ A Node represents the configuration of a single node within a flow.
 }
 {% endhighlight %}
 
-Field     | Description
+フィールド     | 説明
 ----------|-----------------------
-`id`      | The unique id of the node
-`type`    | The type of the node
-`x`,`y`   | The x/y coordinates of the node when the flow is drawn
-`z`       | The flow, or subflow, the node is a member of
-`wires`   | The wires the node's outputs are connected to
-*         | Other fields as defined by the particular `type`
+`id`      | ノードごとの一意なID
+`type`    | ノードの種類
+`x`,`y`   | フローが描画されるときのノードのx/y座標
+`z`       | ノードが属するフロー、またはサブフロー
+`wires`   | ノードの出力が接続されているワイヤー
+*         | 特定の`type`で定義されるフィールド
 
-If the node is a config node, then it must not have the `x`, `y` or `wires`  properties.
+ノードがConfigurationノードである場合、`x`, `y`および`wires`プロパティは存在してはいけません。
 
 ### Subflow
 
-A Subflow node represents the configuration of a subflow.
+Subflowノードはサブフローの設定を表します。
 
 {% highlight json %}
 {
@@ -77,8 +77,8 @@ A Subflow node represents the configuration of a subflow.
 
 ### Complete Flow configuration
 
-A Complete Flow configuration represents the entire set of flows active in the
-runtime. It is represented as a flat array of Node objects. This is the main flow format used by the `/flows` api and imported/exported by the editor.
+Complete Flow configurationはランタイムで有効なフローのすべてを表します。
+これはNodeオブジェクトのフラットな配列として表されます。`/flows`APIおよびエディタでのインポート/エクスポートによって、メインフローの書式として利用されます。
 
 {% highlight json %}
 [
@@ -93,9 +93,9 @@ runtime. It is represented as a flat array of Node objects. This is the main flo
 ]
 {% endhighlight %}
 
-*Since 0.15.0*, the `/flows` api supports a new format if the `Node-RED-API-Version`
-header is set to `v2`. This format provides the array of nodes as above, and includes
-an optional revision identifier for the flows:
+*0.15.0以降*、`/flow`APIは`Node-RED-API-Version`ヘッダが`v2`に設定されている場合、新しいフォーマットをサポートしています。
+このフォーマットは、上記のノードの配列を表示し、
+フローにリビジョンIDを設定することが可能です。
 
 {% highlight json %}
 {
@@ -116,7 +116,7 @@ an optional revision identifier for the flows:
 
 ### Single Flow configuration
 
-A Single Flow configuration represents what gets presented in the editor as a tab.
+Single Flow configurationは、エディタのタブとして表示される内容を表します。
 
 
 {% highlight json %}
@@ -129,19 +129,19 @@ A Single Flow configuration represents what gets presented in the editor as a ta
 }
 {% endhighlight %}
 
-Field      | Description
+フィールド      | 説明
 -----------|-----------------------
-`id`       | The unique id of the flow
-`label`    | A label for the flow
-`nodes`    | An array of the Nodes in the flow
-`configs`  | An array of the Configs in the flow
-`subflows` | An array of the Subflows in the flow - only used when representing the `global` flow configuration
+`id`       | フローの一意なID
+`label`    | フローのラベル
+`nodes`    | フロー内のノードの配列
+`configs`  | フローの設定の配列
+`subflows` | フローのサブフローの配列 - `global`フロー設定である場合のみ
 
 
 
 ### Node Module
 
-A Node Module represents the collection of Node Sets provided by an npm package.
+Node Moduleはnpmパッケージで提供されるNode Setの一覧を表します。
 
 {% highlight json %}
 {
@@ -151,17 +151,17 @@ A Node Module represents the collection of Node Sets provided by an npm package.
 }
 {% endhighlight %}
 
-Field     | Description
+フィールド     | 説明
 ----------|-----------------------
-`name`    | The name of the module - as defined in its `package.json`
-`version` | The version of the module - as defined in its `package.json`
-`nodes`   | An array of the Node Set objects provided by this module
+`name`    | モジュール名 - `package.json`で定義されている名称
+`version` | モジュールのバージョン - `package.json`で定義されているバージョン
+`nodes`   | モジュールによって提供されるNode Setオブジェクトの配列
 
 ### Node Set
 
-A Node Set represents the collection of types provided by a single file within
-a Node Module. They correspond to the entries in the [`node-red.nodes` property
-of the module's `package.json`](/docs/creating-nodes/packaging#packagejson).
+Node Setは、Node Module内の単一のファイルによって提供される型の一覧を表します。
+[`node-red.nodes` property of the module's `package.json`](/docs/creating-nodes/packaging#packagejson)の
+ドキュメントに該当します。
 
 {% highlight json %}
 {
@@ -174,10 +174,10 @@ of the module's `package.json`](/docs/creating-nodes/packaging#packagejson).
 }
 {% endhighlight %}
 
-Field    | Description
+フィールド     | 説明
 ---------|-----------------------
-`id`     | The ID of the set - `module/name`
-`name`   | The name of the set - as defined in the module's `package.json`
-`types`  | A string array of the node types provided by this set
-`enabled`| Whether this set is currently enabled
-`module` | The name of the module providing the set. A value of `node-red` indicates the node was loaded from copied in files, rather than an npm module.
+`id`     | Node SetのID - `module/name`
+`name`   | Node Setの名称 - `package.json`で定義されている名称
+`types`  | Node Setによって提供されるNode Typeの文字列の配列
+`enabled`| Node Setが現在利用可能か否か
+`module` | Node Setを提供しているモジュールの名称。`node-red`の値は、npmモジュールではなく、ノードがコピーされたファイルからロードされたことを示します。

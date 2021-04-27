@@ -1,11 +1,11 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Loading extra resources in the editor
-slug: resources
+title: エディタで外部リソースを読み込む
+slug: リソース
 ---
 
-*Since Node-RED 1.3*
+*Node-RED 1.3以降*
 
 A node may need to load extra resources in the editor. For example, to include
 images in its help or to use external JavaScript and CSS files.

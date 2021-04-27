@@ -1,19 +1,19 @@
 ---
 layout: docs-api
 toc: toc-api-ui.html
-title: TypedInput Widget
+title: TypedInputウィジェット
 slug:
   - url: "/docs/api/ui"
-    label: "ui widgets"
+    label: "uiウィジェット"
   - 'typedinput'
 ---
 
-A replacement for a regular `<input>` that allows the type of the value to be
-chosen, including options for string, number and boolean types.
+標準的な`<input>`を文字列型、数値型、boolean型から
+選んだ型の値のフィールドに置換します。
 
 <div class="widget">
     <div class="col-4-12">
-        <h3>Options</h3>
+        <h3>オプション</h3>
         <table>
             <tr><td><a href="#options-default">default</a></td></tr>
             <tr><td><a href="#options-types">types</a></td></tr>
@@ -21,7 +21,7 @@ chosen, including options for string, number and boolean types.
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Methods</h3>
+        <h3>メソッド</h3>
         <table>
             <tr><td><a href="#methods-disable">disable</a></td></tr>
             <tr><td><a href="#methods-disabled-get">disabled</a></td></tr>           
@@ -36,11 +36,11 @@ chosen, including options for string, number and boolean types.
         </table>
     </div>
     <div class="col-4-12">
-    <h3>Events</h3>
+    <h3>イベント</h3>
     <table>
     <tr><td><a href="#events-change">change</a></td></tr>
     </table>
-    <h3>Types</h3>
+    <h3>型</h3>
     <table>
     <tr><td><a href="#types-typedefinition">TypeDefinition</a></td></tr>
     </table>
@@ -48,14 +48,14 @@ chosen, including options for string, number and boolean types.
 </div>
 
 
-### Options
+### オプション
 
 #### <a href="#options-default" name="options-default">default</a>
 
-<span class="method-return">Type: String</span>
+<span class="method-return">型: String</span>
 
-If defined, sets the default type of the input if [`typeField`](#options-typeField)
-is not set.
+この値が定義されている場合、
+[`typeField`](#options-typeField)が定義されていなければデフォルトのinputフィールドの型を設定します。
 
 ```javascript
 $(".input").typedInput({
@@ -65,31 +65,31 @@ $(".input").typedInput({
 
 #### <a href="#options-types" name="options-types">types</a>
 
-<span class="method-return">Type: Array</span>
+<span class="method-return">型: Array</span>
 
-Sets the list of types the element will offer.
+この要素が提供する型の一覧を設定します。
 
-The value of the option is an array of string-identifiers for the
-predefined types and [TypeDefinition](#types-typedefinition) objects for any custom types.
+このオプションの値は、
+定義済みの型およびカスタムした型の[TypeDefinition](#types-typedefinition)オブジェクトの文字列識別子の配列です。
 
-The predefined types are:
+定義済みの型は以下のとおりです。:
 
-identifier | description
+識別子 | 説明
 -----------|------------
-`msg` | a `msg.` property expression
-`flow` | a `flow.` property expression
-`global` | a `global.` property expression
-`str` | a String
-`num` | a Number
-`bool` | a Boolean
-`json` | a valid JSON string
-`bin` | a Node.js Buffer
-`re` | a Regular Expression
-`jsonata` | a Jsonata Expression
-`date` | the current timestamp
-`env` | an environment variable
-`node` | a `node.` property expression
-`cred` | a secure credential
+`msg` | `msg.`プロパティ式
+`flow` | `flow.`プロパティ式
+`global` | `global.`プロパティ式
+`str` | 文字列
+`num` | 数値
+`bool` | Boolean
+`json` | 有効なJSON文字列
+`bin` | Node.js Buffer
+`re` | 正規表現
+`jsonata` | Jsonata式
+`date` | 現在のタイムスタンプ
+`env` | 環境変数
+`node` | `node.`プロパティ式
+`cred` | セキュアクレデンシャル
 
 ```javascript
 $(".input").typedInput({
@@ -99,12 +99,12 @@ $(".input").typedInput({
 
 #### <a href="#options-typeField" name="options-typeField">typeField</a>
 
-<span class="method-return">Type: CSS Selector</span>
+<span class="method-return">型: CSSセレクタ</span>
 
-In some circumstances it is desirable to already have an `<input>` element to store
-the type value of the typedInput. This option allows such an existing element to be
-provided. As the type of the typedInput is changed, the value of the provided input
-will also change.
+特定の状況では、typedInputの型を保存するために`<input>`要素を既に持っていることが望ましいです。
+このオプションでは存在している要素に型を設定しておくことができます。
+typedInputの型が変更されたとき、
+inputの型も変更されます。
 
 ```javascript
 $(".input").typedInput({
@@ -112,7 +112,7 @@ $(".input").typedInput({
 });
 ```
 
-### Methods
+### メソッド
 
 <a name="methods-type"></a>
 
@@ -170,9 +170,9 @@ $(".input").typedInput('show');
 
 #### <a href="#methods-type-get" name="methods-type-get">type()</a>
 
-<span class="method-return">Returns: String</span>
+<span class="method-return">戻り値: String</span>
 
-Gets the selected type of the typedInput.
+選択しているtypedInputの型を取得します。
 
 ```javascript
 var type = $(".input").typedInput('type');
@@ -180,7 +180,7 @@ var type = $(".input").typedInput('type');
 
 #### <a href="#methods-type-set" name="methods-type-set">type( type )</a>
 
-Sets the selected type of the typedInput.
+選択しているtypedInputの型を設定します。
 
 ```javascript
 $(".input").typedInput('type','msg');
@@ -188,7 +188,7 @@ $(".input").typedInput('type','msg');
 
 #### <a href="#methods-types" name="methods-types">types( types )</a>
 
-Sets the list of types offered by the typedInput. See the description of the [`types` option](#options-types).
+typedInputが提供する型の一覧を設定します。詳細は[`types` option](#options-types)を参照してください。
 
 ```javascript
 $(".input").typedInput('types',['str','num']);
@@ -196,10 +196,10 @@ $(".input").typedInput('types',['str','num']);
 
 #### <a href="#methods-validate" name="methods-validate">validate()</a>
 
-<span class="method-return">Returns: Boolean</span>
+<span class="method-return">戻り値: Boolean</span>
 
-Triggers a revalidation of the typedInput's type/value. This occurs automatically
-whenever the type or value change, but this method allows it to be run manually.
+typedInputの型/値の再検証をおこなわせます。
+再検証は型または値が変更されたときに自動的に実行されますが、このメソッドによって手動で実行することができます。
 
 ```javascript
 var isValid = $(".input").typedInput('validate');
@@ -209,9 +209,9 @@ var isValid = $(".input").typedInput('validate');
 
 #### <a href="#methods-value-get" name="methods-value-get">value()</a>
 
-<span class="method-return">Returns: String</span>
+<span class="method-return">戻り値: String</span>
 
-Gets the value of the typedInput.
+typedInputの値を取得します。
 
 ```javascript
 var value = $(".input").typedInput('value');
@@ -219,7 +219,7 @@ var value = $(".input").typedInput('value');
 
 #### <a href="#methods-value-set" name="methods-value-set">value( value )</a>
 
-Sets the value of the typedInput.
+typedInputの値を設定します。
 
 ```javascript
 $(".input").typedInput('value','payload');
@@ -227,46 +227,46 @@ $(".input").typedInput('value','payload');
 
 #### <a href="#methods-width" name="methods-width">width( width )</a>
 
-Sets the width of the typedInput. This must be used in place of the standard
-`jQuery.width()` function as it ensures the component resizes properly.
+typedInputのwidthを設定します。
+要素のリサイズが適切にするため、標準的な`jQuery.width()`の代わりにこのメソッドを利用してください。
 
 ```javascript
 $(".input").typedInput('width', '200px');
 ```
 
-### Events
+### イベント
 
 #### <a href="#events-change" name="events-change">change( event, type, value )</a>
 
-Triggered when either the type or value of the input is changed.
+inputの型または値が変更されたとき、トリガーされます。
 
 ```javascript
 $(".input").on('change', function(event, type, value) {} );
 ```
 
-*Note:* The `value` property was added in Node-RED 1.3
+*Note:* `value`プロパティはNode-RED 1.3で追加されました。
 
-### Types
+### 型
 
 #### <a href="#types-typedefinition" name="types-typedefinition">TypeDefinition</a>
 
-A `TypeDefinition` object describes a type that can be offered by a typedInput
-element.
+`TypeDefinition`オブジェクトは、
+typedInput要素で提供される型を記述します。
 
-It is an object with the following properties:
+オブジェクトには以下のプロパティが設定できます。:
 
-Property | Type    | Required | Description
+プロパティ | 型    | 必須 | 説明
 ---------|---------|----------|-------------
-`value`  | string  | yes      | The identifier for the type
-`label`  | string  |          | A label to display in the type menu
-`icon`   | string  |          | An icon to display in the type menu
-`options`| array   |          | If the type has a fixed set of values, this is an array of string options for the value. For example, `["true","false"]` for the boolean type.
-`hasValue`|boolean |          | Set to `false` if there is no value associated with the type.
-`validate`|function|          | A function to validate the value for the type.
+`value`  | string  | yes      | 型の識別子
+`label`  | string  |          | 型メニューで表示されるラベル
+`icon`   | string  |          | 型メニューで表示されるアイコン
+`options`| array   |          | この型が固定値を持つ場合の値の文字列オプションの配列。例えば、boolean型の場合は`["true","false"]`となります。
+`hasValue`|boolean |          | この型に関連付けられた値がない場合、`false`が設定されます。
+`validate`|function|          | 型の値を検証するfunction
 
-##### Examples
+##### 例
 
-Number type:
+数値型:
 
 ```javascript
 {
@@ -277,7 +277,7 @@ Number type:
 }
 ```
 
-Boolean type:
+Boolean型:
 
 ```javascript
 {
@@ -288,7 +288,7 @@ Boolean type:
 }
 ```
 
-Timestamp type:
+タイムスタンプ型:
 
 ```javascript
 {

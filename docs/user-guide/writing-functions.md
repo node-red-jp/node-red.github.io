@@ -1,68 +1,68 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Writing Functions
-slug: functions
+title: Functionノードの書き方
+slug: Functionノード
 redirect_from:
   - /docs/writing-functions
 ---
 
-The Function node allows JavaScript code to be run against the messages that are
-passed through it.
+Functionノードは、受け取ったメッセージに対してJavaScriptコードを実行することができ、
+フローを継続するためにゼロ個以上のメッセージを返します。
 
-The message is passed in as an object called `msg`. By convention it will
-have a `msg.payload` property containing the body of the message.
+メッセージは`msg`と呼ばれる一つのオブジェクトとして渡されます。
+このオブジェクトは慣例により、メッセージ本体を含む`msg.payload`プロパティを持っています。
 
-Other nodes may attach their own properties to the message, and they should be
-described in their documentation.
+独自のプロパティをメッセージに追加することも可能ですが、
+そのことをドキュメントに記載するべきです。
 
-### Writing a Function
+### Functionの作成
 
-The code entered into the Function node represents the *body* of the function.
-The most simple function simply returns the message exactly as-is:
+Functionノードに入力されたコードは、関数の*本体*に相当します。
+最も単純な関数は、メッセージを単にそのまま返す場合です。:
 
 {% highlight javascript %}
 return msg;
 {% endhighlight %}
 
-If the function returns `null`, then no message is passed on and the flow ends.
+Functionノードが`null`を返すと、メッセージは渡されずにフローが終了します。
 
-The function must always return a msg object. Returning a number or string will
-result in an error.
+Functionノードは必ずmsgオブジェクトを返します。
+数値や文字列を返すとエラーが発生します。
 
-The returned message object does not need to be same object as was passed in;
-the function can construct a completely new object before returning it. For
-example:
+返されるメッセージオブジェクトは受け取ったオブジェクトと同一である必要はありません。
+全く新しいオブジェクトを作って返すこともできます。
+以下がその例です。:
 
 {% highlight javascript %}
 var newMsg = { payload: msg.payload.length };
 return newMsg;
 {% endhighlight %}
 
-<div class="doc-callout"><em>Note</em> : constructing a new message object will
-lose any message properties of the received message. This will break some flows,
-for example the HTTP In/Response flow requires the <code>msg.req</code> and
-<code>msg.res</code> properties to be preserved end-to-end. In general, function
-nodes <em>should</em> return the message object they were passed having made any
-changes to its properties.</div>
+<div class="doc-callout"><em>Note</em> : 新しいメッセージオブジェクトを生成すると、
+受信した元のメッセージのあらゆるプロパティを失うことになります。これによりフローが壊れることがあり、
+例えば HTTP In/Response フローでは <code>msg.req</code> と <code>msg.res</code>  プロパティが
+最初から最後まで失われないようにする必要があります。
+一般論として、Functionノードはどんな変更をプロパティに行っても、
+受け取ったメッセージオブジェクトを返す<em>べき</em>です。</div>
 
-Use node.warn() to show warnings in the sidebar to help you debug. For example:
+デバッグを助けるため、 node.warn() はサイドバーに警告を表示します。例えば:
 
 {% highlight javascript %}
 node.warn("my var xyz = " + xyz);
 {% endhighlight %}
 
-See logging section below for more details.
+詳細情報は以下のログに関するセクションを確認してください。
 
-### Multiple Outputs
+### 複数の出力に送る
 
-The function edit dialog allows the number of outputs to be changed. If there
-is more than one output, an array of messages can be returned by the function to
-send to the outputs.
+Functionノードの編集ダイアログで出力の数を変更することができます。
+2つ以上の出力がある場合、複数の出力にメッセージを送るために、
+複数のメッセージを含む一つの配列を返すことができます。
 
-This makes it easy to write a function that sends the message to different
-outputs depending on some condition. For example, this function would send
-anything on topic `banana` to the second output rather than the first:
+これにより、条件に応じて異なる出力にメッセージを送る関数を簡単に書くことができます。 
+例えば、以下の例はtopicが`banana`なら最初の出力ではなく
+2番目の出力に全てを送ります。:
 
 {% highlight javascript %}
 if (msg.topic === "banana") {
@@ -72,8 +72,8 @@ if (msg.topic === "banana") {
 }
 {% endhighlight %}
 
-The following example passes the original message as-is on the first output and
-a message containing the payload length is passed to the second output:
+以下の例は、入力されたメッセージをそのまま最初の出力に渡し、
+そのメッセージのpayloadの長さを含むメッセージを２番目の出力に渡します。:
 
 {% highlight javascript %}
 var newMsg = { payload: msg.payload.length };
@@ -105,13 +105,36 @@ You can now configure number of outputs solely via edit dialog without making ch
 
 ### Multiple Messages
 
-A function can return multiple messages on an output by returning an array of
-messages within the returned array. When multiple messages are returned for an
-output, subsequent nodes will receive the messages one at a time in the order
-they were returned.
+*Since Node-RED 1.3*
 
-In the following example, `msg1`, `msg2`, `msg3` will be sent to the first output.
-`msg4` will be sent to the second output.
+`node.outputCount` contains the number of outputs configured for the function node.
+
+This makes it possible to write generic functions that can handle variable number of outputs set from the edit dialog.
+
+For example if you wish to spread incoming messages randomly between outputs, you could:
+
+{% highlight javascript %}
+// Create an array same length as there are outputs
+const messages = new Array(node.outputCount)
+// Choose random output number to send the message to
+const chosenOutputIndex = Math.floor(Math.random() * node.outputCount);
+// Send the message only to chosen output
+messages[chosenOutputIndex] = msg;
+// Return the array containing chosen output
+return messages;
+{% endhighlight %}
+
+You can now configure number of outputs solely via edit dialog without making changes to the function itself.
+
+### 複数のメッセージを送る
+
+複数メッセージの配列を含む一つの配列を返すことで、
+一つの出力に複数のメッセージを返すことができます。
+一つの出力に複数のメッセージを返すと、
+後続のノードは返された配列の要素の順番にメッセージを一つずつ受け取ります。
+
+以下の例では、`msg1`、`msg2`、`msg3`は最初の出力に送られます。
+`msg4`は２番目の出力に送られます。
 
 {% highlight javascript %}
 var msg1 = { payload:"first out of output 1" };
@@ -121,8 +144,8 @@ var msg4 = { payload:"only message from output 2" };
 return [ [ msg1, msg2, msg3 ], msg4 ];
 {% endhighlight %}
 
-The following example splits the received payload into individual words and
-returns a message for each of the words.
+以下の例は、受信したpayloadを個別の単語に分け、
+それぞれの単語を順次送る一つのメッセージを返します。
 
 {% highlight javascript %}
 var outputMsgs = [];
@@ -133,16 +156,16 @@ for (var w in words) {
 return [ outputMsgs ];
 {% endhighlight %}
 
-### Sending messages asynchronously
+### メッセージの非同期送信
 
-If the function needs to perform an asynchronous action before sending a message
-it cannot return the message at the end of the function.
+メッセージを送信する前に何らかの非同期処理を行う必要がある場合、
+Functionノードの最後で（非同期処理の結果の）メッセージを返すことはできません。
 
-Instead, it must make use of the `node.send()` function, passing in the message(s)
-to be sent. It takes the same arrangement of messages as that can be returned, as
-described in the previous sections.
+その場合、送信したいメッセージ（複数可）を`node.send()`関数に渡して用いる必要があります。
+前のセクションで記述したように、
+返却するメッセージは同じ配置にします。
 
- For example:
+ 以下がその例です。:
 
 {% highlight javascript %}
 doSomeAsyncWork(msg, function(result) {
@@ -153,29 +176,29 @@ return;
 {% endhighlight %}
 
 
-The Function node will clone every message object you pass to `node.send` to
-ensure there is no unintended modification of message objects that get reused
-in the function. Before Node-RED 1.0, the Function node would not clone the
-*first* message passed to `node.send`, but would clone the rest.
+Functionノードは`node.send`に渡されたメッセージオブジェクトを全てクローンします。
+これは関数内で再利用されるメッセージオブジェクトが意図しない変更がされないようにするためです。
+Node-RED 1.0以前では、Functionノードは`node.send`に渡された*最初*のメッセージはクローンされませんが、
+残りはクローンされます。
 
-The Function can request the runtime to *not clone* the first message passed to
-`node.send` by passing in `false` as a second argument to the function. It would
-do this if the message contains something that is not otherwise cloneable, or for
-performance reasons to minimise the overhead of sending messages:
+Functionノードは`node.send`に渡された第一引数を*クローンしない*ことを、
+この関数に第二引数として`false`を受け渡すことによって、実行環境に要求できます。
+これは、メッセージにクローンできないものが含まれている場合、
+またはパフォーマンス上の理由でメッセージ送信のオーバーヘッドを最小限に抑える場合におこなわれます。
 
 {% highlight javascript %}
 node.send(msg,false);
 {% endhighlight %}
 
-#### Finishing with a message
+#### メッセージで終了する
 
 *Since Node-RED 1.0*
 
-If a Function node does asynchronous work with a message, the runtime will not
-automatically know when it has finished handling the message.
+Functionノードはメッセージについて非同期処理をおこなう場合、
+メッセージ処理が終了したとき実行環境は自動的に検知します。
 
-To help it do so, the Function node should call `node.done()` at the appropriate
-time. This will allow the runtime to properly track messages through the system.
+これを助けるため、Functionノードでは適切なタイミングで`node.done()`を呼び出すことが推奨されます。
+これはランタイムにシステムを介してメッセージを適切に追跡できるようにします。
 
 {% highlight javascript %}
 doSomeAsyncWork(msg, function(result) {
@@ -186,181 +209,181 @@ doSomeAsyncWork(msg, function(result) {
 return;
 {% endhighlight %}
 
-### Running code on start
+### 起動時にコードを実行する
 
-*Since Node-RED 1.1.0*
+*Node-RED 1.1.0以降*
 
-With the 1.1.0 release, the Function node provides an `On Start` tab (labeled `Setup` before 1.3.0) where you can
-provide code that will run whenever the node is started. This can be used to
-setup any state the Function node requires.
+1.1.0リリースによって、
+Functionノードはノードが起動されたときに実行されるコードを提供する`初期化処理`タブを提供しています。
+これはFunctionノードが必要とする状態にセットアップするために利用されます。
 
-For example, it can initialise values in local context that the main Function
-will use:
+例えば、
+メインの関数が利用するローカルコンテキストに値を初期化します:
 ```
 if (context.get("counter") === undefined) {
     context.set("counter", 0)
 }
 ```
 
-The On Start function can return a Promise if it needs to complete asynchronous work
-before the main Function can start processing messages. Any messages that arrive
-before the On Start function has completed will be queued up, and handled when it is ready.
+初期化処理関数は、
+メインの関数がメッセージを処理し始める前に非同期ジョブを完了させておく必要がある場合にPromiseを返却できます。
+初期化処理関数が完了する前に到達した全てのメッセージはキューに蓄積され、準備ができたら処理されます。
 
-### Tidying up
+### 片付け
 
-If you do use asynchronous callback code in your functions then you may need to
-tidy up any outstanding requests, or close any connections,  whenever the flow gets
-re-deployed. You can do this in two different ways.
+Functionノードの中で非同期のコールバックを用いる場合、
+フローが再デプロイされる際に処理中のリクエストや使用中のコネクションなどを後片付けする必要があります。
+この後片付けは、2種類の方法で実施できます。
 
-Either by adding a `close` event handler:
+`close`イベントハンドラを追加します:
 
 {% highlight javascript %}
 node.on('close', function() {
-    // tidy up any async code here - shutdown connections and so on.
+    // コネクションの切断など、全ての非同期コードの後片付けをここで行う
 });
 {% endhighlight %}
 
-Or, *since Node-RED 1.1.0*, you can add code to the `On Stop` tab (previously labelled `Close`) in the node's edit
-dialog.
+もしくは、*Node-RED 1.1.0から*、
+ノードの編集ダイアログに`終了処理`タブにコードを追加できるようになりました。
 
-### Logging events
+### イベントのログ
 
-If a node needs to log something to the console, it can use one of the follow functions:
-
-{% highlight javascript %}
-node.log("Something happened");
-node.warn("Something happened you should know about");
-node.error("Oh no, something bad happened");
-{% endhighlight %}
-
-Where the console output appears will depend on how your operating system and how you start Node-RED.
-If you start using a command line - that is the console where logging will appear. If you run as a
-system service then it may appear in the system log. If you run under an app like PM2 it will have it's own way for showing logs. On a Pi the install script adds a `node-red-log` command that will display the log.
-
-The `warn` and `error` messages also get sent to the debug tab on the right side of the flow editor.
-
-For finer grained logging, `node.trace()` and `node.debug()` are also available.
-If there is no logger configured to capture those levels, they will not be seen.
-
-### Handling errors
-
-If the function encounters an error that should halt the current flow, it should
-return nothing. To trigger a Catch node on the same tab, the function should call
-`node.error` with the original message as a second argument:
+ノードがコンソールに何かをログ出力する必要がある場合は、以下の関数のどれかを使うことができます:
 
 {% highlight javascript %}
-node.error("hit an error", msg);
+node.log("何かが起きました");
+node.warn("知っておくべき何かが起きました");
+node.error("なんてこった、何か良くないことが起きました");
 {% endhighlight %}
 
-### Storing data
+コンソール出力がどこに表示されるのかはどのOSを利用しているかとどのようにNode-REDを起動したかに依ります。
+コマンドラインを使って起動した場合 - ログはコンソールに出力されます。
+システムサービスとして実行した場合、システムログに出力されます。PM2のようにアプリの元で実行した場合、独自のログ表示になります。ラズベリーパイ上のインストールスクリプトは、ログを表示させる`node-red-log`コマンドを追加します。
 
-Aside from the `msg` object, the function can also store data in the context store.
+`warn`と`error`メッセージはフローエディタ右側のデバッグタブにも送られます。
 
-More information about Context within Node-RED is available [here](/docs/user-guide/context).
+より詳細なログには、`node.trace()`および`node.debug()`が利用できます。
+これらのレベルを出力するようにログが設定されていない場合、ログには出力されません。
 
-In the Function node there are three predefined variables that can be used to
-access context:
+### エラーの処理
 
-   - `context` - the node's local context
-   - `flow` - the flow scope context
-   - `global` - the global scope context
+Functionノードが実行中のフローを停止させるべきエラーに遭遇した場合、何も返却するべきではありません。
+同じタブのCatchノードをトリガーするために、
+元のメッセージを第2引数として`node.error`を呼ぶべきです。:
 
-The following examples use `flow` context, but apply equally well to `context`
-and `global`.
+{% highlight javascript %}
+node.error("エラー発生", msg);
+{% endhighlight %}
 
-<div class="doc-callout"><em>Note</em> : these predefined variables are a feature
-of the Function node. If you are creating a custom node, check the <a href="/docs/creating-nodes/context">Creating Nodes guide</a> for how to access context.</div>
+### データの保存
 
-There are two modes for accessing context; either synchronous or asynchronous.
-The built-in context stores provide both modes. Some stores may only provide
-asynchronous access and will throw an error if they are accessed synchronously.
+`msg`オブジェクトとは違って、Functionノードは複数回の呼び出しの間で、自分の`context`オブジェクトの中にデータを保持しておくことができます。
 
-To get a value from context:
+Node-REDのコンテキストについての詳細な情報は[こちら](/docs/user-guide/context)で確認することができます。
+
+Functionノードの場合、
+コンテキストにアクセスすることができる3つの定義済み変数が存在します。:
+
+   - `context` - ノードスコープのローカルなコンテキスト
+   - `flow` - フロースコープのコンテキスト
+   - `global` - グローバルスコープのコンテキスト
+   
+以下の例では`flow`コンテキストを利用しますが、
+`context`および`global`でも同様に利用できます。
+
+<div class="doc-callout"><em>Note</em> : これらの定義済み変数はFunctionノードの特徴です。
+ノードを自作する場合は、コンテキストへのアクセス方法は<a href="/docs/creating-nodes/context">ノード作成ガイド</a>を参照してください。</div>
+
+コンテキストへのアクセスには、同期または非同期の2種類のモードがあります。
+既存のコンテキストストアは両方のモードを提供しています。いくつかのストアは非同期アクセスのみ提供しており、
+同期してアクセスがおこなわれるとエラーを発生させます。
+
+コンテキストから値を取得するには以下のようにします。:
 
 {% highlight javascript %}
 var myCount = flow.get("count");
 {% endhighlight %}
 
-To set a value:
+値を設定するには以下のようにします。:
 
 {% highlight javascript %}
 flow.set("count", 123);
 {% endhighlight %}
-
-The following example maintains a count of how many times the function has been
-run:
+   
+以下の例は関数が何回実行されているか、
+その回数を保持します。:
 
 {% highlight javascript %}
-// initialise the counter to 0 if it doesn't exist already
+// もしまだカウンタが存在していなければ0に初期化
 var count = context.get('count')||0;
 count += 1;
-// store the value back
+// 値を書き戻して保存
 context.set('count',count);
-// make it part of the outgoing msg object
+// 送信するメッセージの一部にカウントを含める
 msg.count = count;
 return msg;
 {% endhighlight %}
 
-#### Get/Set multiple values
+#### 複数の値の取得/設定
 
-Since Node-RED 0.19, it is also possible to get or set multiple values in one go:
+Node-RED 0.19以降、複数の値の取得または設定を1回でできるようになっています。:
 
 {% highlight javascript %}
-// Node-RED 0.19 or later
+// Node-RED 0.19以降
 var values = flow.get(["count", "colour", "temperature"]);
-// values[0] is the 'count' value
-// values[1] is the 'colour' value
-// values[2] is the 'temperature' value
+// values[0]には'count'の値が格納される
+// values[1]には'colour'の値が格納される
+// values[2]には'temprature'の値が格納される
 {% endhighlight %}
 
 {% highlight javascript %}
-// Node-RED 0.19 or later
+// Node-RED 0.19以降
 flow.set(["count", "colour", "temperature"], [123, "red", "12.5"]);
 {% endhighlight %}
 
-In this case, any missing values are set to `null`.
+この方法では、値が見つからない場合には`null`が設定されます。
 
 
-#### Asynchronous context access
+#### コンテキストへの非同期なアクセス
 
-If the context store requires asynchronous access, the `get` and `set` functions
-require an extra callback parameter.
+コンテキストストアでのデータ保管に非同期なアクセスが必要な場合、
+`get`および`set`関数はコールバック引数が必須です。
 
 {% highlight javascript %}
-// Get single value
+// 単一の値を取得
 flow.get("count", function(err, myCount) { ... });
 
-// Get multiple values
+// 複数の値を取得
 flow.get(["count", "colour"], function(err, count, colour) { ... })
 
-// Set single value
+// 単一の値を設定
 flow.set("count", 123, function(err) { ... })
 
-// Set multiple values
+// 複数の値を設定
 flow.set(["count", "colour", [123, "red"], function(err) { ... })
 {% endhighlight %}
 
-The first argument passed to the callback, `err`, is only set if an error
-occurred when accessing context.
+コールバック関数に渡される第1引数`err`は、
+コンテキストにアクセスする際にエラーが発生する場合のみセットします。
 
-The asynchronous version of the count example becomes:
+先述のカウンタの例を、非同期におこなうと以下のようになります。:
 
 {% highlight javascript %}
 context.get('count', function(err, count) {
     if (err) {
         node.error(err, msg);
     } else {
-        // initialise the counter to 0 if it doesn't exist already
+        // もしまだカウンタが存在していなければ0に初期化
         count = count || 0;
         count += 1;
-        // store the value back
+        // 値を書き戻して保存
         context.set('count',count, function(err) {
             if (err) {
                 node.error(err, msg);
             } else {
-                // make it part of the outgoing msg object
+                // 送信するメッセージの一部にカウントを含める
                 msg.count = count;
-                // send the message
+                // メッセージの送信
                 node.send(msg);
             }
         });
@@ -368,66 +391,66 @@ context.get('count', function(err, count) {
 });
 {% endhighlight %}
 
-#### Multiple context stores
+#### 複数のコンテキストストア
 
-With 0.19 it is possible to configure multiple context stores. For example, both
-a `memory` and `file` based store could be used.
+0.19版では、複数のコンテキストストアに値を格納できます。
+例として、`memory`および`file`といったストアの両方を利用することができます。
 
-The `get`/`set` context functions accept an optional parameter to identify the store
-to use.
+`get`/`set`関数は、利用するストアを特定するため、
+任意の引数を利用することができます。
 
 {% highlight javascript %}
-// Get value - sync
+// 値の同期取得
 var myCount = flow.get("count", storeName);
 
-// Get value - async
+// 値の非同期取得
 flow.get("count", storeName, function(err, myCount) { ... });
 
-// Set value - sync
+// 値の同期設定
 flow.set("count", 123, storeName);
 
-// Set value - async
+// 値の非同期設定
 flow.set("count", 123, storeName, function(err) { ... })
 {% endhighlight %}
 
 
-#### Global context
+#### globalコンテキスト
 
-The global context can be pre-populated with objects when Node-RED starts. This
-is defined in the main *settings.js* file under the `functionGlobalContext`
-property.
+globalコンテキストは、Node-RED起動時にオブジェクトを予め格納しておくことができます。
+オブジェクトは、*settings.js*ファイルの`functionGlobalContext`プロパティで
+定義することができます。
 
-This can be used to [load additional modules](#loading-additional-modules) within
-the Function node.
+このテクニックはFunctionノード内で追加モジュールのロードに
+利用することができます。
 
-### Adding Status
+### ステータスの追加
 
-The function node can also provide it's own status decoration in the same way
-that other nodes can. To set the status, call the `node.status` function.
-For example
+他のノードが行えるのと同じように、Functionノードもステータス表示を装飾することができます。
+ステータスをセットするには、`node.status`関数を呼びます。
+例えば
 
 {% highlight javascript %}
-node.status({fill:"red",shape:"ring",text:"disconnected"});
-node.status({fill:"green",shape:"dot",text:"connected"});
-node.status({text:"Just text status"});
-node.status({});   // to clear the status
+node.status({fill:"red",shape:"ring",text:"切断されています"});
+node.status({fill:"green",shape:"dot",text:"接続されています"});
+node.status({text:"文字だけの状態"});
+node.status({});   // 状態をクリアします
 {% endhighlight %}
 
-For details of the accepted parameters see the
-[Node Status documentation](/docs/creating-nodes/status)
+指定可能なパラメータの詳細については
+[ノードのステータス](/docs/creating-nodes/status)を参照してください。
 
-Any status updates can then also be caught by the Status node.
+ステータスのどんな変化でも、Statusノードでキャッチできます。
 
-### Loading additional modules
+### 追加モジュールのロード
 
-### Using the `functionGlobalContext` option
+### `functionGlobalContext` オプションの利用 
 
-Additional node modules cannot be loaded directly within a Function node. They must
-be loaded in your *settings.js* file and added to the `functionGlobalContext`
-property.
+Functionノードに追加モジュールを直接ロードすることはできません。
+*settings.js*ファイルでロードし、
+`functionGlobalContext`プロパティに追加される必要があります。
 
-For example, the built-in `os` module can be made available to all functions by
-adding the following to your *settings.js* file.
+例えば、`os`組込みモジュールは*settings.js*ファイルに以下の設定を追加することによって、
+すべてのFunctionノードで利用可能になります。
 
 {% highlight javascript %}
 functionGlobalContext: {
@@ -435,11 +458,11 @@ functionGlobalContext: {
 }
 {% endhighlight %}
 
-at which point, the module can be referenced within a function as
-`global.get('osModule')`.
+この時点で、モジュールはFunctionノード内で以下のように参照できます。
+`global.get('osModule')`
 
-Modules loaded from your settings file must be installed in the same directory as
-the settings file. For most users that will be the default user directory - `~/.node-red`:
+設定ファイルでロードされたモジュールは、設定ファイルと同じディレクトリにインストールされる必要があります。
+デフォルトのユーザディレクトリ（`~/.node-red`）を利用しているだろうほとんどのユーザは以下のようにインストールを実行します。:
 
     cd ~/.node-red
     npm install name_of_3rd_party_module
@@ -468,9 +491,9 @@ The modules are automatically installed under `~/.node-red/externalModules/` whe
 
 ***
 
-### API Reference
+### APIリファレンス
 
-The following objects are available within the Function node.
+Functionノード内では以下のオブジェクトが利用できます。
 
 #### `node`
  * `node.id` : the id of the Function node - *added in 0.19*
@@ -487,38 +510,38 @@ The following objects are available within the Function node.
  * `node.done(..)` : [finish with a message](#finishing-with-a-message)
 
 #### `context`
- * `context.get(..)` : get a node-scoped context property
- * `context.set(..)` : set a node-scoped context property
- * `context.keys(..)` : return a list of all node-scoped context property keys
- * `context.flow` : same as `flow`
- * `context.global` : same as `global`
+ * `context.get(..)` : ノードスコープコンテキストからプロパティ値を取得する
+ * `context.set(..)` : ノードスコープコンテキストにプロパティ値を設定する
+ * `context.keys(..)` : すべてのノードスコープコンテキストのプロパティキーの一覧を取得する
+ * `context.flow` : `flow`と同義です
+ * `context.global` : `global`と同義です
 
 #### `flow`
- * `flow.get(..)` : get a flow-scoped context property
- * `flow.set(..)` : set a flow-scoped context property
- * `flow.keys(..)` : return a list of all flow-scoped context property keys
+ * `flow.get(..)` : フロースコープコンテキストからプロパティ値を取得する
+ * `flow.set(..)` : フロースコープコンテキストにプロパティ値を設定する
+ * `flow.keys(..)` : すべてのフロースコープコンテキストのプロパティキーの一覧を取得する
 
 #### `global`
- * `global.get(..)` : get a global-scoped context property
- * `global.set(..)` : set a global-scoped context property
- * `global.keys(..)` : return a list of all global-scoped context property keys
+ * `global.get(..)` : グローバルスコープコンテキストからプロパティ値を取得する
+ * `global.set(..)` : グローバルスコープコンテキストにプロパティ値を設定する
+ * `global.keys(..)` : すべてのグローバルスコープコンテキストのプロパティキーの一覧を取得する
 
 #### `RED`
- * `RED.util.cloneMessage(..)` : safely clones a message object so it can be reused
+ * `RED.util.cloneMessage(..)` : メッセージオブジェクトを再利用できるように安全にクローンします  
 
 #### `env`
- * `env.get(..)` : get an environment variable
+ * `env.get(..)` : 環境変数を取得する
 
 
-#### Other modules and functions
+#### その他のモジュールと関数
 
-The Function node also makes the following modules and functions available:
+Functionノードは以下のモジュールと関数を利用可能です。:
 
-  * `Buffer` - the Node.js `Buffer` module
-  * `console` - the Node.js `console` module (`node.log` is the preferred method of logging)
-  * `util` - the Node.js `util` module
-  * `setTimeout/clearTimeout` - the javascript timeout functions.
-  * `setInterval/clearInterval` - the javascript interval functions.
+* `Buffer` - Node.jsの`Buffer`モジュール
+* `console` - Node.jsの`console`モジュール(ログ出力には`node.log`を利用する方が良いです。)
+* `util` - Node.jsの`util`モジュール
+* `setTimeout/clearTimeout` - javascriptのtimeout関数
+* `setInterval/clearInterval` - javascriptのinterval関数
 
-Note: the function node automatically clears any outstanding timeouts or
-interval timers whenever it is stopped or re-deployed.
+Note: Functionノードは、停止もしくは再デプロイ時に、
+全ての未完了のタイムアウトやインターバルタイマーを自動的にクリアします。

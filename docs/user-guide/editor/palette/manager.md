@@ -2,58 +2,58 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/palette"
-    label: "palette"
-  - 'manager'
+    label: "パレット"
+  - 'マネージャ'
 toc: toc-editor-guide.html
-title: Palette Manager
+title: パレットマネージャ
 ---
 
 
-The Palette Manager can be used to install new nodes into the palette. It can be
-accessed under the Palette tab of the User Settings dialog.
+パレットマネージャは、パレットに新しいノードをインストールするために利用できます。
+パレットマネージャはユーザ設定ダイアログのパレットタブからアクセスできます。
 
 <div style="width:400px" class="figure align-right">
   <img src="../images/editor-user-settings-palette-nodes.png" alt="Palette Manager - Nodes tab">
-  <p class="caption">Palette Manager - Nodes tab</p>
+  <p class="caption">パレットマネージャ - 現在のノードタブ</p>
 </div>
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-Shift-p</code></td></tr>
- <tr><td>Menu option</td><td><code>Manage palette</code></td></tr>
- <tr><td>Action</td><td><code>core:manage-palette</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Shift-p</code></td></tr>
+ <tr><td>メニューオプション</td><td><code>パレットの管理</code></td></tr>
+ <tr><td>動作</td><td><code>core:manage-palette</code></td></tr>
 </table>
 
-The Palette Manager has two tabs:
+パレットマネージャは2つのタブを持っています。:
 
- - Nodes lists the modules that are currently installed in the runtime
- - Install lists the available modules that can be installed
+ - 現在のノード（Nodes）は、実行環境に現在インストールされているモジュールの一覧です
+ - ノードの追加（Install）は、インストール可能なモジュールの一覧です
 
-### Managing nodes
+### ノードを管理する
 
-Each entry in the Nodes list shows the name and version of the module along with
-a list of the individual node types the module provides.
+現在のノードタブの各エントリには、
+モジュールが提供している個々のノードの一覧とモジュールの名称とバージョンが表示されています。
 
-Options are provided to remove, disable or upgrade each module. If a node is currently
-in use within the flow, it cannot be removed or disabled.
+各モジュールは削除、無効化、更新をおこなうことができます。
+現在フロー内で利用されているノードの場合、削除や無効化はおこなえません。
 
 
-### Installing nodes
+### ノードをインストールする
 
 <div style="width:400px" class="figure align-right">
   <img src="../images/editor-user-settings-palette-install.png" alt="Palette Manager - Install tab">
-  <p class="caption">Palette Manager - Install tab</p>
+  <p class="caption">パレットマネージャ - ノードを追加タブ</p>
 </div>
 
-The Install tab can be used to search for available modules and install them.
+ノードを追加（Install）タブでは、利用可能なモジュールの検索とインストールをおこなうことができます。
 
-To search for a module, enter its name in the search bar. The search results
-show the details of the modules, including when it was last updated and a link
-to its documentation. It can be installed by clicking the 'install' button.
+モジュールを検索するためには、検索バーにその名称を入力します。
+検索結果には、モジュールの最終更新日とドキュメントへのリンクを含んだ詳細情報が表示されます。
+「ノードを追加（install）」ボタンをクリックすることでインストールできます。
 
 <div style="width: 500px" class="figure">
   <img src="../images/editor-user-settings-palette-install-details.png" alt="Palette Manager - Install module details">
-  <p class="caption">Palette Manager - Install module details</p>
+  <p class="caption">パレットマネージャ - インストールするモジュールの詳細情報</p>
 </div>

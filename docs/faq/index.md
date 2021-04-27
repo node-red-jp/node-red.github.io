@@ -1,31 +1,31 @@
 ---
 layout: docs-faq
-title: Frequently Asked Questions
+title: よくある質問
 ---
 
-#### General
+#### 全般
 
- - [Why is the project called Node-RED?](/about/#history)
- - [What is the history of the project?](/about/#history)
- - [What is 'Flow-based Programming'](/about/#flow-based-programming)
+ - [なぜ、Node-REDと呼ばれるのでしょうか?](/about/#歴史)
+ - [プロジェクトの歴史は?](/about/#歴史)
+ - [「フローベースドプログラミング」とは](/about/#フローベースドプログラミング)
 
 
 #### Node.js
 
- - [What versions of Node.js are supported?](node-versions)
+ - [Node.jsのどのバージョンをサポートしていますか?](node-versions)
 
 
 #### Node-RED
 
- - [How can I start Node-RED on boot?](starting-node-red-on-boot)
+ - [ブート時にNode-REDを起動するには?](starting-node-red-on-boot)
 
 
 #### Raspberry Pi
 
- - [How do I interact with Raspberry Pi GPIO?](interacting-with-pi-gpio)
- - [How can I customise the Raspberry Pi service?](customising-systemd-on-pi)
+ - [Raspberry Pi GPIOと連携する方法は?](interacting-with-pi-gpio)
+ - [Raspberry Piサービスをカスタマイズする方法は?](customising-systemd-on-pi)
 
 
-#### Hardware
+#### ハードウェア
 
- - [How can I interact with Arduino devices?](interacting-with-arduino)
+ - [Arduinoデバイスと連携する方法は?](interacting-with-arduino)

@@ -1,66 +1,66 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Command-line Administration
+title: コマンドラインAdminツール
 slug: node-red-admin
 redirect_from:
   - /docs/node-red-admin
 ---
 
-The [node-red-admin](http://npmjs.org/package/node-red-admin) command-line tool allows you to remotely administer a Node-RED
-instance.
+[node-red-admin](http://npmjs.org/package/node-red-admin)コマンドラインツールを使用すると、
+リモートのNode-REDインスタンスを管理することができます。
 
-Since Node-RED 1.1.0, `node-red-admin` is now built into the `node-red` command -
-you do not need to install it separately.
+Node-RED 1.1.0から、今や`node-red-admin`は`node-red`コマンドに組み込まれています - 
+個別にインストールする必要はありません。
 
-To use the version included with `node-red`, use the command `node-red admin`.
+`node-red`に含まれているバージョンで使うには、`node-red admin`コマンドを使います。
 
-If you install it separately, you would use the command `node-red-admin`.
+個別にインストールする場合、`node-red-admin`コマンドを利用します。
 
 
-### Installation
+### インストール
 
-If you want to install `node-red-admin` separately, you can install it as a global
-module with:
+`node-red-admin`コマンドを個別にインストールしたい場合、
+Adminツールをグローバルnpmインストールします。
 
     npm install -g --unsafe-perm node-red-admin
 
 <div class="doc-callout">
-<em>Note</em> : <code>sudo</code> is required if running as a non-root user on Linux/OS X. If
-running on Windows, you will need to run in a <a href="https://technet.microsoft.com/en-gb/library/cc947813%28v=ws.10%29.aspx">command shell as Administrator</a>,
-without the <code>sudo</code> command.
+<em>Note</em> : <code>sudo</code>はLinux/OS Xでルートユーザ以外のユーザとして実行するときに必要となるコマンドです。
+Windowsで実行するときは、<a href="https://technet.microsoft.com/en-gb/library/cc947813%28v=ws.10%29.aspx">Administratorとしてコマンドプロンプトから</a>、
+<code>sudo</code>コマンドを使わずに実行してください。
 </div>
 
 
-### Target and Login
+### ターゲットとログイン
 
-To remotely administer a Node-RED instance, the tool must first be pointed at the Node-RED instance you want
-it to access. By default, it assumes `http://localhost:1880`. To change that, use the `target` command:
+リモートでNode-REDインスタンスを管理するには、まずAdminツールでアクセスしたいNode-REDインスタンスを指定しなければいけません。
+デフォルトでは`http://localhost:1880`が指定されています。変更するには`target`コマンドを使用します。
 
     node-red-admin target http://node-red.example.com/admin
 
-If [authentication](/docs/user-guide/runtime/securing-node-red) is enabled, you must then `login`:
+[認証](/docs/user-guide/runtime/securing-node-red)が有効な場合は、`login`します。
 
     node-red-admin login
 
-These commands create a file called `~/.node-red/.cli-config.json` that stores
-the target and access token information.
+これらのコマンドはターゲットとアクセストークンの情報を格納する`~/.node-red/cli-config.json` 
+というファイルを作成します。
 
 <div class="doc-callout">
-<em>Note</em> : The `hash-pw` option does <i>not</i> require the tool to be logged in and can be run at any time.
+<em>Note</em> : `hash-pw`オプションは、ログインしている必要<i>なく</i>、いつでも実行することができます。
 </div>
 
-### Other commands
+### その他のコマンド
 
-The tool provides the following commands:
+このツールは以下のコマンドを提供します。:
 
- - `target`  - Set or view the target URL and port like http://localhost:1880
- - `login`   - Log user in to the target of the Node-RED admin API
- - `list`    - List all of the installed nodes
- - `info`    - Display more information about the module or node
- - `enable`  - Enable the specified module or node set
- - `disable` - Disable the specified module or node set
- - `search`  - Search for Node-RED modules to install
- - `install` - Install the module from NPM to Node-RED
- - `remove`  - Remove the NPM module from Node-RED
- - `hash-pw` - Create a password hash that can be used with the `adminAuth` and `httpNodeAuth` settings
+ - `target`  - ターゲットURLおよびポートをhttp://localhost:1880 のように設定もしくは確認する
+ - `login`   - Node-RED管理APIのターゲットにログインする
+ - `list`    - インストール済みノードの一覧を表示する
+ - `info`    - モジュールまたはノードの詳細情報を表示する
+ - `enable`  - 指定したモジュールまたはノードセットを有効にする
+ - `disable` - 指定したモジュールまたはノードセットを無効にする
+ - `search`  - インストールしたいNode-REDモジュールを検索する
+ - `install` - Node-REDにNPMからモジュールをインストールする
+ - `remove`  - Node-REDからNPMモジュールを削除する
+ - `hash-pw` - `adminAuth`および`httpNodeAuth`プロパティに利用可能なパスワードのハッシュ値を生成する

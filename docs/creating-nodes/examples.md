@@ -1,23 +1,23 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Example flows
-slug: examples
+title: フローの例示
+slug: 例
 ---
 
-A packaged node can provide simple example flows that demonstrate how it can be used.
+パッケージ化されたノードは、それがどのように使われるかのデモを簡単な例で示すことができます。
 
-They will appear under the Examples section of the library import menu.
+それらは、ライブラリメニューの例セクションの下に表示されます。
 
-Ideally they should be short, have a comment node to describe the functionality, and not use
-any other 3rd party nodes that need to be installed.
+短く、機能がcommentノードで示されており、サードパーティ製ノードのインストールを必要としないことが理想です。
 
-To create an example, add a flow file to an <code>examples</code> directory in your node package. See [Packaging](packaging) for more details.
+例を作成するには、ノードパッケージの<code>examples</code>ディレクトリ配下にフローファイルを配置します。
+詳細は[パッケージング](packaging)を参照してください。
 
-The name of the flow file will be the menu entry displayed in the menu list. For example:
+フローファイル名はメニューリストのメニューエントリーとして表示されます。たとえば:
 
     examples\My Great Example.json
 
-will display as
+これは次のように表示されます。
 
     My Great Example

@@ -2,34 +2,34 @@
 layout: docs-faq
 toc: toc-user-guide.html
 slug: gpio
-title: Interacting with Raspberry Pi GPIO
+title: Raspberry Pi GPIOと連携する
 ---
 
-There are a few node modules available for interacting with the Pi's GPIO pins.
+Raspberry PiのGPIOピンと連携するためにいくつかのノードモジュールを利用できます。
 
 ### node-red-node-pi-gpio
 
-This module is preinstalled with Node-RED when using
-our install script. It provides a simple way to monitor and control the GPIO pins.
+このモジュールは、私たちのインストールスクリプトを利用したときにNode-REDとともにプリインストールされます。
+これはGPIOピンの監視と制御をする簡単な方法を提供します。
 
 <div class="doc-callout">
-Raspbian comes preconfigured for this node to work. If you are running a different
-distribution, such as Ubuntu, some additional install steps may be needed. The
-node's README <a href="https://github.com/node-red/node-red-nodes/tree/master/hardware/PiGpio#install">has the details</a>.
+Raspbianはこのノードが動作するように事前に設定されます。
+Ubuntuなど異なるディストリビューションを利用している場合、いくつか追加のインストール手順が必要なはずです。
+このノードのREADMEに<a href="https://github.com/node-red/node-red-nodes/tree/master/hardware/PiGpio#install">詳細</a>が記述されています。
 </div>
 
 ### node-red-node-pi-gpiod
 
-This module uses the [PiGPIOd](http://abyz.me.uk/rpi/pigpio/pigpiod.html) daemon
-which offers some more features over the default nodes. For example, the node can
-be easily configured to do PWM output or drive a Servo.
+このモジュールは、
+デフォルトのノードにさらなる機能を提供する[PiGPIOd](http://abyz.me.uk/rpi/pigpio/pigpiod.html)デーモンを利用します。
+例えば、PWMアウトプットやServo実行のためのノードの設定を簡単にできるようになります。
 
-The module is available [here](https://flows.nodered.org/node/node-red-node-pi-gpiod).
+このモジュールは[こちら](https://flows.nodered.org/node/node-red-node-pi-gpiod)で取得できます。
 
 
 ### node-red-contrib-gpio
 
-This modules supports GPIO across a wide range of device types, using the
-[Johnny-Five](https://github.com/rwaldron/johnny-five) library.
+このモジュールは[Johnny-Five](https://github.com/rwaldron/johnny-five)ライブラリを利用し、
+幅広い種類のデバイスでGPIOをサポートしています。
 
-The module is available [here](https://flows.nodered.org/node/node-red-contrib-gpio).
+このモジュールは[こちら](https://flows.nodered.org/node/node-red-contrib-gpio)で手に入れられます。

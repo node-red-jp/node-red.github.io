@@ -1,0 +1,64 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (master by default)
+
+publish_mode: editorial_workflow
+
+media_folder: "/images" # Folder where user uploaded files should go
+public_folder: "/images" # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - name: "docs" # Used in routes, e.g., /admin/collections/blog
+    label: "ドキュメント" # Used in the UI
+    folder: "docs" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true # Allow users to delete documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "creating-nodes" # Used in routes, e.g., /admin/collections/blog
+    label: "Nodeの作成" # Used in the UI
+    folder: "docs/creating-nodes" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true # Allow users to delete documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "getting-started" # Used in routes, e.g., /admin/collections/blog
+    label: "Getting Started" # Used in the UI
+    folder: "docs/getting-started" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true # Allow users to delete documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "hardware" # Used in routes, e.g., /admin/collections/blog
+    label: "ハードウェア" # Used in the UI
+    folder: "docs/hardware" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true # Allow users to delete documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "platforms" # Used in routes, e.g., /admin/collections/blog
+    label: "プラットフォーム" # Used in the UI
+    folder: "docs/platforms" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true # Allow users to delete documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}

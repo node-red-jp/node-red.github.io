@@ -2,38 +2,38 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
-  - "sidebar"
+    label: エディタ
+  - "サイドバー"
 toc: toc-editor-guide.html
-title: Sidebar
+title: サイドバー
 ---
 
 <div style="width: 300px" class="figure align-right">
   <img src="../images/editor-sidebar.png" alt="Editor Sidebar">
-  <p class="caption">Editor Sidebar</p>
+  <p class="caption">エディタサイドバー</p>
 </div>
 
-The sidebar contains panels that provide a number of useful tools within the editor.
+サイトバーには、エディタ内のたくさんの便利なツールを提供しているパネルが含まれています。
 
- - [Information](info) - view information about nodes and their help
- - [Debug](debug) - view messages passed to Debug nodes
- - [Configuration Nodes](config) - manage configuration nodes
- - [Context data](context) - view the contents of context
+ - [情報](info) - ノードについての情報およびヘルプを表示します
+ - [デバッグ](debug) - Debugノードに受け渡されたメッセージを表示します
+ - [ノードの設定](config) - Configurationノードを管理します
+ - [コンテキストデータ](context) - コンテキストの内容を表示します
 
-Some nodes contribute their own sidebar panels, such as [node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard).
+[node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard)のように、いくつかのノードは独自のサイドバーパネルを提供します。
 
-The panels are opened by clicking their icon in the header of the sidebar, or by
-selecting them in the drop-down list shown by clicking the <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-caret-down"></i> button.
+サイドバーのヘッダのアイコン、
+または<i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-caret-down"></i>ボタンをクリックして表示されるドロップダウンリスト内のアイコンをクリックすることでパネルが展開されます。
 
-The sidebar can be resized by dragging its edge across the workspace.
+ワークスペースとの境界をドラッグすることでサイドバーをリサイズできます。
 
-If the edge is dragged close to the right-hand edge, the sidebar will be hidden.
-It can be shown again by selecting the 'Show sidebar' option in the View menu,
-or using the <code>Ctrl/⌘-Space</code> shortcut.
+この境界を右端までドラッグした場合、サイドバーは非表示になります。
+メニューの表示から「サイドバーを表示」オプションを選択する、
+またはショートカットキー<code>Ctrl/⌘-Space</code>を利用することで再表示できます。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-Space</code></td></tr>
- <tr><td>Menu option</td><td><code>View -&gt; Show sidebar</code></td></tr>
- <tr><td>Action</td><td><code>core:toggle-sidebar</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Space</code></td></tr>
+ <tr><td>メニューオプション</td><td><code>表示 -&gt; サイドバーを表示</code></td></tr>
+ <tr><td>動作</td><td><code>core:toggle-sidebar</code></td></tr>
 </table>

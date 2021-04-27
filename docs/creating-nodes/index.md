@@ -1,68 +1,66 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Creating Nodes
+title: ノードの開発
 ---
 
-The main way Node-RED can be extended is to add new nodes into its palette.
+Node-REDを拡張する主な方法は、パレットに新しいノードを追加することです。
 
-Nodes can be published as npm modules to the [public npm repository](https://www.npmjs.com/)
-and added to the [Node-RED Flow Library](https://flows.nodered.org) to make them
-available to the community.
+ノードはnpmモジュールとして[パブリックnpmリポジトリ](https://www.npmjs.com/)へ公開し、[Node-REDフローライブラリ](https://flows.nodered.org)へ追加することで、コミュニティで利用できるようになります。
 
- - [Creating your first node](first-node)
- - [JavaScript File](node-js)
- - [HTML File](node-html)
- - [Packaging](packaging)
- - [Node properties](properties)
- - [Node credentials](credentials)
- - [Node appearance](appearance)
- - [Node edit dialog](edit-dialog)
- - [Storing context](context)
- - [Node status](status)
- - [Configuration nodes](config-nodes)
- - [Help style guide](help-style-guide)
- - [Adding examples](examples)
- - [Internationalisation](i18n)
+ - [はじめてのノード開発](first-node)
+ - [JavaScriptファイル](node-js)
+ - [HTMLファイル](node-html)
+ - [パッケージング](packaging)
+ - [ノードプロパティ](properties)
+ - [ノードのクレデンシャル](credentials)
+ - [ノードの外観](appearance)
+ - [ノードの編集ダイアログ](edit-dialog)
+ - [コンテキストの保存](context)
+ - [ノードのステータス](status)
+ - [設定ノード](config-nodes)
+ - [ヘルプのスタイルガイド](help-style-guide)
+ - [例の追加](examples)
+ - [国際化](i18n)
 
-*Since Node-RED 1.3*
+*Node-RED 1.3以降*
 
- - [Loading extra resources in the editor](resources)
- - [Packaging a Subflow as a module](subflow-modules)
+ - [エディタで外部リソースを読み込む](resources)
+ - [サブフローをモジュールとしてパッケージ化](subflow-modules)
 
 
-### General guidance
+### 全体のガイダンス
 
-There are some general principles to follow when creating new nodes. These reflect
-the approach taken by the core nodes and help provided a consistent user-experience.
+新しいノードを作成する時には、いくつかの一般的な原則に従う必要があります。
+これらはコアノードで採用されているアプローチを反映しており、一貫したユーザー体験を提供するのに役立ちます。
 
-Nodes should:
+ノードは以下のことに従うべきです。:
 
-- **be well-defined in their purpose.**
+- **目的が明確に定義されていること**
 
-   A node that exposes every possible option of an API is potentially less useful
-   that a group of nodes that each serve a single purpose.
+   APIに含まれるすべての項目を設定できるようにしたノードは、
+   単一の目的のために分割した複数のノードよりも使いにくいことが多いです。
 
-- **be simple to use, regardless of the underlying functionality.**
+- **元の機能に関係なく簡単に使えること**
 
-   Hide complexity and avoid the use of jargon or domain-specific knowledge.
+   複雑さを隠蔽して専門用語やドメイン固有の知識の使用を避けます。
 
-- **be forgiving in what types of message properties it accepts.**
+- **多様なメッセージ型が渡されても正常に処理できること**
 
-   Message properties can be strings, numbers, booleans, Buffers, objects, arrays
-   or nulls. A node should do The Right Thing when faced with any of these.
+   メッセージは文字列、数値、Boolean、Buffer、オブジェクト、配列、nullなどの様々な型で渡される可能性があります。
+   いずれの型であっても正しく処理される必要があります。
 
-- **be consistent in what they send.**
+- **送信される内容に一貫性を持つこと**
 
-   Nodes should document what properties they add to messages, and they should
-   be consistent and predictable in their behaviour.
+   ノードはメッセージにどのようなプロパティを追加するのかを文書化する必要があり、動作において一貫性があり、
+   予測可能でなければなりません。
 
-- **sit at the beginning, middle or end of a flow - not all at once.**
+- **フローの先頭、中間、または末尾に配置されるようにすること - すべてを一度にしようとしないこと**
 
-- **catch errors.**
+- **エラーをキャッチすること**
 
-   If a node throws an uncaught error, Node-RED will stop the entire flow as the
-   state of the system is no longer known.
-
-   Wherever possible, nodes must catch errors or register error handlers for any
-   asynchronous calls they make.
+   ノードがキャッチできないエラーをスローすると、
+   Node-REDはシステム全体の状態がわからなくなるため停止します。
+   
+   ノードはできるかぎり、
+   エラーをキャッチするか非同期呼び出しのためのエラーハンドラを登録しなければなりません。

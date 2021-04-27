@@ -1,127 +1,125 @@
 ---
 layout: docs-tutorial
 toc: toc-user-guide.html
-title: Creating your second flow
-slug: second flow
+title: 2つ目のフロー作成
+slug: 2つ目のフロー
 redirect_from:
   - /docs/getting-started/second-flow
 
 ---
 
 
-### Overview
+### 概要
 
-This tutorial builds on the [first tutorial](first-flow) to make a flow that
-starts to bring in data from external sources to do something useful locally.
+このチュートリアルは[最初のチュートリアル](first-flow)を元に、
+ローカルで何か役に立つことをするために外部ソースからデータを持ってくることをはじめるフローを作成します。
 
-The flow will:
+このフローでは:
 
- - Retrieve information from a website at a regular interval
- - Convert that information into a useful form
- - Display the result in the Debug sidebar
+ - 一定間隔でウェブサイトから情報を取得
+ - 使いやすい形式に情報を変換
+ - デバッグサイドバーに結果を表示
 
-### 1. Add an Inject node
+### 1. Injectノードの追加
 
-In the [previous tutorial](first-flow), the Inject node was used to trigger the
-flow when its button was clicked. For this tutorial, the Inject node will be
-configured to trigger the flow at a regular interval.
+[前回のチュートリアル](first-flow)では、
+Injectノードをそのボタンをクリックしたときにフローを指導させるために利用しました。
+このチュートリアルでは、Injectノードを一定間隔でフローを始動するように設定します。
 
-Drag an Inject node onto the workspace from the palette.
+パレットからワークスペース上にInjectノードをドラッグします。
 
-Double click the node to bring up the edit dialog. Set the repeat interval to
-`every 5 minutes`.
+配置したInjectノードをダブルクリックすると設定ダイアログが開きます。
+`毎日5分間隔`にセットして定期実行を設定します。
 
-Click Done to close the dialog.
+完了ボタンをクリックして設定ダイアログを閉じます。
 
-### 2. Add an HTTP Request node
+### 2. HttpRequestノードの追加
 
-The HTTP Request node can be used to retrieve a web-page when triggered.
+Http Requestノード（最初のhttpノードではありません）を使ってWebページの内容を取得することができます。
 
-After adding one to the workspace, edit it to set the `URL` property to:
+ノードを配置後に設定ダイアログの`URL`項目に以下をセットします。
 
     https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv
 
-Then click Done to close the dialog.
+完了をクリックしてダイアログを閉じます。
 
-This URL is a feed of significant earthquakes in the last month from the US Geological Survey web site. The site offers a number of [other options](https://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php)
-that you may want to play around with after completing this tutorial.
+これはアメリカ地質調査所のウェブサイトの、先月の大きな地震のフィードです。このフィードには[様々なオプション](https://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php)が存在しています。
+このチュートリアルを狩猟したあとに遊ぶことができるでしょう。
 
-### 3. Add a CSV node
+### 3. CSVノードの追加
 
-Add a CSV node and edit its properties. Enable option for 'First row contains
- column names'.
+CSVノードを追加し、そのプロパティを編集します。
+「1行目に列名を含む」のオプションを有効化します。
 
-Then click Done to close.
+そして完了をクリックして閉じます。
 
-### 4. Add a Debug node
+### 4. Debugノードの追加
 
-Add a Debug node to the output.
+Debugノードを追加します。
 
-### 5. Wire them all together
+### 5. すべてのノードをワイヤーで接続
 
-Add wires connecting:
+ワイヤーを追加して接続します:
 
-  - The Inject node output to the HTTP Request node input.
-  - The HTTP Request node output to the CSV node input.
-  - The CSV node output to the Debug node input.
+  - Injectノードの出力とHTTP Requestノードの入力
+  - HTTP Requestノードの出力とCSVノードの入力
+  - CSVノートの出力とDebugノードの入力
 
-### 7. Add a Switch node
+### 7. Switchノードの追加
 
-Add a Switch node to the workspace. Edit its properties and configure it to check
-the property `msg.payload.mag` with a test of `>=` change it to test on a `number` and the value `7`. Click
-Done to close.
+ワークスペースにSwitchノードを追加します。
+プロパティを編集し、プロパティに`msg.payload.mag`を入力し、`>=`と`数値`による評価に変更し、値に`7`を設定します。
+完了をクリックして閉じます。
 
-Add a second wire from the CSV node to this Switch node.
+CSVノードからこのSwitchノードに2つ目のワイヤーを追加します。
 
-### 8. Add a Change node
+### 8. Changeノードの追加
 
-Add a Change node, wired to the output of the Switch node. Configure it to
-set `msg.payload` to the string `PANIC!`.
+Changeノードを追加し、Switchノードの出力に繋ぎます。
+`msg.payload`に文字列`PANIC!`をセットするように設定します。
 
-### 9. Add a Debug node
+### 9. Debugノードの追加
 
-Wire a new Debug node to the output of the Change node
+新しいDebugノードをChangeノードの入力ポートにワイヤーで接続
 
-### 10. Deploy
+### 10. デプロイ
 
-Deploy the flow to the runtime by clicking the Deploy button.
-
-With the Debug sidebar tab open click the Inject button. You should see a list of
-entries with some contents that look like:
+デプロイボタンをクリックすることでランタイムにフローをデプロイします。
+以下のような内容のエントリのリストを確認できるはずです:
 
     msg.payload : Object
     {"time":"2017-11-19T15:09:03.120Z","latitude":-21.5167,"longitude":168.5426,"depth":14.19,"mag":6.6,"magType":"mww","gap":21,"dmin":0.478,"rms":0.86,"net":"us","id":"us2000brgk","updated":"2017-11-19T17:10:58.449Z","place":"68km E of Tadine, New Caledonia","type":"earthquake","horizontalError":6.2,"depthError":2.8,"magError":0.037,"magNst":72,"status":"reviewed","locationSource":"us","magSource":"us"}
 
-You can now click on the little arrow to the left of each property to expand them
-and examine the contents
+それぞれのプロパティの左にある小さな矢印をクリックすることで、
+プロパティを開いて内容を確認できます。
 
-If there were any quakes with a magnitude greater than 7 you will also see debug
-messages like:
+マグニチュード7以上の地震があった場合、
+以下のようなデバッグメッセージも確認できます。
 
     msg.payload : string(6)
     "PANIC!"
 
-You could change the switch value of `7` to a smaller one to test your program. Remember to click on deploy after the change.
+`7`という分岐の値を小さく変更してプログラムをテストすることもできます。変更後は、忘れずにデプロイをクリックします。
 ***
 
-### Summary
+### まとめ
 
-This flow is automatically triggered every 5 minutes and retrieves data from a
-url. It parses the data and displays in the Debug sidebar. It also checks the
-magnitude value in the data and branches the flow for any messages with a
-magnitude greater than, or equal to, 7. The payloads of such messages are
-modified and displayed in the Debug sidebar.
+このフローは5分間隔で自動的に実行され、URL先からデータを回収します。
+データを加工し、デバッグサイドバーに表示します。
+また、データのマグニチュードの値を確認し、
+マグニチュードが7以上だった場合に追加のメッセージのためにフローを分岐させます。
+メッセージのペイロードは適切なかたちにされ、デバッグサイドバーに表示されます。
 
 
-### Source
+### ソース
 
-The flow created in this tutorial is represented by the following json. To import
-it into the editor, copy it to your clipboard and then paste it into the Import dialog.
+このチュートリアルで作成したフローは以下のJSONで表されます。
+エディタにこれをインポートするには、クリップボードにコピーしてから読み込みダイアログにペーストします。
 
     [{"id":"e36406f2.8ef798","type":"inject","z":"f03b57d5.e525f8","name":"","topic":"","payload":"","payloadType":"str","repeat":"300","crontab":"","once":false,"x":130,"y":900,"wires":[["c3c50023.3bbed"]]},{"id":"c3c50023.3bbed","type":"http request","z":"f03b57d5.e525f8","name":"Recent Quakes","method":"GET","url":"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv","tls":"","x":300,"y":900,"wires":[["8afc6cac.e0812"]]},{"id":"8afc6cac.e0812","type":"csv","z":"f03b57d5.e525f8","name":"","sep":",","hdrin":true,"hdrout":"","multi":"one","ret":"\\n","temp":"","x":470,"y":900,"wires":[["44779781.4190f8","6f0eb546.9e208c"]]},{"id":"44779781.4190f8","type":"debug","z":"f03b57d5.e525f8","name":"","active":true,"complete":false,"x":630,"y":900,"wires":[]},{"id":"6f0eb546.9e208c","type":"switch","z":"f03b57d5.e525f8","name":"","property":"payload.mag","propertyType":"msg","rules":[{"t":"gte","v":"7","vt":"num"}],"checkall":"true","outputs":1,"x":510,"y":960,"wires":[["d78d4aa8.8c8208"]]},{"id":"d78d4aa8.8c8208","type":"change","z":"f03b57d5.e525f8","name":"","rules":[{"t":"set","p":"payload","pt":"msg","to":"PANIC!","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":650,"y":1020,"wires":[["72fddece.fac0d"]]},{"id":"72fddece.fac0d","type":"debug","z":"f03b57d5.e525f8","name":"","active":true,"complete":false,"x":750,"y":960,"wires":[]}]
 
-### Related reading
+### 関連するドキュメント
 
- - [Using the editor](/docs/user-guide/editor/)
- - [The Core nodes](/docs/user-guide/nodes)
- - [Using the Function node](/docs/user-guide/writing-functions)
+ - [エディタを利用する](/docs/user-guide/editor/)
+ - [コアノード](/docs/user-guide/nodes)
+ - [Functionノードを利用する](/docs/user-guide/writing-functions)

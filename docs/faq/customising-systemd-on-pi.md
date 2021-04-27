@@ -1,23 +1,23 @@
 ---
 layout: docs-faq
 toc: toc-user-guide.html
-title: Customising the Raspberry Pi service
-slug: systemd service
+title: Raspberry Piサービスをカスタマイズする
+slug: systemdサービス
 ---
 
-When running on the Raspberry Pi or other Debian-based Linux system, our
-[install script](/docs/hardware/raspberrypi) can be used to setup a systemd
-service to autostart Node-RED on boot.
+Raspberry Piやその他DebianベースのLinuxシステムで実行するとき、
+私たちの[インストールスクリプト](/docs/hardware/raspberrypi)は起動時にNode-REDを自動起動するように
+systemdサービスを設定するために利用することができます。
 
-This guide shows how the service can be customised for some common scenarios.
+このガイドはいくつかのよくある事例のためにサービスをカスタマイズする方法を紹介しています。
 
 
 
-### Changing the user
+### ユーザを変更する
 
-The service comes configured for the `pi` user. To change which user it runs as,
-edit the service definition `/lib/systemd/system/nodered.service` and change the
-`User`, `Group` and `WorkingDirectory` lines as appropriate:
+サービスは`pi`ユーザのために設定されています。
+実行するときのユーザを変更するには、サービス定義`/lib/systemd/system/nodered.service`を編集し、
+`User`、`Group`および`WorkingDirectory`の行を適した形に変更します:
 
 ```yaml
 [Service]
@@ -31,8 +31,8 @@ Environment="PI_NODE_OPTIONS=--max_old_space_size=256"
 ...
 ```
 
-After editing the file, run the following commands to reload the systemd daemon
-and then restart the Node-RED service.
+ファイルを編集したあと、以下のコマンドを実行して
+systemdデーモンをリロードし、そしてNode-REDサービスを再起動します。
 
 ```
 sudo systemctl daemon-reload
@@ -41,13 +41,13 @@ node-red-start
 ```
 
 
-### Configuring an HTTP proxy
+### HTTPプロキシを設定する
 
-If you need to use a proxy for http requests within your Node-RED flows, you
-need to set the `HTTP_PROXY` environment variable.
+Node-REDフロー内のHTTPリクエストのためにプロキシを利用する必要がある場合、
+環境変数`HTTP_PROXY`を設定しなくてはなりません。
 
-Edit the service definition `/lib/systemd/system/nodered.service` and add
-another `Environment=...` line. For example:
+サービス定義`/lib/systemd/system/nodered.service`を編集し、
+新たに`Environment=...`の行を追加します。例:
 
 ```yaml
 ...
@@ -57,8 +57,8 @@ Environment="HTTP_PROXY=my-proxy-server-address"
 ...
 ```
 
-After editing the file, run the following commands to reload the systemd daemon
-and then restart the Node-RED service.
+ファイルを編集したあと、以下のコマンドを実行して
+systemdデーモンをリロードし、そしてNode-REDサービスを再起動します。
 
 ```
 sudo systemctl daemon-reload

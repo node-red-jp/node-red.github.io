@@ -2,82 +2,82 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
-  - workspace
+    label: エディタ
+  - ワークスペース
 toc: toc-editor-guide.html
-title: Workspace
+title: ワークスペース
 ---
 
 <div style="width: 500px" class="figure align-right">
   <img src="../images/editor-default.png" alt="Editor window">
-  <p class="caption">Editor window</p>
+  <p class="caption">エディタウィンドウ</p>
 </div>
 
-The main workspace is where flows are developed by dragging nodes from the palette
-and wiring them together.
+メインワークスペースは、
+パレットからノードをドラッグし、ノード同士をワイヤーで繋ぐことによってフローを開発する場所です。
 
-The workspace has a row of tabs along the top; one for each flow and any subflows
-that have been opened.
+ワークスペースの上部には1列のタブがあります。
+これはそれぞれのフローおよび展開されているサブフローに対応します。
 
 <br style="clear: both;" />
 
-### View tools
+### 表示ツール
 
 <div style="width: 340px; float: right">
  <table class="action-ref">
-  <tr><th colspan="2">Reference</th></tr>
-  <tr><td>Action</td><td><code>core:zoom-in</code></td></tr>
-  <tr><td>Key shortcut</td><td><code>Ctrl/⌘-=</code></td></tr>
+  <tr><th colspan="2">リファレンス</th></tr>
+  <tr><td>動作</td><td><code>core:zoom-in</code></td></tr>
+  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-=</code></td></tr>
  </table>
  <table class="action-ref">
-  <tr><th colspan="2">Reference</th></tr>
-  <tr><td>Action</td><td><code>core:zoom-reset</code></td></tr>
-  <tr><td>Key shortcut</td><td><code>Ctrl/⌘-0</code></td></tr>
+  <tr><th colspan="2">リファレンス</th></tr>
+  <tr><td>動作</td><td><code>core:zoom-reset</code></td></tr>
+  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-0</code></td></tr>
  </table>
  <table class="action-ref">
-  <tr><th colspan="2">Reference</th></tr>
-  <tr><td>Action</td><td><code>core:zoom-out</code></td></tr>
-  <tr><td>Key shortcut</td><td><code>Ctrl/⌘--</code></td></tr>
+  <tr><th colspan="2">リファレンス</th></tr>
+  <tr><td>動作</td><td><code>core:zoom-out</code></td></tr>
+  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘--</code></td></tr>
  </table>
 </div>
 
-The footer of the workspace contains buttons to zoom in and out as well as to
-reset to the default zoom level.
+ワークスペースのフッタには、
+ズームイン、ズームアウト、ズームレベルをデフォルトへとリセットするボタンが含まれています。
 
-It also contains a toggle button for the view navigator.
+また、ビューナビゲータのためのトグルボタンも含まれます。
 
  <div style="width: 349px" class="figure">
    <img src="../images/editor-workspace-navigator.png" alt="Workspace footer with view navigator active">
-   <p class="caption">Workspace footer with view navigator active</p>
+   <p class="caption">ビューナビゲータ起動時のワークスペースフッタ</p>
  </div>
 
 <br style="clear: both;" />
 
 <table class="action-ref">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:toggle-navigator</code></td></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:toggle-navigator</code></td></tr>
+ <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
 </table>
 
-The view navigator provides a scaled down view of the entire workspace, highlighting
-the area currently visible. That area can be dragged around the navigator to quickly
-jump to other parts of the workspace. It is also useful for finding nodes that have
-been 'lost' to the further edges of the workspace.
+ビューナビゲータはワークスペース全体の縮小図を提供し、現在見えている範囲をハイライトします。
+この範囲をナビゲータ内でドラッグすると、
+ワークスペースの他の場所にすばやく移動することができます。
+また、ワークスペースの遠くの端で「迷子」になったノードを発見するために非常に役立ちます。
 
-### Customising the view
+### ビューをカスタマイズする
 
 <table class="action-ref">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:show-user-settings</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-,</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:show-user-settings</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-,</code></td></tr>
 </table>
 
-The workspace view can be customised via the 'View' tab of the User Settings
-dialog.
+ワークスペースビューは、
+ユーザ設定ダイアログの「表示（View）」タブからカスタマイズすることができます。
 
 <br style="clear: both;" />
 
 <div style="width: 450px" class="figure align-right">
   <img src="../images/editor-user-settings-view.png" alt="User Settings View tab">
-  <p class="caption">User Settings View tab</p>
+  <p class="caption">ユーザ設定の表示（View）タブ</p>
 </div>

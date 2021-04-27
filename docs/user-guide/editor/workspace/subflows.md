@@ -2,98 +2,98 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/workspace"
-    label: "workspace"
-  - "subflows"
+    label: "ワークスペース"
+  - "サブフロー"
 toc: toc-editor-guide.html
-title: Subflows
+title: サブフロー
 ---
 
-A subflow is a collection of nodes that are collapsed into a single node in the workspace.
+サブフローとは、ワークスペースでノードの集まりを1つのノードにまとめたものを指します。
 
-They can be used to reduce some visual complexity of a flow, or to package up
-a group of nodes as a reusable flow used in multiple places.
+フローの見た目の複雑さを減らすため、
+または複数の場所で使用する再利用可能なフローとしてノードのグループをまとめるために利用できます。
 
-Once created, the subflow is added to the palette of available nodes. Individual
-instances of the subflow can then be added to the workspace just like any other node.
+作成されたサブフローは利用可能なノードのパレットへ追加されます。
+サブフローの個々のインスタンスは他のノードと同様にワークスペースに追加されます。
 
-*Note:* a subflow cannot contain an instance of itself - either directly or indirectly.
+*Note:* サブフローは直接的であれ間接的であれ、それ自身のインスタンスを含むことができません。
 
-### Creating an empty subflow
+### 空のサブフローを作成する
 
-A subflow can be created by selecting the 'Subflow -> Create subflow' option in
-the menu. This will create a blank subflow and open it in the workspace.
+サブフローは、メニューで「サブフロー -> サブフローを作成」オプションを選択することで作成できます。
+これは空のサブフローを作成し、ワークスペースでサブフローを展開します。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><code>Subflows -&gt; Create subflow</code></td></tr>
- <tr><td>Action</td><td><code>core:create-subflow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
+ <tr><td>メニューオプション</td><td><code>サブフロー -&gt; サブフローを作成</code></td></tr>
+ <tr><td>動作</td><td><code>core:create-subflow</code></td></tr>
 </table>
 
-### Converting nodes to a subflow
+### ノードをサブフローに変換する
 
-It is also possible to convert the current selection of nodes to a subflow by
-selecting the 'Subflow -> Selection to Subflow' option in the menu. The nodes
-will be moved to a new subflow and replaced by a subflow instance node within the
-flow.
+メニューから「サブフロー -> 選択部分をサブフロー化」オプションを選択することで、
+現在選択しているノードをサブフローに変換することもできます。
+このノードは新しいサブフローへと移動し、
+フローではサブフローインスタンスノードに置換されます。
 
 <div class="figure">
   <img src="../images/editor-subflow-create-selection.png" alt="Creating a subflow">
-  <p class="caption">Creating a subflow</p>
+  <p class="caption">サブフローを作成する</p>
 </div>
 
 <div style="width:400px" class="figure align-right">
   <img src="../images/editor-subflow-invalid-selection.png" alt="Invalid subflow selection">
-  <p class="caption">Invalid subflow selection</p>
+  <p class="caption">不正なサブフロー選択</p>
 </div>
 
-This is only possible if any wires coming into the selection are connected to one
-node - as the resulting subflow node can itself only have at most one input.
+サブフローへの変換は選択範囲に入ってくるワイヤーが1つのノードに接続されている場合のみ可能です。
+結果としてサブフローノードは最大1つの入力を持つことができます。
 
 <br style="clear: both" />
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><code>Subflows -&gt; Selection to Subflow</code></td></tr>
- <tr><td>Action</td><td><code>core:convert-to-subflow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
+ <tr><td>メニューオプション</td><td><code>サブフロー -&gt; 選択部分をサブフロー化</code></td></tr>
+ <tr><td>動作</td><td><code>core:convert-to-subflow</code></td></tr>
 </table>
 
 
-### Editing a subflow
+### サブフローを編集する
 
-There are two ways to open a subflow to edit its contents. Either double click
-its node in the palette, or click the 'Edit flow template' button in the edit
-dialog of a subflow instance node.
+サブフローを開いて内容を編集するには2つの方法があります。
+パレットでこのノードをダブルクリックする、
+またはサブフローインスタンスノードの編集ダイアログで「フローのテンプレートを編集」ボタンをクリックします。
 
-The subflow is opened in the workspace as a new tab. Unlike regular flow tabs,
-subflow tabs can be closed to hide them.
+ワークスペースでサブフローは新しいタブとして開かれます。
+一般的なフローのタブとは異なり、サブフロータブは閉じて非表示にすることができます。
 
 <div style="width:616px" class="figure">
   <img src="../images/editor-edit-subflow.png" alt="Editing a subflow">
-  <p class="caption">Editing a subflow</p>
+  <p class="caption">サブフローを編集する</p>
 </div>
 
-#### Inputs & Outputs
+#### 入出力
 
-The inputs and outputs of the subflow are represented by the grey square nodes that
-can be wired into the flow as normal.
+サブフローの入出力は、
+通常どおりフローに繋げることができる灰色の正方形のノードで表示されます。
 
-The toolbar provides options to add and remove these nodes. As with normal
-flows nodes, there can be at most one input and as many outputs as needed.
+ツールバーには、これらのノードを追加および削除するためのオプションがあります。
+通常のフローノードと同様に、最大1つの入力と必要な数の出力があります。
 
-#### Status node
+#### ステータスノード
 
-The toolbar provides an option to add a 'status' output to a subflow. This can
-be used to update the Status of subflow instance nodes.
+ツールバーは、サブフローへの'status'出力の追加をオプションとして提供します。
+これはサブフローインスタンスのノードのステータスを更新するために使用されます。
 
+<a name="editing-subflow-properties"></a>
+#### サブフロープロパティの編集
 
-#### Editing subflow properties
-
-The 'edit properties' button opens the subflow properties dialog. As with the Flow
-properties dialog, the name and description of the subflow can be set.
+「プロパティを編集」ボタンはサブフロープロパティ編集ダイアログを開きます。
+フロープロパティ編集ダイアログでは、サブフローの名称と詳細を設定することができます。
 
 <ul>
     <li style="margin-bottom: 10px"><i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-cog"></i> : Properties - per-instance properties that are exposed as environment variables within the subflow.</li>
@@ -110,24 +110,22 @@ properties dialog, the name and description of the subflow can be set.
   <p class="caption">Subflow edit dialog - properties, module properties, description and appearance tabs</p>
 </div>
 
-##### Properties
+##### プロパティ
 
 <div style="width:487px" class="figure align-right">
-  <img src="../images/editor-edit-subflow-property.png" alt="Editing subflow properties">
+  <img src="../images/editor-edit-subflow-property.png" alt="サブフロープロパティの編集">
   <p class="caption">Editing subflow properties</p>
 </div>
 <div style="width:487px" class="figure align-right">
-  <img src="../images/editor-edit-subflow-property-ui.png" alt="Editing subflow property UI">
+  <img src="../images/editor-edit-subflow-property-ui.png" alt="サブフロープロパティのUI">
   <p class="caption">Editing subflow property UI</p>
 </div>
 
-The 'Properties' tab of the edit dialog can be used to define a set of properties
-that can then be customised for each instance of the subflow. The properties are
-then exposed as environment variables within the subflow.
+編集ダイアログの'Properties'タブは、カスタマイズされる各サブフローのインスタンスのプロパティのセットを定義するのに使用されます。
+プロパティはサブフロー内に環境変数として展開されます。
 
-Each entry in the properties table can be expanded to customise how it is displayed
-when an instance of the subflow is edited. The 'UI Preview' tab provides a preview
-of how they will appear.
+プロパティテーブル内の各エントリはサブフローのインスタンスが編集される際に、どのように表示されるかカスタマイズできます。
+'UI Preview'タブは、それがどう表示されるかのプレビューを提供します。
 
 
 <br style="clear: both;" />
@@ -138,18 +136,18 @@ The Module Properties tab can be used to set additional meta-data about the Subf
 including version, license and module name. These can be used when
 [packaging the Subflow as an npm module](/docs/creating-nodes/subflow-modules).
 
-##### Appearance
+##### 外観
 
-The Appearance tab provides options to:
+外観タブはつぎのオプションを提供します:
 
- - change the palette category the node appears in
- - select whether the node's label is shown
- - change the colour of the node
- - change the icon of the node
- - provide custom port labels.
+ - ノードが表示されるカテゴリの変更
+ - ノードのラベルが表示されるかどうかの選択
+ - ノードの色の変更
+ - ノードのアイコンの変更
+ - ポートラベルのカスタマイズ
 
 
-#### Deleting a subflow
+#### サブフローを削除する
 
-The 'delete subflow' button in the subflow toolbar can be used to remove the subflow
-and *all* instances of it.
+サブフローツールバーの「サブフローを削除」ボタンは、
+サブフローとその*すべて*のインスタンスノードを削除するために利用できます。

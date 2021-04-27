@@ -1,141 +1,141 @@
 ---
 layout: docs-faq
 toc: toc-user-guide.html
-title: Interacting with Arduino
+title: Arduinoと連携する
 slug: arduino
 redirect_from:
   - /docs/hardware/arduino
 ---
 
-There are several ways to interact with an Arduino using Node-RED. They
-all assume the Arduino is connected to the host computer via a USB serial
-connection.
+Node-REDを利用してArduinoと連携するにはいくつかの方法があります。
+これらの方法はすべてArduinoがUSBシリアル接続を介して、
+ホストコンピュータに接続されていると仮定しています。
 
-*Note:* you can't use both the Arduino IDE and the Arduino nodes at the same time
-as they will conflict. You will need to stop Node-RED running if you wish
-re-program the Arduino from the IDE.
+*Note:* 競合が発生するため、Arduino IDEとArduinoノードの両方を同時に利用することはできません。
+IDEからArduinoを再プログラムしたい場合、
+Node-REDの実行を停止する必要があります。
 
-### Serial
+### シリアル
 
-As the Arduino appears as a Serial device, the Serial in/out nodes can be used
-to communicate with it.
+Arduinoはシリアルデバイスと認識されるため、
+Serial in/outノードを利用して通信することができます。
 
-This is normally the case if you program the Arduino with the IDE, as you can
-then send and receive input over the serial port to interact with your creation.
-Just make sure you set the serial port speed (baud rate) to be the same at both
-ends.
+IDEを利用してArduinoをプログラムすると、
+シリアルポートを介して入力を送受信して作成物と通信できるため、一般的にはこれが当てはまります。
+シリアルポートの速度（ボー・レート）が
+両端で同じになるように設定してください。
 
 ### Firmata
 
-[Firmata](http://firmata.org/) is a protocol for communicating between an
-Arduino (as well as other microcontrollers) and the host computer, providing
-direct access to the IO pins.
+[Firmata](http://firmata.org/)は、
+Arduino（および他のマイクロコントローラ）とホストコンピュータの通信をおこなうためのプロトコルであり、
+IOピンへの直接アクセスを可能にします。
 
-#### Installation
+#### インストール
 
-First you need to load the default Firmata sketch onto the Arduino using the
-standard Arduino software download tools. This is usually found in the Arduino
-IDE under the menu:
+まず、スタンダードArduinoソフトウェアダウンロードツールを利用して、
+デフォルトのFirmataスケッチをArduinoにロードする必要があります。
+通常の場合、これはArduino IDEの以下のメニューにあります。:
 
         Files - Examples - Firmata - Standard Firmata
 
-You then need to install the Node-RED Arduino nodes into the palette.
+そして、パレットにNode-REDのArduinoノードをインストールする必要があります。
 
-<div class="doc-callout">Please check that `npm -v` is at least version 2.x
-- if not - update it using
+<div class="doc-callout">`npm -v`が最低でもversion 2.xであることを確認してください。
+そうでない場合、以下のようにアップデートをおこなってください。
 
         sudo npm i -g npm@latest
         hash -r
 </div>
 
-Change directory to your Node-RED user directory, this is normally `~/.node-red`
+Node-REDのユーザディレクトリ、標準では`~/.node-red`にディレクトリ移動します。
 
         cd ~/.node-red
 
-Then install the Arduino nodes
+そして、Arduinoノードをインストールします。
 
         npm install node-red-node-arduino
 
-Finally restart Node-RED, and reload the editor in the browser.
-There should now be two new Arduino nodes in the palette.
+最後にNode-REDを再起動し、ブラウザでエディタをリロードします。
+パレットに2つの新しいArduinoノードがあるはずです。
 
-#### Blink
+#### 点滅
 
-To run a "blink" flow that uses LED 13, copy the following flow and paste it
-into the Import Nodes dialog (*Import From - Clipboard* in the dropdown menu, or
-Ctrl-i, Ctrl-v). After clicking okay, click in the workspace to place the new nodes.
+LED13を利用する「点滅」フローを実行するため、
+以下のフローをコピーして読み込みノードダイアログに貼り付けます（ドロップダウンメニューの*読み込み - クリップボード*またはCtrl-i、Ctrl-v）。
+読み込みをクリックしたあと、ワークスペース内をクリックして新しいノードを配置します。
 
     [{"id":"d7663aaf.47194","type":"arduino-board","device":""},{"id":"dae8234f.2517e","type":"inject","name":"0.5s tick","topic":"","payload":"","payloadType":"date","repeat":"0.5","crontab":"","once":false,"x":150,"y":100,"z":"359a4b52.ca65b4","wires":[["56a6f8f2.a95908"]]},{"id":"2db61802.d249e8","type":"arduino out","name":"","pin":"13","state":"OUTPUT","arduino":"d7663aaf.47194","x":570.5,"y":100,"z":"359a4b52.ca65b4","wires":[]},{"id":"56a6f8f2.a95908","type":"function","name":"Toggle output on input","func":"\n// If it does exist make it the inverse of what it was or else initialise it to false\n// (context variables persist between calls to the function)\ncontext.level = !context.level || false;\n\n// set the payload to the level and return\nmsg.payload = context.level;\nreturn msg;","outputs":1,"noerr":0,"x":358,"y":100,"z":"359a4b52.ca65b4","wires":[["2db61802.d249e8"]]}]
 
-This flow is set to automatically try to detect the board on a a serial port.
-If you need to change that, double click
-the node labelled `Pin 13` - the Arduino node. Click the pencil icon and change
-the port definition as needed.
+このフローはシリアルポート上の基板を自動的に検出しようとするように設定されています。
+これを変更する必要がある場合、
+`Pin 13`とラベルされたノード - Arduinoノードをダブルクリックします。
+鉛筆アイコンをクリックし、必要なポート設定を変更します。
 
-Click the deploy button and the flow should start running. LED 13 should start
-toggling on and off once a second.
+デプロイボタンをクリックし、フローを実行します。
+LED13は1秒に1回オンとオフを切り替えます。
 
-#### Capabilities
+#### 機能
 
-The Arduino output node currently supports three modes of operation:
+現在、Arduino outputノードは以下の3つの動作モードをサポートしています。:
 
- - Digital - 0 or 1
- - Analogue - 0 to 255
- - Servo - 0 to 180
+ - デジタル - 0または1
+ - アナログ - 0から255
+ - サーボ - 0から180
 
-The Arduino input node, available in the palette but not used in this example,
-can support both Digital and Analog pins. The input will send a message whenever
-it detects a change. This may be okay for digital inputs as they tend to be
-fairly stable, but analog readings often end up being at the full sample rate
-(default: 40 times a second...). This can be changed in the configuration of the
-serial port to reduce it to a more manageable rate.
+パレットでは使用可能になっていますが、
+この例では使用していないArduino inputノードはデジタルおよびアナログピンをサポートしています。
+このinputノードは変更を検出する度にメッセージを送信します。
+デジタル入力はかなり安定している傾向があるため、問題ないかもしれませんが、
+アナログの測定値はしばしばフルサンプルレート（デフォルト：毎秒40回...）になってしまいます。
+シリアルポート設定を変更して、管理しやすいレートに低下させることができます。
 
-Details of the Node.js arduino-firmata library can be found [here](https://www.npmjs.com/package/arduino-firmata).
+Node.js arduino-firmataライブラリの詳細は[こちら](https://www.npmjs.com/package/arduino-firmata)で確認できます。
 
 ***
 
 ### Johnny-Five
 
-You may also use the popular [Johnny-Five](https://www.npmjs.com/package/johnny-five)
-library as this adds capabilities like I2C.
+I2Cのような機能を追加するため、
+人気のある[Johnny-Five](https://www.npmjs.com/package/johnny-five)ライブラリを使うこともできます。
 
-One way to use it is via Luis Montes'
-[node-red-contrib-gpio](https://www.npmjs.com/package/node-red-contrib-gpio)
-node, which also adds support for a number of other boards, such as
-Raspberry Pi, BeagleBone Black, Galileo/Edison, Blend Micro, LightBlue Bean,
-Electric Imp and Spark Core, in a consistent manner.
+これを利用する方法の1つは、
+Luis Montesの[node-red-contrib-gpio](https://www.npmjs.com/package/node-red-contrib-gpio)ノードを利用することです。
+このノードは、
+Raspberry Pi、BeagleBone Black、Galileo/Edison、Blend Micro、LightBlue Bean、Electric ImpやSpark Coreなどのような他の様々な基板に対しても、
+同じ手法でサポートを追加します。
 
-Another way is to make it available within functions.
-This can be achieved by editing the globalContextSettings sections of settings.js to be
+もうひとつの方法は、functionノード内で利用できるようにすることです。
+settings.jsのglobalContextSettingsセクションを以下のように編集することで達成できます。
 
     functionGlobalContext: {
        jfive:require("johnny-five"),                        // this is the reference to the library
        j5board:require("johnny-five").Board({repl:false})   // this actually starts the board link...
     },
 
-We start the board link here so that multiple functions within the workspace can
-use it, though you should be careful to only access each pin once.
+ここで基板リンクを開始して、ワークスペース内で複数の機能を使用できるようにします。
+ただし、各ピンに一度だけアクセスするように注意する必要があります。
 
-Finally install the npm from within your Node-RED home directory
+最後に、Node-REDのホームディレクトリ内からnpm installをおこないます。
 
     cd ~/.node-red
     npm install johnny-five
 
-and then you may access all the [richness](https://github.com/rwaldron/johnny-five/wiki)
-of Johnny-Five from within functions...
+そして、functionノード内からJohnny-Fiveの[richness](https://github.com/rwaldron/johnny-five/wiki)の
+すべてにアクセスすることができます...
 
     var five = context.global.jfive;    // create a shorter alias
     var led = new five.Led(13);         // instatiate the led
     led.blink(500);                     // blink it every 500 ms
 
-*Note:* this is a simple, but poor example as the led pin is created each time the
-function is called... so only ok if you only deploy it and call it once.
+*Note:* これは単純ですが、functionノードが呼び出される度にLEDピンが生成されるため、不適切な例です。
+つまり、デプロイして1回呼び出すだけでいいのです。
 
-#### Blink 2
+#### 点滅2
 
-The flow below shows a more advanced example that turns on and off a flashing led,
-and shows the use of context to hold the state and a single instance of the led pin.
+以下のフローは点灯しているLEDのオンとオフを切り替える、より高度な例であり、
+LEDピンの状態と単一インスタンスを保持するためのコンテキストの使用方法を示しています。
 
-It can be imported to the workspace by using `ctrl-c (copy) / ctrl-i (import) / ctrl-v (paste)`.
+これは`ctrl-c (copy) / ctrl-i (import) / ctrl-v (paste)`を利用することでワークスペースにインポートできます。
 
     [{"id":"62f58834.9d0a78","type":"inject","name":"","topic":"","payload":"1","payloadType":"string","repeat":"","crontab":"","once":false,"x":226,"y":326,"z":"359a4b52.ca65b4","wires":[["ae84ad08.517b5"]]},{"id":"ae84ad08.517b5","type":"function","name":"1 = start flash, 0 = stop","func":"var five = context.global.jfive;\ncontext.led = context.led || new five.Led(13);\ncontext.switch = context.switch || 0;\ncontext.switch = msg.payload;\nconsole.log(typeof(context.switch));\nif (context.switch == 1) {\n    context.led.blink(500);\n}\nif (context.switch == 0) {\n    context.led.stop().off();\n}\nreturn msg;","outputs":1,"noerr":0,"x":447,"y":349,"z":"359a4b52.ca65b4","wires":[["df638a80.209c78"]]},{"id":"df638a80.209c78","type":"debug","name":"","active":true,"console":"false","complete":"false","x":645,"y":349,"z":"359a4b52.ca65b4","wires":[]},{"id":"d79bc51d.286438","type":"inject","name":"","topic":"","payload":"0","payloadType":"string","repeat":"","crontab":"","once":false,"x":224.4000244140625,"y":364.60003662109375,"z":"359a4b52.ca65b4","wires":[["ae84ad08.517b5"]]}]

@@ -1,0 +1,144 @@
+<html lang="en" class="nivo-lightbox-notouch">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="ハードウエア技術者によるNode-REDの活用事例">
+    <meta property="og:type" content="Conference">
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/120267.html">
+    <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/120267.png">
+    <meta property="og:site_name" content="Node-RED Con Tokyo 2020">
+    <meta property="og:description" content="自社のハードウエアを活用したIoTのシステムを開発し、現在ではお客様に利用していただいています。IoTシステムはセンサーの情報を無線でゲートウェイに飛ばし、ゲートウェイでは登録されているセンサかを判断して、お客様専用のDBにデータを保存するという一般的な構成をしています。センサーの登録はクラウド上に行い、クラウド上の情報とゲートウェイが連動して動作する仕組みも入っています。これらはプロトタイプの段階ではあまり意識しない処理ですが、運用時には必要です。この処理をNode-REDで実現したらフローが複雑化しました。最終的に、自社のハードウエアを他社に利用していただきたいと考えてNode-REDを使用していましたが、現在は自社のみでそのシステムを利用しています。この問題を解消するために、複数のNodeを一つにまとめる試みを開始しました。トークでは複雑化したフローと対策後のフローを見ていたけたらと思います。">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content="https://nodered.jp/noderedcon2020/assets/html/twitter/120267.html" />
+    <meta property="og:title" content="ハードウエア技術者によるNode-REDの活用事例" />
+    <meta property="og:description" content="自社のハードウエアを活用したIoTのシステムを開発し、現在ではお客様に利用していただいています。IoTシステムはセンサーの情報を無線でゲートウェイに飛ばし、ゲートウェイでは登録されているセンサかを判断して、お客様専用のDBにデータを保存するという一般的な構成をしています。センサーの登録はクラウド上に行い、クラウド上の情報とゲートウェイが連動して動作する仕組みも入っています。これらはプロトタイプの段階ではあまり意識しない処理ですが、運用時には必要です。この処理をNode-REDで実現したらフローが複雑化しました。最終的に、自社のハードウエアを他社に利用していただきたいと考えてNode-REDを使用していましたが、現在は自社のみでそのシステムを利用しています。この問題を解消するために、複数のNodeを一つにまとめる試みを開始しました。トークでは複雑化したフローと対策後のフローを見ていたけたらと思います。" />
+    <meta property="og:image" content="https://nodered.jp/noderedcon2020/assets/img/twitter/120267.png" />
+
+    <title>ハードウエア技術者によるNode-REDの活用事例</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/bootstrap.min.css">
+    <!-- Icon -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/fonts/line-icons.css">
+    <!-- Nivo Lightbox -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/nivo-lightbox.css">
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/animate.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/main.css">
+    <!-- Responsive Style -->
+    <link rel="stylesheet" type="text/css" href="https://nodered.jp/noderedcon2020/assets/css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://nodered.jp/noderedcon2020/favicon.ico">
+
+  </head>
+  <body>
+
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg bg-inverse fixed-top scrolling-navbar top-nav-collapse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a href="https://nodered.jp/noderedcon2020/index.html" class="navbar-brand"><img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt=""></a>       
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lni-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+              <li class="nav-item active">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#header-wrap">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#about">
+                  About
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#schedules">
+                  Sessions
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#speaker">
+                  Speakers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#gallery">
+                  Gallery
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#sponsors">
+                  Support
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#organizer">
+                  Organizer
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://nodered.jp/noderedcon2020/#contactus">
+                  Contact us
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <img src="https://nodered.jp/noderedcon2020/assets/img/twitter/120267.png" style="width:100%">
+
+    </header>
+    <!-- Header Area wrapper End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin-top:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Title</h2>
+        <p class="banner-desc">ハードウエア技術者によるNode-REDの活用事例</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <!-- Map Section Start *changed to CoC section by Taiji -->
+    <section class="row justify-content-center" style="margin:15">
+      <div class="container-fluid col-lg-6 col-sm-12 text-center">
+        <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Description</h2>
+        <p class="banner-desc">自社のハードウエアを活用したIoTのシステムを開発し、現在ではお客様に利用していただいています。IoTシステムはセンサーの情報を無線でゲートウェイに飛ばし、ゲートウェイでは登録されているセンサかを判断して、お客様専用のDBにデータを保存するという一般的な構成をしています。センサーの登録はクラウド上に行い、クラウド上の情報とゲートウェイが連動して動作する仕組みも入っています。これらはプロトタイプの段階ではあまり意識しない処理ですが、運用時には必要です。この処理をNode-REDで実現したらフローが複雑化しました。最終的に、自社のハードウエアを他社に利用していただきたいと考えてNode-REDを使用していましたが、現在は自社のみでそのシステムを利用しています。この問題を解消するために、複数のNodeを一つにまとめる試みを開始しました。トークでは複雑化したフローと対策後のフローを見ていたけたらと思います。</p>
+      </div>
+    </section>
+    <!-- Map Section End -->
+
+    <footer>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <div class="footer-logo">
+              <img src="https://nodered.jp/noderedcon2020/assets/img/logo.png" alt="">
+            </div>
+            <div class="social-icons-footer">
+              <ul>
+                <li class="facebook"><a target="_blank" href="https://www.facebook.com/groups/noderedjp/"><i class="lni-facebook-filled"></i></a></li>
+                <li class="twitter"><a target="_blank" href="https://twitter.com/noderedjp"><i class="lni-twitter-filled"></i></a></li>
+                <!-- <li class="linkedin"><a target="_blank" href="3"><i class="lni-linkedin"></i></a></li> -->
+              </ul>
+            </div>
+            <div class="site-info">
+              <p>Copyright© Node-RED Con 2020. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

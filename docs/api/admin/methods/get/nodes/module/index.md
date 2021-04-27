@@ -6,34 +6,34 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - get module info
 ---
 
-Get a node module's information.
+ノードの情報を取得します。
 
-Requires permission: <code>nodes.read</code>
+必要となる権限: <code>nodes.read</code>
 
 ### Headers
 
 Header          | Value
 ----------------|-------
-`Authorization` | `Bearer [token]` - if authentication is enabled
+`Authorization` | `Bearer [token]` - 認証が有効になっている場合
 
 ### Arguments
 
 Path Component | Description
 ---------------|------------
-`module`       | The name of the module
+`module`       | モジュール名
 
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|------------
-`200`       | Success        | A [Node Module](/docs/api/admin/types#node-module) object. See example response body
-`400`       | Bad request    | An [Error response](/docs/api/admin/errors).
-`401`       | Not authorized | _none_
-`404`       | Not found      | _none_
+Status Code | Reason           | Response
+------------|------------------|--------------
+`200`       | 成功             | [Node Module](/docs/api/admin/types#node-module) オブジェクト。レスポンスボディの例を参照
+`400`       | 不正なリクエスト | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった | _無し_
+`404`       | 見つからなかった | _無し_
 
 
 {% highlight json %}

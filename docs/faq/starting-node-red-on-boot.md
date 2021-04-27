@@ -1,140 +1,140 @@
 ---
 layout: docs-faq
 toc: toc-user-guide.html
-title: Starting Node-RED on boot
-slug: start on boot
+title: ブート時にNode-REDを起動する
+slug: ブート時に起動
 ---
 
-There are many methods of starting, stopping and monitoring applications at boot
-time. This guide highlights some of the possible ways of doing it.
+起動時にアプリケーションを実行、停止および監視する方法は数多くあります。
+このガイドはこれを実行できるいくつかの方法を取り上げています。
 
-### Raspberry Pi, Debian, Ubuntu
+### Raspberry Pi、Debian、Ubuntu
 
-The [Raspberry Pi install script](/docs/getting-started/raspberrypi) we provide
-can be used on any Debian-like operating system.
+私たちが提供している[Raspberry Piインストールスクリプト](/docs/getting-started/raspberrypi)は
+他のDebianのようなオペレーションシステムで利用することができます。
 
-This script installs Node-RED as a [systemd](https://wiki.debian.org/systemd) service.
-For more information, read the [Running on Raspberry Pi](/docs/getting-started/raspberrypi#autostart-on-boot)
-guide.
+このスクリプトは[systemd](https://wiki.debian.org/systemd)サービスとしてNode-REDをインストールします。
+さらなる情報は、
+[Raspberry Piで実行する](/docs/getting-started/raspberrypi#起動時に自動起動する)というガイドを読んでください。
 
-If you are not using Raspbian, you may need to edit the service file to suit
-your local user id and environment. Details for how to do that are available
-[here](/docs/faq/customising-systemd-on-pi).
+Raspbianを使用していない場合、
+ローカルユーザのIDと環境に適したようにサービスファイルを編集する必要があるかもしれません。
+編集方法の詳細は[こちら](/docs/faq/customising-systemd-on-pi)で入手することができます。
 
-### RPM based Linux, RedHat, Fedora, CentOS
+### RPMベースのLinux、RedHat、Fedora、CentOS
 
-We also provide an install script for RPM based linux [available here](https://github.com/node-red/linux-installers), that also sets up systemd.
+RPMベースのLinuxのためのインストールスクリプトを[こちらで入手できるように](https://github.com/node-red/linux-installers)提供しており、こちらもsystemdを設定します。
 
-### Other Linux, OSX
+### その他Linux、OSX
 
-The guide below sets out what we believe to be the most straight-forward for
-the majority of users. For Windows, PM2 does not autorun as a service -
-you may prefer the [NSSM option](#alternative-options) below.
+以下のガイドは大多数のユーザにとって最もわかりやすいと考えているものを提示しています。
+Windowsでは、PM2はサービスとして自動起動しません - 
+以下の[NSSMを利用するという手段](#その他の手段)をお勧めします。
 
-#### Using PM2
+#### PM2を利用する
 
-[PM2](https://github.com/Unitech/pm2) is a process manager for Node.js. It makes
-it easy to run applications on boot and ensure they are restarted if necessary.
+[PM2](https://github.com/Unitech/pm2)はNode.jsのプロセスマネージャです。
+これは起動時にアプリケーションを実行することを簡単にし、必要であれば再起動することを保証します。
 
-#### 1. Install PM2
+#### 1. PM2をインストールする
 
     sudo npm install -g pm2
 
 <div class="doc-callout">
-<em>Note</em> : <code>sudo</code> is required if running as a non-root user on Linux or OS X. If
-running on Windows, you will need to run in a <a href="https://technet.microsoft.com/en-gb/library/cc947813%28v=ws.10%29.aspx">command shell as Administrator</a>,
-without the <code>sudo</code> command.
+<em>Note</em> : Linux/OS X上でroot以外のユーザーとして実行している場合に<code>sudo</code>が必要です。
+Windows上で実行している場合、
+<code>sudo</code>コマンドなしで<a href="https://technet.microsoft.com/en-gb/library/cc947813%28v=ws.10%29.aspx">管理者としてコマンドシェルで実行</a>する必要があります。
 </div>
 
 <div class="doc-callout">
-If running on Windows, you should also ensure <code>tail.exe</code> is on your path, as
-described <a href="https://github.com/Unitech/PM2/blob/development/ADVANCED_README.md#windows">here</a>.
+Windows上で実行している場合、
+<a href="https://github.com/Unitech/PM2/blob/development/ADVANCED_README.md#windows">こちら</a>に記載されているように<code>tail.exe</code>がパス上に存在することを確認する必要があります。
 </div>
 
-#### 2. Determine the exact location of the `node-red` command.
+#### 2. `node-red`コマンドの正しい位置を定義する。
 
-If you have done a global install of node-red, then on Linux/OS X the `node-red`
-command will probably be either: `/usr/bin/node-red` or `/usr/local/bin/node-red`.
-The command `which node-red` can be used to confirm the location.
+Node-REDのグローバルインストールをおこなった場合、
+Linux/OS Xにおいて`node-red`コマンドはおそらく以下のようになります: `/usr/bin/node-red`または`/usr/local/bin/node-red`。
+コマンド`which node-red`は位置を確認するために利用できます。
 
-If you have done a local install, it will be `node_modules/node-red/bin/node-red`,
-relative to where you ran `npm install` from.
+ローカルインストールした場合、
+`npm install`を実行した場所から相対的に`node_modules/node-red/bin/node-red`の位置になります。
 
-#### 3. Tell PM2 to run Node-RED
+#### 3. Node-REDを実行することをPM2に指示する
 
-The following command tells PM2 to run Node-RED, assuming `/usr/bin/node-red` as
-the location of the `node-red` command.
+以下のコマンドはPM2にNode-REDを実行することを指示しており、
+`/usr/bin/node-red`は`noode-red`コマンドの位置と考えてください。
 
-The `--` argument must appear before any arguments you want to pass to node-red.
+引数`--`は必ずnode-redに渡したい他の引数よりも前に現れなければなりません。
 
     pm2 start /usr/bin/node-red -- -v
 
 <div class="doc-callout">
-<em>Note</em> : if you are running on a device like the Raspberry Pi or BeagleBone
-Black that have a constrained amount of memory, you must pass an additional argument:
+<em>Note</em> : Raspberry PiやBeagleBone Blackのようなメモリ容量が制限されたデバイスで実行する場合、
+追加引数を渡すべきです:
 
 <pre>pm2 start /usr/bin/node-red --node-args="--max-old-space-size=128" -- -v</pre>
 </div>
 
 <div class="doc-callout">
-<em>Note</em> : if you want to run as the root user, you must use the `--userDir`
-option to specify where Node-RED should store your data.
+<em>Note</em> : rootユーザとして実行したい場合、you must use the `--userDir`
+Node-REDがデータを保管する場所を指定するために`--userDir`オプションを利用すべきです。
 </div>
 
-This will start Node-RED in the background. You can view information about the
-process and access the log output using the commands:
+これによってNode-REDがバックグラウンドで起動します。
+以下のコマンドを利用することでプロセスについての情報を確認し、ログ出力にアクセスすることができます。
 
     pm2 info node-red
     pm2 logs node-red
 
-More information about managing processes under PM2 is available [here](https://github.com/Unitech/pm2#process-management).
+PM2によるプロセスを管理についてのさらなる情報は、[こちら](https://github.com/Unitech/pm2#process-management)で得ることができます。
 
-#### 4. Tell PM2 to run on boot
+#### 4. 起動時に実行することをPM2に指示する
 
-PM2 is able to generate and configure a startup script suitable for the platform
-it is being run on.
+PM2は実行されているプラットフォームに適したスタートアップスクリプトを作成し、
+設定することができます。
 
-Run these commands and follow the instructions it provides:
+これらのコマンドを実行し、表示される指示に従ってください:
 
     pm2 save
     pm2 startup
 
-for newer Linux systems that use **systemd** use
+**systemd**を利用する新しいLinuxシステムでは以下のようにします
 
     pm2 startup systemd
 
 <div class="doc-callout">
-<em>Temporary Note:</em> There's an <a href="https://github.com/Unitech/PM2/issues/1321">
-open issue</a> on PM2 on GitHub which highlights an issue that has been introduced recently.
-Linux users need to manually edit the generated `/etc/init.d/pm2-init.sh` file and replace
+<em>一時的なNote:</em> GitHubのPM2では<a href="https://github.com/Unitech/PM2/issues/1321">オープンになっているissue</a>が存在し、
+最近広められた課題を強調しています。
+Linuxユーザは作成された`/etc/init.d/pm2-init.sh`ファイルを手動で編集し、以下の
 
 <pre>export PM2_HOME="/root/.pm2"</pre>
 
-to point at the correct directory, which would be like:
+を、以下のような正しいディレクトリを指すように置換する必要があります:
 
 <pre>export PM2_HOME="/home/{youruser}/.pm2"</pre>
 </div>
 
-#### 5. Reboot
+#### 5. 再起動
 
-Finally, reboot and check everything starts as expected.
+最後に、再起動して期待通りに全てが起動しているかを確認します。
 
 ### Windows
 
-PM2 does not autorun as a service on Windows. An alternative option is to use NSSM,
-an example of which is available from the community link below.
+PM2はWindowsではサービスとして自動起動しません。
+他の選択肢としてはNSMMを利用するという手段があります。NSSMの例は以下のコミュニティのリンクから確認できます。
 
 
-### Alternative options
+### その他の手段
 
-There are many alternative approaches. The following are some of those created
-by members of the community.
+その他多くの手段があります。
+以下のうちいくつかはコミュニティのメンバーによって作成されました。
 
- - [A systemd script (used by the Pi pre-install)](https://raw.githubusercontent.com/node-red/linux-installers/master/resources/nodered.service) by @NodeRED (linux)
- - [A systemd script](https://gist.github.com/Belphemur/3f6d3bf211b0e8a18d93) by Belphemur (linux)
- - [An init.d script](https://gist.github.com/bigmonkeyboy/9962293)  by dceejay (linux)
- - [An init.d script](https://gist.github.com/Belphemur/cf91100f81f2b37b3e94) by Belphemur (linux)
- - [A Launchd script](https://gist.github.com/natcl/4688162920f368707613) by natcl (OS X)
- - [Running as a Windows service using NSSM](https://gist.github.com/dceejay/576b4847f0a17dc066db) by dceejay
- - [Running as Windows/OS X service](http://www.hardill.me.uk/wordpress/2014/05/30/running-node-red-as-a-windows-or-osx-service/)  by Ben Hardill
- - [An rc.d script](https://gist.github.com/apearson/56a2cd137099dbeaf6683ef99aa43ce0) by apearson (freebsd)
+ - [systemdスクリプト（Raspberry Piのプリインストールに利用されます）](https://raw.githubusercontent.com/node-red/linux-installers/master/resources/nodered.service) by @NodeRED (linux)
+ - [systemdスクリプト](https://gist.github.com/Belphemur/3f6d3bf211b0e8a18d93) by Belphemur (linux)
+ - [init.dスクリプト](https://gist.github.com/bigmonkeyboy/9962293)  by dceejay (linux)
+ - [init.dスクリプト](https://gist.github.com/Belphemur/cf91100f81f2b37b3e94) by Belphemur (linux)
+ - [Launchdスクリプト](https://gist.github.com/natcl/4688162920f368707613) by natcl (OS X)
+ - [NSSMを利用してWindowsサービスとして実行する](https://gist.github.com/dceejay/576b4847f0a17dc066db) by dceejay
+ - [Windows/OS Xサービスとして実行する](http://www.hardill.me.uk/wordpress/2014/05/30/running-node-red-as-a-windows-or-osx-service/)  by Ben Hardill
+ - [rc.dスクリプト](https://gist.github.com/apearson/56a2cd137099dbeaf6683ef99aa43ce0) by apearson (freebsd)

@@ -1,29 +1,29 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Node appearance
-slug: appearance
+title: 外観
+slug: 外観
 ---
 
-There are three aspects of a node's appearance that can be customised; the icon,
-background colour and its label.
+ノードの見た目として、
+アイコン、背景色、ラベルの3点を変更できます。
 
-### Icon
+### アイコン
 
-The node's icon is specified by the `icon` property in its definition.
+ノードのアイコンは、定義内の`icon`プロパティに指定します。
 
-The value of the property can be either a string or a function.
+プロパティの値は、文字列または関数を設定できます。
 
-If the value is a string, that is used as the icon.
+プロパティの値が文字列の場合は、その文字列をアイコン名として扱います。
 
-If the value is a function, it will get evaluated when the node is first loaded,
-or after it has been edited. The function is expected to return the value to use
-as the icon.
+プロパティの値が関数の場合は、
+ノードが最初に読み込まれた時、またはノードが編集された後に評価されます。
+関数はアイコン名として使う文字列を返すようにしてください。
 
-The function will be called both for nodes in the workspace, where `this` references
-a node instance, as well as for the node's entry in the palette. In this latter case,
- `this` will not refer to a particular node instance and the function *must* return
- a valid value.
+関数は、ワークスペース上のノード（`this`が参照するノードインスタンス）と、
+パレット上のノードの両方のアイコンを表示するために使用されます。
+パレット上のノード向けの場合、`this`は特定のノードインスタンスを参照しません。
+関数は有効な値を返す*必要があります。*
 
 {% highlight javascript %}
 ...
@@ -31,13 +31,13 @@ icon: "file.png",
 ...
 {% endhighlight %}
 
-The icon can be either:
+アイコンは次のいずれかとなります:
 
- - the name of a stock icon provided by Node-RED,
- - the name of a custom icon provided by the module,
- - a Font Awesome 4.7 icon
+ - Node-REDによって用意されたアイコンの名前
+ - モジュールによって用意されるカスタムアイコンの名前
+ - Font Awesome 4.7のアイコン
 
-#### Stock icons
+#### 用意されたアイコン
 
 <style>
 .nr-icon-list {
@@ -76,23 +76,14 @@ The icon can be either:
 <li><img src="images/white-globe.svg"/> white-globe.svg</li>
 </ul>
 
-**Note**: In Node-RED 1.0, all of these icons have been replaced with SVG alternatives
-for a better appearance. To ensure backward compatibility, the editor will automatically
-swap any request for the png version for the SVG version if it is available.
+**注意**: Node-RED 1.0では、これらすべてのアイコンはより良い表示のためSVGに代替されました。
+後方互換を確保するため、可能な場合はエディタが自動的にSVGへのリクエストをpngへのリクエストに置き換えます。
 
-#### Custom icon
+#### Font Awesomeアイコン
 
-A node can provide its own icon in a directory called `icons` alongside its `.js`
-and `.html` files. These directories get added to the search path when the editor
-looks for a given icon filename. Because of this, the icon filename must be unique.
+Node-REDは[Font Awesome 4.7のアイコン](https://fontawesome.com/v4.7.0/icons/)のフルセットを同梱しています。
 
-The icon should be white on a transparent background, with a 2:3 aspect ratio, with a minimum of 40 x 60 in size.
-
-#### Font Awesome icon
-
-Node-RED includes the full set of [Font Awesome 4.7 icons](https://fontawesome.com/v4.7.0/icons/).
-
-To specify a FA icon, the property should take the form:
+Font Awesomeアイコンを指定するには、次のプロパティを指定します:
 
 {% highlight javascript %}
 ...
@@ -100,18 +91,29 @@ icon: "font-awesome/fa-automobile",
 ...
 {% endhighlight %}
 
-#### User defined icon
+#### 独自アイコン
 
-Individual node icons can be customised by the user within the editor on the 'appearance'
-tab of the node's edit dialog.
+ノードの`.js`ファイルや`.html`ファイルと同じディレクトリに存在する`icons`ディレクトリの中に、ノード固有の独自アイコンを配置します。
+アイコンのファイル名を指定すると、エディタは本ディレクトリ内からアイコンを探し出します。
+そのため、アイコンのファイル名は一意にする必要があります。
 
-**Note**: If a node has an `icon` property in its `defaults` object, its icon
-cannot be customised. For example, the `ui_button` node of `node-red-dashboard`.
+アイコンは、背景を透過色にしたアスクペクト比2:3、最小でも40 x 60ピクセルの白い画像にしてください。
 
-### Background Colour
+#### ユーザ定義アイコン
 
-The node background colour is one of the main ways to quickly distinguish different
-node types. It is specified by the `color` property in the node definition.
+1つもしくは複数のアイコンファイルを含むインストール済のモジュール名または`node-red`のコアノードの名称が左に表示されます。
+モジュールのアイコンファイルの名前が右に表示されます。
+
+ユーザーは、各ノードのアイコンを
+エディター内にあるノードの編集ダイアログの'外観'タブでカスタマイズできます。
+
+**注意**: ノードがデフォルトの`icon`プロパティを持っている場合、ノードのアイコンは上書きすることができません。
+たとえば、`node-red-dashboard`の`ui_button`ノードなどがそれです。
+
+### 背景色
+
+ノードの背景色は、異なるノードの型を素早く区別するための主な手段の1つです。
+ノードの背景色は、ノード定義の`color`プロパティに定義してください。
 
 {% highlight javascript %}
 ...
@@ -119,10 +121,10 @@ color: "#a6bbcf",
 ...
 {% endhighlight %}
 
-We have used a muted palette of colours. New nodes should try to find a colour that
-fits with this palette.
+Node-REDでは落ち着いた色を採用しています。 
+新たなノードは、この色に合うようにしてみてください。
 
-Here are some of the commonly used colours:
+以下は、ノードの背景色として良く使われる色です。:
 
 
 
@@ -168,27 +170,27 @@ text-align: center;
 </ul>
 
 
-### Labels
+### ラベル
 
-There are four label properties of a node; `label`, `paletteLabel`, `outputLabel` and `inputLabel`.
+ノードのラベルについては、`label`、`paletteLabel`、`outputLabel`、`inputLabel`の4つのプロパティがあります。
 
-#### Node label
+#### ノードラベル
 
-The `label` of a node in the workspace can either be a static piece of text, or
-it can be set dynamically on a per-node basis according to the properties of the node.
+ワークスペース内のノードの`label`は静的なテキストにもできますし、
+各ノード毎のプロパティに基づき動的に設定することもできます。
 
-The value of the property can be either a string or a function.
+プロパティに設定できる値は文字列または関数です。
 
-If the value is a string, that is used as the label.
+値が文字列の場合は、それがそのまま使用されます。
 
-If the value is a function, it will get evaluated when the node is first loaded,
-or after it has been edited. The function is expected to return the value to use
-as the label.
+値が関数の場合は、ノードが最初にロードされたタイミング、
+またはノードが編集された段階で評価されます。
+関数はラベルとして利用する値を返却することを期待されています。
 
-As mentioned in a previous section, there is a convention for nodes to have a
-`name` property to help distinguish between them. The following example shows
-how the `label` can be set to pick up the value of this property or default to
-something sensible.
+前のセクションで言及したとおり、
+それぞれのノードを区別しやすくするため`name`プロパティを持つことが通例です。
+下記の例は
+`label`にプロパティまたはデフォルト値がセットされることを表しています。
 
 {% highlight javascript %}
 ...
@@ -198,29 +200,29 @@ label: function() {
 ...
 {% endhighlight %}
 
-Note that it is not possible to use [credential](credentials) properties in the label function.
+プロパティの[クレデンシャル](credentials)はラベルの関数内では使用できません。
 
-#### Palette label
+#### パレットラベル
 
-By default, the node's type is used as its label within the palette. The
-`paletteLabel` property can be used to override this.
+デフォルトでは、ノードの型をパレット上のノード名として使います。
+`paletteLabel`プロパティを指定すると、デフォルトのノード名を上書きします。
 
-As with `label`, this property can be either a string or a function. If it is a
-function, it is evaluated once when the node is added to the palette.
+`label`と同様に、プロパティは文字列または関数とします。
+関数の場合は、ノードがパレットに追加されたとき1回評価されます。
 
-#### Label style
+#### ラベルスタイル
 
-The css style of the label can also be set dynamically, using the `labelStyle`
-property. Currently, this property must identify the css class to apply. If
-not specified, it will use the default `node_label` class. The only other
-predefined class is `node_label_italic`.
+ラベルのCSSは`labelStyle`を利用して動的に設定できます。
+現状では、このプロパティは適用するCSSクラスを特定できなければいけません。
+指定されていない場合は、デフォルトの`node_label`が指定されます。
+他にあらかじめ定義されているクラスは`node_label_italic`のみです。
 
 <div style="text-align: center">
     <img title="node label style" src="images/node_label_style.png"/>
 </div>
 
-The following example shows how `labelStyle` can be set to `node_label_italic`
-if the `name` property has been set:
+下記は`name`プロパティが設定されている場合に、
+`labelStyle`に`node_label_italic`を設定する例です。
 
 {% highlight javascript %}
 ...
@@ -230,11 +232,11 @@ labelStyle: function() {
 ...
 {% endhighlight %}
 
-#### Alignment
+#### 整列
 
-By default, the icon and label are left-aligned in the node. For nodes that sit
-at the end of a flow, the convention is to right-align the content. This is done
-by setting the `align` property in the node definition to `right`:
+デフォルトでは、アイコンとラベルはノード内の左寄せになっています。
+フローの最後となるノードの場合は、慣例では右寄せにします。
+これはノードの`align`プロパティに`right`を設定することによって実現されます。
 
 {% highlight javascript %}
 ...
@@ -247,16 +249,15 @@ align: 'right',
 </div>
 
 
-#### Port labels
+#### ポートラベル
 
-Nodes can provide labels on their input and output ports that can be seen by
-hovering the mouse over the port.
+ポートにマウスオーバーすることで表示されるラベルを入力ポートと出力ポートに設定できます。
 
 <div style="text-align:center">
     <img title="port labels" src="images/node-labels.png"/>
 </div>
 
-These can either be set statically by the node's html file
+これらはノードのhtmlファイルで静的に設定できます。
 
 {% highlight javascript %}
 ...
@@ -265,7 +266,7 @@ outputLabels: ["stdout","stderr","rc"],
 ...
 {% endhighlight %}
 
-or generated by a function, that is passed an index to indicate the output pin (starting from 0).
+関数の場合は、出力ピンの位置が得られます（indexは0から始まります）。
 
 {% highlight javascript %}
 ...
@@ -275,8 +276,7 @@ outputLabels: function(index) {
 ...
 {% endhighlight %}
 
-
-In both cases they can be overwritten by the user using the `node settings` section of the configuration editor.
+どちらの場合でも、設定エディタの`node settings`でユーザが値を設定すると上書きされます。
 
 <div style="text-align:center">
     <img title="port label editor" src="images/node-labels-override.png"/>
@@ -286,20 +286,18 @@ In both cases they can be overwritten by the user using the `node settings` sect
     <img title="port custom labels" src="images/node-labels-custom.png"/>
 </div>
 
-**Note**: Labels are not generated dynamically, and cannot be set by `msg` properties.
+**注意**: ラベルは動的には生成されず、`msg`プロパティで設定することもできません。
 
-### Buttons
+### ボタン
 
-A node can have a button on its left or right hand edge, as seen with the core
-Inject and Debug nodes.
+ノードには、コアのInjectノードやDebugノードのように、左端または右端にボタンを配置できます。
 
-A key principle is the editor is not a dashboard for controlling your flows. So
-in general, nodes should not have buttons on them. The Inject and Debug nodes are
-special cases as the buttons play a role in the development of flows.
+原則として、エディタはフローを制御するためのダッシュボードではないため、
+一般的にはノードにボタンを配置すべきではありません。
+InjectノードとDebugノードは、フローの開発という役割を行うという点で特例です。
 
-The `button` property in its definition is used to describe the behavior of the
-button. It must provide, as a minimum, an `onclick` function that will be called
-when the button is clicked.
+`button` プロパティはボタンの挙動を定義するために使用されます。
+最低限、ボタンがクリックされたときの挙動を`onclick`に定義しなければなりません。
 
 {% highlight javascript %}
 ...
@@ -311,9 +309,10 @@ button: {
 ...
 {% endhighlight %}
 
-The property can also define an `enabled` function to dynamically enable and
-disable the button based on the node's current configuration. Similarly, it can
-define a `visible` function to determine whether the button should be shown at all.
+プロパティには、ノードの現在の設定をベースとして、ボタンの有効無効を動的に切り替えるための
+`enabled`を関数定義することもできます。
+
+同様に、ボタンを表示するかどうかを決定するための`visible`関数も定義できます。
 
 {% highlight javascript %}
 ...
@@ -333,11 +332,9 @@ button: {
 ...
 {% endhighlight %}
 
-The `button` can also be configured as a toggle button - as seen with the Debug
-node. This is done by added a property called `toggle` that identifies a property
-in the node's `defaults` object that should be used to store a boolean value whose
-value is toggled whenever the button is pressed.
-
+`button`はDebugノードのようにトグルボタンとしても設定することもできます。
+まず、ノードの`defaults`オブジェクト内のプロパティを特定するための`toggle`プロパティを追加します。
+そして、特定された`defaults`オブジェクト内のプロパティはボタンが押下されているかどうかのboolean値を持ちます。
 
 {% highlight javascript %}
 ...

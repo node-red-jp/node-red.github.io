@@ -2,55 +2,55 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/workspace"
-    label: "workspace"
-  - "wires"
+    label: "ワークスペース"
+  - "ワイヤー"
 toc: toc-editor-guide.html
-title: Wires
+title: ワイヤー
 ---
 
 <div style="width: 435px" class="figure align-right">
   <img src="../images/editor-node-wire.png" alt="Node elements">
-  <p class="caption">Wiring nodes</p>
+  <p class="caption">ノードを繋ぐ</p>
 </div>
 
-Nodes are wired together by pressing the left-mouse button on a node's port, dragging
-to the destination node and releasing the mouse button.
+ノードのポートでマウスの左ボタンを押し、目的のノードまでドラッグしてマウスを放すことで、
+ノード同士を接続することができます。
 
-Alternatively, if the `Ctrl/Command` key is held down, the left-mouse
-button can be clicked (and released) on a node's port and then clicked on the
-destination. If the `Ctrl/Command` key remains held and the just-wired destination
-node has an output port, a new wire is started from that port. This allows a
-set of nodes to be quickly wired together.
+また、`Ctrl/Command`キーを押したままにした場合、
+ノードのポート上でマウスの左ボタンをクリック（そして放して）目的のノードをクリックすることでも接続できます。
+`Ctrl/Command`キーを押したままにし、接続する目的のノードが出力ポートを持っていた場合、
+新しいワイヤーはそのノードから開始されます。
+これによって一連のノードを素早く繋げることができます。
 
-This can also be combined with the Quick-Add dialog that is triggered
-by a `Ctrl/Command-Click` on the workspace to quickly insert new nodes and have
-them already wired to previous nodes in the flow.
+これもワークスペース上で`Ctrl/Command-Click`によって呼び出される、
+クイック追加ダイアログと組み合わせることができ、
+素早く新しいノードを追加し、フロー内で前のノードと繋げることができます。
 
 
-#### Splitting wires
+#### ワイヤーに割り込む
 
-If a node with both an input and output port is dragged over the mid-point of a
-wire, the wire is draw with a dash. If the node is then dropped, it is automatically
-inserted into the flow at that point.
+入力ポートと出力ポートの両方を持つノードをワイヤーの中間にドラッグした場合、
+ワイヤーが破線で描画されます。
+このときノードをドロップすると、自動的にその位置でノードが挿入されます。
 
 <div class="figure">
   <img src="../images/editor-wiring-splice.png" alt="">
-  <p class="caption">Dropping a node on a wire to insert it mid-flow</p>
+  <p class="caption">ワイヤー上でノードをドロップしてフローの中間に挿入する</p>
 </div>
 
-#### Moving wires
+#### ワイヤーを動かす
 
-To disconnect a wire from a port, select the wire by clicking on it, then
-press and hold the `Shift` key when the left-mouse button is pressed on the port.
-When the mouse is then dragged, the wire disconnects from the port and can be
-dropped on another port. If the mouse button is released over the workspace,
-the wire is deleted.
+ポートからワイヤーを切断するには、ワイヤーをクリックすることで選択状態にし、
+そのポート上でマウスの左ボタンを押したときに`Shift`キーを押し続けます。
+そしてマウスをドラッグすると、ポートからワイヤを切断して他のポートにドロップできます。
+ワークスペース上でマウスボタンが放された場合、
+ワイヤーは削除されます。
 
-If a port has multiple wires connected to it, if none of them is selected when
-button is pressed with the `Shift` key held, all of the wires will move.
+もしポートが複数のワイヤーを持っていた場合、
+`Shift`キーを押したままボタンを押したときにどのワイヤーも選択されていなければ、すべてのワイヤーが移動します。
 
-#### Deleting wires
+#### ワイヤーを削除する
 
-To delete a wire, first select it by clicking on it and then press the `delete` key.
+ワイヤーを削除するためには、まずワイヤーをクリックして選択し、`Delete`キーを押します。

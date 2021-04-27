@@ -1,34 +1,26 @@
 ---
 layout: docs-developing-flows
 toc: toc-developing-flows.html
-title: Developing Flows
+title: フローの開発 
 ---
 
-Node-RED allows you to quickly start developing applications by dragging in nodes and
-wiring them together to create flows. This can be a great way to get started, but
-as flows grow over time, it can lead to applications that are harder to maintain.
+Node-REDでは、ノードをドラックしてつないでフローを作ることで、アプリケーションを素早く開発できます。
+これは、開発を始めるには最適な方法ですが、時間が経つにつれてフローが大きくなり、アプリケーションの保守が難しくなることがあります。
 
-This guide provides some recommendations and best practices for how to create
-Node-RED flows that will be reusable, easier to maintain and more robust.
+本ガイドでは再利用でき、保守が容易で、より堅牢なNode-REDのフローを作成するための推奨事項やベストプラクティスを提供します。
 
-This guide assumes that you are already familiar with the basic usage of Node-RED.
-If you are looking for more information about using Node-RED, the [User Guide](https://nodered.org/docs/user-guide/)
-and [Cookbook](https://cookbook.nodered.org/) are good resources to help you get
-started.
+本ガイドは、読者が既にNode-REDの基本的な使い方を知っていることを前提としています。
+もしあなたがNode-REDの利用に関する詳細情報を探している場合は、[ユーザガイド](https://nodered.jp/docs/user-guide/)と[クックブック](https://cookbook.nodered.jp/)を参照してください。これらは、Node-REDを始めるのを手助けしてくれる良い資料です。
 
+### [フローの構造](flow-structure)
 
+本セクションでは、フローの整理方法、フローをより小さな再利用できる要素に分割する方法、プラットフォーム毎にカスタマイズする方法を説明します。
 
-### [Flow structure](flow-structure)
+### [メッセージの設計](message-design)
 
-This section looks at how you can organise your flows, strategies for splitting them
-into smaller, reusable components and how to customise them for different platforms.
+本セクションでは、メッセージの設計がノードとフローとの連携や、保守の容易化にどの様に役立つかを説明します。
 
-### [Message design](message-design)
+### [フローのドキュメント](documenting-flows)
 
-This section looks at how the design of messages can help create nodes and flows
-that work well together and are easier to maintain.
-
-### [Documenting flows](documenting-flows)
-
-All good code should have good documentation to match. This section looks at what
-tools and techniques Node-RED provides to help you document them.
+全てのコードには、適切なドキュメントが必要です。
+本セクションでは、Node-REDが提供しているドキュメント作成を手助けするツールと手法を説明します。

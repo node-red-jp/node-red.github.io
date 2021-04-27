@@ -6,40 +6,37 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - set flows
 ---
 
-Set the active flow configuration.
+アクティブなフローの設定を行います。
 
-Requires permission: <code>flows.write</code>
+必要となる権限: <code>flows.write</code>
 
 ### Headers
 
 Header                     | Value
 ---------------------------|----------
-`Authorization`            | `Bearer [token]` - if authentication is enabled
+`Authorization`            | `Bearer [token]` - 認証が有効になっている場合
 `Content-type`             | `application/json`
-`Node-RED-API-Version`     | (*Since 0.15.0*) The api version being used. Defaults to `v1` if not set.
-`Node-RED-Deployment-Type` | `full`, `nodes`, `flows` or `reload`
+`Node-RED-API-Version`     | (*バージョン0.15.0から*) 利用できます。何もセットされていない場合のデフォルトは　`v1` です。
+`Node-RED-Deployment-Type` | `full`, `nodes`, `flows`, `reload` のいずれか
 
 
-The `Node-RED-Deployment-Type` header is used to define what type of deployment
-is performed.
+`Node-RED-Deployment-Type` ヘッダはデプロイの方法を決定するために使用されます。
 
- - `full` - all existing nodes are stopped before the new configuration is started.
-   This is the default behaviour if the header is not provided.
- - `nodes` - only nodes that have been modified are stopped before the new
-   configuration is applied.
- - `flows` - only flows that contain modified nodes are stopped before the new
-   configuration is applied.
- - `reload` - the flows are reloaded from storage and all nodes are restarted (since Node-RED 0.12.2)
+ - `full` - 新しい設定が開始される前に、すべての既存のノードが停止されます。
+   これはヘッダが指定されていない場合のデフォルトの挙動です。
+ - `nodes` - 新しい設定が適用される前に、変更されたノードだけが停止されます。
+ - `flows` - 新しい設定が適用される前に、変更されたノードを含むフローだけが停止されます。
+ - `reload` - フローが再読込され、すべてのノードが再開されます。 (Node-RED 0.12.2 から)
 
 ### Arguments
 
-The format of the request body will depend on the Node-RED API version being used:
+リクエストボディのフォーマットは Node-RED API バージョンによって決まります。
 
-#### `v1` - array of node objects
+#### `v1` - ノードオブジェクトの配列
 
 {% highlight json %}
 [
@@ -52,9 +49,9 @@ The format of the request body will depend on the Node-RED API version being use
 {% endhighlight %}
 
 
-#### `v2` - flow response object
+#### `v2` - フローレスポンスオブジェクト
 
-The `rev` property, if provided, should reflect the revision of flows that was returned by `GET /flows`.
+`rev` プロパティが指定されている場合は、 `GET /flows` によって取得できるリビジョンと一致すべきです。
 
 {% highlight json %}
 {
@@ -69,16 +66,16 @@ The `rev` property, if provided, should reflect the revision of flows that was r
 }
 {% endhighlight %}
 
-#### Setting node credentials
+#### ノードクレデンシャルを設定する
 
-There are two ways to provide credentials with this request. The individual node
-objects in the `flows` array can contain a `credentials` property containing the
-credentials for that node.
+リクエストでクレデンシャルを提示するには2つの方法があります。
+`flows`配列のノードオブジェクトは`credentials`プロパティを持っており、
+このプロパティはノードのクレデンシャルを保持しています。
 
-Alternatively, the top level object can include a `credentials` property that has
-credentials for individual nodes, or a complete encrypted set.
+また、トップレベルオブジェクトも`credentials`プロパティを持っており、
+各々のノードのクレデンシャルまたは完全に暗号化された一連のクレデンシャルを持ちます。
 
-**Inline node credentials :**
+**インラインノードクレデンシャル :**
 
 {% highlight json %}
 {
@@ -97,7 +94,7 @@ credentials for individual nodes, or a complete encrypted set.
 }
 {% endhighlight %}
 
-**Separate node credentials :**
+**分割されたノードクレデンシャル :**
 
 
 {% highlight json %}
@@ -119,7 +116,7 @@ credentials for individual nodes, or a complete encrypted set.
 }
 {% endhighlight %}
 
-**Encrypted node credentials:**
+**暗号化されたノードクレデンシャル:**
 
 {% highlight json %}
 {
@@ -143,26 +140,24 @@ credentials for individual nodes, or a complete encrypted set.
 
 Status Code | Reason              | Response
 ------------|---------------------|--------------
-`200`       | `v2` Success        | The new `rev` for the active flows. See below.
-`204`       | `v1` Success        | _none_
-`400`       | Invalid API version | An [Error response](/docs/api/admin/errors)
-`401`       | Not authorized      | _none_
-`409`       | Version mismatch    | An [Error response](/docs/api/admin/errors). See below.
+`200`       | `v2` 成功           | アクティブなフローの新しい `rev` が返されます。詳細は下記のとおり
+`204`       | `v1` 成功           | _無し_
+`400`       | 不正なAPIバージョン | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった    | _無し_
+`400`       | バージョン不一致    | [エラーを返す](/docs/api/admin/errors) 詳細は下記のとおり
 
-If `v1` of the API is being used, a successful request contains no response body.
+`v1` APIが使用される場合、成功時はレスポンスボディを含みません。
 
-If `v2` of the API is being used, the request should include `rev` property that
-is set to the latest `rev` value known to the requestor. If this value matches
-the `rev` value of the active flows in the runtime, the request will succeed.
+`v2` APIの場合は、リクエストは `rev` を含まなければならず、最新の `rev` の値でなければなりません。
+この値がランタイムのアクティブなフローの `rev` の値と一致すれば、リクエストは成功します。
 
-If it does not match, this indicates the runtime is using a newer version of flows
-and the request is rejected with a `409` status code. This allows the requestor to
-resolve any differences and resubmit the request.
+この値が一致しない場合、ランタイムはより新しいバージョンのフローを使用していることを表し、
+リクエストはステータスコード `409` とともに拒否されます。
+これによりAPI呼び出し元は、差分を解消させリクエストを再送信できます。
 
-If the requestor wishes to force deploy, the `rev` property should be omitted from
-the request.
+API呼び出し元が強制的にデプロイを行いたい場合は、`rev` プロパティを省略してリクエストします。
 
-On a successful request, the response provides the new `rev` value:
+リクエストが成功すると、レスポンスには新しい `rev` の値を返します。
 
 {% highlight json %}
 {
@@ -170,5 +165,4 @@ On a successful request, the response provides the new `rev` value:
 }
 {% endhighlight %}
 
-*Note*: the `rev` property is a string, but no other assumptions should be made
-as to its format.
+*注意*: `rev` プロパティは文字列です。フォーマット上、他の制約はありません。

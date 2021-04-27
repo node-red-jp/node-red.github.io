@@ -1,25 +1,25 @@
 ---
 layout: docs-api
 toc: toc-api-ui.html
-title: SearchBox Widget
+title: SearchBoxウィジェット
 slug:
   - url: "/docs/api/ui"
-    label: "ui widgets"
+    label: "uiウィジェット"
   - 'searchbox'
 ---
 
-An enhanced `<input>` element that provides common features for a search input.
+検索入力欄に一般的な機能を提供する拡張された`<input>`要素です。
 
 <div class="widget">
     <div class="col-4-12">
-        <h3>Options</h3>
+        <h3>オプション</h3>
         <table>
             <tr><td><a href="#options-delay">delay</a></td></tr>
             <tr><td><a href="#options-minimumLength">minimumLength</a></td></tr>
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Methods</h3>
+        <h3>メソッド</h3>
         <table>
             <tr><td><a href="#methods-change">change</a></td></tr>
             <tr><td><a href="#methods-count">count</a></td></tr>
@@ -27,31 +27,31 @@ An enhanced `<input>` element that provides common features for a search input.
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Events</h3>
-        <h3>Types</h3>
+        <h3>イベント</h3>
+        <h3>型</h3>
     </div>
 </div>
 
-### Options
+### オプション
 
 #### <a href="#options-delay" name="options-delay">delay</a>
 
-<span class="method-return">Type: number</span>
+<span class="method-return">型: number</span>
 
-Sets the delay, in ms, after the last keystroke before a `change` event is fired.
+最後にキーを押してから`change`イベントが発火するまでの遅延時間をミリ秒で設定します。
 
 #### <a href="#options-data" name="options-minimumLength">minimumLength</a>
 
-<span class="method-return">Type: number</span>
+<span class="method-return">型: number</span>
 
-Sets the minimum length of text before the input triggers a `change` event. Clearing
-the input to 0 will always trigger a `change` event regardless of this setting.
+入力結果が`change`イベントを発生させるテキストの最小文字数を設定します。
+入力を0文字にクリアすると、この設定に関係なく常に`change`イベントが発生します。
 
-### Methods
+### メソッド
 
 #### <a href="#methods-change" name="methods-change">change( )</a>
 
-Trigger the change event on the search input.
+検索入力欄でchangeイベントを発生させます。
 
 ```javascript
 $(".input").searchBox('change');
@@ -59,17 +59,17 @@ $(".input").searchBox('change');
 
 #### <a href="#methods-count" name="methods-count">count( value )</a>
 
-Sets the value of the count label on the search box. This can be used to
-provide feedback to the user as to how many 'things' the search currently
-matches. The `value` is a string.
+検索ボックスにカウントラベルの値を設定します。
+これは検索で現在一致している「モノ」の数をユーザにフィードバックするために利用できます。
+このとき、`value`は文字列です。
 
-The standard pattern to follow is:
+従うべき標準的なパターンは次のとおりです。:
 
- - if the search box is empty, set it to the number of available items: `"300"`
- - if the search box is not empty, set it to the number of matching items, as
-   well as the number of available items: `"120 / 300"`
+ - 検索ボックスが空の場合、利用可能なアイテム数を設定します。:  `"300"`
+ - 検索ボックスが空ではない場合、
+   一致しているアイテム数と利用可能なアイテム数を設定します。: `"120 / 300"`
 
-If `value` is null, undefined or blank, the count field is hidden.
+`value`がnull、undefinedまたは空白の場合、カウントフィールドは非表示になります。
 
 ```javascript
 $(".input").searchBox('count', '120 / 300');
@@ -79,9 +79,9 @@ $(".input").searchBox('count', '120 / 300');
 
 #### <a href="#methods-value-get" name="methods-value-get">value()</a>
 
-<span class="method-return">Returns: String</span>
+<span class="method-return">戻り値: String</span>
 
-Gets the current value of the search input.
+検索入力欄の現在の値を取得します。
 
 ```javascript
 var type = $(".input").searchBox('value');
@@ -89,7 +89,7 @@ var type = $(".input").searchBox('value');
 
 #### <a href="#methods-value-set" name="methods-value-set">value( value )</a>
 
-Sets the current value of the search input.
+検索入力欄に値を設定します。
 
 ```javascript
 $(".input").searchBox('value','hello');

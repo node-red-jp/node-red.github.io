@@ -6,25 +6,25 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - add flow
 ---
 
-Add a flow to the active configuration. A flow is represented as a tab within the
-editor.
+アクティブな設定にフローを追加します。
+フローはエディタ内でタブとして表示されます。
 
-Requires permission: <code>flows.write</code>
+必要となる権限: <code>flows.write</code>
 
 ### Headers
 
 Header                     | Value
 ---------------------------|----------
-`Authorization`            | `Bearer [token]` - if authentication is enabled
+`Authorization`            | `Bearer [token]` - 認証が有効になっている場合
 `Content-type`             | `application/json`
 
 ### Arguments
 
-The request body must be a single flow configuration object.
+リクエストボディは単一のフロー設定オブジェクトでなければなりません。
 
 {% highlight json %}
 {
@@ -35,24 +35,24 @@ The request body must be a single flow configuration object.
 }
 {% endhighlight %}
 
-The configuration object must, at a minimum, include the `nodes` property.
+設定オブジェクトには最低でも `nodes` プロパティを含めます。
 
-The runtime will assign a new id for the flow. If the provided flow configuration
-object includes an `id` field it will be replaced and the `z` property of all
-nodes updated to match.
+ランタイムはフローに新しいidを割り当てます。
+フロー設定オブジェクトが `id` フィールドを持っている場合でもそれは上書きされ、
+属するノードのすべての `z` プロパティにも設定されます。
 
-All of the nodes in the flow must have unique `id` properties. The request will
-rejected if any of the `id`s are already in use.
+フローに属するすべてのノードは一意の `id` プロパティを持ちます。
+`id` が既に使用されている場合、リクエストは却下されます。
 
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|--------------
-`204`       | Success        | _none_
-`400`       | Bad request    | An [Error response](/docs/api/admin/errors)
-`401`       | Not authorized | _none_
+Status Code | Reason           | Response
+------------|------------------|--------------
+`204`       | 成功             | _無し_
+`400`       | 不正なリクエスト | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった | _無し_
 
-Returns the `id` of the flow.
+フローの `id` を返します。
 
 {% highlight json %}
 {"id":"5a04dce3.a5fb24"}

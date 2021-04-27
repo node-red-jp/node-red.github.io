@@ -1,26 +1,26 @@
 ---
 layout: docs-getting-started
 toc: toc-user-guide.html
-title: Running on Raspberry Pi
+title: Raspberry Piで実行する
 slug: raspberry pi
 redirect_from:
   - /docs/hardware/raspberrypi
 ---
 
 
-### Prerequisites
+### 必須条件
 
-If you are using Raspbian, then you must have Raspbian Stretch as a minimum version.
-Raspbian Buster is the currently supported version.
+Raspbianを利用している場合、最低でもRaspbian Stretch以降のバージョンが必要です。
+Raspbian Busterは現在サポートされています。
 
-### Installing and Upgrading Node-RED
+### Node-REDをインストール・アップグレードする
 
-We provide a script to install Node.js, npm and Node-RED onto a Raspberry
-Pi. The script can also be used to upgrade an existing install when a new
-release is available.
+私たちの提供するスクリプトはNode.js、npmおよびNode-REDをRaspberry Piにインストールします。
+このスクリプトは新しいリリースが入手できるようになった場合、
+インストール済のアプリをアップグレードすることも可能です。
 
-Running the following command will download and run the script. If you want
-to review the contents of the script first, you can view it [here](https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered).
+以下のコマンドを実行することでスクリプトをダウンロードし、実行することができます。
+スクリプトの中身を最初にレビューしたい場合、[こちら](https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)で確認することができます。
 
 ```
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
@@ -31,96 +31,96 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 <img src="/images/logos/debian.svg" height="30">
 <img src="/images/logos/ubuntu.svg" height="30">
 </div>
-This script will work on any <b>Debian-based</b> operating system, including <b>Ubuntu</b>
-and <b>Diet-Pi</b>. You may need to run <code>sudo apt install build-essential git</code>
-first to ensure npm is able to build any binary modules it needs to install.
+このスクリプトは<b>Ubuntu</b>や<b>Diet-Pi</b>を含む<b>Debianベース</b>のオペレーティングシステムで動作します。
+npmがインストールする必要のあるバイナリコンポーネントをビルドできることを保証するため、
+<code>sudo apt install build-essential git</code>を実行する必要があるかもしれません。
 </div>
 
 
-This script will:
+このスクリプトは以下のことを実行します:
 
- - remove the pre-packaged version of Node-RED and Node.js if they are present
- - install the current Node.js LTS release using the [NodeSource](https://github.com/nodesource/distributions/blob/master/README.md). If it detects Node.js is already installed
- from NodeSource, it will ensure it is at least Node 8, but otherwise leave it alone
- - install the latest version of Node-RED using npm
- - optionally install a collection of useful Pi-specific nodes
- - setup Node-RED to run as a service and provide a set of commands to work with
- the service
+ - 存在すれば事前にパッケージされているバージョンのNode-REDおよびNode.jsを除去します
+ - [NodeSource](https://github.com/nodesource/distributions/blob/master/README.md)を利用して現行のNode.js LTSリリースをインストールします。
+ Node.jsが既にNodeSourceからインストールされていると認識され、それがNode 8以上とわかった場合、そのままにします
+ - npmを利用して最新版のNode-REDをインストールします
+ - 追加で有用なRaspberry Pi固有ノードのコレクションをインストールします
+ - サービスとしてNode-REDを実行するように設定し、
+ サービスとして動作するためのコマンド一覧を提供します
 
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px;margin-bottom: 40px;">
 <img src="/images/logos/raspberrypi.svg" height="30">
 </div>
-Node-RED has also been packaged for the Raspbian repositories and appears in their
-list of 'Recommended Software'. This allows it to be installed using
-<code>apt-get install nodered</code> and includes the Raspbian-packaged version
-of Node.js, but <em>does not</em> include <code>npm</code>.
-<p>While using these packages is convenient at first, we <b>strongly recommend</b>
-using our install script above instead.</p>
+Node-REDは既にRaspbianリポジトリとしてパッケージされており、
+「推奨ソフトウェア」の一覧に含まれています。
+これは<code>apt-get install nodered</code>によってインストールすることを可能にし、
+またRaspbianパッケージされたバージョンのNode.jsを含んでいますが、<code>npm</code>は含んで<em>いません</em>。
+<p>一見これらのパッケージを利用することは便利に見えますが、
+上述のインストールスクリプトを利用することを<b>強く推奨</b>します。</p>
 </div>
 
-### Running locally
+### ローカルで実行する
 
-As with [running Node-RED locally](/docs/getting-started/local), you can use
-the `node-red` command to run Node-RED in a terminal. It can then be stopped
-by pressing `Ctrl-C` or by closing the terminal window.
+[ローカルでNode-REDを実行する](/docs/getting-started/local)場合、
+ターミナルで`node-red`コマンドを使うことでNode-REDを起動することができます。
+そして、`Ctrl-C`を押すかターミナルウィンドウを閉じることで停止することができます。
 
-Due to the limited memory of the Raspberry Pi, you will need to start Node-RED
-with an additional argument to tell the underlying Node.js process to free up
-unused memory sooner than it would otherwise.
+Raspberry Piの制限されたメモリ容量のため、
+基盤となるNode.jsプロセスに未使用のメモリを早く解放するように指示するような
+追加引数とともにNode-REDを起動する必要があります。
 
-To do this, you should use the alternative `node-red-pi` command and pass in the
-`max-old-space-size` argument.
+このためには、代替となる`node-red-pi`コマンドを利用し、
+`max-old-space-size`引数を渡す必要があります。
 
 ```
 node-red-pi --max-old-space-size=256
 ```
 
-### Running as a service
+### サービスとして実行する
 
-The install script for the Pi also sets it up to run as a service. This means it
-can run in the background and be enabled to automatically start on boot.
+Raspberry Piのためのインストールスクリプトはサービスとして実行することも設定します。
+これはバックグラウンドで実行し、起動時に自動的に起動できるように設定することを意味します。
 
-The following commands are provided to work with the service:
+以下のコマンドはサービスとして動作するために提供されます:
 
- - `node-red-start` - this starts the Node-RED service and displays its log output.
- Pressing `Ctrl-C` or closing the window does *not* stop the service; it keeps
- running in the background
- - `node-red-stop` - this stops the Node-RED service
- - `node-red-restart` - this stops and restarts the Node-RED service
- - `node-red-log` - this displays the log output of the service
+ - `node-red-start` - Node-REDサービスを起動し、そのログ出力を表示します。
+ `Ctrl-C`を押す、またはウィンドウを閉じることはサービスを停止*させません*;
+ Node-REDはバックグラウンドで実行し続けます
+ - `node-red-stop` - Node-REDサービスを停止します
+ - `node-red-restart` - Node-REDサービスを停止し、再起動します
+ - `node-red-log` - サービスのログ出力を表示させます
 
-You can also start the Node-RED service on the Raspbian Desktop by selecting
-the `Menu -> Programming -> Node-RED` menu option.
+メニューオプション`Menu -> Programming -> Node-RED`を選択することによって、
+Raspbian DesktopでNode-REDサービスを起動することもできます。
 
-### Autostart on boot
+### 起動時に自動起動する
 
-If you want Node-RED to run when the Pi is turned on, or re-booted, you can enable the service
-to autostart by running the command:
+Raspberry Piの電源がついたとき、またはブート時にNode-REDを起動させたい場合、
+以下のコマンドを実行することでサービスを自動起動させることができます。
 
 ```
 sudo systemctl enable nodered.service
 ```
 
-To disable the service, run the command:
+サービスを無効にするため、以下のコマンドを実行します:
 ```
 sudo systemctl disable nodered.service
 ```
 
-### Opening the editor
+### エディタを開く
 
-Once Node-RED is running you can access the editor in a browser.
+いったんNode-REDを実行したら、ブラウザでエディタにアクセスすることができます。
 
-If you are using the browser on the Pi desktop, you can open the address: <http://localhost:1880>.
+Raspberry Piデスクトップでブラウザを利用している場合、以下のアドレスでエディタを開くことができます: <http://localhost:1880>
 
-<div class="doc-callout">We recommend using a browser outside of the PI and pointing it at Node-RED running on the Pi. However you can use the built in browser and if so we recommend Chromium or Firefox-ESR and <i>not</i> Epiphany</div>
+<div class="doc-callout">Raspberry Piの外部のブラウザを使ってRaspberry Piで実行されているNode-REDを指定することを推奨します。ビルトインのブラウザを使うこともできますが、その場合はEpiphanyでは<i>なく</i>、ChromiumまたはFirefox-ESRを推奨します。</div>
 
-When browsing from another machine you should use the hostname or IP-address of the Pi: `http://<hostname>:1880`. You
-can find the IP address by running `hostname -I` on the Pi.
+他のマシンからブラウジングする場合、Raspberry PiのIPアドレスを利用すべきです: `http://<ip-address>:1880`。
+Raspberry Piで`hostname -I`を実行することでIPアドレスを確認できます。
 
 
-### Next steps
+### 次のステップ
 
-- [Learn how to secure your editor](/docs/user-guide/runtime/securing-node-red)
-- [Create your first flow](/docs/tutorials/first-flow)
-- [Adding nodes to the palette](/docs/user-guide/runtime/adding-nodes)
+- [エディタをセキュアにする方法を学習する](/docs/user-guide/runtime/securing-node-red)
+- [はじめてのフローを作成する](/docs/tutorials/first-flow)
+- [パレットにノードを追加する](/docs/user-guide/runtime/adding-nodes)

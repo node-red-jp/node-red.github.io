@@ -3,7 +3,7 @@ markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 paginate: 9
 paginate_path: "/blog/page/:num/"
-url: https://nodered.org
+url: https://nodered.jp
 plugins:
     - jekyll-paginate
     - jekyll-redirect-from

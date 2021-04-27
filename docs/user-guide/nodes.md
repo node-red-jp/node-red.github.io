@@ -1,14 +1,14 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: The Core Nodes
-slug: core nodes
+title: コアノード
+slug: コアノード
 ---
 
-The Node-RED palette includes a default set of nodes that are the basic building
-blocks for creating flows. This page highlights the core set you should know about.
+Node-REDのパレットには、フローを作成するための基本的な構成要素であるデフォルトのノードが一通り含まれています。
+このページでは知っておくべきコアノードについて取り上げます。
 
-All nodes include documentation you can see in the Info sidebar tab when you select a node.
+すべてのノードは、ノードを選択した際にInfoサイドバーで確認できるドキュメントを含んでいます。
 
 - [Inject](#inject)
 - [Debug](#debug)
@@ -23,20 +23,20 @@ All nodes include documentation you can see in the Info sidebar tab when you sel
 
 ### Inject
 
-The Inject node can be used to manual trigger a flow by clicking the node's button
-within the editor. It can also be used to automatically trigger flows at regular
-intervals.
+Injectノードは、エディタ内でこのノードのボタンをクリックすることで
+手動でフローを始動させることができます。
+一定間隔で自動的にフローを始動させることもできます。
 
-The message sent by the Inject node can have its `payload` and `topic` properties
-set.
+Injectノードから送出されるメッセージには、
+その`payload`および`topic`プロパティを設定することができます。
 
-The `payload` can be set to a variety of different types:
+`payload`には様々な型を設定することができます。:
 
- - a flow or global context property value
- - a String, number, boolean, Buffer or Object
- - a Timestamp in milliseconds since January 1st, 1970
+ - フローまたはグローバルコンテキストのプロパティ値
+ - 文字列型、数値型、Boolean型、バッファ型、オブジェクト型
+ - 1970年1月1日からのミリ秒で表現されるタイムスタンプ型
 
-*Since Node-RED 1.1.0*, the Inject node can now set any property on the message.
+*Node-RED 1.1.0から*、Injectノードはメッセージに全てのプロパティをセットできます。
 
 ***
 
@@ -44,23 +44,23 @@ The `payload` can be set to a variety of different types:
 
 ### Debug
 
-The Debug node can be used to display messages in the Debug sidebar within the editor.
+Debugノードは、エディタ内のDebugサイドバーにメッセージを表示させることができます。
 
-The sidebar provides a structured view of the messages it is sent, making it easier
-to explore the message.
+このサイドバーは送られてきたメッセージを構造的なビューで表示し、
+メッセージを探し出しやすくします。
 
-Alongside each message, the debug sidebar includes information about the time the message
-was received and which Debug node sent it. Clicking on the source node id will reveal
-that node within the workspace.
+各メッセージと並んで、
+Debugサイドバーにはメッセージを受信した時刻とそのメッセージを送出したDebugノードの情報が含まれています。
+ソースノードIDをクリックするとワークスペース内のどのノードなのかがわかります。
 
-The button on the node can be used to enable or disable its output. It is recommended
-to disable or remove any Debug nodes that are not being used.
+ノードのボタンは、出力の有効化無効化を制御するために使用します。
+利用していないDebugノードは無効化したり、削除したりすることを推奨します。
 
-The node can also be configured to send all messages to the runtime log, or to
-send short (32 characters) to the status text under the debug node.
+また、このノードはランタイムログにすべてのメッセージを出力したり、
+Debugノードの下に短い（32文字）のステータステキストを表示させたりすることができます。
 
-The page on [Working with messages](/docs/user-guide/messages) gives more
-information about using the Debug sidebar.
+[メッセージを利用する](/docs/user-guide/messages)ページでは
+Debugサイドバーの使い方について更なる情報を提供しています。
 
 ***
 
@@ -68,10 +68,10 @@ information about using the Debug sidebar.
 
 ### Function
 
-The Function node allows JavaScript code to be run against the messages that are
-passed through it.
+Functionノードは、
+受け渡されるメッセージに対するJavaScriptコードの実行を可能にします。
 
-A complete guide for using the Function node is available [here](/docs/user-guide/writing-functions).
+Functionノードを利用するための素晴らしいガイドは、[こちら](/docs/user-guide/writing-functions)にあります。
 
 ***
 
@@ -79,20 +79,20 @@ A complete guide for using the Function node is available [here](/docs/user-guid
 
 ### Change
 
-The Change node can be used to modify a message's properties and set context properties
-without having to resort to a Function node.
+Changeノードは、Functionノードに頼ることなく、
+メッセージプロパティを変更したり、コンテキストプロパティを設定したりすることができます。
 
-Each node can be configured with multiple operations that are applied in order. The
-available operations are:
+各ノードには、順番に適用される複数の操作を設定することが可能です。
+利用できる操作は以下のとおりです。:
 
- - **Set** - set a property. The value can be a variety of different types, or
-   can be taken from an existing message or context property.
- - **Change** - search and replace parts of a message property.
- - **Move** - move or rename a property.
- - **Delete** - delete a property.
+ - **値の代入** - プロパティの代入。
+   値にはさまざまな型を利用でき、さらに既存のメッセージまたはコンテキストプロパティから取得することもできます。
+ - **値の置換** - メッセージプロパティの一部を検索、置換
+ - **値の移動** - プロパティの移動や名称変更
+ - **値の削除** - プロパティの削除
 
-When setting a property, the value can also be the result of a [JSONata expression](https://jsonata.org).
-JSONata is a declarative query and transformation language for JSON data.
+プロパティを設定する際には[JSONata式](https://jsonata.org)の結果を設定することもできます。
+JSONataは、JSONデータに対する軽量なクエリかつ変換言語です。
 
 ***
 
@@ -101,28 +101,28 @@ JSONata is a declarative query and transformation language for JSON data.
 ### Switch
 
 
-The Switch node allows messages to be routed to different branches of a flow by
-evaluating a set of rules against each message.
+Switchノードは各メッセージに対して一連のルールで評価し、
+メッセージを異なるフローにルーティングすることができます。
 
-<div class="doc-callout">The name "switch" comes from the "switch statement" that
-is common to many programming languages. It is not a reference to a physical
-switch</div>
+<div class="doc-callout">「switch」という名称は、
+多くのプログラム言語の「switch文」から取られています。
+これは物質的なスイッチとは関係ありません。</div>
 
-The node is configured with the property to test - which can be either a message
-property or a context property.
+このノードには、
+評価するプロパティ（メッセージプロパティまたはコンテキストプロパティ）を設定します。
 
-There are four types of rule:
+ルールには以下の4種類があります。:
 
- - **Value** rules are evaluated against the configured property
- - **Sequence** rules can be used on message sequences, such as those generated
-   by the Split node
- - A JSONata **Expression** can be provided that will be evaluated against the
-   whole message and will match if the expression returns a `true` value.
- - An **Otherwise** rule can be used to match if none of the preceding rules have
-   matched.
+ - **Value rule**は設定されたプロパティに対して評価をおこないます
+ - **Sequence rule**はSplitノードによって生成されるような
+   メッセージシーケンスを利用することができます
+ - **JSONata式**ではメッセージ全体に対して評価をおこない、
+   `true`の値を返した場合に一致したとみなすことができます
+ - **その他**は前述のルールのどれにも一致しなかった場合、
+   一致するように利用できます
 
-The node will route a message to all outputs corresponding to matching rules. But
-it can also be configured to stop evaluating rules when it finds one that matches.
+このノードは、一致したルールに応じた出力先すべてに対してメッセージを送出します。
+しかし、一致するルールがあった時点で評価をやめるように設定することもできます。
 
 ***
 
@@ -131,13 +131,13 @@ it can also be configured to stop evaluating rules when it finds one that matche
 ### Template
 
 
-The Template node can be used to generate text using a message's properties to
-fill out a template.
+Templateノードは、メッセージプロパティをテンプレートに設定することで
+テキストを生成することができます。
 
-It uses the [Mustache](https://mustache.github.io/mustache.5.html) templating
-language to generate the result.
+このノードでは、
+[Mustache](https://mustache.github.io/mustache.5.html)記法を利用することができます。
 
-For example, a template of:
+例えば、テンプレートを以下のようにします。:
 
 {% raw %}
 ```
@@ -145,14 +145,14 @@ This is the payload: {{payload}} !
 ```
 {% endraw %}
 
-Will replace `{% raw %}{{payload}}{% endraw %}` with the value of the message's `payload` property.
+`{% raw %}{{payload}}{% endraw %}`はメッセージの`payload`プロパティの値に置換されます。
 
-By default, Mustache will replace certain characters with their HTML escape codes.
-To stop that happening, you can use triple braces: `{% raw %}{{{payload}}}{% endraw %}`.
+デフォルトではMustache記法は特定の文字をHTMLエスケープ文字コードに置換します。
+これを防ぐためには、3つの波括弧を利用することができます。: `{% raw %}{{{payload}}}{% endraw %}`.
 
-Mustache supports simple loops on lists. For example, if `msg.payload` contains
-an array of names, such as: `["Nick", "Dave", "Claire"]`, the following template
-will create an HTML list of the names:
+Mustache記法は単純なループをサポートしています。
+例えば、`msg.payload`が名前の配列を有していた場合（`["Nick", "Dave", "Claire"]`のような）、
+以下のテンプレートによって名前のHTMLリストを生成することができます。:
 
 {% raw %}
 ```
@@ -173,8 +173,8 @@ will create an HTML list of the names:
 </ul>
 ```
 
-The node will set the configured message or context property with the result of
-the template. If the template generates valid JSON or YAML content, it can be
-configured to parse the result to the corresponding JavaScript Object.
+このノードはテンプレートの結果を設定されているメッセージまたはコンテキストプロパティに代入します。
+もしテンプレートが適切なJSONやYAMLコンテンツを生成する場合、
+生成物をJavaScriptオブジェクトにパースするように設定できます。
 
 ***

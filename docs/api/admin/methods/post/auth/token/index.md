@@ -6,11 +6,11 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - get token
 ---
 
-Exchange credentials for access token
+アクセストークンを発行します。
 
 ### Headers
 
@@ -21,23 +21,23 @@ Header                     | Value
 
 ### Arguments
 
-The request body must be a JSON string with the following fields:
+リクエストボディは下記のようなJSON文字列とします:
 
 Field        | Description
 -------------|------------------------
-`client_id`  | identifies the client. Currently, must be either `node-red-admin` or `node-red-editor`.
-`grant_type` | must be `password`
-`scope`      | a space-separated list of permissions being requested. Currently, must be either `*` or `read`.
-`username`   | the username to authenticate
-`password`   | the password to authenticate
+`client_id`  | クライアントを特定します。現在は `node-red-admin` または `node-red-editor` とします。
+`grant_type` | `password` とします。
+`scope`      | スペース区切りの権限リストを指定します。現在は `*` または `read` とします。
+`username`   | 認証に使用するユーザー名
+`password`   | 認証に使用するパスワード
 
 
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|--------------
-`200`       | Success        | See example response body
-`401`       | Not authorized | _none_
+Status Code | Reason           | Response
+------------|------------------|--------------
+`200`       | 成功             | 下記例を参照
+`401`       | 認証されなかった | _無し_
 
 {% highlight json %}
 {

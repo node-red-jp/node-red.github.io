@@ -1,23 +1,23 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Node context
-slug: context
+title: コンテキスト
+slug: コンテキスト
 ---
 
-A node can store data within its context object.
+ノードは、そのコンテキストオブジェクト内にデータを格納することができます。
 
-For more information about context, read the [Working with Context guide](../user-guide/context).
+コンテキストについての更なる情報は、[コンテキストを利用するためのガイド](../user-guide/context)を参照してください。
 
-There are three scopes of context available to a node:
+ノードに利用可能なコンテキストは3種類あります。
 
-- Node - only visible to the node that set the value
-- Flow - visible to all nodes on the same flow (or tab in the editor)
-- Global - visible to all nodes
+- Node - 値を設定したノードのみ参照可能
+- Flow - 同一のフロー（またはエディタ内の同一のタブ）上のすべてのノードが参照可能
+- Global - すべてのノードが参照可能
 
-Unlike the Function node which provides predefined variables to
-access each of these contexts, a custom node must access these
-contexts for itself:
+これらのコンテキストそれぞれにアクセスするための定義済み変数を持っているFunctionノードとは異なり、
+カスタムノードは独自にこれらのコンテキストに
+アクセスする必要があります。
 
 {% highlight javascript %}
 // Access the node's context object
@@ -28,8 +28,8 @@ var flowContext = this.context().flow;
 var globalContext = this.context().global;
 {% endhighlight %}
 
-Each of these context objects has the same `get`/`set` functions described
-in the [Writing Functions guide](/docs/writing-functions#storing-data).
+こららのコンテキストオブジェクトのそれぞれが同じように`get`/`set`関数を有していることが
+[Functionノードを記述するためのガイド](/docs/writing-functions#データの保存)で説明されています。
 
-Note: Configuration nodes that are used by and shared by other nodes are by default global, unless otherwise
-specified by the user of the node. As such it cannot be assumed that they have access to a Flow context.
+注意: 他のノードによって使用されたり共有されたりする設定ノードは、ユーザーによる指定がない限り、デフォルトではグローバルです。
+そのため、フローコンテキストへはアクセスできません。

@@ -1,66 +1,66 @@
 ---
 layout: about-single
-title: About
+title: 概要
 ---
 
-Node-RED is a flow-based programming tool, originally developed by [IBM's Emerging Technology Services](https://emerging-technology.co.uk)
-team and now a part of the [JS Foundation](https://js.foundation).
+Node-REDはフローベースドプログラミング(flow-based programming)ツールであり、元は[IBM Emerging Technology Services](https://emerging-technology.co.uk)チームによって開発され、[JS Foundation](https://js.foundation)配下のプロジェクトを経て、2019年3月よりNode.js FoundationとJS Foundationが合併して設立された[OpenJS Foundation](https://openjsf.org/)にホストされています。
 
-### Flow-based Programming
+### フローベースドプログラミング
 
-Invented by J. Paul Morrison in the 1970s, [flow-based programming](https://en.wikipedia.org/wiki/Flow-based_programming)
-is a way of describing an application's behavior as a network of black-boxes, or
-"nodes" as they are called in Node-RED. Each node has a well-defined purpose; it
-is given some data, it does something with that data and then it passes that
-data on. The network is responsible for the flow of data between the nodes.
+1970年代にJ. Paul Morrisonによって考案された[flow-based programming](https://en.wikipedia.org/wiki/Flow-based_programming)はアプリケーションの動作をブラックボックス、
+すなわちNode-REDでは「ノード」、のネットワークによって表す手法です。
+各ノードは何らかのデータを与えられ、そのデータで何かを実行し、
+そのデータを渡すといった明確に定義された目的を持ちます。
+ネットワークはノード間のデータの流れを示します。
 
-It is a model that lends itself very well to a visual representation and makes
-it more accessible to a wider range of users. If someone can break down a problem
-into discrete steps they can look at a flow and get a sense of what it is doing;
-without having to understand the individual lines of code within each node.
+これは視覚的な表現との相性が非常に良く、
+より幅広い範囲のユーザにとってより利用しやすいモデルです。
+誰かが問題を別々のステップに分解することができれば、フローを見ることでそれが何をしているかがわかります、
+つまり各ノードの個々のコードについて理解する必要はありません。
 
-### Runtime/Editor
+### 実行環境/エディタ
 
-Node-RED consists of a Node.js based runtime that you point a web browser at to
-access the flow editor. Within the browser you create your application by dragging
-nodes from your palette into a workspace and start to wire them together. With a
-single click, the application is deployed back to the runtime where it is run.
+Node-REDは、フローエディタにアクセスするためにウェブブラウザで指定するNode.js上の実行環境に構築されています。
+ブラウザではパレットからワークスペースへとノードをドラッグし、
+自分のアプリケーションを作成します。
+そしてシングルクリックで、アプリケーションを実行状態にある実行環境へとデプロイします。
 
-The palette of nodes can be easily extended by installing new nodes created by
-the community and the flows you create can be easily shared as JSON files.
+ノードのパレットは、コミュニティによって開発された新しいノードをインストールすることで容易に拡張することができ、
+作成したフローはJSONファイルによって簡単に共有することができます。
 
 
-### History
+### 歴史
 
-Node-RED started life in early 2013 as a side-project by Nick O'Leary and Dave
-Conway-Jones of IBM's Emerging Technology Services group.
+Node-REDは、2013年初頭にIBMのEmerging Technology ServicesグループのNick O'LearyとDave Conway-Jonesによる
+サイドプロジェクトとして誕生しました。
 
-What began as a proof-of-concept for visualising and manipulating mappings
-between MQTT topics, quickly became a much more general tool that could be easily
-extended in any direction.
+MQTTトピック間のマッピングを視覚化および操作するための概念実証として始まったものは、
+すぐにあらゆる面へ簡単に拡張可能な
+はるかに汎用的なツールとなりました。
 
-It was open-sourced in September 2013 and has been developed in the open ever
-since, culminating in it being one of the founding projects of the JS Foundation
-in October 2016.
+2013年9月にオープンソース化されて以来オープンで開発され、
+2016年10月にJS Foundationの創設プロジェクトの1つとなったことで
+最高潮に達しました。
+2018年には1,000,000インストールを記録しました。
 
 <div class="doc-callout">
-<b>Why is it called Node-RED?</b> The name was a light-hearted play on words
-sounding like 'Code Red'. It stuck and was a great improvement on whatever it was
-called in the first few days.
+<b>なぜ、Node-REDと呼ばれるのでしょうか?</b> この名称は「Code Red」に似た語感の気軽な言葉遊びです。
+これは魅力的で、
+最初の数日のうちに呼ばれた全てよりも非常に優れたものでした。
 
-The 'Node' part reflects both the flow/node programming model as well as the
-underlying Node.JS runtime. We never did come to a conclusion
-on what the 'RED' part stands for. "Rapid Event Developer" was one suggestion,
-but we've never felt compelled to formalise anything.
+「Node」の部分はフロー/ノードプログラミングモデルと基盤となるNode.JSランタイムの両方を表しています。
+私たちは未だに「RED」が何を表すのかについて結論を出していません。
+「Rapid Event Developer」は1つの案ですが、
+何かを公式化しなければならないと感じたことは一度もありません。
 
-We stick with 'Node-RED'.
+私たちは「Node-RED」を使い続けます。
 </div>
 
-For some more of the history and highlights:
+歴史といくつかのハイライト:
 
-- read our blog post announcing the
-[move to the JS Foundation](http://nodered.org/blog/2016/10/17/js-foundation).
-- watch Nick's talk from [Monki Gras 2016](https://www.youtube.com/watch?v=Bbg1017amZs) :
+- [JS Foundationへの移行](http://nodered.org/blog/2016/10/17/js-foundation)についての
+記事を読む
+- Nickの[Monki Gras 2016](https://www.youtube.com/watch?v=Bbg1017amZs)の講演を見る :
 
 <div style="text-align: center">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/Bbg1017amZs" frameborder="0" allowfullscreen></iframe>

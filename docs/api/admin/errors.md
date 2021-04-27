@@ -1,47 +1,47 @@
 ---
 layout: docs-api
 toc: toc-api-admin.html
-title: Errors
+title: エラー
 slug:
   - url: "/docs/api/admin"
     label: "admin"
-  - errors
+  - エラー
 ---
 
-All API methods use standard HTTP response codes to indicate success or failure.
+すべてのAPIメソッドは一般的なHTTPレスポンスコードを利用して、成功または失敗を表します。
 
-Status Code | Reason
+ステータスコード | 理由
 ------------|------------------
-`200`       | Success - with the result in the response content
-`204`       | Success - with no further content
-`400`       | Bad request - see response format below
-`401`       | Not authorized - see [Authentication](oauth)
-`404`       | Not found - a resource wasn't found
-`409`       | Version mismatch - see [`POST /flows`](methods/post/flows)
-`500`       | Server Error - something went wrong on the server
+`200`       | Success - 結果はレスポンスコンテンツになります
+`204`       | Success - これ以上のコンテンツはありません
+`400`       | Bad request - 下記のレスポンスフォーマットを参照してください
+`401`       | Not authorized - [認証](oauth.html)を参照してください
+`404`       | Not found - リソースが見つかりませんでした
+`409`       | Version mismatch - [`POST /flows`](methods/post/flows)を参照してください
+`500`       | Server Error - サーバーで問題が発生しました
 
-### Error response
+### エラー応答
 
-For a `400` response code, the body of the response will be a JSON object
-containing the fields:
+レスポンスコートが`400`の場合、
+レスポンス本体は以下のフィールドを含むJSONオブジェクトになります。:
 
-Field     | Description
+フィールド     | 説明
 ----------|-----------------------
-`code`    | The error code
-`message` | The description of the error
+`code`    | エラーコード
+`message` | エラーの説明
 
     {
       code: "module_already_loaded",
       message: "Module already loaded"
     }
 
-#### Error codes
+#### エラーコード
 
-Code                    | Description
+コード                    | 説明
 ------------------------|-----------------------
-`unexpected_error`      | An unexpected error occurred
-`invalid_request`       | The request contains invalid parameters
-`settings_unavailable`  | The storage system does not support changing settings
-`module_already_loaded` | The requested module is already loaded
-`type_in_use`           | The request is attempting to remove/disable a node type that is currently being used
-`invalid_api_version`       | The request specified an invalid api version in the `Node-RED-API-Version` header
+`unexpected_error`      | 予期しないエラーが発生しました
+`invalid_request`       | リクエストに無効なパラメータが含まれています
+`settings_unavailable`  | ストレージシステムは設定の変更をサポートしていません
+`module_already_loaded` | 要求されたモジュールは既にロードされています
+`type_in_use`           | リクエストは現在使用されているNodeタイプを削除または無効にしようとしています
+`invalid_api_version`       | リクエストが`Node-RED-API-Version` ヘッダに無効なAPIバージョンを指定しました

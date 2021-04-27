@@ -2,46 +2,46 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/workspace"
-    label: "workspace"
-  - "import/export"
+    label: "ワークスペース"
+  - "インポート/エクスポート"
 toc: toc-editor-guide.html
-title: Importing and Exporting Flows
+title: フローのインポートとエクスポート
 ---
 
-Flows can be imported and exported from the editor using their JSON format, making
-it very easy to share flows with others.
+JSON形式でフローをエディタにインポートしたりエクスポートしたりすることで、
+フローを非常に簡単に他の人々と共有することができます。
 
-### Importing flows
+### フローをインポートする
 
 <div style="width:400px" class="figure align-right">
   <img src="../images/editor-import.png" alt="Import dialog">
-  <p class="caption">Import dialog</p>
+  <p class="caption">読み込みダイアログ</p>
 </div>
 
-The Import dialog can be used to import a flow by the following methods:
+読み込みダイアログでは次に示す方法でフローをインポートできます:
 
- - pasting in the flow JSON directly,
- - uploading a flow JSON file,
- - browsing the local flow library,
- - browsing the example flows provided by installed nodes.
+ - JSON形式のフローデータを直接貼り付ける
+ - JSONファイルをアップロードする
+ - ローカルのフローライブラリを参照する
+ - インストールしたノードが提供するサンプルを参照する
 
-In all cases, the dialog offers the option to import the nodes into the current
-flow, or to create a new flow for them.
+いずれの場合も、ダイアログでは現在のフローにノードをインポートするか、
+新しいフローを作成するかを選ぶことができます。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-i</code></td></tr>
- <tr><td>Menu option</td><td><code>Import</code></td></tr>
- <tr><td>Action</td><td><code>core:show-import-dialog</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-i</code></td></tr>
+ <tr><td>メニューオプション</td><td><code>読み込み</code></td></tr>
+ <tr><td>動作</td><td><code>core:show-import-dialog</code></td></tr>
 </table>
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><i>none</i></td></tr>
- <tr><td>Action</td><td><code>core:show-library-import-dialog</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>none</i></td></tr>
+ <tr><td>メニューオプション</td><td><i>none</i></td></tr>
+ <tr><td>動作</td><td><code>core:show-library-import-dialog</code></td></tr>
 </table>
 
 <table class="action-ref inline">
@@ -55,35 +55,35 @@ flow, or to create a new flow for them.
 
 <br style="clear:both" />
 
-### Exporting flows
+### フローをエクスポートする
 
 <div style="width:400px" class="figure align-right">
   <img src="../images/editor-export.png" alt="Export Flows dialog">
-  <p class="caption">Export Flows dialog</p>
+  <p class="caption">フロー書き出しダイアログ</p>
 </div>
 
-The Export dialog can be used to copy flow json out of the editor by the following methods:
+書き出しダイアログは次に示す方法でエディタからJSON形式のフローをコピーするために利用できます:
 
- - copying the JSON to the system clipboard,
- - downloading the JSON as a file,
- - saving it to the local flow library.
+ - JSONをシステムのクリップボードにコピーする
+ - JSONをファイルとしてダウンロードする
+ - ローカルのフローライブラリに保存する
 
-It can export either the selected nodes, the current flow (including its tab node)
-or the complete flow configuration.
+選択されているノード、現在のフロー（タブノードを含む）またはすべてのフロー設定を
+エクスポートすることができます。
 
-It offers the option to export compact or formatted JSON. The compact option generates
-a single line of JSON with no whitespace. The formatted JSON option is formatted
-over multiple lines with full indentation - which can be easier to read.
+ダイアログはエクスポートするJSONフォーマットとしてインデントのない形式とインデント付きの形式という選択肢を提示します。
+インデントのないフォーマットでは空白がなく、単一行のJSONになります。
+インデント付きのフォーマットでは、読みやすいようにインデントがつけられ、複数行になります。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-e</code></td></tr>
- <tr><td>Menu option</td><td><code>Export</code></td></tr>
- <tr><td>Action</td><td><code>core:show-export-dialog</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-e</code></td></tr>
+ <tr><td>メニューオプション</td><td><code>書き出し</code></td></tr>
+ <tr><td>動作</td><td><code>core:show-export-dialog</code></td></tr>
 </table>
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><i>none</i></td></tr>
- <tr><td>Action</td><td><code>core:show-library-export-dialog</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>none</i></td></tr>
+ <tr><td>メニューオプション</td><td><i>none</i></td></tr>
+ <tr><td>動作</td><td><code>core:show-library-export-dialog</code></td></tr>
 </table>

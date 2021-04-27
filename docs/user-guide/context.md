@@ -1,62 +1,62 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Working with context
-slug: context
+title: コンテキストを利用する
+slug: コンテキスト
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jLI0DcXMQOs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-### What is context?
+### コンテキストとは？
 
-Node-RED provides a way to store information that can be shared between different
-nodes without using the messages that pass through a flow. This is called 'context'.
+Node-REDは、フローで受け渡すメッセージを利用せずに異なるノード間で共有する情報を保管する方法を提供しています。
+これは「コンテキスト」と呼ばれます。
 
-### Context scopes
+### コンテキストスコープ
 
-The 'scope' of a particular context value determines who it is shared with. There
-are three context scope levels:
+特定のコンテキスト値の「スコープ」によって、誰と共有されるかが決定されます。
+コンテキストスコープには3つのレベルが存在します。:
 
- - Node - only visible to the node that set the value
- - Flow - visible to all nodes on the same flow (or tab in the editor)
- - Global - visible to all nodes
+ - ノード - 値を設定したノードのみアクセスできます
+ - フロー - 同じフロー（またはエディタのタブ）のすべてのノードがアクセスできます
+ - グローバル - すべてのノードがアクセスできます
 
-The choice of scope for any particular value will depend on how it is being used.
+特定の値のスコープの選択は、その値がどのように利用されるかに依ります。
 
-If a value only needs to be accessed by a single node, such as a Function node, then
-Node context is sufficient.
+もし値が単一のノードからのアクセスだけで足りる場合、例えばFunctionノードなどの場合、
+ノードコンテキストで充分です。
 
-More often context allows some sort of state to be shared between multiple nodes.
-For example, a sensor may publish new values regularly in one flow and you want
-to create a separate HTTP triggered flow to return the most recent value. By
-storing the sensor reading in context it is then available for the HTTP flow to return.
+しばしば、コンテキストはある種の状態を複数のノード間で共有できるようにします。
+例えば、センサーは定期的に1つのフローに値を送出しており、
+最新の値を返却するために別のHTTPトリガーフローを作成したいかもしれません。
+センサーの測定値をコンテキストに格納することで、HTTPフローが値を返却できるようになります。
 
-The Global context can be preconfigured with values using the `functionGlobalContext`
-property in the settings file.
+設定ファイルの`functionGlobalContext`プロパティを利用することで、
+グローバルコンテキストに事前に値を設定することができます。
 
-<div class="doc-callout"><em>Note</em> : for nodes in a subflow, the <code>flow</code>
-context is shared by those nodes and not the flow the subflow is on.
-From Node-RED 0.20, the nodes inside a subflow can access the context of the
-parent flow by prepending <code>$parent.</code> to the context key. For example:
+<div class="doc-callout"><em>Note</em> : サブフロー内のノードにおいて<code>flow</code>コンテキストはこれらのノードで共有されますが、サブフローが存在するフローとは共有されません。
+Node-RED 0.20版から、サブフロー内のノードはコンテキストキーの先頭に<code>$parent.</code>をつけることで、
+親フローのコンテキストにアクセスすることができます。
+例えば:
 <pre>var colour = flow.get("$parent.colour");</pre></div>
 
 
-### Context stores
+### コンテキストに保管する
 
-By default, context is stored in memory only. This means its contents are cleared
-whenever Node-RED restarts. With the 0.19 release, it is possible to configure
-Node-RED to save context data so it is available across restarts.
+デフォルトでは、コンテキストはメモリのみに保存されます。
+つまり、Node-REDを再起動するたびにコンテキストの内容はクリアされます。
+0.19版リリースによって、コンテキストデータを保存するようにNode-REDを設定することが可能になり、再起動後も利用できるようになりました。
 
-The `contextStorage` property in `settings.js` can be used to configure how context
-data is stored.
+`setting.js`の`contextStorage`プロパティは、
+コンテキストデータがどのように保管されるかを設定するために利用できます。
 
-Node-RED provides two built-in modules for this: `memory` and `localfilesystem`.
-It is also possible to create custom store plugins to save the data elsewhere.
+これについて、Node-REDは2つのビルトインモジュールを提供します: `memory`および`localfilesystem`。
+また、他の場所にデータを保存するためのカスタムストアプラグインを作成することも可能です。
 
-#### Saving context data to the file-system
+#### ファイルシステムにコンテキストデータを保存する
 
-To enable file-based storage, the following option can be used:
+ファイルベースのストレージを使えるようにするため、以下のオプションを利用できます。:
 
 ```javascript
 contextStorage: {
@@ -66,24 +66,24 @@ contextStorage: {
 }
 ```
 
-This sets the default context store to be an instance of the `localfilesystem`
-plugin, with all of its default settings. That means:
+これによって、デフォルトのコンテキストストアが`localfilesystem`プラグインのインスタンスになり、すべての設定がデフォルトに設定されます。
+つまり、:
 
- - it will store the context data in files under `~/.node-red/context/`
- - it caches the values in memory and only writes them out to the file-system
-   every 30 seconds.
+ - `~/.node-red/context/`下のファイルにコンテキストデータを保管します。
+ - 値をメモリにキャッシュし、
+   30秒ごとにファイルシステムに値を書き出すだけです。
 
-<div class="doc-callout"><em>Note</em> : Depending on when you installed Node-RED,
-your <code>settings.js</code> file may not have an example entry for <code>contextStorage</code>.
-If that is the case, you can copy the example above and add it yourself.</div>
+<div class="doc-callout"><em>Note</em> : Node-REDをインストールした時期によっては、
+<code>settings.js</code>ファイルに<code>contextStorage</code>へのエントリ例が存在しないかもしれません。
+この場合、上述の例をコピーして自身のファイルに追加してください。</div>
 
-#### Using multiple context stores
+#### 複数のコンテキストストアを利用する
 
-It is possible to configure more than one store so that some values are saved to
-the local file-system and some are only held in memory.
+1つ以上のストアを設定することができ、
+ある値はローカルファイルシステムに保存し、ある値はメモリに保存するだけとすることができます。
 
-For example, to configure the default store to be in-memory only, and a second
-store for the file-system, the following options can be used:
+例えば、デフォルトのストアは内蔵メモリのみに、2つめのストアはファイルシステムに設定するには、
+以下のオプションを利用することができます。:
 
 ```javascript
 contextStorage: {
@@ -93,46 +93,46 @@ contextStorage: {
 }
 ```
 
-In this example, the `default` property tells Node-RED which store to use if a
-request to access context doesn't specify a store.
+この例において`default`プロパティは、
+コンテキストにアクセスするリクエストがストアを指定しなかった場合にNode-REDがどのストアを利用するかを伝えています。
 
-<div class="doc-callout"><em>Note</em> : if you choose to configure multiple
-<code>localfilesystem</code> stores, you <em>must</em> set their <code>dir</code>
-option so they use different directories to store data. Details on how to configure
-the store is available <a href="/docs/api/context/store/localfilesystem#options">here</a></div>
+<div class="doc-callout"><em>Note</em> : 複数の<code>localfilesystem</code>ストアを設定することを選んだ場合、
+データを保管する異なるディレクトリを使用するため、
+それらの<code>dir</code>オプションを設定<em>しなくてはなりません</em>。
+ストアの設定方法の詳細は<a href="/docs/api/context/store/localfilesystem#options">こちら</a>で確認することができます。</div>
 
-Full details on the built-in modules, what configuration options they provide and
-how to create custom modules, are available on the [api pages](../api/context/).
+どのような設定オプションが提供され、どのようにカスタムモジュールを作成するのかといったビルトインモジュールについてのすべての情報は、
+[APIのページ](../api/context/)で確認することができます。
 
-### Using context in a flow
+### フローでコンテキストを利用する
 
-The easiest way to set a value in context is to use the Change node. For example,
-the following Change node rule will store the value of `msg.payload` in `flow` context
-under the key of `myData`.
+コンテキストに値を設定する最も簡単な方法は、Changeノードを使用することです。
+例えば、以下のようなChangeノードのルールによって、
+`msg.payload`の値を`flow`コンテキストに`myData`というキーで保管します。
 
 <div style="text-align: center"><img src="/docs/user-guide/images/context_change.png" width="488px"></div>
 
-Various nodes can access context directly. For example, the Inject node can be configured
-to inject a context value and the Switch node can route messages based on a value
-stored in context.
+様々なノードで直接コンテキストにアクセスすることができます。
+例えば、Injectノードはコンテキスト値を注入するように設定することができ、
+Switchノードはコンテキストに保管された値をもとにメッセージをルーティングすることができます。
 
-If you have multiple context stores configured, the UI will allow you to pick
-which store a value should be stored in.
+複数のコンテキストストアを設定した場合、
+UIは値を保管するストアを選択できるようにします。
 
 <div style="text-align: center"><img src="/docs/user-guide/images/context_change_multiple_stores.png" width="471px"></div>
 
 
-### Using context in a Function node
+### Functionノードでコンテキストを利用する
 
-The [Writing Functions guide](../writing-functions#storing-data) describes
-how to use context in the Function node.
+[Functionノードの書き方ガイド](../writing-functions#storing-data)に、
+Functionノードでのコンテキストの使い方が記述されています。
 
-### Using context in a custom node
+### カスタムノードでコンテキストを利用する
 
-The [Creating Nodes guide](/docs/creating-nodes/context) describes how to use context in a custom node.
+[ノードの開発ガイド](/docs/creating-nodes/context)にカスタムノードでのコンテキストの使い方が記述されています。
 
-### Deleting context from the file store
+### ファイルストアからコンテキストを削除する
 
-Context can be permanently deleted by using a Change node set to delete.
+Changeノードに値の削除を設定することによってコンテキストを永久に削除することができます。
 
 <div style="text-align: center"><img src="/docs/user-guide/images/context_delete.png" width="488px"></div>

@@ -1,114 +1,114 @@
 ---
 layout: about-single
-title: Governance
-slug: governance
+title: ガバナンス
+slug: ガバナンス
 ---
 
-The Node-RED project has been developed in the open since 2013. The core of the
-project has been developed by IBM who created the original project. A large
-community of users has built around the project with most contributions being
-made via nodes that are self-published to the community. Contributions to the
-core have occurred at a much more modest level.
+Node-REDプロジェクトは2013年からオープンで開発されています。
+プロジェクトの核は、もともとIBMによって作成されたプロジェクトから開発されています。
+大規模なユーザコミュニティがプロジェクト周辺に構築されており、
+その多くのコントリビューションはノードの自発的な提供です。
+コアプロジェクトへのコントリビューションははるかに質素なレベルでおこなわれています。
 
-Our goal is to grow the active contributor community around the project. We plan
-to do this by:
+私たちの目標は、プロジェクト周辺の活発なコントリビュータコミュニティを育成することです。
+私たちは次のことを実施する予定です。
 
- - Encouraging new contributions
- - Encouraging contributors to remain involved
- - Having a transparent decision making process which makes it clear how
-   contributors can be involved in decision making
- - Avoiding unnecessary processes and bureaucracy whenever possible
+ - 新規コントリビューションの奨励
+ - コントリビュータが長く関わることの奨励
+ - コントリビュータが意思決定にどのように関与しているかが
+   明確にわかる透明性の高い意思決定プロセスの保持
+ - 不必要なプロセスおよび煩雑な手続きの可能なかぎりの排除
 
-This document describes the governance and contribution model for the Node-RED
-project. It is heavily influenced by a number of other Open Source projects,
-particularly Node.js.
+このドキュメントでは、
+Node-REDのガバナンスとコントリビューションのモデルについて記載しています。
+他の数多くのオープンソースプロジェクト、特にNode.jsから多大な影響を受けています。
 
-It reflects how we have managed the project up to now and reflects the current
-scale of contributor community.
-
-
-### Roles and responsibilities
-
-#### Users
-
-Users are community members who have a need for the project. They are for whom
-we develop the project. There is no such thing as a typical user and no assumptions
-should be made about who they are or what they want.
-
-The project benefits when the users to provide feedback, generate awareness and
-help spread interest.
-
-Users who choose to provide feedback or get more involved with the project
-instantly cross the line to become a Contributor.
-
-#### Contributors
-
-Contributors are a subset of the community who take a more active role in the
-development of the project. This can cover many different aspects and is not
-limited to code contributions. A user who raises an issue, comments on a proposal
-or answers a question on the mailing list is, by definition, a contributor.
-
-As contributors gain experience and familiarity with the project, their profile
-within, and commitment to, the community will increase. For a Contributor with a
-proven track record of changes to the project repositories (code, documentation,
-etc), they may find themselves invited to become a Committer.
-
-#### Committers
-
-Committers are a subset of contributors who have demonstrated a commitment to
-the project and ability to provide valued contributions - of any variety. They
-are trusted with the responsibility of write access to the project's repositories
-and have the ability to review and merge pull requests from the community.
-
-Anyone is able to become a Committer; it is a role earned through merit and a
-demonstrable engagement with the project and wider community. This includes:
-
- - Show a willingness and ability to participate in the project as a team player.
-   Typically, a potential Committer will need to show that they have an
-   understanding of and alignment with the project, its objects, and its strategy.
- - Be respectful of every community member and to work collaboratively in the
-   spirit of inclusion.
- - Have a track record of good quality contributions.
-
-Typically a Contributor would be invited to become a Committer through the
-agreement of the existing Committer community.
-
-Being a Committer is considered a privilege, not a right. Under normal circumstances,
-Committer status exists for as long as the Committer wishes to continue engaging
-with the project. In exceptional circumstances, the Committer community may
-conclude Committer status should be removed from an individual who is not
-maintaining their responsibilities to the project.
-
-#### Technical Committee
-
-Given the current small size of Committer community, they also represent the
-core decision making group. Through a consensus-seeking mode of discussion,
-decisions can be made and shared with the wider community. It is this group that
-sets the direction of the project through helping to prioritise the backlog.
-They also have the ability, through community-consensus, to update this governance
-model.
-
-If the goals of the project are successfully met, the committer community will
-grow to a point where a more formalised Technical Committee will be needed. The
-exact nature of the TC will be determined at that time.
-
-### Code of Conduct
-
-The project believes strongly that a clear code of conduct helps to ensure the
-community remains open and welcoming to everyone. It has adopted a Code of Conduct
-based on the Contributor Covenant 1.4. The details are available [here](/conduct/).
-
-It is the responsibility of all Contributors to uphold the Code of Conduct
-throughout the project. This covers how we interact with one another and how we
-represent the project both in private and public spaces.
-
-Any issues can be safely reported, in confidence, to the TC at team@nodered.org,
-or directly to any member of the TC.
+このドキュメントは、私たちが今日までプロジェクトをどのようにマネジメントしてきたか、そして
+コントリビュータコミュニティの現在の規模を反映しています。
 
 
-### References
+### 役割と責任
 
-This governance model has been inspired by many existing open source projects:
+#### ユーザ
+
+ユーザとは、プロジェクトを必要とするコミュニティメンバです。
+ユーザのために、私たちは開発をおこなっています。
+一般的なユーザというものは存在せず、ユーザが誰なのかまたは何を望んでいるのかという想定はするべきではありません。
+
+ユーザがフィードバックを提供したり、ユーザとしての自覚を持ったり、Node-REDへの関心を広めたりしたとき、
+プロジェクトは恩恵を得ます。
+
+フィードバックの提供やさらにプロジェクトに関わることを選んだユーザは、
+直ちに線を越えてコントリビュータとなります。
+
+#### コントリビュータ
+
+コントリビュータはプロジェクト開発においてより積極的な役割を果たすコミュニティの一部です。
+彼らは様々な面での活躍が見られ、それはコードコントリビューションだけに限定されません。
+issueの発行、提案へのコメントやメーリングリストでの質問に回答するユーザは、
+コントリビュータと定義されます。
+
+コントリビュータがプロジェクトについての経験と親近感を持ったり、プロフィールに含めたり、
+関与したりすることで、コミュニティは大きくなっていきます。
+プロジェクトリポジトリ（コード、ドキュメントなど）の変更に実績があるコントリビュータは、
+コミッタになるように招待されていることに気がつくかもしれません。
+
+#### コミッタ
+
+コミッタは、プロジェクトに対するコミットメントや価値ある様々なコントリビューションを提供する能力を示した
+コントリビュータの一部です。
+彼らはプロジェクトリポジトリへの書き込み権限の責任を信任されており、
+コミュニティからのプルリクエストをレビューしてマージすることができます。
+
+誰しもがコミッタになることができます。
+コミッタは功績およびプロジェクトおよびコミュニティに対する明らかな貢献によって得られる役割です。
+
+ - チームプレーヤとしてプロジェクトに参加する意欲と能力を示す。
+   典型的には潜在的なコミッタは、プロジェクト、その目的およびその計画に理解を示し、
+   足並みを揃えていると示すことが必要です。
+ - すべてのコミュニティメンバを尊重し、
+   インクルージョン精神を持って共同して取り組む。
+ - 質の高いコントリビューションの実績を有している。
+
+一般的にコントリビュータは、
+既存のコミッタコミュニティでの合意を通じてコミッタになるように招待されます。
+
+コミッタになることは名誉であり、権限ではありません。
+通常の状況下では、コミッタの立場はコミッタがプロジェクトに取り込み続けたいかぎり継続されます。
+例外的な状況では、
+コミッタコミュニティがプロジェクトに対する責任を果たしていない個人からコミッタの立場を剥奪すると
+決定を下す可能性があります。
+
+#### 技術委員会
+
+現在のコミッタコミュニティが小規模であることを考えれば、
+これはコアな意思決定グループでもあります。
+ディスカッションでの合意形成の過程を通じて、意思決定され、
+コミュニティ全体に共有されます。
+このグループが、バックログに優先順位付けをおこなうことでプロジェクトの方向性を定めます。
+また、彼らはコミュニティの合意を通じて、このガバナンスモデルを更新する能力を有しています。
+
+プロジェクトの目標が首尾よく達成されれば、
+コミッタコミュニティはより組織化された技術委員会が必要とされる段階にまで成長するでしょう。
+技術委員会の正確な性質はそのときに定義されるでしょう。
+
+### 行動規範
+
+プロジェクトは、明確な行動規範がコミュニティをオープンですべての人に友好的であるように
+コミュニティを維持することを保証するために役立つと強くい信じています。Contributor Covenant 1.4に
+基づいた行動規範を採択しています。詳細は[こちら](/conduct/)で確認できます。
+
+プロジェクトのすべてにおいて行動規範を遵守することは、全コントリビュータの責任です。
+これは、私たちが互いにどのようにやり取りするか、
+プライベートおよび公的な場の両方でどのようにプロジェクトを代表するのかまでを含みます。
+
+どのような問題でも無事に、機密性高く、
+team@nodered.orgで技術委員会もしくは技術委員会のメンバへと直接連絡することができます。
+
+
+### 参考文献
+
+このガバナンスモデルは、多くの既存のオープンソースプロジェクトからヒントを得ています。
 
  - [Node.js Community Contributing Guide 1.0](https://github.com/nodejs/TSC/blob/master/BasePolicies/CONTRIBUTING.md)
  - [Meritocratic Governance Model](http://oss-watch.ac.uk/resources/meritocraticgovernancemodel)

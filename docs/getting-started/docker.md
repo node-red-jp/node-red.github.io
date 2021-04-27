@@ -1,25 +1,25 @@
 ---
 layout: docs-getting-started
-title: Running under Docker
+title: Dockerで実行する
 toc: toc-user-guide.html
 slug: docker
 redirect_from:
   - /docs/platforms/docker
 ---
 
-This guide assumes you have some basic familiarity with Docker and the
-[Docker Command Line](https://docs.docker.com/engine/reference/commandline/cli/). It describes some of the many ways Node-RED can be run under Docker and has support for multiple architectures (amd64, arm32v6, arm32v7, arm64v8 and s390x).
+このガイドはDockerおよび[Dockerコマンドライン](https://docs.docker.com/engine/reference/commandline/cli/)に対していくらか基本的な知識を持っていることを前提としています。
+ここにはDockerでNode-REDを実行する多くの方法が記述されており、複数のアーキテクチャ(amd64、arm32v6、arm32v7、arm64v8およびs390x)をサポートしています。
 
-As of Node-RED 1.0 the repository on [Docker Hub](https://hub.docker.com/r/nodered/node-red/)
-was renamed to `nodered/node-red`.
+[Docker Hub](https://hub.docker.com/r/nodered/node-red/)に存在する現在のNode-RED 1.0のリポジトリは、
+`nodered/node-red`にリネームされています。
 
-### Quick Start
+### クイックスタート
 
-To run in Docker in its simplest form just run:
+最も簡単な方法によってDockerで実行するには、次のようにします:
 
         docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
 
-Let's dissect that command:
+このコマンドを詳細に見てみましょう:
 
         docker run              - run this container, initially building locally if necessary
         -it                     - attach a terminal session so we can see what is going on
@@ -28,7 +28,7 @@ Let's dissect that command:
         --name mynodered        - give this machine a friendly local name
         nodered/node-red        - the image to base it on - currently Node-RED v1.2.0
 
-Running that command should give a terminal window with a running instance of Node-RED.
+コマンドを実行するとNode-REDのインスタンスを実行するターミナルウィンドウが開かれます。
 
         Welcome to Node-RED
         ===================
@@ -63,82 +63,82 @@ Running that command should give a terminal window with a running instance of No
 
         [...]
 
-You can then browse to `http://{host-ip}:1880` to get the familiar Node-RED desktop.
+ブラウザで`http://{host-ip}:1880`を開くと、馴染みのNode-REDのデスクトップを確認できます。
 
-The advantage of doing this is that by giving it a name (mynodered) we can manipulate it
-more easily, and by fixing the host port we know we are on familiar ground.
-Of course this does mean we can only run one instance at a time... but one step at a time folks.
+これをおこなう利点は命名する(mynodered)ことでより簡単に操作することができ、
+ホストポートを修正することで慣れ親しんでいる画面にたどり着くことができます。
+もちろんこれは同時に1つのインスタンスしか実行できないことを意味します...しかし、一度に1ステップずつ実行できます。
 
-If we are happy with what we see, we can detach the terminal with `Ctrl-p` `Ctrl-q` - the
-container will keep running in the background.
+現在実行しているものに満足した場合、`Ctrl-p` `Ctrl-q`によってターミナルを切り離すことができます -
+コンテナはバックグラウンドで実行させ続けます。
 
-To reattach to the terminal (to see logging) run:
+ターミナルに再接続する(ログを確認する)ためには、以下を実行します:
 
     docker attach mynodered
 
-If you need to restart the container (e.g. after a reboot or restart of the Docker daemon):
+コンテナを再起動する必要がある場合(例 Dockerデーモンのリブート再起動):
 
     docker start mynodered
 
-and stop it again when required:
+そして必要なときに再び停止します:
 
     docker stop mynodered
 
-### Image Variations
+### イメージのバリエーション
 
-The Node-RED images are based on [official Node JS Alpine Linux](https://hub.docker.com/_/node/) images to keep them as small as possible.
-Using Alpine Linux reduces the built image size, but removes standard dependencies that are required for native module compilation. If you want to add dependencies with native dependencies, extend the Node-RED image with the missing packages on running containers or build new images see [docker-custom](https://github.com/node-red/node-red-docker/tree/master/docker-custom).
+Node-REDイメージは、可能な限り小さく保つために[official Node JS Alpine Linux](https://hub.docker.com/_/node/)イメージに基づいています。
+Alpine Linuxを使用するとビルドされるイメージのサイズを小さくすることができますが、ネイティブモジュールのコンパイルに必要な一般的な依存関係は除去されています。これらの依存関係を加えたい場合、実行しているコンテナで除外したパッケージでNode-REDイメージを拡張するか、[docker-custom](https://github.com/node-red/node-red-docker/tree/master/docker-custom)を参考に新たなイメージをビルドします。
 
-See the [Github project README](https://github.com/node-red/node-red-docker/blob/master/README.md) for detailed Image, Tag and Manifest information.
+詳細なイメージ、タグ、マニフェスト情報については[Github project README](https://github.com/node-red/node-red-docker/blob/master/README.md)を参照してください。
 
-For example: suppose you are running on a Raspberry PI 3B, which has `arm32v7` as architecture. Then just run the following command to pull the image (tagged by `1.2.0-10-arm32v7`), and run the container.
+例えば: アーキテクチャとして`arm32v7`を持つRaspberry PI 3Bで実行するとしましょう。そして、以下のコマンドでイメージ(`1.2.0-10-arm32v7`とタグ付けされた)をプルし、コンテナを起動します。
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red:latest
 ```
 
-The same command can be used for running on an amd64 system, since Docker discovers it is running on an amd64 host and pulls the image with the matching tag (`1.2.0-10-amd64`).
+同じコマンドはamd64システムで実行している場合でも利用することができますが、これはDockerがamd64ホストで実行されていることを検出し、一致するタグ(`1.2.0-10-amd64`)のイメージをプルするからです。
 
-This has the advantage that you don't need to know/specify which architecture you are running on and makes docker run commands and docker compose files more flexible and exchangeable across systems.
+これは自身が実行しているアーキテクチャを知る/指定する必要がないという利点を有しており、docker runコマンドとDockerコンポーズファイルをより柔軟に、システム間の互換を可能にします。
 
-**Note**: Currently there is a bug in Docker's architecture detection that fails for `arm32v6` - eg Raspberry Pi Zero or 1. For these devices you currently need to specify the full image tag, for example:
+**Note**: 現在Dockerのアーキテクチャ検出に、`arm32v6` - 例えばRaspberry Pi Zeroまたは1について失敗するというバグがあります。現状、以下のようにこれらのデバイスではフルイメージタグを指定する必要があります。:
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red:1.2.0-10-arm32v6
 ```
 
-### Managing User Data
+### ユーザデータを管理する
 
-Once you have Node-RED running with Docker, we need to
-ensure any added nodes or flows are not lost if the container is destroyed.
-This user data can be persisted by mounting a data directory to a volume outside the container.
-This can either be done using a bind mount or a named data volume.
+DockerでNode-REDを実行する場合、
+コンテナが壊れた場合に追加したノードやフローが消失しないことを保証する必要があります。
+コンテナ外部のボリュームに対してデータディレクトリをマウンティングすることで、このユーザデータを永続化することができます。
+バインドしたマウントまたは命名したデータボリュームを使うことでおこなうこともできます。
 
-Node-RED uses the `/data` directory inside the container to store user configuration data.
+Node-REDはコンテナ内の`/data`ディレクトリを使うことでユーザ設定データを保存できます。
 
-#### Using a Host Directory for Persistence (Bind Mount)
+#### 永続化のためにホストディレクトリを利用する(マウントをバインドする)
 
-To save your Node-RED user directory inside the container to a host directory outside the container, you can use the
-command below. To allow access to this host directory, the node-red user (default uid=1000) inside the container must
-have the same uid as the owner of the host directory.
+コンテナ内部のNode-REDのユーザディレクトリを、コンテナ外部のホストディレクトリに保存することで、以下のコマンドを使うことができます。
+このホストディレクトリにアクセスを許可すると、
+コンテナ内のnode-redユーザ(デフォルトではuid=1000)はホストディレクトリのオーナーとして同じuidを持っているはずです。
 ```
 docker run -it -p 1880:1880 -v /home/pi/.node-red:/data --name mynodered nodered/node-red
 ```
 
-In this example the host `/home/pi/.node-red` directory is bound to the container `/data` directory.
+この例ではホストの`/home/pi/.node-red`ディレクトリをコンテナの`/data`ディレクトリにバインドします。
 
-**Note**: Users migrating from version 0.20 to 1.0 will need to ensure that any existing `/data`
-directory has the correct ownership. As of 1.0 this needs to be `1000:1000`. This can be forced by
-the command `sudo chown -R 1000:1000 path/to/your/node-red/data`
+**Note**: バージョン0.20から1.0に移行したユーザは存在している`/data`ディレクトリが正しいオーナー権限を持っていることを確認する必要がある。
+1.0では、`1000:1000`となる必要があります。
+コマンド`sudo chown -R 1000:1000 path/to/your/node-red/data`によって強制的に変更することができます。
 
-See [the wiki](https://github.com/node-red/node-red-docker/wiki/Permissions-and-Persistence) for detailed information
-on permissions.
+権限に関する詳細な情報については、
+[wiki](https://github.com/node-red/node-red-docker/wiki/Permissions-and-Persistence)を参照してください。
 
-#### Using Named Data Volumes
+#### 命名されたデータボリュームを利用する
 
-Docker also supports using named [data volumes](https://docs.docker.com/engine/tutorials/dockervolumes/)
-to store persistent or shared data outside the container.
+Dockerも命名された[データボリューム](https://docs.docker.com/engine/tutorials/dockervolumes/)を使うことがサポートされており、
+コンテナ外部で永続化または共有するデータを保存することができます。
 
-To create a new named data volume to persist our user data and run a new
-container using this volume.
+ユーザデータを永続化するために新たに命名されたデータボリュームを作成し、
+このボリュームを使って新たなコンテナを実行します。
 ```
 $ docker volume create --name node_red_user_data
 $ docker volume ls
@@ -147,23 +147,23 @@ local               node_red_user_data
 $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered nodered/node-red
 ```
 
-If you need to backup the data from the mounted volume you can access it while the container is running.
+マウントしたボリュームからデータのバックアップを取る必要がある場合、コンテナを実行中にアクセスします。
 ```
 $ docker cp  mynodered:/data  /your/backup/directory
 ```
 
-Using Node-RED to create and deploy some sample flows, we can now destroy the
-container and start a new instance without losing our user data.
+いくつかのサンプルフローを作成してデプロイするためにNode-REDを使ったあと、
+コンテナを壊してユーザデータを喪失することなく新しいインスタンスを起動します。
 ```
 $ docker stop mynodered
 $ docker rm mynodered
 $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered nodered/node-red
 ```
 
-### Updating
+### 更新する
 
-As the /data is now preserved outside of the container, updating the base container image
-is now as simple as
+/dataは現在コンテナの外部に保存されているため、
+ベースのコンテナイメージを更新することはシンプルです。
 ```
 $ docker pull nodered/node-red
 $ docker stop mynodered
@@ -171,10 +171,10 @@ $ docker rm mynodered
 $ docker run -it -p 1880:1880 -v node_red_user_data:/data --name mynodered nodered/node-red
 ```
 
-### Docker Stack / Docker Compose
+### Dockerスタック / Dockerコンポーズ
 
-Below an example of a Docker Compose file which can be run by `docker stack` or `docker-compose`.
-Please refer to the official Docker pages for more info about [Docker stack](https://docs.docker.com/engine/reference/commandline/stack/) and [Docker compose](https://docs.docker.com/compose/).
+以下のDockerコンポーズファイルの例は`docker stack`または`docker-compose`によって実行できます。
+[Docker stack](https://docs.docker.com/engine/reference/commandline/stack/)および[Docker compose](https://docs.docker.com/compose/)に関する更なる情報は公式Dockerページを参照してください。
 ```
 ################################################################################
 # Node-RED Stack or Compose
@@ -203,31 +203,31 @@ networks:
   node-red-net:
 ```
 
-The above compose file:
- - creates a node-red service
- - pulls the latest node-red image
- - sets the timezone to Europe/Amsterdam
- - Maps the container port 1880 to the host port 1880
- - creates a node-red-net network and attaches the container to this network
- - persists the `/data` dir inside the container to the `node-red-data` volume in Docker
+上述のコンポーズファイルは以下のことをおこないます:
+- node-redサービスを作成
+- 最新版node-redイメージをプル
+- ヨーロッパ/アムステルダムにタイムゾーンを設定
+- コンテナポート1880をホストポート1880に設定
+- node-red-netネットワークを作成、このネットワークにコンテナを接続
+- コンテナ内の`/data`ディレクトリをDockerの`node-red-data`ボリュームに永続化
 
 
-### Dockerfile which copies in local resources
+### ローカルリソースにDockerファイルをコピーする
 
-It can sometimes be useful to populate a Node-RED Docker image with files from a local directory (for example, if you want a whole project to be kept in a git repo). To do this, you'll want your local directory to look like this:
+ローカルディレクトリからファイルをNode-REDのDockerイメージに移すことはしばしば有効です（例えば、gitリポジトリにプロジェクト全体を保存したい場合）。これを実施するには、ローカルディレクトリを以下のような構成にするはずです:
 
 ```
 Dockerfile
 README.md
-package.json     # add any extra nodes your flow needs into your own package.json.
-flows.json       # the normal place Node-RED store your flows
-flows_cred.json  # credentials your flows may need
-settings.js      # your settings file
+package.json     # 自身のフローが必要とする追加ノードをpackage.jsonに追加します
+flows.json       # 一般的にNode-REDがフローを保存するファイル
+flows_cred.json  # フローに必要になるかもしれない資格情報
+settings.js      # 自分の設定ファイル
 ```
 
-**NOTE**: This method is NOT suitable if you want to mount the /data volume externally. If you need to use an external volume for persistence then copy your settings and flows files to that volume instead.
+**NOTE**: 外部の/dataボリュームにマウントしたい場合、この方法は不適切です。永続化のために外部のボリュームを使う必要がある場合、代わりに設定ファイルとフローファイルをそのボリュームにコピーします。
 
-The following Dockerfile builds on the base Node-RED Docker image, but additionally moves your own files into place into that image:
+以下のDockerファイルをベースとなるNode-RED Dockerイメージ上でビルドし、加えてそのイメージに自身が利用しているファイルを移動させます:
 
 ```
 FROM nodered/node-red
@@ -260,80 +260,80 @@ COPY flows.json /data/flows.json
 
 #### Dockerfile order and build speed
 
-While not necessary, it's a good idea to do the `COPY package... npm install...` steps early because, although the `flows.json` changes frequently as you work in Node-RED, your `package.json` will only change when you change what modules are part of your project. And since the `npm install` step that needs to happen when `package.json` changes can sometimes be time consuming, it's better to do the time-consuming, generally-unchanging steps earlier in a Dockerfile so those build images can be reused, making subsequent overall builds much faster.
+必要ない限り、`COPY package... npm install...`ステップを早い段階でおこなうことが推奨されます。なぜならば、Node-REDを使う際に頻繁に`flows.json`を変更しますが、`package.json`はプロジェクトに含まれるモジュールを変更したときのみ変更するためです。また、`package.json`を変更したときに必要となる`npm install`ステップはしばしば時間を要するため、時間がかかり、一般的に変更のないステップをDockerファイル内の早い段階でおこない、ビルドイメージを再利用できるようにして、以降の全体のビルドを高速化することは推奨されます。
 
-#### Credentials, secrets, and environment variables
+#### 資格情報、シークレットおよび環境変数
 
-Of course you never want to hard-code credentials anywhere, so if you need to use credentials with your Node-RED project, the above Dockerfile will let you have this in your `settings.js`...
+当然ですが、資格情報をどこかにハードコードすることは望まないため、Node-REDプロジェクトに資格情報が必要な場合、上述のDockerファイルを利用して`settings.js`内に以下の項目を持たせてください。
 
 ```
 module.exports = {
-  credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET // add exactly this
+  credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET // 正確にこれを書き足してください
 }
 ```
 
-...and then when you run in Docker, you add an environment variable to your `run` command...
+...そして、実行しているDocker内で、`run`コマンドに環境変数を追加してください...
 
 `docker run -e "NODE_RED_CREDENTIAL_SECRET=your_secret_goes_here"`
 
-#### Building and running
+#### ビルドおよび実行
 
-You _build_ this Dockerfile normally:
+通常通りDockerファイルを_ビルド_します:
 
 ```sh
 docker build -t your-image-name:your-tag .
 ```
 
-To _run_ locally for development where changes are written immediately and only the local directory that you are working from, `cd` into the project's directory and then run:
+作業しているローカルディレクトリでの変更だけをすぐに開発目的でローカルで _実行_ するためには、`cd`を使ってプロジェクトのディレクトリに移動し、以下のように実行します:
 
 ```bash
 docker run --rm -e "NODE_RED_CREDENTIAL_SECRET=your_secret_goes_here" -p 1880:1880 -v `pwd`:/data --name a-container-name your-image-name
 ```
 
-### Startup
+### 起動
 
-Environment variables can be passed into the container to configure the runtime of Node-RED.
+環境変数はNode-RED実行環境を設定するコンテナに引き渡すことが可能です。
 
-The flows configuration file is set using an environment parameter (**FLOWS**),
-which defaults to *'flows.json'*. This can be changed at runtime using the
-following command-line flag.
+フロー設定ファイルは、
+デフォルトでは*'flows.json'*となっている環境変数(**FLOWS**)を使うことで設定します。
+以下のコマンドラインフラグによって実行時に変更することができます。
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data -e FLOWS=my_flows.json nodered/node-red
 ```
 
-**Note**: If you set `-e FLOWS=""` then the flow file can be set via the *flowFile*
-property in the `settings.js` file.
+**Note**: `-e FLOWS=""`を指定した場合、
+`settings.js`ファイル内の*flowFile*プロパティを経由してフローファイルに設定されます。
 
-Other useful environment variables include
+その他有用な環境変数は以下のとおりです
 
- - `-e NODE_RED_ENABLE_SAFE_MODE=false` # setting to true starts Node-RED in safe (not running) mode
- - `-e NODE_RED_ENABLE_PROJECTS=false`  # setting to true starts Node-RED with the projects feature enabled
+ - `-e NODE_RED_ENABLE_SAFE_MODE=false` # trueに設定することでセーフ(実行されない)モードでNode-REDを起動します
+ - `-e NODE_RED_ENABLE_PROJECTS=false`  # trueに設定することでプロジェクト機能を有効にしてNode-REDを起動します
 
-Node.js runtime arguments can be passed to the container using an environment
-parameter (**NODE_OPTIONS**). For example, to fix the heap size used by
-the Node.js garbage collector you would use the following command.
+Node.jsの実行時引数は環境変数(**NODE_OPTIONS**)を使うことでコンテナに引き渡すことができます。
+例えば、Node.jsガーベージコレクタを使うことでヒープサイズの修正をおこなうためには
+以下のコマンドを使用します。
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data -e NODE_OPTIONS="--max_old_space_size=128" nodered/node-red
 ```
 
-### Running headless
+### ヘッドレスで実行する
 
-To run headless, (i.e. in the background), just replace the `-it` in most previous commands
-with `-d`, for example:
+ヘッドレス（つまりバックグラウンド）で実行するには、前述のほとんどのコマンドで`-d`を`-it`に置換するだけであり、
+以下の例のようになります:
 ```
 docker run -d -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
 ```
 
-### Container Shell
+### コンテナシェル
 
-Once it is running headless you can use the following command to get access back into the container.
+ヘッドレスで実行した場合、コンテナにアクセスし直すためには以下のコマンドを利用します。
 ```
 $ docker exec -it mynodered /bin/bash
 bash-4.4$
 ```
 
-Will give a command line inside the container - where you can then run the npm install
-command you wish - for example
+コンテナ内のコマンドラインを表示します - 実行したいnpm installコマンドを実行できます
+- 例
 ```
 bash-4.4$ npm install node-red-dashboard
 bash-4.4$ exit
@@ -341,120 +341,120 @@ $ docker stop mynodered
 $ docker start mynodered
 ```
 
-Refreshing the browser page should now reveal the newly added nodes in the palette.
+そして、ブラウザページを更新することでパレットに新しく追加したノードが現れるはずです。
 
-### Multiple Instances
+### 複数インスタンス
 
-Running
+以下のように実行すると、
 ```
 docker run -d -p 1880 nodered/node-red
 ```
-will create a locally running instance of a machine. Note: we did not specify a name.
+マシンのローカルインスタンスを作成できます。注意: 特定の命名はしていません。
 
-This container will have an id number and be running on a random port... to find out which port, run `docker ps`
+このコンテナはID番号を持ち、ランダムなポート番号で実行されます... どのポートなのかを知るには、`docker ps`を実行します
 ```
 $ docker ps
 CONTAINER ID  IMAGE             COMMAND                 CREATED         STATUS        PORTS                    NAMES
 860258cab092  nodered/node-red  "npm start -- --user…"  10 seconds ago  Up 9 seconds  0.0.0.0:32768->1880/tcp  dazzling_euler
 ```
 
-You can now point a browser to the host machine on the tcp port reported back, so in the example
-above browse to `http://{host ip}:32768`
+ここで判明したTCPポートでホストマシンをブラウザで指定することができ、
+つまり上述の例では`http://{host ip}:32768`でブラウジングします。
 
-### Linking Containers
+### コンテナのリンク
 
-You can link containers "internally" within the docker runtime by using Docker [user-defined bridges](https://docs.docker.com/network/bridge/).
+Docker [user-defined bridges](https://docs.docker.com/network/bridge/)を使用することでDocker実行環境の「内部に」コンテナをリンクすることができます。
 
-Before using a bridge, it needs to be created.  The command below will create a new bridge called **iot**
+ブリッジを使う前に作成する必要があります。以下のコマンドは **iot** と呼ばれる新たなブリッジを作成します。
 
     docker network create iot
 
-Then all containers that need to communicate need to be added to the same bridge using the **--network** command line option
+連携する必要のある全てのコンテナは、**--network**というコマンドラインオプションを利用して同一ブリッジに追加する必要があります。
 
-    docker run -itd --network iot --name mybroker eclipse-mosquitto mosquitto -c /mosquitto-no-auth.conf
+    docker run -itd -e NO_AUTHENTICATION=1 --network iot --name mybroker eclipse-mosquitto
 
-(no need to expose the port 1883 globally unless you want to... as we do magic below)
+(望まない限り、ポート1883をグローバルに公開する必要はありません。後で魔法をかけます。)
 
-Then run nodered docker, also added to the same bridge
+そしてnodered dockerを実行し、同じブリッジに追加します
 
     docker run -itd -p 1880:1880 --network iot --name mynodered nodered/node-red
 
-containers on the same user-defined bridge can take advantage of the built in name resolution provided by the bridge and use the container name (specified using the **--name** option) as the target hostname.
+同一ユーザー定義ブリッジ上のコンテナは、ブリッジによって提供される名前解決を利用し、ターゲットホスト名としてコンテナ名（ **--name**オプションを利用して特定される）を利用できます。
 
-In the above example the broker can be reached from the Node-RED application using hostname *mybroker*.
+上述の例では、*mybroker*というホスト名を使ってNode-REDアプリケーションからブローカーに到達できます。
 
-Then a simple flow like below show the mqtt nodes connecting to the broker
+以下にMQTTノードがブローカーに接続するシンプルなフローを示します
 
         [{"id":"c51cbf73.d90738","type":"mqtt in","z":"3fa278ec.8cbaf","name":"","topic":"test","broker":"5673f1d5.dd5f1","x":290,"y":240,"wires":[["7781c73.639b8b8"]]},{"id":"7008d6ef.b6ee38","type":"mqtt out","z":"3fa278ec.8cbaf","name":"","topic":"test","qos":"","retain":"","broker":"5673f1d5.dd5f1","x":517,"y":131,"wires":[]},{"id":"ef5b970c.7c864","type":"inject","z":"3fa278ec.8cbaf","name":"","repeat":"","crontab":"","once":false,"topic":"","payload":"","payloadType":"date","x":290,"y":153,"wires":[["7008d6ef.b6ee38"]]},{"id":"7781c73.639b8b8","type":"debug","z":"3fa278ec.8cbaf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":true,"complete":"payload","targetType":"msg","statusVal":"payload","statusType":"auto","x":505,"y":257,"wires":[]},{"id":"5673f1d5.dd5f1","type":"mqtt-broker","z":"","name":"","broker":"mybroker","port":"1883","clientid":"","usetls":false,"compatmode":false,"keepalive":"15","cleansession":true,"birthTopic":"","birthQos":"0","birthRetain":"false","birthPayload":"","closeTopic":"","closeRetain":"false","closePayload":"","willTopic":"","willQos":"0","willRetain":"false","willPayload":""}]
 
-This way the internal broker is not exposed outside of the docker host - of course
-you may add `-p 1883:1883`  etc to the broker run command if you want other systems outside your computer to be able to use the broker.
+この方法は内部ブローカーをDockerホスト外に公開しません - 
+自身のコンピュータ以外の他のシステムにブローカーを利用させたい場合、`-p 1883:1883`などをブローカーに追加してコマンドを実行することができます。
 
-### Raspberry PI - native GPIO support
+### Raspberry PI - ネイティブGPIOサポート
 
-| v1.0 - BREAKING: Native GPIO support for Raspberry PI has been dropped |
+| v1.0 - 緊急: Raspberry PIのネイティブGPIOサポートは廃止されました |
 | --- |
-The replacement for native GPIO is [node-red-node-pi-gpiod](https://github.com/node-red/node-red-nodes/tree/master/hardware/pigpiod).
+ネイティブGPIOの代替は[node-red-node-pi-gpiod](https://github.com/node-red/node-red-nodes/tree/master/hardware/pigpiod)です。
 
-Disadvantages of the native GPIO support are:
-- Your Docker container needs to be deployed on the same Docker node/host on which you want to control the gpio.
-- Gain access to `/dev/mem` of your Docker node/host
-- privileged=true is not supported for `docker stack` command
+ネイティブGPIOサポートの欠点は以下のとおりです:
+- Dockerコンテナは、gpioをコントロールしたい同じDockerノード/ホストにデプロイする必要があります
+- Dockerノード/ホストの`/dev/mem`にアクセスします
+- privileged=trueは`docker stack`コマンドではサポートされていません
 
-`node-red-node-pi-gpiod` fixes all these disadvantages. With `node-red-node-pi-gpiod` it is possible to interact with gpio of multiple Raspberry Pi's from a single Node-RED container, and for multiple containers to access different gpio on the same Pi.
+`node-red-node-pi-gpiod`はこれらの全ての欠点を解消します。`node-red-node-pi-gpiod`は単一のNode-REDコンテナから複数のRaspberry Piのgpioと情報交換すること、そして複数のコンテナが同じRaspberry Piの異なるgpioにアクセスすることが可能にします。
 
-#### Quick Migration steps to `node-red-node-pi-gpiod`
+#### `node-red-node-pi-gpiod`へのクイック移行手順
 
-  1. Install `node-red-node-pi-gpiod` through the Node-RED palette.
-  2. Install and run `PiGPIOd daemon` on the host Pi. For detailed install instruction please refer to the `node-red-node-pi-gpiod` [README](https://github.com/node-red/node-red-nodes/tree/master/hardware/pigpiod#node-red-node-pi-gpiod).
-  3. Replace all native gpio nodes with `pi gpiod` nodes.
-  4. Configure `pi gpiod` nodes to connect to `PiGPIOd daemon`. Often the host machine will have an IP 172.17.0.1 port 8888 - but not always. You can use `docker exec -it mynodered ip route show default | awk '/default/ {print $3}'` to check.
+  1. Node-REDパレットを通して`node-red-node-pi-gpiod`をインストールします
+  2. ホストのPaspberry Piに`PiGPIOd daemon`をインストールして実行します
+  3. `pi gpiod`ノードによって全てのネイティブGPIOノードを置換します
+  4. `PiGPIOd daemon`に接続するように`pi gpio`ノードを設定します。ほとんどのホストマシンはIPアドレス172.17.0.1 ポート番号8888がありますが、常ではありません。確認には`docker exec -it mynodered ip route show default | awk '/default/ {print $3}'`を利用できます。
 
-**Note**: There is a contributed [gpiod project](https://github.com/corbosman/node-red-gpiod) that runs the gpiod in its own container rather than on the host if required.
+**Note**: 必要な場合、ホスト上ではなくそれ自身のコンテナでgpiodを実行する[gpiod project](https://github.com/corbosman/node-red-gpiod)が存在します。
 
-### Serial Port - Dialout - Adding Groups
+### シリアルポート - ダイアルアウト - グループへの追加
 
-To access the host serial port you may need to add the container to the `dialout` group. This can be enabled by adding `--group-add dialout` to the start command. For example
+ホストシリアルポートへアクセスするためには、`dialout`グループにコンテナを追加する必要があります。起動コマンドに`--group-add dialout`を追加することで有効できます。例は以下の通りです。
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --group-add dialout --name mynodered nodered/node-red
 ```
 
 ---
 
-### Common Issues and Hints
+### よくある問題とヒント
 
-Here is a list of common issues users have reported with possible solutions.
+ここではユーザが報告した一般的な問題と解決策の一覧を示します。
 
-#### User Permission Errors
+#### ユーザ権限のエラー
 
-See [the wiki](https://github.com/node-red/node-red-docker/wiki/Permissions-and-Persistence) for detailed information
-on permissions.
+権限に関する詳細な情報については
+[wiki](https://github.com/node-red/node-red-docker/wiki/Permissions-and-Persistence)を参照してください。
 
-If you are seeing *permission denied* errors opening files or accessing host devices, try running the container as the root user.
+*権限拒否*エラーを確認した場合、ファイルを開くかホストデバイスにアクセスし、ルートユーザとしてコンテナを起動してみてください。
 
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -u node-red:dialout nodered/node-red
 ```
 
-References:
+リファレンス:
 
 https://github.com/node-red/node-red-docker/issues/15
 
 https://github.com/node-red/node-red-docker/issues/8
 
-#### Accessing Host Devices
+#### ホストデバイスにアクセスする
 
-If you want to access a device from the host inside the container, e.g. serial port, use the following command-line flag to pass access through.
+コンテナ内のホストからデバイスにアクセスしたい、例えばシリアルポートの場合、以下のコマンドラインフラグを使ってアクセスします。
 
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered --device=/dev/ttyACM0 nodered/node-red
 ```
-References:
+リファレンス:
 https://github.com/node-red/node-red/issues/15
 
-#### Setting Timezone
+#### タイムゾーンを設定する
 
-If you want to modify the default timezone, use the TZ environment variable with the [relevant timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+デフォルトのタイムゾーンを変更したい場合、[相対タイムゾーン](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)を用いたTZ環境変数を使用します。
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -e TZ=America/New_York nodered/node-red
 ```
@@ -466,5 +466,12 @@ or within a docker-compose file
       - TZ=America/New_York
 ```
 
-References:
+or within a docker-compose file
+```
+  node-red:
+    environment:
+      - TZ=America/New_York
+```
+
+リファレンス:
 https://groups.google.com/forum/#!topic/node-red/ieo5IVFAo2o

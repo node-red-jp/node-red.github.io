@@ -1,63 +1,63 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Configuration
-slug: configuration
+title: 設定
+slug: 設定
 redirect_from:
   - /docs/configuration
   - /docs/user-guide/configuration
 ---
-The following properties can be used to configure Node-RED.
+Node-REDを設定するために以下のプロパティが利用できます。
 
-When running as a normal application, it loads its configuration from a settings
-file. For more information about the settings file and where it is, read [this guide](settings-file).
+一般的なアプリケーションとして実行するとき、設定ファイルから設定をロードします。
+設定ファイルについてのさらなる情報そしてそれがどこにあるのかについては、[このガイド](settings-file)を読んでください。
 
-When running as an [embedded application](embedding), the configuration options
-are passed in the call to `RED.init()`. However, when run in this mode, certain
-properties are ignored and are left to the embedding application to implement.
+[組込みアプリケーション]として実行するとき、を設定オプションは`RED.init()`という呼び出し関数に渡されます。
+しかしこの場合の実行時には、特定のプロパティは無視され、
+組込みアプリケーションの実装に依存します。
 
-### Runtime Configuration
+### Node-RED実行時の設定
 
 flowFile
-: the file used to store the flows. Default: `flows_<hostname>.json`
+: フロー設定をファイルに保存する場合のファイル名です。デフォルト: `flows_<hostname>.json`
 
 userDir
-: the directory to store all user data, such as flow and credential files and all
-  library data. Default: `$HOME/.node-red`
+: フロー設定、資格情報ファイルおよびすべてのライブラリデータなどすべてのユーザデータを保存するためのディレクトリのパスです。
+  デフォルト: `$HOME/.node-red`
 
 nodesDir
-: a directory to search for additional installed nodes. Node-RED searches the `nodes`
-  directory under the *userDir* directory. This property allows an additional directory
-  to be searched, so that nodes can be installed outside of the Node-RED install
-  structure. Default: `$HOME/.node-red/nodes`
+: 自作のノードなど、追加でイントールしたノードを探索するディレクトリのパス。Node-REDは*userDir*ディレクトリ以下の`nodes`ディレクトリを探索します。
+  このプロパティはNode-REDのインストール機構以外からインストールされたノードなどのため、Node-REDが探索をおこなう追加のディレクトリを指定します。
+  ここで指定したディレクトリ内にノードの`.js`と`.html`ファイルを配置するとNode-REDのパレットに表示されるようになります。Node-REDの外部のパスも指定できます。
+  デフォルト: `$HOME/.node-red/nodes`
 
 uiHost
-: the interface to listen for connections on. Default: `0.0.0.0` -
-  *all IPv4 interfaces*.
+: 接続を待機するホストインタフェースです。デフォルト: `0.0.0.0` -
+  *全てのIPv4インタフェース*.
 
-  *Standalone only*.
+  *スタンドアローンのみ*.
 
 uiPort
-: the port used to serve the editor UI. Default: `1880`.
+: エディタUIを提供するために利用するポート番号です。デフォルト: `1880`.
 
-  *Standalone only*.
+  *スタンドアローンのみ*.
 
 httpAdminRoot
-: the root url for the editor UI. If set to `false`, all admin endpoints are disabled. This includes both API endpoints and the editor UI. To disable just the editor UI, see the `disableEditor` property below. Default: `/`
+: エディタUIのためのルートURLです。`false`が設定されている場合、すべての管理エンドポイントが無効になります。
+  これにはAPIエンドポイントとエディタUIの両方が含まれます。エディタUIのみを無効にするためには、以下の`disableEditor`プロパティを参照してください。デフォルト: `/`
 
 httpAdminAuth
-: *Deprecated*: see `adminAuth`.
+: *非推奨*: `adminAuth`を参照してください。
 
-  enables HTTP Basic Authentication on the editor UI:
+  エディタUIのHTTPベーシック認証を有効にします。:
 
       httpAdminAuth: {user:"nol", pass:"5f4dcc3b5aa765d61d8327deb882cf99"}
 
-  The `pass` property is the md5 hash of the actual password. The following
-  command can be used to generate the hash:
+  `pass`プロパティは実際のパスワードのmd5ハッシュ値を指定します。上記の例では実際にBasic認証ダイアログへ入力するパスワードは`password`という文字列になります。以下のコマンドを実行することによってハッシュ値が得られます。:
 
       node -e "console.log(require('crypto').createHash('md5').update('YOUR PASSWORD HERE','utf8').digest('hex'))"
 
-  *Standalone only*.
+  *スタンドアローンのみ*.
 
 httpAdminMiddleware
 : an HTTP middleware function, or array of functions, that is added to all admin routes.
@@ -69,42 +69,42 @@ httpAdminMiddleware
       }
 
 httpNodeRoot
-: the root url for nodes that provide HTTP endpoints. If set to `false`, all node-based HTTP endpoints are disabled. Default: `/`
+: HTTP InノードのHTTPエンドポイントのルートURLを指定できます。`false`が設定されている場合、すべてのノードのHTTPエンドポイントは無効になります。デフォルト: `/`
 
 httpNodeAuth
-: enables HTTP Basic Authentication. See `httpAdminAuth` for format.
+: HTTP InノードのHTTPエンドポイントにBasic認証を設けます。書式は`httpAdminAuth`を参照してください。
 
 httpRoot
-: this sets the root url for both admin and node endpoints. It overrides the values set by `httpAdminRoot` and `httpNodeRoot`.
+: 管理およびノードのエンドポイントの両方のルートURLを設定します。`httpRoot`を指定すると`httpAdminRoot`と`httpNodeRoot`を同じパスで上書きします。
 
 https
-: enables https, with the specified options object, as defined
-  [here](http://nodejs.org/api/https.html#https_https_createserver_options_requestlistener).
+: [こちら](http://nodejs.org/api/https.html#https_https_createserver_options_requestlistener)で定義されている
+  指定されたoptionsオブジェクトでHTTPSを有効にします。
 
-  *Standalone only*.
+  *スタンドアローンのみ*.
 
 disableEditor
-: if set to `true`, prevents the editor UI from being served by the runtime. The admin api endpoints remain active. Default: `false`.
+: `true`を指定するとフローエディタが無効になります。`httpAdminRoot`を`false`にした場合はUIもAPIも無効になりますが、こちらはUIのみ無効になります。デフォルト: `false`
 
 httpStatic
-: a local directory from which to serve static web content from. This content is
-  served from the top level url, `/`. When this property is used, `httpAdminRoot` must
-  also be used to make editor UI available at a path other than `/`.
+: 静的ウェブコンテンツの提供元となるローカルディレクトリのパスです。
+  コンテンツはトップレベルURL、つまり`/`から提供されます。例えば`/home/username/.node-red/`と指定した場合、`/home/username/.node-red/index.html`を作成すると`/`へアクセスすると作成した`index.html`が表示されます。
+  `httpStatic`を指定する場合、`/`ではないパスでエディタUIを利用できるようにするため、`httpAdminRoot`は`/`より下層のパスにする必要があります。
 
-  *Standalone only*.
+  *スタンドアローンのみ*.
 
 httpStaticAuth
-: enabled HTTP Basic Authentication on the static content. See `httpAdminAuth` for format.
+: 静的コンテンツにBasic認証を設けます。書式は`httpAdminAuth`を参照してください。
 
 httpNodeCors
-: enables cross-origin resource sharing for the nodes that provide HTTP endpoints,
-  as defined [here](https://github.com/troygoode/node-cors#configuration-options)
+: HTTP InノードのHTTPエンドポイントのCross-Origin Resource Sharing (CORS) を有効にします。
+  詳細は[こちら](https://github.com/troygoode/node-cors#configuration-options)。
 
 httpNodeMiddleware
-: an HTTP middleware function, or array of functions, that is added to all HTTP In nodes.
-  This allows whatever custom processing, such as authentication, is needed for
-  the nodes. The format of the middleware function is
-  documented [here](http://expressjs.com/guide/using-middleware.html#middleware.application).
+
+: HTTP InノードのHTTPエンドポイントにHTTPミドルウェア機能、またはその機能の配列を追加できます。これにより、認証などノードに必要なカスタム処理がすべて可能になります。
+  ミドルウェア機能の形式は[こちら](http://expressjs.com/guide/using-middleware.html#middleware.application)で文書化されています。
+  HTTPエンドポイントでセッションとクッキーのハンドラを利用したい場合は以下のように設定します。
 
       httpNodeMiddleware: function(req,res,next) {
           // Perform any processing on the request.
@@ -113,16 +113,16 @@ httpNodeMiddleware
       }
 
 logging
-: currently only console logging is supported. Various levels of logging can be specified. Options are:
+:  現在コンソールログのみがサポートされています。以下のオプションでロギングの様々なレベルを指定することができます。
 
- - **fatal** - only those errors which make the application unusable should be recorded
- - **error** - record errors which are deemed fatal for a particular request + fatal errors
- - **warn** - record problems which are non fatal + errors + fatal errors
- - **info** - record information about the general running of the application + warn + error + fatal errors
- - **debug** - record information which is more verbose than info + info + warn + error + fatal errors
- - **trace** - record very detailed logging + debug + info + warn + error + fatal errors
+ - **fatal** - アプリケーションが使用できなくなるような致命的エラーのみを記録
+ - **error** - 特定のリクエストで致命的と判定されるエラー + fatalを記録
+ - **warn** - 致命的でない問題の警告 + error + fatalを記録
+ - **info** - アプリケーションの一般的な実行に関する情報 + warn + error + fatalを記録
+ - **debug** - infoより詳細な情報 + info + warn + error + fatalを記録
+ - **trace** - 非常に詳細な情報 + debug + info + warn + error + fatalを記録
 
-The default level is `info`. For embedded devices with limited flash storage you may wish to set this to `fatal` to minimise writes to "disk".        
+デフォルトのレベルは `info` です。限られたフラッシュストレージの組込みデバイスではディスクへの書き込みを最小限にするために `fatal` を設定することもできます。
 
 externalModules
 : Configure how the runtime will handle external npm modules. This covers:
@@ -148,25 +148,25 @@ externalModules
          }
       }
 
-### Editor Configuration
+### フローエディタの設定
 
 adminAuth
-: enables user-level security in the editor and admin API. See [Securing Node-RED](securing-node-red)
-  for more information.
+: エディタと管理APIにユーザレベルセキュリティを有効化することができます。
+  詳細な情報は[Node-REDをセキュアにする](securing-node-red)を確認してください。
 
 paletteCategories
-: defines the order of categories in the palette. If a node's category is not in
-  the list, the category will get added to the end of the palette. If not set,
-  the following default order is used:
+: フローエディタのパレットのカテゴリの順序を設定します。
+  カテゴリがリストにない場合はパレットの最後に追加されます。
+  設定されていない場合、以下のデフォルトの順序が利用されます。
 
       ['subflows', 'common', 'function', 'network', 'sequence', 'parser', 'storage'],
 
-   _Note_: Until the user creates a subflow the subflow category will be empty and will
-   not be visible in the palette.
+   _Note_: サブフローを作成するまでサブフローカテゴリは空のままで、
+   パレットには表示されません。
 
-### Editor Themes
+### エディタテーマ
 
-The theme of the editor can be changed by using the following settings object. All parts are optional.
+エディタのテーマは次の設定オブジェクトを使用して変更することができます。すべての項目はオプションです。
 
     editorTheme: {
         page: {
@@ -215,55 +215,55 @@ The theme of the editor can be changed by using the following settings object. A
         }
     },
 
-### Dashboard
+### ダッシュボード
 
 ui
-: The home path for the Node-RED-Dashboard add-on nodes can specified. This is relative
-to any already defined **httpNodeRoot**
+: Node-RED-DashboardアドオンNodeのホームパスを指定できます。
+これは**httpNodeRoot**の相対パスとなります。
 
     ui : { path: "mydashboard" },
 
-### Node Configuration
+### Nodeの設定
 
-Any node type can define its own settings to be provided in the file.
+独自のNode Typeはファイルで提供される独自の設定を定義することができます。
 
 functionGlobalContext
-: Function Nodes - a collection of objects to attach to the global function
-  context. For example,
+: Functionノード - グローバルファンクションコンテキストに加えるオブジェクトの一覧です。
+  例えば、
 
       functionGlobalContext: { osModule:require('os') }
 
-  can be accessed in a function node as:
-
+  Functionノード内で以下のようにアクセスすることができます:
+  
       var myos = global.get('osModule');
 
- <div class="doc-callout"><em>Note</em> : Prior to Node-RED v0.13, the documented
- way to use global context was to access it as a sub-property of <code>context</code>:
+ <div class="doc-callout"><em>Note</em> : Node-RED v0.13以前のドキュメントでは、
+ グローバルコンテキストにアクセスする方法は<code>context</code>のサブプロパティを参照する方法でした。:
  <pre>context.global.foo = "bar";
  var osModule = context.global.osModule;</pre>
- This method is still supported, but deprecated in favour of the <code>global.get</code>/<code>global.set</code>
- functions. Any data stored using this method will not be persisted across restarts and will not be visible in the sidebar context viewer.
+ この方法はまだサポートされていますが、非推奨であり、<code>global.get</code>/<code>global.set</code>
+ でのアクセスが推奨されます。この方法で保存されたデータは再起動後には取得できず、サイドバーのコンテキストビューアには表示されません。
  </div>
 
 functionExternalModules
 : if set to `true`, the Function node's Setup tab will allow adding additional modules that will become available to the function. See [Writing Functions](../writing-functions#using-the-functionexternalmodules-option) for more information. Default: `false`.
 
 debugMaxLength
-: Debug Nodes - the maximum length, in characters, of any message sent to the
-  debug sidebar tab. Default: 1000
+: DebugノードでサイドバーのDebugタブに表示される最大文字数を指定します。
+  デフォルト: 1000
 
 mqttReconnectTime
-: MQTT Nodes - if the connection is lost, how long to wait, in milliseconds,
-  before attempting to reconnect. Default: 5000
+: MQTTノードの接続が切断された場合に再接続を試行するまでの待機時間（ミリ秒）。
+  デフォルト: 5000
 
 serialReconnectTime
-: Serial Nodes - how long to wait, in milliseconds, before attempting to reopen
-  a serial port. Default: 5000
+: Serialノードの接続が切断された場合に再接続を試行するまでの待機時間（ミリ秒）。
+  デフォルト: 5000
 
 socketReconnectTime
-: TCP Nodes - how long to wait, in milliseconds, before attempting to reconnect.
-  Default: 10000
+: TCPノードの接続が切断された場合に再接続を試行するまでの待機時間（ミリ秒）。
+  デフォルト: 10000
 
 socketTimeout
-: TCP Nodes - how long to wait, in milliseconds, before timing out a socket.
-  Default: 120000
+: TCPノードのソケットのタイムアウト時間（ミリ秒）。
+  デフォルト: 120000

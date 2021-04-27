@@ -6,19 +6,19 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - modify node set
 ---
 
-Enable/Disable a node set
+Node setの有効・無効を設定します。
 
-Requires permission: <code>nodes.write</code>
+必要となる権限: <code>nodes.write</code>
 
 ### Headers
 
 Header          | Value
 ----------------|-------
-`Authorization` | `Bearer [token]` - if authentication is enabled
+`Authorization` | `Bearer [token]` - 認証が有効になっている場合
 `Content-type`  | `application/json`
 
 
@@ -26,14 +26,14 @@ Header          | Value
 
 Path Component | Description
 ---------------|------------
-`module`       | The name of the module
-`set`          | The name of the set
+`module`       | モジュール名
+`set`          | Node Set名
 
-The request body must be a JSON string with the following fields:
+リクエストボディは下記のようなJSON文字列でなければなりません:
 
 Field     | Description
 ----------|------------------------
-`enabled` | `true` or `false` - whether to enable or disable the module
+`enabled` | `true` または `false` - モジュールを有効にするか無効にするか
 
 {% highlight json %}
 {
@@ -43,12 +43,12 @@ Field     | Description
 
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|--------------
-`200`       | Success        | A [Node Set](/docs/api/admin/types#node-module) object. See example response body
-`400`       | Bad request    | An [Error response](/docs/api/admin/errors)
-`401`       | Not authorized | _none_
-`404`       | Not found      | _none_
+Status Code | Reason           | Response
+------------|------------------|--------------
+`200`       | 成功             | [Node Module](/docs/api/admin/types#node-module) オブジェクト。レスポンスボディの例を参照
+`400`       | 不正なリクエスト | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった | _無し_
+`404`       | 見つからなかった | _無し_
 
 
 {% highlight json %}

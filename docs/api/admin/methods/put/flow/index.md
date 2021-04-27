@@ -6,31 +6,31 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - update flow
 ---
 
-Update a flow in the active configuration. A flow is represented as a tab within the
-editor.
+アクティブなフロー設定を更新します。
+フローはタブとしてエディタ内に表示されます。
 
-All nodes in the existing flow are stopped before the new flow configuration is started.
+新しいフロー設定が開始される前に、既存のフロー内のすべてのノードが停止されます。
 
-Requires permission: <code>flows.write</code>
+必要となる権限: <code>flows.write</code>
 
 ### Headers
 
 Header                     | Value
 ---------------------------|----------
-`Authorization`            | `Bearer [token]` - if authentication is enabled
+`Authorization`            | `Bearer [token]` - 認証が有効になっている場合
 `Content-type`             | `application/json`
 
 ### Arguments
 
 Path Component | Description
 ---------------|------------
-`id`           | The id of the flow to update, or `global`
+`id`           | 更新するフローのid、もしくは `global`
 
-The request body must be a single flow configuration object.
+リクエストボディは単一のフロー設定オブジェクトでなければなりません。
 
 For a normal flow:
 {% highlight json %}
@@ -51,17 +51,15 @@ For the global flow:
 }
 {% endhighlight %}
 
-
-
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|--------------
-`204`       | Success        | _none_
-`400`       | Bad request    | An [Error response](/docs/api/admin/errors)
-`401`       | Not authorized | _none_
+Status Code | Reason           | Response
+------------|------------------|--------------
+`204`       | 成功             | _無し_
+`400`       | 不正なリクエスト | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった | _無し_
 
-Returns the `id` of the flow.
+フローの `id` を返します。
 
 {% highlight json %}
 {"id":"5a04dce3.a5fb24"}

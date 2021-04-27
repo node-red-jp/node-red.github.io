@@ -6,37 +6,36 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - get flow
 ---
 
-Get an individual flow configuration. A flow is represented as a tab within the
-editor.
+個別のフロー設定を取得します。
+フローはタブとしてエディタ内に表示されます。
 
-Requires permission: <code>flows.read</code>
+必要となる権限: <code>flows.read</code>
 
 ### Headers
 
 Header          | Value
 ----------------|-------
-`Authorization` | `Bearer [token]` - if authentication is enabled
+`Authorization` | `Bearer [token]` - 認証が有効になっている場合
 
 ### Arguments
 
 Path Component | Description
 ---------------|------------
-`id`           | The id of the flow.
+`id`           | フローのid
 
-If `id` is set to `global`, the global configuration nodes and subflow definitions
-are returned.
+`id` が `global` に設定されている場合、グローバルに設定されているノードとサブフローの設定が返されます。
 
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|--------------
-`200`       | Success        | A flow object. See example response body
-`401`       | Not authorized | _none_
-`404`       | Not found      | _none_
+Status Code | Reason                   | Response
+------------|--------------------------|--------------
+`200`       | Success                  | フローオブジェクト。下記例を参照
+`401`       | 認証されなかった         | _無し_
+`404`       | フローが見つからなかった | _無し_
 
 {% highlight json %}
 {

@@ -1,80 +1,80 @@
 ---
 layout: about-single
-title: Contributor Covenant Code of Conduct
-slug: conduct
+title: コントリビュータ行動規範
+slug: 行動規範
 redirect_from:
   - /conduct/
 ---
 
-### Our Pledge
+### 誓約
 
-In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, gender identity and expression, level of experience,
-nationality, personal appearance, race, religion, or sexual identity and
-orientation.
+オープンで友好的な環境を促進するために、
+コントリビュータおよびメンテナである私たちは、
+私たちのプロジェクトおよびコミュニティへの参加を、
+年齢、体格、身体障害、民族、ジェンダーアイデンティティおよび表現、経験のレベル、国籍、個人的な外見、人種、宗教、
+または性的同一性および指向に関係なく、
+誰もがハラスメントを受けることがないようにすることを誓います。
 
-### Our Standards
+### 規範
 
-Examples of behavior that contributes to creating a positive environment
-include:
+良い環境の構築に貢献する行動の例は
+以下のとおりです。
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+* 友好的で開放的な言葉を使う
+* 異なる視点や経験を尊重する
+* 建設的な批判を潔く受け入れる
+* コミュニティにとって何が最善なのかに焦点を当てる
+* 他のコミュニティメンバーに共感を示す
 
-Examples of unacceptable behavior by participants include:
+参加者による容認できない行動の例は次のとおりです。
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
-advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic
-  address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+* 性的表現を含む言葉または画像の使用
+  および敵対的な性的注意および誘惑
+* 荒らし行為、侮蔑的/中傷的なコメント、個人的または政治的攻撃
+* 公的または私的なハラスメント行為
+* 明示的な許諾なしに、
+  他者の実際の住所や電子的なアドレスなど個人情報の公開
+* 作業環境において
+  不適切と見なされる可能性があるその他の行為
 
-### Our Responsibilities
+### 責任
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+プロジェクトメンテナは容認される行動基準を明確にする責任があり、
+容認されない行為が発生した場合、
+適切かつ公正な是正措置を講じることが求められます。
 
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
+メンテナは、
+行動規範に沿っていないコメント、コミット、ソースコード、wikiの編集、issueおよび
+その他のコントリビュートを削除、編集または却下、
+あるいはその他不適切、脅迫的、攻撃的または有害な行為をしたコントリビュータを
+一時的もしくは恒久的に追放する権限と責任を持ちます。
 
-### Scope
+### 適用範囲
 
-This Code of Conduct applies both within project spaces and in public spaces
-when an individual is representing the project or its community. Examples of
-representing a project or community include using an official project e-mail
-address, posting via an official social media account, or acting as an appointed
-representative at an online or offline event. Representation of a project may be
-further defined and clarified by project maintainers.
+この行動規範は、個人がプロジェクトまたはそのコミュニティを代表しているとき、
+プロジェクトスペース内および公共スペース内の両方において適用されます。
+個人がプロジェクトやコミュニティを代表している例には、
+公式プロジェクトのEメールアドレスの使用、
+公式ソーシャルメディアアカウントを介した発言またはオンラインおよびオフラインでのイベントにおける任命された代表としての行動が含まれます。
+プロジェクトの代表は、プロジェクトメンテナによってさらに定義され、明確にされるかもしれません。
 
-### Enforcement
+### 執行
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at [team@nodered.org](mailto:team@nodered.org). All
-complaints will be reviewed and investigated and will result in a response that
-is deemed necessary and appropriate to the circumstances. The project team is
-obligated to maintain confidentiality with regard to the reporter of an incident.
-Further details of specific enforcement policies may be posted separately.
+虐待的、ハラスメント的またはその他容認されない行為は、
+プロジェクトチーム[team@nodered.org](mailto:team@nodered.org)に連絡される場合もあります。
+すべての告発は調査され、
+必要かつ状況に適しているとみなされる対応がなされます。
+プロジェクトチームは、事態の報告者に関する機密性を維持する義務を負います。
+さらに詳細な具体的な執行方針は個別に掲載されるかもしれません。
 
-Project maintainers who do not follow or enforce the Code of Conduct in good
-faith may face temporary or permanent repercussions as determined by other
-members of the project's leadership.
+この行動規範に誠意を持って従わない、または執行しないメンテナは
+プロジェクトの指導的立場にある他のメンバによって
+一時的もしくは恒久的な措置を受ける可能性があります。
 
-### Attribution
+### 帰属
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+この行動規範は、[Contributor Covenant][homepage]のversion 1.4に適合しており、
+[http://contributor-covenant.org/version/1/4][version]において確認することができます。
 
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/

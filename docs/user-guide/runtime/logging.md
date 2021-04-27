@@ -1,25 +1,25 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Logging
-slug: logging
+title: ログ
+slug: ログ
 redirect_from:
   - /docs/user-guide/logging
 ---
 
-Node-RED uses a logger that writes its output to the console. It also
-supports the use of custom logger modules to allow the output to be sent elsewhere.
+Node-REDはコンソールに出力するロガーを利用しています。
+また、他への出力を可能にするカスタムロガーモジュールの利用もサポートしています。
 
 <div class="doc-callout">
-<em>Note</em> : if you are running as a service on the Raspberry Pi using our
-<a href="/docs/hardware/raspberrypi">install script</a>, you can use the
-<code>node-red-log</code> command to view the service log.
+<em>Note</em> : 私たちの<a href="/docs/hardware/raspberrypi">install script</a>を利用して、
+Raspberry Piにサービスとして実行ししている場合、
+<code>node-red-log</code>コマンドを利用することでサービスログを確認することができます。
 </div>
 
-### Console logger
+### コンソールロガー
 
-The console logger can be configured under the `logging` property in your
-[settings file](settings-file).
+コンソールロガーは
+[settings file](settings-file)内の`logging`プロパティで設定することができます。
 
 
 ~~~~js
@@ -34,36 +34,36 @@ logging: {
 }
 ~~~~
 
-There are 3 properties used to configure the logger's behaviour:
+ロガーの挙動の設定に使える3つのプロパティがあります。:
 
 #### `level`
 
-Level of logging to be recorded. Options are:
+記録するログレベルです。選択肢は以下のとおりです。:
 
-- `fatal` - only those errors which make the application unusable should be recorded
-- `error` - record errors which are deemed fatal for a particular request
-- `warn` - record problems which are non fatal
-- `info` - record information about the general running of the application
-- `debug` - record information which is more verbose than info
-- `trace` - record very detailed logging
-- `off` - no log messages at all
+- `fatal` - アプリケーションが利用不可能になるようなエラーのみ記録します
+- `error` - 特定のリクエストに対して致命的とみなされるエラーを記録します
+- `warn` - 致命的ではない問題を記録します
+- `info` - アプリケーションの一般的な実行についての情報を記録します
+- `debug` - infoよりも詳細な情報を記録します
+- `trace` - 非常に詳細なログを記録します
+- `off` - ログメッセージをすべて記録しません
 
-Other than `off`, each level includes messages at higher levels - for example, `warn` level
-will include `error` and `fatal` level messages.
+`off`を除き、各レベルはより高いレベルのメッセージを含みます。-
+例えば`warn`レベルは`error`および`fatal`レベルのメッセージを含みます。
 
 #### `metrics`
 
-When set to `true`, the Node-RED runtime outputs flow execution and
-memory usage information.
+`true`を設定した場合、
+Node-REDランタイムはフロー実行とメモリ使用情報を出力します。
 
-Received and sent events in each node are output into the log.
-For example, the following logs are output from the flow which has inject and debug nodes.
+各ノードの送受信イベントはログに出力されます。
+例えば、InjectノードおよびDebugノードを持つフローからは以下のようなログが出力されます。
 
     9 Mar 13:57:53 - [metric] {"level":99,"nodeid":"8bd04b10.813f58","event":"node.inject.receive","msgid":"86c8212c.4ef45","timestamp":1489067873391}
     9 Mar 13:57:53 - [metric] {"level":99,"nodeid":"8bd04b10.813f58","event":"node.inject.send","msgid":"86c8212c.4ef45","timestamp":1489067873392}
     9 Mar 13:57:53 - [metric] {"level":99,"nodeid":"4146d01.5707f3","event":"node.debug.receive","msgid":"86c8212c.4ef45","timestamp":1489067873393}
 
-Memory usage is logged every 15 seconds.
+メモリ使用情報は15秒おきにログ出力されます。
 
     9 Mar 13:56:24 - [metric] {"level":99,"event":"runtime.memory.rss","value":97517568,"timestamp":1489067784815}
     9 Mar 13:56:24 - [metric] {"level":99,"event":"runtime.memory.heapTotal","value":81846272,"timestamp":1489067784817}
@@ -71,21 +71,21 @@ Memory usage is logged every 15 seconds.
 
 #### `audit`
 
-When set to `true`, the Admin HTTP API access events are logged. The event includes
-additional information such as the end point being accessed, IP address and time stamp.
+`true`を設定した場合、Admin HTTP APIアクセスイベントがログ出力されます。
+このイベント情報には、アクセスされているエンドポイント、IPアドレスおよびタイムスタンプといった追加情報が含まれます。
 
-If `adminAuth` is enabled, the events include information about the requesting user.
+`adminAuth`が有効化されている場合、このイベント情報には要求しているユーザについての情報が含まれます。
 
     9 Mar 13:49:42 - [audit] {"event":"library.get.all","type":"flow","level":98,"path":"/library/flows","ip":"127.0.0.1","timestamp":1489067382686}
     9 Mar 14:34:22 - [audit] {"event":"flows.set","type":"full","version":"v2","level":98,"user":{"username":"admin","permissions":"write"},"path":"/flows","ip":"127.0.0.1","timestamp":1489070062519}
 
-### Custom logging module
+### カスタムロギングモジュール
 
-A custom logging module can also be used. For example, the `metrics` output may
-get sent to a separate system for monitoring the performance of the system.
+カスタムロギングモジュールも利用することができます。
+例えば、`metrics`出力をシステム性能の監視のために別のシステムに送信します。
 
-To use a custom logger, add a new block in the logging property of your
-[settings file](settings-file):
+カスタムロガーを利用するため、
+[settings file](settings-file)を編集してloggingセクションに新しいブロックを追加します。
 
 
 ~~~~js
@@ -113,20 +113,20 @@ logging: {
 }
 ~~~~
 
-The `level`, `metrics` and `audit` properties are the same as console logging.
+`level`、`metrics`および`audit`プロパティはコンソールロガーと同様です。
 
-The `handler` property defines the custom logging handler. It is a function that
-is called once at start-up, passing in the logger's configuration. It must
-return a function that will get called with log messages.
+`handler`プロパティはカスタムロギングハンドラを定義しています。
+これは、起動時に1回呼び出され、ロガーの設定を受け渡す関数です。
+ログメッセージとともに呼び出される関数を返さなければなりません。
 
-Multiple custom loggers can be configured - the only reserved name is `console`.
+複数のカスタムロガーを設定することができます。 - 唯一の予約語は`console`です。
 
-#### Example logger
+#### ロガーの例
 
-The following example adds a custom logger that sends metrics events to a
-[Logstash](https://www.elastic.co/products/logstash) instance over a TCP connection.
+以下の例では、
+メトリクスイベントをTCP接続を介して[Logstash](https://www.elastic.co/products/logstash)インスタンスに送るカスタムロガーを追加しています。
 
-It is a very quick and simple example - with no error handling or reconnect logic.
+これは非常に簡易的で、単純な例です。 - エラー処理や再接続ロジックはありません。
 
 ~~~~~js
 logging: {

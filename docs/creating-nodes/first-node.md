@@ -1,34 +1,34 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Creating your first node
-slug: first node
+title: はじめてのノード開発
+slug: はじめてのノード
 ---
 
-Nodes get created when a flow is deployed, they may send and receive some messages
-whilst the flow is running and they get deleted when the next flow is deployed.
+フローがデプロイされた時にノードは有効となり、フローが動作している間ノードはメッセージを送受信します。
+そして、次のフローがデプロイされる前に、ノードは無効になります。
 
-They consist of a pair of files:
- -  a JavaScript file that defines what the node does,
- -  an html file that defines the node's properties, edit dialog and help text.
+ノードは、2つのファイルから構成されています:
+ - ノードの処理を定義したJavaScriptファイル
+ - ノードプロパティ、編集画面、ヘルプを定義したhtmlファイル
 
-A `package.json` file is used to package it all together as an npm module.
+ノードをnpmモジュールとしてパッケージ化する時は、これらのファイルをまとめるために `package.json` ファイルを用います。
 
- - [Creating a simple node](#creating-a-simple-node)
+ - [簡単なノードを開発](#簡単なノードを開発)
    - [package.json](#package-json)
    - [lower-case.js](#lower-casejs)
    - [lower-case.html](#lower-casehtml)
- - [Testing your node in Node-RED](#testing-your-node-in-node-red)
+ - [Node-REDでノードの動作確認](#node-redでノードの動作確認)
 
-### Creating a simple node
+### 簡単なノードを開発
 
-This example will show how to create a node that converts message payloads to
-all lower-case characters.
+この例では、受け取ったメッセージの文字列を全て小文字に変換するノードの開発方法について、
+説明します。
 
-Ensure you have the current LTS version of Node.js installed on your system. At
-the time of writing this is 10.x.
+自分自身の開発環境にNode.jsの現在のLTS版がインストールされていることを確認します。
+これを書いた時点では10.xです。
 
-Create a directory where you will develop your code. Within that directory, create the following files:
+まず開発用のディレクトリを作成してください。そのディレクトリの中で以下の名前のファイルを作成してください。
 
  - `package.json`
  - `lower-case.js`
@@ -36,14 +36,14 @@ Create a directory where you will develop your code. Within that directory, crea
 
 <h4 id="package-json"><i class="fa fa-file-o"></i> package.json</h4>
 
-This is a standard file used by Node.js modules to describe their contents.
+この`package.json`ファイルは、Node.jsモジュールの内容を記述するために標準的に使われるファイルです。
 
-To generate a standard `package.json` file you can use the command `npm init`.
-This will ask a series of questions to help create the initial content for the
-file, using sensible defaults where it can. When prompted, give it the name
-`node-red-contrib-example-lower-case`.
+`package.json`ファイルを作成するには、`npm init`コマンドを用います。
+このコマンドは、モジュール作成を手助けする質問を表示します。
+モジュール名を訊かれた際は、
+`node-red-contrib-example-lower-case`を入力してください。
 
-Once generated, you must add a `node-red` section:
+`package.json`ファイルを作成した後は、以下の様に`node-red`セクションを追加します。
 
 ```json
 {
@@ -57,13 +57,13 @@ Once generated, you must add a `node-red` section:
 }
 ```
 
-This tells the runtime what node files the module contains.
+このセクションにより、どのノードファイルにプログラムが書かれているかを指定します。
 
-For more information about how to package your node, including requirements on
-naming and other properties that should be set before publishing your node, refer
-to the [packaging guide](packaging).
+ノードの命名規則やノードを公開する前に設定すべき他の項目など、
+バッケージ化の詳しい情報については、
+[パッケージングガイド](packaging) を参照してください.
 
-**Note**: Please do ***not*** publish this example node to npm!
+**注意**: このノードは例であるため、npmへ公開***しない***ようにしてください。
 
 <h4 id="lower-casejs"><i class="fa fa-file-o"></i> lower-case.js</h4>
 
@@ -81,29 +81,29 @@ module.exports = function(RED) {
 }
 ```
 
-The node is wrapped as a Node.js module. The module exports a function that gets called
-when the runtime loads the node on start-up. The function is called with a single
-argument, `RED`, that provides the module access to the Node-RED runtime api.
+ノードはモジュールとしてラップされます。
+モジュールは、Node-REDランタイムが起動時にノードを読み込むときに呼び出す関数をエクスポートします。
+この関数は引数`RED`を指定して呼び出され、この引数はモジュールがNode-REDのランタイムAPIにアクセスできるようにしています。
 
-The node itself is defined by a function, `LowerCaseNode` that gets called whenever
-a new instance of the node is created. It is passed an object containing the
-node-specific properties set in the flow editor.
+ノード自身は、`LowerCaseNode`という関数として定義されています。
+この関数は、ノードの新しいインスタンスが作成されるたびに呼び出されます。
+この関数には、フローエディタで登録されたノード固有のプロパティを含むオブジェクトが渡されます。
 
-The function calls the `RED.nodes.createNode` function to initialize the features
-shared by all nodes. After that, the node-specific code lives.
+この関数は全てのノードで共有する機能を初期化するため、さらに`RED.nodes.createNode`関数を呼び出します。
+その後、ノード固有のコードが有効になります。
 
-In this instance, the node registers a listener to the `input` event which gets
-called whenever a message arrives at the node. Within this listener, it changes
-the payload to lower case, then calls the `send` function to pass the message
-on in the flow.
+このインスタンス内でノードは`input`イベントをリスナーに登録しており、
+このイベントはノードにメッセージが届くたびに呼び出されます。
+このリスナーの中でペイロードの文字列を小文字に変換し、
+その後フローへメッセージを渡すために`send`関数を呼び出しています。
 
-Finally, the `LowerCaseNode` function is registered with the runtime using the
-name for the node, `lower-case`.
+最後に、`lower-case`というノード名を指定して
+`LowerCaseNode`関数をランタイムへ登録しています。
 
-If the node has any external module dependencies, they must be included in the `dependencies`
-section of its `package.json` file.
+ノードが外部モジュールの依存関係を持つ場合、
+`package.json`ファイルの`dependencies`セクションにその依存モジュールを記述してください。
 
-For more information about the runtime part of the node, see [here](node-js).
+ノードのランタイム部分についての詳しい情報は、[こちら](node-js)を参照してください。
 
 <h4 id="lower-casehtml"><i class="fa fa-file-o"></i> lower-case.html</h4>
 
@@ -137,55 +137,52 @@ For more information about the runtime part of the node, see [here](node-js).
 </script>
 ```
 
-A node's HTML file provides the following things:
+ノードのHTMLファイルは、以下を含んでいます。
 
- - the main node definition that is registered with the editor
- - the edit template
- - the help text
+ - エディタに登録するノードの説明
+ - ノードの編集テンプレート
+ - ヘルプ
 
-In this example, the node has a single editable property, `name`. Whilst not
-required, there is a widely used convention to this property to help distinguish
-between multiple instances of a node in a single flow.
+この例では、ノードは編集可能なプロパティとして`name`を持っています。
+必須ではありませんが、 1つのフロー内に複数存在するノードインスタンスを区別するのを助けるため、
+このプロパティは慣例的に広く使われています。
 
-For more information about the editor part of the node, see [here](node-html).
+ノードのエディタ部分についての詳しい情報は、[こちら](node-html)を参照してください。
 
-### Testing your node in Node-RED
+### Node-REDでノードの動作確認
 
-Once you have created a basic node module as described above, you can install it into your Node-RED runtime.
+上述の基本的なノードモジュールを作成したら、自分のNode-REDの実行環境にインストールすることができます。
 
-To test a node module locally the [`npm install <folder>`](https://docs.npmjs.com/cli/install)
-command can be used. This allows you to develop the node in a local directory and
-have it linked into a local node-red install during development.
+ローカルでノードモジュールの動作を確認するには、[`npm install <folder>`](https://docs.npmjs.com/cli/install)コマンドを利用します。
+これはローカルディレクトリでのノードの開発および開発段階でのローカルのNode-REDとのリンクを作成します。
 
-In your node-red user directory, typically `~/.node-red`, run:
+ユーザディレクトリのNode-RED、一般的には`~/.node-red`において、以下のように実行します。:
 
     npm install <location of node module>
 
-For example, on Mac OS or Linux, if your node is located at `~/dev/node-red-contrib-example-lower-case` you would do the following:
+例えば、Mac OSやLinuxにおいてノードが`~/dev/node-red-contrib-example-lower-case`に存在する場合、次を実行します:
 
     cd ~/.node-red
     npm install ~/dev/node-red-contrib-example-lower-case
 
-On Windows you would do:
+Windowsでは、次を実行します:
 
     cd C:\Users\my_name\.node_red
     npm install C:\Users\my_name\Documents\GitHub\node-red-contrib-example-lower-case
 
-This creates a symbolic link to your node module project directory in  `~/.node-red/node_modules` so that Node-RED will discover the node when it starts. Any changes to the node's file can be picked up by simply restarting Node-RED.  On Windows, again, using npm 5.x or greater:
+これは`~/.node-red/node_modules`にノードモジュールプロジェクトのディレクトリへのシンボリックリンクを作成し、Node-REDは起動時にそのノードを発見します。ノードのファイルの変更は、Node-REDの再起動によって反映されます。また、Windowsではnpm 5.xまたはそれ以上のバージョンで以下のように実行します。:
 
 <div class="doc-callout">
-<em>Note</em> :  <code>npm</code> will automatically add an entry for your module in the
-<code>package.json</code> file located in your user directory.  If you don't want
-it to do this, use the <code>--no-save</code> option to the <code>npm install</code>
-command.
+<em>Note</em> :  <code>npm</code>は自動的にユーザディレクトリ内の<code>package.json</code>ファイルにエントリを追加します。
+これを実施したくない場合、<code>npm install</code>コマンドで<code>--no-save</code>オプションを利用してください。
 </div>
 
-### Unit Testing
+### ユニットテスト
 
-To support unit testing, an npm module called [`node-red-node-test-helper`](https://www.npmjs.com/package/node-red-node-test-helper) can be used.  The test-helper is a framework
-built on the Node-RED runtime to make it easier to test nodes.
+ユニットテストを支援するため、[`node-red-node-test-helper`](https://www.npmjs.com/package/node-red-node-test-helper)と呼ばれるnpmモジュールを利用することができます。
+このテスト支援モジュールはNode-RED実行環境に基づいて作成されたフレームワークで、ノードのテストをより簡単にしています。
 
-Using this framework, you can create test flows, and then assert that your node properties and output is working as expected.  For example, to add a unit test to the lower-case node you can add a `test` folder to your node module package containing a file called `_spec.js`
+このフレームワークを使うことで、テストフローを作成することができ、さらにノードの設定値と出力結果が期待通りに動作していることを確認できます。例えば、lower-caseノードにユニットテストを追加するため、`_spec.js`ファイルを含んだ`test`フォルを、自身のノードモジュールパッケージに追加しましょう。
 
 <h4 id="lower-casespecjs"><i class="fa fa-file-o"></i> test/lower-case_spec.js</h4>
 
@@ -224,8 +221,8 @@ describe('lower-case Node', function () {
 });
 ```
 
-These tests check to see that the node is loaded into the runtime correctly, and that it correctly changes the payload to lower case as expected.
+これらのテストではノードが実行環境に正しくロードされていること、そしてノードがpayloadの値を期待通りに小文字に変換していることをチェックしています。
 
-Both tests load the node into the runtime using `helper.load` supplying the node under test and a test flow  The first checks that the node in the runtime has the correct name property.  The second test uses a helper node to check that the output from the node is, in fact, lower case.
+どちらのテストも、helper.loadを利用してテスト対象ノードを実行環境にロードし、テストの実施・テストフローへの配置をおこないます。最初のテストでは、実行時のノードの名前プロパティが正しいことを確認しています。2番目のテストでは、支援ノードを利用してテスト対象ノードからの出力が実際に小文字にされていることを確認しています。
 
-The helper module contains other examples of tests taken from the Node-RED core nodes.  For more information on the helper module, see the associated README.
+支援モジュールはNode-REDのコアノードから選びだしたユニットテスト例が含まれています。支援モジュールについてさらに知りたければ、関連したREADMEを参照してください。

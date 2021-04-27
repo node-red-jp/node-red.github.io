@@ -5,109 +5,107 @@ title: Storage API
 slug:
   - url: "/docs/api/storage"
     label: "storage"
-  - 'methods'
+  - 'メソッド'
 ---
 
-A Storage plugin is a node.js module that exposes the following functions on its
-`module.exports`.
+ストレージプラグインは下記の機能を `module.exports` で公開するNode.jsのモジュールです。
 
- Function                                                      | Description
+ 機能                                                      | 詳細
 ---------------------------------------------------------------|-------------------------
-[Storage.init(settings)](#storageinitsettings)                 | initialise the storage system
-[Storage.getFlows()](#storagegetflows)                         | get the flow configuration
-[Storage.saveFlows(flows)](#storagesaveflowsflows)             | save the flow configuration
-[Storage.getCredentials()](#storagegetcredentials)             | get the flow credentials
-[Storage.saveCredentials(credentials)](#storagesavecredentialscredentials) | save the flow credentials
-[Storage.getSettings()](#storagegetsettings)                   | get the user settings
-[Storage.saveSettings(settings)](#storagesavesettingssettings) | save the user settings
-[Storage.getSessions()](#storagegetsessions)                   | get the user sessions
-[Storage.saveSessions(sessions)](#storagesavesessionssessions) | save the user sessions
-[Storage.getLibraryEntry(type,name)](#storagegetlibraryentrytypename) | get a type-specific library entry
-[Storage.saveLibraryEntry(type,name,meta,body)](#storagesavelibraryentrytypenamemetabody) | save a type-specific library entry
+[Storage.init(settings)](#storageinitsettings)                 | ストレージシステムを初期化
+[Storage.getFlows()](#storagegetflows)                         | フロー設定を取得
+[Storage.saveFlows(flows)](#storagesaveflowsflows)             | フロー設定を保存
+[Storage.getCredentials()](#storagegetcredentials)             | フロークレデンシャルを取得
+[Storage.saveCredentials(credentials)](#storagesavecredentialscredentials) | フロークレデンシャルを保存
+[Storage.getSettings()](#storagegetsettings)                   | ユーザ設定を取得
+[Storage.saveSettings(settings)](#storagesavesettingssettings) | ユーザ設定を保存
+[Storage.getSessions()](#storagegetsessions)                   | ユーザセッションを取得
+[Storage.saveSessions(sessions)](#storagesavesessionssessions) | ユーザセッションを保存
+[Storage.getLibraryEntry(type,name)](#storagegetlibraryentrytypename) | 型指定でのライブラリエントリを取得
+[Storage.saveLibraryEntry(type,name,meta,body)](#storagesavelibraryentrytypenamemetabody) | 型指定でのライブラリエントリを保存
 
 ### Storage.init(settings)
 
-Initialise the storage system.
+ストレージシステムを初期化します。
 
-Argument | Description
+引数     | 説明
 ---------|----------------------
-settings | the runtime settings
+settings | ランタイム設定
 
-Returns a promise that resolves when the storage system is initialised.
+ストレージシステムが初期化された時にresolveされるPromiseオブジェクトを返します。
 
 ### Storage.getFlows()
 
-Returns a promise that resolves with the runtime flow configuration.
+ランタイムのフロー設定でresolveされるPromiseオブジェクトを返します。
 
 ### Storage.saveFlows(flows)
 
-Argument | Description
+引数     | 説明
 ---------|------------------------------
-flows    | the flow configuration object, can be serialised as JSON.
+flows    | JSONでシリアライズされたフロー設定オブジェクト
 
-Returns a promise that resolves when the flow configuration has been saved.
+フロー設定が保存された時にresolveされるPromiseオブジェクトを返します。
 
 ### Storage.getCredentials()
 
-Returns a promise that resolves with the runtime flow credentials.
+ランタイムのフロークレデンシャルでresolveされるPromiseオブジェクトを返します。
 
 ### Storage.saveCredentials(credentials)
 
-Argument    | Description
+引数        | 説明
 ------------|------------------------
-credentials | the credentials object, can be serialised as JSON.
+credentials | JSONでシリアライズされたクレデンシャルオブジェクト
 
-Returns a promise that resolves when the flow credentials have been saved.
+フローのクレデンシャルが保存された時にresolveされるPromiseオブジェクトを返します。
 
 ### Storage.getSettings()
 
-Returns a promise that resolves with the user settings.
+ユーザー設定でresolveされるPromiseオブジェクトを返します。
 
 ### Storage.saveSettings(settings)
 
-Argument | Description
+引数     | 説明
 ---------|------------------------
-settings | the settings object, can be serialised as JSON.
+settings | JSONでシリアライズされた設定オブジェクト
 
-Returns a promise that resolves when the settings have been saved.
+設定が保存された時にresolveされるPromiseオブジェクトを返します。
 
 ### Storage.getSessions()
 
-Returns a promise that resolves with the sessions object.
+セッションオブジェクトでresolveされるPromiseオブジェクトを返します。
 
 ### Storage.saveSessions(sessions)
 
-Argument | Description
+引数     | 説明
 ---------|------------------------
-sessions | the sessions object, can be serialised as JSON.
+sessions | JSONでシリアライズされたセッションオブジェクト
 
-Returns a promise that resolves when the sessions have been saved.
+セッションが保存された時にresolveされるPromiseオブジェクトを返します。
 
-## Library Functions
+## ライブラリ関数
 
-Nodes that register a library type allow the user to save and retrieve content
-in a local library. The following functions of the storage module are used to
-access this content.
+ライブラリタイプへ登録するノードは、ユーザーからローカルライブラリ内でのコンテンツの保存や取得ができます。
+ストレージモジュールの下記の関数はこのコンテンツへアクセスするために使用されます。
 
-Entries may have metadata associated with them, for example, a `function` entry
-includes metadata identifying how many outputs the function provides.
+エントリはそれらに関するメタデータを保持します。
+たとえば `function` エントリは、関数がいくつの出力を持つか特定するためのメタデータを含みます。
 
 ### Storage.getLibraryEntry(type,name)
 
-Argument | Description
+引数     | 説明
 ---------|----------------------------------------------------------------
-type     | the type of library entry, eg `flows`, `functions`, `templates`
-name     | the pathname of the entry to return
+type     | ライブラリエントリのタイプ。たとえば `flows` や `functions` や `templates`
+name     | エントリのパス名
 
-Returns a promise that resolves with the result.
+結果でresolveされるPromiseオブジェクトを返します。
 
-If `name` represents to a single entry, the result is the content of the entry.
-For example, the code of a function.
+もし `name` が単一のエントリである場合、
+たとえば関数のコードであるような、エントリのコンテンツが結果になります。
 
-If `name` represents to a logical directory, the result is a directory listing array.
-Each element of the array is either a string (representing subdirectories that can
-be browsed) or is an object with a `fn` property providing the entry's filename,
-as well as any other metadata associated with the entry.
+`name` が論理的ディレクトリを示している場合、結果はディレクトリのリストの配列となります。
+配列の各要素はそれぞれ、文字列(参照可能なサブディレクトリ)または、
+エントリのファイル名を示す `fn` プロパティを持つオブジェクトです。
+エントリに関する他のメタデータも同様です。
 
 {% highlight javascript %}
 [ 'directory1',
@@ -120,35 +118,32 @@ as well as any other metadata associated with the entry.
 
 ### Storage.saveLibraryEntry(type,name,meta,body)
 
-Argument | Description
+引数     | 説明
 ---------|----------------------------------------------------------------
-type     | the type of library entry, eg `flows`, `functions`, `templates`
-name     | the pathname of the entry
-meta     | an object containing additional metadata to save with the entry
-body     | the body of the entry
+type     | ライブラリエントリのタイプ。たとえば `flows` や `functions` や `templates`
+name     | エントリのパス名
+meta     | エントリに付随して保存する追加のメタデータを含むオブジェクト
+body     | エントリのボディ
 
-Returns a promise that resolves when the entry has been saved.
+エントリが保存された時にresolveされるPromiseオブジェクトを返します。
 
+## 非推奨のライブラリ関数
 
-## Deprecated Library Functions
+バージョン0.10.7以前は、下記の関数はストレージモジュールで使用されていました。
 
-Prior to version 0.10.7, the following functions were also used by storage modules.
+このインターフェイスの新しい実装はこれらの関数を _実装するべきではありません。_
 
-New implementations of this interface should _not_ implement these functions.
-
-The runtime will use them if they are present for backwards compatibility, but
-will otherwise use `getLibraryEntry/saveLibraryEntry` with their `type` argument
-set to `'flows'`.
+ランタイムは後方互換のためであればこれらを使用しますが、そうでなければ
+`flows` に設定された `type` 引数の `getLibraryEntry/saveLibraryEntry` を使用します。
 
 #### Storage.getAllFlows()
 
-Returns a promise that resolves to an object containing a complete listing of
-all flows in the library.
+ライブラリ内のすべてのフローの完全なリスト取得でresolveされるPromiseオブジェクトを返します。
 
 #### Storage.getFlow(name)
 
-Returns a promise that resolves to the content of a flow.
+フローのコンテンツでresolveされるPromiseオブジェクトを返します。
 
 #### Storage.saveFlow(name,flow)
 
-Returns a promise that resolves when flow is saved to the library.
+フローがライブラリへ保存された時にresolveされるPromiseオブジェクトを返します。

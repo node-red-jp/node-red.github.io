@@ -6,31 +6,31 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - get flows
 ---
 
-Get the active flow configuration.
+アクティブなフローの設定を取得します。
 
-Requires permission: <code>flows.read</code>
+必要となる権限: <code>flows.read</code>
 
 ### Headers
 
 Header                 | Value
 -----------------------|-------
-`Authorization`        | `Bearer [token]` - if authentication is enabled
-`Node-RED-API-Version` | (*Since 0.15.0*) The api version being used. Defaults to `v1` if not set.
+`Authorization`        | `Bearer [token]` - 認証が有効になっている場合
+`Node-RED-API-Version` | (*バージョン0.15.0から*) 利用できます。何もセットされていない場合のデフォルトは　`v1` です。
 
 ### Response
 
 Status Code | Reason              | Response
 ------------|---------------------|--------------
-`200`       | Success             | `v1` An array of node objects <br/> `v2` A flow response object that includes the current revision identifier of the flows
-`400`       | Invalid API version | An [Error response](/docs/api/admin/errors)
-`401`       | Not authorized      | _none_
+`200`       | 成功                | `v1` ノードオブジェクトの配列 <br/> `v2` 現在のリビジョンidを含むフローレスポンスオブジェクト
+`400`       | 不正なAPIバージョン | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった    | _無し_
 
 
-#### `v1` - array of node objects
+#### `v1` - ノードオブジェクトの配列
 {% highlight json %}
 [
   {
@@ -41,7 +41,7 @@ Status Code | Reason              | Response
 ]
 {% endhighlight %}
 
-#### `v2` - flow response object
+#### `v2` - フローレスポンスオブジェクト
 {% highlight json %}
 {
     "rev": "abc-123",

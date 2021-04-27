@@ -1,38 +1,38 @@
 ---
 layout: about-single
-title: Get involved
-slug: community
+title: 参加するには
+slug: コミュニティ
 redirect_from:
   - /community/
 ---
 
-### Discussion
+### ディスカッション
 
-The two main places to discuss Node-RED are:
+Node-REDについて議論は主な2つの方法があります。
 
- - the [Node-RED forum](https://discourse.nodered.org)
- - the [slack team](https://nodered.org/slack)
+ - [Node-REDフォーラム](https://discourse.nodered.org)
+ - [Slackチーム](https://nodered.org/slack)
 
-The project used the Google Groups based [mailing list](https://groups.google.com/forum/#!forum/node-red), but
-that is now a read-only archive..
+Googleグループを利用した[メーリングリスト](https://groups.google.com/forum/#!forum/node-red)もありますが、
+現在読み返すためだけのアーカイブになっています。
 
-These are the best places to get started if you're stuck on something, think you may
-have hit a bug, have a suggestion for the greatest feature ever or if you just
-want to say hello.
+もし、何かを解決できない、バグを発見した、今までにない素晴らしい機能を思いついた、
+もしくはただ単に挨拶をしたいのであれば、
+上の2つでおこなうのがよいでしょう。
 
-If you have a specific question to ask, you can also head over to
-[Stack Overflow](https://stackoverflow.com/questions/tagged/node-red) and use
-the tag `node-red`.
+もし具体的な質問がある場合、
+[Stack Overflow](https://stackoverflow.com/questions/tagged/node-red)において
+`node-red`というタグを利用することもできます。
 
-The project is [@NodeRED](https://twitter.com/nodered) on Twitter, which we use
-for general announcements and links. You may also want to follow [@red_nodes](https://twitter.com/red_nodes)
-which provides a feed of nodes published to the [flow library](https://flows.nodered.org).
+Twitter上のアカウント[@NodeRED](https://twitter.com/nodered)は、一般的なアナウンスやリンクの紹介に利用しています。
+また、[@red_nodes](https://twitter.com/red_nodes)では
+[Flowライブラリ](https://flows.nodered.org)に公開されたNodeのフィードを配信しています。
 
-### Community Survey
+### コミュニティ調査
 
-We ran our first community-wide survey in March/April 2019. The results are
-available [here](/about/community/survey/2019).
+私たちは2019年3、4月に初めてのコミュニティ横断調査をおこないました。
+調査の結果は[こちら](/about/community/survey/2019)で確認できます。
 
-### User Groups
+### ユーザグループ
 
 - [Node-RED User Group Japan](https://nodered.jp/)

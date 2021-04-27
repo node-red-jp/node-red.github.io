@@ -1,73 +1,73 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Handling errors
+title: エラーをハンドリングする
 slug: handling-errors
 ---
 
-Whilst it is easy to create flows that do the right thing when everything works,
-it is also important to think about what could go wrong.
+全てが正常に動作する場合に、正しいことを行うフローを作ることは簡単です。
+一方で、上手く動作しない場合についても考慮することも重要です。
 
-For example, if the flow interacts with an external database or API, what happens
-if it stops responding to requests? Or what if the MQTT nodes lose their connection
-to a broker?
+例えば、フローが外部のデータベースやAPIと連携する場合、
+もしリクエストに対する応答がない時に何が起こるでしょうか。
+もしくは、MQTTノードがブローカとの接続を失った時にどうなるでしょうか。
 
-Error handling in any application is essential to ensure these sorts of events
-are handled properly. What it means to handle the error will depend on the
-requirements of the application. You may want to try an action that failed, or
-trigger a separate alert, or maybe the error is an entirely expected event that
-is just another part of the application logic.
+この様な事象を正しくハンドリングするために、
+どの様なアプリケーションにおいてもエラーハンドリングは必要不可欠です。
+エラーのハンドリングは、アプリケーションの要件によって異なるものになります。
+失敗した動作を再度試したり、警告やエラーを出したりと、
+アプリケーションのロジックとは別の予測されたイベントです。
 
-Node-RED provides two ways for a node to report an error. It can either just
-write a message to the log or it can notify the runtime of the error and cause
-a flow to be triggered.
+Node-REDはエラーを送出するためのふたつの方法をノードに提供しています。
+それは、ログにメッセージを書くか、
+または、ランタイムにエラーを送出してフローがトリガーされるかです。
 
-If the error is only written to the log, you will see the message in the Debug
-sidebar and log output, but you will not be able to create a flow to handle it.
-These are [uncatchable errors](#uncatchable-errors).
+エラーがログに書かれるだけであれば、サイドバーのデバッグで出力されたログが確認できますが、
+フローをハンドリングすることはできません。
+[catchできないエラー](#catchできないエラー)に記載のとおりです。
 
-If it does notify the runtime properly, then it is a [catchable error](#catchable-errors)
-that can be used to trigger an error-handling flow.
+ランタイムに適切に送出するには、
+[catchできるエラー](#catchできるエラー)として、エラーハンドリングのフローをトリガーします。
 
-There is a third sort of error that can cause the Node-RED runtime to shutdown. These
-[`uncaughtException` errors](#uncaughtexception-errors) cannot be handled in the flow and are caused by bugs
-in nodes.
+Node-REDのランタイムが停止してしまう3番目のエラーもあります。
+ノードに含まれるバグなどにより引き起こされる [`uncaughtException`エラー](#uncaughtexception-エラー) は、
+フロー内ではハンドリングできません。
 
-This guide describes each of these error types in more detail and shows what can
-be done to handle them. It also looks at how the Status events of a node can be
-used to create flows that [handle unexpected events](#handling-status-changes).
+このガイドは、それぞれの種類のエラーについて詳しく説明し、ハンドリングするための方法について示します。
+[予期せぬイベントをハンドリング](#handling-status-changes)するフローを作成するため、
+ノードのStatusイベントが利用されることｗ確認します。
 
 
-### Logging errors
+### エラーロギング
 
-When a node logs an error, it will appear in the Debug sidebar.
+ノードがエラーをログに書く際、サイドバーのデバッグに表示されます。
 
 <div  style="width: 314px"  class="figure">
   <img src="images/error_debug.png" alt="Error message in the Debug sidebar">
-  <p class="caption">Error message in the Debug sidebar</p>
+  <p class="caption">サイドバーのデバッグ内のメッセージ</p>
 </div>
 
-This shows the error message, the date/time of the error, and the node that logged
-the error. As with other Debug messages, hovering over it will highlight the node
-in the workspace. If it isn't in the current view, then clicking on the node's
-name in the top corner will reveal it in the workspace.
+エラーメッセージの内容、日時、エラーを出力したノードが表示されています。
+他のデバッグメッセージと同様に、ホバリングするとワークスペース内のノードがハイライトされます。
+もし、カレントのビューにそのノードが無い場合は、
+右上に表示されているノード名をクリックすることでワークスペース内に表示されます。
 
 
-### Catchable errors
+### catchできるエラー
 
-If a node notifies the runtime of an error then the Catch node can be used to
-create a flow to handle it.
+ノードがランタイムにエラーを送出した場合、
+それをハンドリングするためのフローはcatchノードが使用できます。
 
 <div  style="width: 660px"  class="figure">
   <img src="images/error_catch.png" alt="Catch node">
-  <p class="caption">Catch node</p>
+  <p class="caption">catchノード</p>
 </div>
 
-If an error is caught by a Catch node, it *will not* be logged to the Debug sidebar.
+catchノードがエラーをキャッチした場合は、サイドバーのデバッグには*表示されません。*
 
-The message sent by the Catch will be the message provided by the node reporting
-the error. This message will have an `error` property set that provides information
-about the error:
+catchノードから送られるメッセージは、エラーを送出したノードからのメッセージとなります。
+このメッセージは `error` プロパティを持ち、
+エラーに関する情報を提供します:
 
 
 ```
@@ -86,88 +86,88 @@ about the error:
 }
 ```
 
-The properties of `msg.error` are:
+`msg.error` プロパティの内容は次のとおりです:
 
  - `msg.error`:
-   - `message` - the error message
-   - `source` - information about the node logging the error:
-     - `id` - the source node id
-     - `type` - the type of the source node
-     - `name` - the name, if set, of the source node
-     - `count` - how many times *this* message has been thrown by *this* node.
-        This property is used by the runtime to detect messages stuck in a loop - where
-        they are passed back to the source node which then logs the error again, and so on.
-        The runtime will allow a message to loop 9 times before logging another,
-        uncatchable, error to break the loop. Deleting this property will disable the check.
+   - `message` - エラーメッセージ
+   - `source` - エラーを送出したノードの情報:
+     - `id` - 取得元のノードのid
+     - `type` - 取得元のノードの種類
+     - `name` - ノード名(取得元のノードに設定されている場合)
+     - `count` - *このメッセージ* が *このノード* により出力された回数。
+        このプロパティはメッセージスタックのループを検出するためにランタイムによって使用されます。
+        ループでは、メッセージは取得元のノードに戻されエラーが再度記録されます。
+        ランタイムはメッセージのループを9回まで許容し、他のエラーが記録されたりcatchできないエラーが発生するとループを解除します。
+        このプロパティを削除するとチェックを無効にできます。
 
-If the message already had a `msg.error` property when the node reported the error,
-that property will be moved to `msg._error`.
+ノードがエラーを送出した際にメッセージが既に`msg.error`プロパティを持っている場合は、
+そのプロパティーは`msg._error`に移動されます。
 
-By default, the Catch node is configured to be triggered by all nodes on the same
-tab in the editor, but it can also be configured to target specific nodes on the tab.
+デフォルトでは、catchノードはエディタの同一のタブ内の全てのノードをトリガーするよう設定されていますが、
+特定のタブの特定のノードをターゲットとすて設定することもできます。
 
-If you have two Catch nodes on the same tab and they both target the same node,
-then they will both be triggered by any errors reported by that node.
+2つのcatchノードが同じタブ内にあり、それらのターゲットが同じノードの場合、
+そのノードから送出されたエラーで両方のcatchノードがトリガーされます。
 
-If a Catch node is configured to be triggered by all nodes, it can also be configured
-to only trigger on errors that have not already been caught by another Catch node.
-This allows you to create error handling flows that target specific nodes and also
-have an error handler that will catch "everything else".
-
-
-#### Errors in subflows
-
-If an error is logged from inside a subflow, the runtime will first check for any
-Catch nodes inside the subflow. If there are none there, the error will propagate
-up to the flow containing the subflow instance.
+catchノードが全てのノードによりトリガーされるよう設定している場合、
+別のcatchノードではその他のまだキャッチされていないエラーのみをトリガーするよう設定することもできます。
+これにより、特定のノードをターゲットとしたエラーハンドリングのフローを作成し、
+"その他すべて"のエラーをキャッチするエラーハンドラーも作成できます。
 
 
-### Uncatchable errors
+#### サブフロー内のエラー
 
-These are the errors a node writes to the log without notifying the runtime properly.
-They cannot be handled using the Catch node.
-
-The node *might* provide alternative ways for handling the error. For example, by updating
-its status property (which can be monitored with the Status node). It may send a message
-as normal but with some additional property set to indicate the error.
-
-You may want to contact the node's author to see if it can be updated to log the error
-properly.
+サブフロー内からのエラーがロギングされた場合、
+ラインタイムはサブフロー内のCatchノードでまずチェックされます。
+Catchノードがなかった場合、エラーはサブフローインスタンを含むフローにでんぱします。
 
 
-### `uncaughtException` errors
+### catchできないエラー
 
-These are a particular type of node.js error that can occur when a Node fails to
-properly handle an internal error. They cause the entire Node-RED runtime to
-shutdown as that is the only safe thing to do.
+これは、ノードがランタイムに正しく通知することなくログに書き出すエラーです。
+catchノードでハンドリングすることができません。
 
-It may sound extreme, but here is what the [node.js documentation](https://nodejs.org/api/process.html#process_warning_using_uncaughtexception_correctly) says about it:
+ノードにはエラーをハンドリングするための他の方法が *提供されているかもしれません。*
+たとえば、(statusノードでモニターした)ノードのステータスとなるプロパティを更新するなどです。
+これは、通常通りメッセージを送信することもありますし、エラー発生を示すプロパティーが追加されているかもしれません。
+
+ノードの作成者に、
+エラーを適切にログに書き出すよう連絡をしてみるのもよいでしょう。
+
+
+### `uncaughtException` エラー
+
+これはノードが内部エラーを適切に扱えなかったことにより発生するNode.jsのエラーです。
+Node-REDランタイム全体が停止しますが、
+これ以外に安全な方法がないためです。
+
+極端に思えますが、[Node.jsのドキュメント](https://nodejs.org/api/process.html#process_warning_using_uncaughtexception_correctly) にはこう書いてあります:
 
 > Attempting to resume normally after an uncaught exception can be similar to pulling out the power cord when upgrading a computer. Nine out of ten times, nothing happens. But the tenth time, the system becomes corrupted.
 
 
-The typical cause will be that a node has kicked off an asynchronous task and
-that task has hit an error. A well-written node will have registered an error
-handler for that task, but if there isn't one, the error will go uncaught.
+典型的な例は、ノードが非同期処理のタスクを呼び出してそれが失敗する場合です。
+丁寧に実装されているノードであれば、そのタスクをエラーハンドラに登録しますが、
+エラーハンドラがない場合は、そのエラーはキャッチされません。
 
-If you encounter this type of error then you should attempt to identify which node
-caused the error and raise an issue against it. This is not always easy due to the asynchronous nature of the error.
+こういうエラーに直面した場合は、どのノードで発生したのか特定する必要がありissueをあげる必要があるでしょう。
+非同期エラーということもあり、これは必ずしも簡単ではありません。
 
-The stack trace provided in the Node-RED log will provide some clues as to the
-nature of the asynchronous task that hit the error, which in turn may help you
-to identify the node at fault.
+Node-REDのログにあるスタックトレースは、
+エラーが発生したノードを特定し、非同期タスクのエラーの原因を特定するための
+糸口になるかもしれません。
 
-### Handling Status Changes
+### ステータス変更をハンドリングする
 
-Not all errors conditions will appear as error events that can be caught be a
-Catch node. For example, the MQTT nodes losing their connection will not trigger
-an error, but they will trigger a change of their status.
+全てのエラー状態がCatchノードでキャッチできるエラーイベントを発生させるわけではありません。
+例えば、接続切断されたMQTTノードはエラーを出力しませんが、
+ステータスの変化をトリガーします。
 
-Just as the Catch node can be used to handle error events, the Status node can
-be used to handle changes in a node's status.
+Catchノードはエラーイベントをハンドリングするために利用されるのと同じく、
+Statusノードもノードの状態の変化をハンドリングするために利用されます。
 
-The message sent by the Status node includes the `status` property that gives
-information about the status and the node that triggered the event.
+Statusノードから送出されたメッセージは`status`プロパティを持ち、
+それはステータスとイベントをトリガーしたノードについての情報を提供します。
 
 ```json
 {

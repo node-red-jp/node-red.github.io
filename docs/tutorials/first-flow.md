@@ -1,114 +1,112 @@
 ---
 layout: docs-tutorial
 toc: toc-user-guide.html
-title: Creating your first flow
-slug: first flow
+title: はじめてのフロー
+slug: はじめてのフロー
 redirect_from:
   - /docs/getting-started/first-flow
 ---
 
-### Overview
+### 概要
 
-This tutorial introduces the Node-RED editor and creates a flow that demonstrates
-the Inject, Debug and Function nodes.
-
-
-### 1. Access the editor
-
-With Node-RED [running](/docs/getting-started), open the editor in a web browser.
-
-If you are using a browser on the same computer that is running Node-RED, you can
-access it with the url: <http://localhost:1880>.
-
-If you are using a browser on another computer, you will need to use the ip address
-of the computer running Node-RED: `http://<ip-address>:1880`.
+このチュートリアルはNode-REDエディタを紹介し、
+Inject、DebugおよびFunctionノードを使ったフローを作成します。
 
 
-### 2. Add an Inject node
+### 1. エディタにアクセスする
 
-The Inject node allows you to inject messages into a flow, either by clicking
-the button on the node, or setting a time interval between injects.
+Node-REDを[起動](/docs/getting-started)してから、ウェブブラウザでエディタを開きます。
 
-Drag one onto the [workspace](/docs/user-guide/editor/workspace/) from the
-[palette](/docs/user-guide/editor/palette/).
+Node-REDを実行している同じコンピュータでブラウザを使っているならば、
+以下のURLでアクセスすることができます: <http://localhost:1880>
 
-Select the newly added Inject node to see information about its properties and a
-description of what it does in the [Information sidebar pane](/docs/user-guide/editor/sidebar/info).
+他のコンピュータを使っている場合、
+Node-REDを実行しているコンピュータのIPアドレスを使う必要があります: `http://<ip-address>:1880`.
 
-### 3. Add a Debug node
 
-The Debug node causes any message to be displayed in the
-[Debug sidebar](/docs/user-guide/editor/sidebar/debug). By
-default, it just displays the payload of the message, but it is possible to
-display the entire message object.
+### 2. Injectノードの追加
 
-### 4. Wire the two together
+Injectノードはノード上のボタンをクリック、またはInject間隔を設定することにより、
+フローにメッセージを流すことができます。
 
-Connect the Inject and Debug nodes together by [dragging between](/docs/user-guide/editor/workspace/wires)
-the output port of one to the input port of the other.
+[パレット](/docs/user-guide/editor/palette/)から[ワークスペース](/docs/user-guide/editor/workspace/)上にInjectノードをドラッグします。
 
-### 5. Deploy
+新規に追加したInjectノードを選択して[情報サイドバーペイン](/docs/user-guide/editor/sidebar/info)で
+そのプロパティ情報および何ができるかを確認します。
 
-At this point, the nodes only exist in the editor and must be deployed to the
-server.
+### 3. Debugノードの追加
 
-Click the Deploy button.
+Debugノードは[サイドバーのデバッグタブ](/docs/user-guide/editor/sidebar/debug)にメッセージを表示させるノードです。
+デフォルトでは`msg.payload`を表示し、
+設定次第では`msg`（メッセージオブジェクト全体）を表示させることもできます。
 
-With the Debug sidebar tab selected, click the Inject button. You should see
-numbers appear in the sidebar. By default, the Inject node uses the number of
-milliseconds since January 1st, 1970 as its payload.
+### 4. 2つのノードをワイヤーでつなぐ
 
-### 6. Add a Function node
+Inject/Debugノード双方のポートを[ドラッグ](/docs/user-guide/editor/workspace/wires)して
+ワイヤーでつなぐことで2つのノードを接続します。
 
-The Function node allows you to pass each message though a JavaScript function.
+### 5. デプロイ
 
-Delete the existing wire (select it and press delete on the keyboard).
+この時点ではノードやフローはエディタ上にしか存在しないので
+サーバにデプロイする必要があります。
 
-Wire a Function node in between the Inject and Debug nodes.
+デプロイボタンをクリックするとサーバにデプロイできます。
 
-Double-click on the Function node to bring up the edit dialog. Copy the following
-code into the function field:
+サイドバーのデバッグタブを選択した状態でInjectボタンをクリックするとデバッグタブに数字が表示されるはずです。
+デフォルトでは、Injectノードは1970年1月1日からのミリ秒数（タイムスタンプ）をペイロードとして利用します。
+それでは、より有用なことをやってみましょう。
+
+### 6. Functionノードの追加
+
+Functionノードは実際にJavaScriptを書くことができます。
+
+今存在しているノードを一度削除します。（ワイヤを選択し、キーボードのDeleteキーを押下します。）
+
+InjectノードとDebugノードの間にFunctionノードを配置します。
+
+配置したFunctionノードをダブルクリックすると設定ダイアログが開きます。
+Functionノードのフィールドに次のコードをコピーして貼り付けます。
 
 {% highlight javascript %}
-// Create a Date object from the payload
+// ペイロードから日付オブジェクトを生成
 var date = new Date(msg.payload);
-// Change the payload to be a formatted Date string
+// 日付文字列に変換して再度ペイロードをセット
 msg.payload = date.toString();
-// Return the message so it can be sent on
+// 次のノードへmsgオブジェクトを返す
 return msg;
 {% endhighlight %}
 
-Click Done to close the edit dialog and then click the deploy button.
+完了ボタンをクリックして設定ダイアログを閉じ、デプロイボタンをクリックしてデプロイします。
 
-Now when you click the Inject button, the messages in the sidebar will now be
-formatted is readable timestamps.
+Injectボタンをクリックするとサイドバーのデバッグタブに、
+書式化されたタイムスタンプが表示されるでしょう。
 
 ***
 
-### Summary
+### まとめ
 
-This flow demonstrates the basic concept of creating a flow. It shows how the
-Inject node can be used to manually trigger a flow, and how the Debug node displays
-messages in the sidebar. It also shows how the Function node can be used to
-write custom JavaScript to run against messages.
+このフローはフロー作成の基本的なコンセプトを説明しています。
+どのようにInjectノードを手動でフローを指導させるために使うのか、
+どのようにDebugノードがサイドバーに表示するのかを示しています。
+また、どのようにFunctionノードをメッセージに対して動作するカスタムJavaScriptコードを書くために使うのかを示しています。
 
-### Source
+### ソース
 
-The flow created in this tutorial is represented by the following json. To import
-it into the editor, copy it to your clipboard and then paste it into the Import dialog.
+このチュートリアルで作成したフローは以下のJSONで示されます。
+これをエディタにインポートするため、クリップボードにコピーし、読み込みダイアログにペーストします。
 
 
 ```json
 [{"id":"58ffae9d.a7005","type":"debug","name":"","active":true,"complete":false,"x":640,"y":200,"wires":[]},{"id":"17626462.e89d9c","type":"inject","name":"","topic":"","payload":"","repeat":"","once":false,"x":240,"y":200,"wires":[["2921667d.d6de9a"]]},{"id":"2921667d.d6de9a","type":"function","name":"Format timestamp","func":"// Create a Date object from the payload\nvar date = new Date(msg.payload);\n// Change the payload to be a formatted Date string\nmsg.payload = date.toString();\n// Return the message so it can be sent on\nreturn msg;","outputs":1,"x":440,"y":200,"wires":[["58ffae9d.a7005"]]}]
 ```
 
-### Next Steps
+### 次のステップ
 
- - [Create your second flow](second-flow)
+ - [2つ目のフロー作成](second-flow)
 
-### Related reading
+### 関連するドキュメント
 
- - [Using the editor](/docs/user-guide/editor/)
- - [The Core nodes](/docs/user-guide/nodes)
- - [Working with messages](/docs/user-guide/messages)
- - [Using the Function node](/docs/user-guide/writing-functions)
+ - [エディタを利用する](/docs/user-guide/editor/)
+ - [コアノード](/docs/user-guide/nodes)
+ - [メッセージを利用する](/docs/user-guide/messages)
+ - [Functionノードを利用する](/docs/user-guide/writing-functions)

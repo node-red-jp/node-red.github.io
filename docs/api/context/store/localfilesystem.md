@@ -1,23 +1,23 @@
 ---
 layout: docs-api
 toc: toc-api-context.html
-title: Local Filesystem Context Store
+title: Fileストア
 slug:
   - url: "/docs/api/context"
-    label: "context"
-  - 'filesystem'
+    label: "コンテキスト"
+  - 'ファイルシステム'
 ---
 
-**New in 0.19**
+**バージョン0.19の新機能**
 
-The Local Filesystem Context store holds context data in local files. By default it
-caches context data in memory, allowing both synchronous and asynchronous access.
+ローカルファイルシステムのコンテキストストアはコンテキストデータをローカルファイルに保持します。
+デフォルトでは、コンテキストデータをメモリに格納し、同期的アクセスも非同期的アクセスも許可します。
 
-If the caching mode is disabled, the store only supports asynchronous access.
+キャッシュモードはdisabledになっている場合は、非同期アクセスのみをサポートします。
 
-### Configuration
+### 設定
 
-To create a file store, the following configuration can be used.
+ファイルストアを作成する際、次の設定が利用できます。
 
 {% highlight javascript %}
 contextStorage: {
@@ -30,30 +30,28 @@ contextStorage: {
 }
 {% endhighlight %}
 
-### Options
+### オプション
 
-The file store can take the following configuration options:
+ファイルストアは次に示す設定オプションが指定できます:
 
-Options         | Description
+オプション      | 説明
 ----------------|------------------------------
-`dir`           | The directory to store the `base` directory in. Default: the user directory, `~/.node-red`
-`base`          | The base directory under which context data is stored. Default: `"context"`
-`cache`         | Whether to cache context in memory. Default: `true`
-`flushInterval` | If caching is enabled, the minimum interval between writes to storage, in seconds. Default: `30`
+`dir`           | 保存先の `base` となるディレクトリ。デフォルトではユーザディレクトリ `~/.node-red` となる
+`base`          | コンテキストデータを格納するベースディレクトリ。デフォルトでは `"context"`
+`cache`         | コンテキストをキャッシュするかどうか。デフォルトでは `true`
+`flushInterval` | キャッシュが有効な場合、ストレージへの最小書き込み間隔。秒数表記となり、デフォルトでは `30`
 
-The default configuration for a `file` context store is to use the directory `~/.node-red/context`, with caching
-enabled and writes to storage happening every 30 seconds.
+`file` コンテキストストアのデフォルト設定は、`~/.node-red/context` ディレクトリを使用し、
+キャッシュが有効になっており、30秒ごとにストレージへ書き込みます。
 
-The `flushInterval` is provided to minimise wear on the underlying storage, such
-as on a Raspberry Pi's SD card. Note that if Node-RED is unexpectedly killed, any data
-that has not yet been flushed will be lost.
+Raspberry PiのSDカードでの利用など、`flushInterval` はストレージへの利用を最小限に抑えるため利用できます。
+ただ、Node-REDが予期せずkillされると、flushされていないデータは消えることに注意してください。
 
-### Implementation details
+### 実装の詳細
 
-This context store uses a separate file for each context scope. At the top level
-is a directory for each flow scope and one for the global scope. Within each
-flow scope directory is a file containing the flow scope, `flow.json` and a file
-for each node context.
+このコンテキストストアは、コンテキストスコープごとに別々のファイルを使用します。
+トップレベルには各フローのスコープと1つのグローバルスコープのディレクトリがあります。
+各フロースコープのディレクトリ内に、フロースコープを含む `flow.json` と、各ノードコンテキストのファイルです。
 
 ```
    $HOME/.node-red/context

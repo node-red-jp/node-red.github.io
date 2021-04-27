@@ -1,43 +1,43 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Settings file
-slug: settings
+title: 設定ファイル
+slug: 設定ファイル
 ---
 
-You can configure Node-RED using a settings file.
+設定ファイルを利用することでNode-REDを設定することができます。
 
-### Where is my settings file?
+### 設定ファイルをどこにありますか？
 
-When Node-RED starts, it looks for a file called `settings.js` in your Node-RED
-user directory, `~/.node-red`. If it does not find one there, it will copy in a
-default settings file to that directory and use it.
+Node-REDが起動する際、Node-REDのユーザディレクトリ`~/.node-red`に`settings.js`というファイルを探します。
+そこに存在しなかった場合、
+デフォルトの設定ファイルをユーザディレクトリにコピーして利用します。
 
-Alternatively, the `--settings` command-line argument can be used when starting
-Node-RED to point at a different file.
+また、コマンドライン引数`--settings`を利用することで、
+Node-RED起動時に別のファイルを指定することもできます。
 
-If you have not yet run Node-RED and want to edit the settings file, you can copy
-the default settings file in manually from [here](https://github.com/node-red/node-red/blob/master/packages/node_modules/node-red/settings.js).
+Node-REDをまだ起動していない状態で設定ファイルを編集したい場合、
+[こちら](https://github.com/node-red/node-red/blob/master/packages/node_modules/node-red/settings.js)からデフォルトの設定ファイルを手動でコピーすることができます。
 
-If you are not sure which settings file Node-RED is using, you should check the log
-output when Node-RED starts up. It will log the full path to the file:
+どの設定ファイルをNode-REDが利用しているのかわからない場合、Node-REDが起動したときのログ出力を確認するべきです。
+設定ファイルのフルパスが記録されています:
 
     22 Jun 12:34:56 - [info] Settings file  : /Users/nol/.node-red/settings.js
 
-### Editing the settings file
+### 設定ファイルを編集する
 
-The settings file is loaded into the runtime as a Node.js module that exports
-a JavaScript object of key/value pairs.
+設定ファイルはキー/バリューのペアを持つJavaScriptオブジェクトをエクスポートするNode.jsモジュールとして、
+ランタイムにロードされます。
 
-The default settings file comes with many options commented out. For example,
-the option to format your flow file to make it easier to read:
+デフォルトの設定ファイルはコメントアウトされた多くのオプションを備えています。
+例えば、フローファイルを読みやすくするためフォーマットするオプションです:
 
     //flowFilePretty: true,
 
-To enable that option, remove the `//` at the start of the line.
+このオプションを有効化するため、この行頭の`//`を除去します。
 
-If you add a new option to the file, be sure to add a comma to separate it from
-any options before or after it.
+ファイルに新しいオプションを追加した場合、
+前後のオプションと分割するためにカンマを必ず追加します。
 
-If there is a syntax error in the file, Node-RED will not be able to start. The
-log output will indicate where the error is.
+ファイルにシンタックスエラーがある場合、Node-REDを起動できません。
+ログ出力はどこにエラーがあるのかを示します。

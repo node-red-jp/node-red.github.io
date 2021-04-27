@@ -2,24 +2,23 @@
 layout: docs-api
 toc: toc-api-context.html
 title: Context Store API
-slug: context
+slug: コンテキスト
 ---
 
-**New in 0.19**
+**バージョン0.19の新機能**
 
-The Context Store API provides a pluggable way to configure where context data is
-stored.
+コンテキストストアAPIは、コンテキストデータをどこに格納するか設定する方法を提供します。
 
-By default, Node-RED uses a [memory-based implementation](store/memory) of this API. It also provides
-a [file-based implementation](store/localfilesystem).
+デフォルトでは、Node-REDは [Memoryストア](store/memory) のAPIを使用します。
+また、[Fileストア](store/localfilesystem) も提供しています。
 
-To create a custom Context Store, a module should be created that implements the [Store Module API](#store-module-api).
+コンテキストストアをカスタマイズするには、[ストアモジュールAPI](#ストアモジュールAPI) を実装するモジュールを作成しなければなりません。
 
-### Configuration
+### 設定
 
-The `contextStorage` property in settings.js can be used to configure context storage.
+settings.js内の `contextStorage` プロパティは、コンテキストストレージの設定に使用されます。
 
-It is an object with one or more named context store configurations.
+これはオブジェクトであり、1つ以上の名前を持ったコンテキストストア設定です。
 
 {% highlight javascript %}
 contextStorage: {
@@ -32,12 +31,11 @@ contextStorage: {
 }
 {% endhighlight %}
 
-Each context store configuration consists of two parts; a `module` property and a `config`
-property.
+それぞれのコンテキストストア設定は、`module` プロパティと `config` プロパティの2つで構成されます。
 
-The `module` property identifies the context store plugin to use. It can either be
-the name of built-in module (currently either `memory` or `localfilesystem`), or it should be
-a module that has been loaded using `require`.
+`module` プロパティは、使用するコンテキストストアプラグインを特定します。
+これは、ビルトインモジュールの名前(現時点では `memory` または `localfilesystem` )であるか、または
+`require` でロードされたモジュールであるべきです。
 
 {% highlight javascript %}
 contextStorage: {
@@ -50,15 +48,14 @@ contextStorage: {
 }
 {% endhighlight %}
 
-The `config` property is an object that is passed to the module to provide an
-custom options.
+`config` プロパティはオブジェクトであり、カスタムオプションを提供するためのモジュールに渡されます。
 
-### Store Module API
+### ストアモジュールAPI
 
-A custom plugin's module must export a single constructor function. This function is called when a
-new instance of the plugin is required. The function is passed the value of the `config`
-property for the given instance. This allows the runtime to have multiple instances
-of the same store plugin, each with its own configuration.
+カスタムプラグインのモジュールは、単一のコンストラクタ関数をexportしなければなりません。
+この関数はプラグインの新しいインスタンスがrequiredされた時に呼び出されます。
+そして、関数にはそのインスタンスの `config` プロパティの値が渡されます。
+これは、ランタイムが同じストアプラグインの複数のインスタンスを保持することを許容することになり、それぞれに自身の設定を保持します。
 
 {% highlight javascript %}
 
@@ -75,6 +72,4 @@ module.exports = function(config){
 
 {% endhighlight %}
 
-
-The object returned by the constructor function must implement all of the functions
-detailed [here](methods/).
+コンストラクタにより返されるオブジェクトは、[ここ](methods/) に記載されているすべての関数を実装しなければなりません。

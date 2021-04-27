@@ -4,52 +4,50 @@ toc: toc-api-context.html
 title: Context Store API
 slug:
   - url: "/docs/api/context"
-    label: "context"
+    label: "コンテキスト"
   - 'api'
 ---
 
-**New in 0.19**
+**バージョン0.19の新機能**
 
-A Context Storage plugin is a node.js module that exposes a function on its `module.exports`
-that can be used to create new instances of the plugin. The object returned by the
-function must have the following functions:
+コンテキストストアプラグインはNode.jsのモジュールであり、
+プラグインの新しいインスタンスを生成できる関数を `module.exports` で公開しています。
+関数によって返されるオブジェクトは、以下の関数を持っていなければなりません:
 
- Function                                                      | Description
+関数                                                           | 説明
 ---------------------------------------------------------------|-------------------------
-[ContextStore.open()](#contextstoreopen)                       | Open the storage ready for use
-[ContextStore.close()](#contextstoreclose)                     | Close the storage
-[ContextStore.get(scope, key, callback)](#contextstoregetscope-key-callback) | Get values from the store
-[ContextStore.set(scope, key, value, callback)](#contextstoresetscope-key-value-callback) | Set values in the store
-[ContextStore.keys(scope, calback)](#contextstorekeysscope-callback) | Get a list of all keys in the store
-[ContextStore.delete(scope)](#contextstoredeletescope)               | Delete all keys for a given scope
-[ContextStore.clean(activeNodes)](#contextstorecleanactivenodes)     | Clean the context store
+[ContextStore.open()](#contextstoreopen)                       | 使用可能なストレージをオープン
+[ContextStore.close()](#contextstoreclose)                     | ストレージをクローズ
+[ContextStore.get(scope, key, callback)](#contextstoregetscope-key-callback) | ストアから値を取得
+[ContextStore.set(scope, key, value, callback)](#contextstoresetscope-key-value-callback) | ストアに値を格納
+[ContextStore.keys(scope, calback)](#contextstorekeysscope-callback) | ストア内のすべてのキーのリストを取得
+[ContextStore.delete(scope)](#contextstoredeletescope)               | 指定されたスコープ内のすべてのキーを削除
+[ContextStore.clean(activeNodes)](#contextstorecleanactivenodes)     | コンテキストストアをクリーン
 
 ### ContextStore.open()
 
-Open the storage ready for use. This is called before any store values are accessed.
+使用可能なストレージを開きます。これは他の値にアクセスする前に呼び出します。
 
-Returns a `Promise` that resolves when the store is ready for access.
+ストアがアクセス可能になった時にresolveされる `Promise` を返します。
 
 ### ContextStore.close()
 
-Called when the runtime is stopped so no further key values will be accessed.
+ランタイムが停止した時に呼び出され、それ以上はキー値にアクセスされません。
 
-Returns a `Promise` that resolves with the store is closed.
+ストアががクローズされた時にresolveされる `Promise` を返します。
 
 ### ContextStore.get(scope, key, [callback])
 
-Argument | Description
+引数     | 説明
 ---------|------------------------------
-scope    | the scope of the key
-key      | the key, or array of keys, to return the value(s) for.
-callback | *optional* a callback function to invoke with the key value
+scope    | キーのスコープ
+key      | 値を返すためのキーまたは配列のキー
+callback | *オプション* キー値を取得するためのコールバック関数
 
-The `key` argument can be either a String identifying a single key, or an Array
-of Strings identifying multiple keys to return the values for.
+`key` 引数は値を取得するための、単一のキーを識別するStringか、
+または複数のキーを特定するStringの配列です。
 
-
-If the optional `callback` argument is provided, it must be a function that takes
-two or more arguments:
+オプションの `callback` 引数が指定されている場合は、2つ以上の引数を持つ関数でなければなりません:
 
 ```
 function callback(error, value1, value2, ... ) {
@@ -57,32 +55,30 @@ function callback(error, value1, value2, ... ) {
 }
 ```
 
-If no callback is provided, and the store supports synchronous access, the
-`get` function should return the individual value, or array of values for the keys.
-If the store does not support synchronous access it should throw an error.
+コールバック関数が指定されておらず、ストアが同期的なアクセスを行う場合、
+`get` 関数は別々の値を返さなければならないか、もしくはキーの値配列を返します。
+ストアが同期的アクセスをサポートしていない場合、エラーをthrowします。
 
 ### ContextStore.set(scope, key, value, [callback])
 
-Argument | Description
+引数     | 説明
 ---------|------------------------------
-scope    | the scope of the key
-key      | the key, or array of keys, to set the value(s) for.
-value    | the value, or array of values
-callback | *optional* a callback function to invoke when the value is set
+scope    | キーのスコープ
+key      | 値をセットするためのキーまたは配列のキー
+value    | 値または値配列
+callback | *オプション* 値がセットされた際に呼び出されるコールバック関数
 
-The `key` argument can be either a String identifying a single key, or an Array
-of Strings identifying multiple keys to set.
+`key` 引数は値をセットするための単一のキーを識別するStringか、
+または複数のキーを特定するStringの配列です。
 
-`key`        | `value`        | Action
+`key`        | `value`        | 動作
 -------------|----------------|----------------
-String       | Any            | Stores `value` under `key`
-Array        | Array          | Stores each element of the `value` array under the corresponding `key` value. If `value` has fewer elements than `key`, it sets the missing values to `null`.
-Array        | not-Array      | Stores `value` as the value of the first key - uses `null` for any remaining keys.
+String       | 任意           | `key` 配下の `value` を格納
+Array        | Array          | `key` に対応する `value` の値をセット。`value` の要素数が `key` より少ない場合、不足している値には `null` がセットされる。
+Array        | Array以外      | `value` 指定値が最初のキーに格納され、残りは `null` となります。
 
-
-If the optional `callback` argument is provided, it will be called when the value
-has been stored. It takes a single argument, `error`, to indicate any errors hit
-whilst storing the values.
+オプションの `callback` 引数が指定されている場合、それは値が格納された時に呼び出されます。
+関数の引数は `error` 1つであり、値格納のあいだに起きたエラーが渡されます。
 
 ```
 function callback(error) {
@@ -90,21 +86,20 @@ function callback(error) {
 }
 ```
 
-If no callback is provided, and the store supports synchronous access, the
-`set` function should return once the value is stored. If the store does not support
-synchronous access it should throw an error.
+コールバック関数が指定されておらず、ストアが同期的なアクセスを行う場合、
+`set` 関数は格納された値を戻します。
+別々の値を返さなければならないか、もしくはキーの値配列を返します。
 
 ### ContextStore.keys(scope, [callback])
 
-Argument    | Description
+引数        | 説明
 ------------|------------------------
-scope       | the scope of the keys to return
-callback    | *optional* a callback function to invoke with the list of keys
+scope       | 返されるキーのスコープ
+callback    | *オプション* キーのリストに対してのコールバック関数
 
-Gets a list of all keys under the given scope.
+指定されたスコープ内のキーのリストを返します。
 
-If the optional `callback` argument is provided, it must be a function that takes
-two or more arguments:
+`callback` 引数が指定されている場合は、2つ以上の引数を持つ関数でなければなりません:
 
 ```
 function callback(error, keys) {
@@ -112,24 +107,21 @@ function callback(error, keys) {
 }
 ```
 
-If no callback is provided, and the store supports synchronous access, the
-`keys` function should return the array of keys. If the store does not support
-synchronous access it should throw an error.
-
+コールバック関数が指定されておらず、ストアが同期的なアクセスを行う場合、
+`key` 関数はキーの配列を返さなければなりません。
+ストアが同期的アクセスをサポートしていない場合、エラーをthrowします。
 
 ### ContextStore.delete(scope)
 
-Argument    | Description
+引数        | 説明
 ------------|------------------------
-scope       | the scope to delete
-
+scope       | 削除するスコープ
 
 ### ContextStore.clean(activeNodes)
 
-Argument    | Description
+引数        | 説明
 ------------|------------------------
-activeNodes | a list of all node/flow ids that are still active
+activeNodes | まだアクティブであるすべてのノードとフローのidリスト
 
-Returns a promise that resolves when store has removed any context scopes that
-are no longer required. The `activeNodes` list can be used to identify what nodes
-and flows are still considered active.
+ストアが不要になったコンテキストスコープを削除した時にresolveされる `Promise` を返します。
+`activeNodes` リストはどのノードやフローがまだアクティブであるかどうか識別するために使用されます。

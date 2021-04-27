@@ -1,65 +1,65 @@
 ---
 layout: docs-faq
 toc: toc-user-guide.html
-title: Supported Node versions
-slug: node versions
+title: サポートされているNodeのバージョン
+slug: nodeバージョン
 ---
 
-Node-RED currently recommends **Node 12.x LTS**.
+Node-REDは現在 **Node 12.x LTS** を推奨しています。
 
-Version    | Support Level   | Notes
------------|-----------------|------
- < 8.x     | *Unsupported*   |
- **8.x**   | *Supported*     | No longer maintained
- **10.x**  | *Supported*     | Reaches end-of-life April 2021
- **12.x**  | **Recommended** |  
- **14.x**  | Supported       |  
+バージョン | サポートレベル | Notes
+--------|---------------|------
+ < 8.x     | *サポート外*   |
+ **8.x**   | *サポート*     | メンテナンス対象外
+ **10.x**  | *サポート*     | 2021年4g立つにEOLとなります
+ **12.x**  | **推奨** |  
+ **14.x**  | サポート       |  
 
-We try to stay up to date with Node.js releases. Our goal is to support
-the [Maintenance and Active LTS releases](https://nodejs.org/en/about/releases/).
+私たちはNode.jsのリリースに合わせて最新の状態にしようとしています。
+私たちのゴールは[MaintenanceおよびActive LTSとなっているリリース](https://nodejs.org/en/about/releases/)をサポートすることです。
 
-We do not generally recommend using the odd numbered Node.js versions - we do not
-routinely test against them.
+奇数バージョンのNode.jsの利用は一般的に推奨していません - それらのバージョンには
+定期的なテストを実行していません。
 
-With such a large community of 3rd party nodes available to install, we cannot
-provide any guarantees on what they support. We rely on the community to keep
-up to date.
+インストール可能な大きなコミュニティのサードパーティ製のノードに対して、
+そのノードがサポートしているバージョンでの保証をすることはできません。
+私たちは、最新状態へ追従についてコミュニティを頼りにします。
 
-### Installing Node.js
+### Node.jsをインストールする
 
-Node [provides guides](https://nodejs.org/en/download/package-manager/) for
-installing Node.js across a wide range of Operating Systems.
+Nodeは、幅広いオペレーションシステムに対してNode.jsをインストールするための
+[ガイドを提供](https://nodejs.org/en/download/package-manager/) しています。
 
-If you are running on a [Raspberry Pi](../hardware/raspberrypi) or
-[BeagleBone Black](../hardware/beagleboneblack), please read the guides
-we provide for those devices.
+[Raspberry Pi](../hardware/raspberrypi)
+または[BeagleBone Black](../hardware/beagleboneblack)で実行する場合、
+それぞれのデバイスのために提供しているガイドを読んでください。
 
-### Using `nvm`
+### `nvm`を利用する
 
-[nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) is a tool that can
-help manage Node.js installations.
+[nvm](https://github.com/nvm-sh/nvm/blob/master/README.md)はNode.jsのインストール管理を
+手助けするツールです。
 
-It is convenient when running Node-RED as an individual user, but it is *not*
-recommended if you want to run Node-RED as a system-level service. This is because
-`nvm` uses scripts in a user's profile to setup its environment. When running
-as a service, those scripts do not get used.
+個人のユーザがNode-REDを実行するには便利ですが、
+システムレベルのサービスとしてNode-REDを実行したい場合には推奨*できません*。
+なぜならば`nvm`は環境構築のためにユーザプロファイル内のスクリプトを利用するからです。
+サービスとして実行するとき、これらのスクリプトは利用されません。
 
-### Upgrading Node.js
+### Node.jsをアップグレードする
 
-If you change the version of Node.js you are using, you may need to rebuild
-Node-RED's dependencies as well as any nodes you have installed. This is because
-some of them contain binary components that must be rebuilt to be compatible with
-the new Node.js version.
+現在利用しているNode.jsのバージョンを変更する場合、
+インストール済みのノードと同様にNode-REDの依存関係をリビルドする必要があるかもしれません。
+これは、いくつかの依存関係が保持しているバイナリコンポーネントを
+新しいNode.jsのバージョンに互換性を持つようにリビルドしなくてはならないためです。
 
-This can be done using the command `npm rebuild` - but it must be run in the right
-directory.
+これは`npm rebuild`コマンドを利用することで完了できますが、
+正しいディレクトリで実行しなくてはなりません。
 
-There are two places it should be run:
+実行すべき場所は2つあります:
 
-1. In your Node-RED user directory, `~/.node-red` - this is where any additional
-   nodes you have installed are.
-2. In the directory you installed Node-RED
+1. Node-REDユーザディレクトリ、`~/.node-red`-
+   今までインストールした追加ノードがある場所
+2. Node-REDをインストールしたディレクトリ
 
-If you installed Node-RED as a global module and are not sure where that put it,
-you can use the command `npm list -g --depth 0` to find where your global modules
-are installed.
+グローバルモジュールとしてNode-REDをインストールし、どこに置いたのかわからなくなった場合、
+`npm list -g --depth 0`コマンドを利用して
+グローバルモジュールがインストールされている場所を見つけることができます。

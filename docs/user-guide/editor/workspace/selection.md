@@ -2,21 +2,20 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/workspace"
-    label: "workspace"
-  - "selection"
+    label: "ワークスペース"
+  - "選択"
 toc: toc-editor-guide.html
-title: Selection
+title: 選択
 ---
 
-A node is selected when it is clicked on. This will deselect anything currently
-selected. The Information Sidebar will update to show the node's properties and
-help text for its type.
+ノードはクリックすることで選択できます。
+現在選択されているものはすべて選択が解除されます。
+情報サイドバーはノードのプロパティとそのノードのヘルプテキストの表示を更新します。
 
-If the `Ctrl` or `Command` key is held when clicking on the node, the node will
-be added to the current selection (or removed if it was already selected).
-
+ノードをクリックするときに`Ctrl`または`Command`キーを押した場合、
+このノードが追加選択されます（または既にこのノードが選択状態であれば選択から外されます）。
 
 <div style="float: right; width: 400px; margin-left: 10px;">
 <table class="action-ref inline">
@@ -36,74 +35,72 @@ be added to the current selection (or removed if it was already selected).
 </table>
 </div>
 
-If the `Shift` key is held when clicking on the middle of the node, it will select that node
-and all other nodes it is connected to. Clicking on the left-hand side of the node, it will select
+ノードをクリックするときに`Shift`キーを押した場合、
+このノードおよび接続しているすべてのノードが選択されます。
+Clicking on the left-hand side of the node, it will select
 that node and all nodes that come before it in the flow - "upstream" nodes. Clicking on the right-hand
 side of the node, it will select that node and all nodes that come after it in the flow - "downstream" nodes.
 
+ワイヤーをクリックすると、ワイヤーが選択状態になります。
+ノードとは異なり、一度に1つのワイヤーしか選択できません。
 
-
-A wire is selected when it is clicked on. Unlike nodes, it is only possible to
-select one wire at a time.
-
-### Lasso Tool
+### なげなわツール
 
 <div style="width: 460px" class="figure align-right">
   <img src="../images/editor-workspace-lasso.png" alt="Selecting multiple nodes with the lasso tool">
-  <p class="caption">Selecting multiple nodes with the lasso tool</p>
+  <p class="caption">なげなわツールで複数のノードを選択する</p>
 </div>
 
-The lasso tool can be used to select multiple nodes. It is enabled by click-dragging
-on the workspace.
+なげなわツールは複数のノードを選択するために利用できます。
+ワークスペースで、クリックしてからドラッグすることで利用できます。
 
-It cannot be used to select a wire.
+なげなわツールでワイヤーを選択することはできません。
 
 <br style="clear: both;" />
 
-### Selecting all nodes
+### すべてのノードを選択する
 
-To select all nodes on the current flow, ensure the workspace has focus and then
-press `Ctrl/Command-a`.
+現在のフローのすべてのノードを選択するには、
+ワークスペースにフォーカスがあることを確認し、`Ctrl/Command-a`を押してください。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:select-all-nodes</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-a</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:select-all-nodes</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-a</code></td></tr>
 </table>
 
 
 
-### Selecting flows
+### フローの選択
 
-It is possible to select multiple flows in the editor by holding the `Ctrl/Command`
-key when clicking on its tab.
+エディタ上で`Ctrl/Command`キーを押しながらタブをクリックすると、フローが複数選択できます。
 
-Once selected, they can be deleted, copied or exported just like any selection.
+選択されると、それらは他の選択と同様に削除・コピー・エクスポートできます。
 
 <div style="width: 541px" class="figure align-centre">
-  <img src="../images/editor-flow-select.png" alt="Selecting flows">
+  <img src="../images/editor-flow-select.png" alt="フローの選択">
   <p class="caption">Selecting flows</p>
 </div>
 
-### Editor clipboard
+### エディタクリップボード
 
 <div style="width: 400px; float: right">
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:copy-selection-to-internal-clipboard</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-c</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:copy-selection-to-internal-clipboard</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-c</code></td></tr>
 </table>
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:cut-selection-to-internal-clipboard</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-x</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:cut-selection-to-internal-clipboard</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-x</code></td></tr>
 </table>
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:paste-selection-from-internal-clipboard</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-v</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:paste-selection-from-internal-clipboard</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-v</code></td></tr>
 </table>
 </div>
 
-The editor supports the standard copy/cut/paste actions. Note they use an internal
-clipboard rather than the system clipboard.
+エディタは標準的なコピー/切り取り/貼り付け操作をサポートしています。
+システムクリップボードではなく、内部クリップボードが利用されることに注意してください。

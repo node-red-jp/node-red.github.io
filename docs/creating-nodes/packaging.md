@@ -1,21 +1,21 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: Packaging
-slug: packaging
+title: パッケージング
+slug: パッケージング
 ---
 
-Nodes can be packaged as modules and published to the npm repository. This makes
-them easy to install along with any dependencies they may have.
+ノードはモジュールとしてパッケージ化し、npmリポジトリに公開することができます。
+これにより、インストールするのに必要な依存関係と共にインストールが容易になります。
 
-### Naming
+### 命名規則
 
-If you wish to use **node-red** in the name of your node please use `node-red-contrib-` as a prefix to their name to make it clear they are not maintained by the Node-RED project. Alternatively, any name
-that doesn't use `node-red` as a prefix can be used.
+自作のノードの名称に**node-red**を利用したい場合、Node-REDプロジェクトによってメンテナンスされていないことを明確にするため、プレフィックスとして`node-red-contrib-`を利用してください。
+あるいは、`node-red`をプレフィックスとして利用しない任意の名称を使用することができます。
 
-### Directory structure
+### ディレクトリ構造
 
-Here is a typical directory structure for a node package:
+以下に、ノードパッケージの典型的なディレクトリ構造を示します:
 
 ```
 ├── LICENSE
@@ -31,40 +31,40 @@ Here is a typical directory structure for a node package:
     └── sample.js
 ```
 
-There are no strict requirements over the directory structure used within the
-package. If a package contains multiple nodes, they could all exist in the same
-directory, or they could each be placed in their own sub-directory.
+パッケージ内で使用されるディレクトリ構造に厳密な要件はありません。
+パッケージに複数のノードが含まれている場合、それらすべてが同じディレクトリに存在させることもできますが、
+それぞれを独自のサブディレクトリに配置することもできます。
 
-### Testing a node module locally
+### ノードモジュールをローカルでテストする
 
-To test a node module locally, the [`npm install <folder>`](https://docs.npmjs.com/cli/install) command can be used. This allows you
-to develop the node in a local directory and have it linked into a local node-red install during development.
+ノードモジュールをローカルでテストするには、[`npm install <folder>`](https://docs.npmjs.com/cli/install)コマンドを使うことができます。
+これにより開発中において、ローカルディレクトリでノードを開発し、ローカルのNode-REDインストールにリンクさせることができます。
 
-In your node-red user directory, typically `~/.node-red`, run:
+あなたのnode-redユーザディレクトリで、通常のように次のコマンドを実行します。
 
-    npm install <path to location of node module>
+    npm install <ノードモジュールへのパス>
 
-This creates the appropriate symbolic link to the directory so that Node-RED
-will discover the node when it starts. Any changes to the node's file can be picked
-up by simply restarting Node-RED.
+これにより、ディレクトリへ適切なシンボリックリンクが作成され、
+Node-REDは起動時にノードを検出します。
+Node-REDを再起動するだけで、ノードのファイルに対する変更を取得できます。
 
 ### package.json
 
-Along with the usual entries, the `package.json` file must contain a `node-red`
-entry that lists the `.js` files that contain nodes for the runtime to load.
+`package.json`ファイルには通常のエントリと同様、
+ランタイムにロードするノードを含む`.js`ファイルをリストアップした`node-red`エントリが含まれていなければなりません。
 
-If you have multiple nodes in a single file, you only have to list the file once.
+1つのファイルに複数のノードがある場合、ファイルを1回だけリストアップしなければなりません。
 
-If any of the nodes have dependencies on other npm modules, they must be included
-in the `dependencies` property.
+ノードが他のnpmモジュールの依存関係を持つ場合、
+それらは`dependencies`プロパティに含まれていなければなりません。
 
-To help make the nodes discoverable within the npm repository, the file should
-include `node-red` in its `keywords` property. This will ensure the package
-appears when [searching by keyword](https://www.npmjs.org/browse/keyword/node-red).
+npmリポジトリ内でノードを発見できるようにするため、
+`keywords`プロパティに`node-red`を含める必要があります。
+これにより、[キーワードで検索する](https://www.npmjs.org/browse/keyword/node-red)際にパッケージが確実に表示されます。
 
-<div class="doc-callout"><em>Note</em> : Please do NOT add the `node-red` keyword until
-you are happy that the node is stable and working correctly, and documented sufficiently
-for others to be able to use it.</div>
+<div class="doc-callout"><em>Note</em>: ノードが安定して正しく動作し、
+他の人がノードを利用できるように充分に文書化されるまで
+`node-red`キーワードを追加しないでください。</div>
 
 {% highlight json %}
 {
@@ -85,45 +85,45 @@ for others to be able to use it.</div>
 
 ### README.md
 
-The README.md file should describe the capabilities of the node, and list any
-pre-requisites that are needed in order to make it function. It may also be
-useful to include any extra instructions not included in the *info* tab part
-of the node's html file, and maybe even a small example flow demonstrating it's
-use.
+README.mdファイルには、
+ノードの機能およびそれを機能させるために必要な前提条件を列挙します。
+ノードのhtmlファイルの*情報*タブ部分に含まれていない追加の指示や、
+そのノードを使用している小さなサンプルフローを含めると
+有意義かもしれません。
 
-The file should be marked up using
-[GitHub flavoured markdown](https://help.github.com/articles/markdown-basics/).
+ファイルは、
+[GitHub flavoured markdown](https://help.github.com/articles/markdown-basics/)を利用してマークアップすべきです。
 
 ### LICENSE
 
-Please include a license file so that others may know what they can and cannot
-do with your code.
+他の人が自分のコードで出来ることと出来ないことを知ることができるように、
+ライセンスファイルを含めてください。
 
-### Publishing to npm
+### npmに公開する
 
-There are lots of guides to publishing a package to the npm repository.
-A basic overview is available [here](https://docs.npmjs.com/misc/developers).
+npmリポジトリにパッケージを公開するためのガイドが数多くあります。
+[こちら](https://docs.npmjs.com/misc/developers)に基本的な概要があります。
 
-### Adding to flows.nodered.org
+### flows.nodered.orgに追加する
 
-As of April 2020, the [the Node-RED Flow Library](https://flows.nodered.org)
-is no longer able to automatically index and update nodes published on
-npm with the `node-red` keyword. Instead, a submission request has to be
-placed manually.
+2020年4月時点で、[Node-REDフローライブラリ](https://flows.nodered.org)は
+`node-red`というキーワード付きでnpmに公開されたノードを
+自動的にインデックス化・更新することはもうできません。
+代わりに、手動で送信リクエストを設定する必要があります。
 
-To do so, make sure all of the packaging requests are met. To add a new node
-to the library, click on the `+` button at the top of
-[the library's page](https://flows.nodered.org), and select the 'node' option.
-This button takes you to
-[the Adding a Node page](https://flows.nodered.org/add/node). Here, the list of
-requirements is repeated and describes the steps to have it added to the
-library.
+このためには、パッケージング要件のすべてを満たしていることを確認してください。
+新しいノードをライブラリに追加するためには、
+[ライブラリページ](https://flows.nodered.org)の上部の`+`ボタンをクリックし、
+「node」オプションを選択してください。
+このボタンによって[ノード追加のページ](https://flows.nodered.org/add/node)へ移動します。
+ここでは要件のリストが再度表示され、
+ノードをライブラリに追加するステップが記述されています。
 
-To update an existing node, you can either resubmit it the same way as you
-would for a new node, or request a refresh from the node's page on the
-flow library through the 'request refresh' link. This is only visible to
-logged in users.
+既存のノードを更新するには、
+新規ノードを追加したときと同様に再度送信することも可能ですし、
+フローライブラリ上のノードのページの「request refresh」リンクから更新することも可能です。
+このリンクはログインしているユーザのみ表示されます。
 
-If it does not appear after that time, you can ask for help on the
-[Node-RED forum](https://discourse.nodered.org) or
-[slack](https://nodered.org/slack).
+表示されない場合、
+[Node-REDフォーラム](https://discourse.nodered.org)または[slack](https://nodered.org/slack)で
+助けを求めることができます。

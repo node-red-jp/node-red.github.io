@@ -2,7 +2,7 @@
 layout: docs-api
 toc: toc-api-modules.html
 title: Module APIs
-slug: modules
+slug: モジュール
 ---
 
  - [1.3](v/1.3)

@@ -1,29 +1,29 @@
 ---
 layout: docs-getting-started
-title: Running on Amazon Web Services
+title: Amazon Web Servicesで実行する
 toc: toc-user-guide.html
 slug: aws
 redirect_from:
   - /docs/platforms/aws
 ---
 
-This guide takes you through the steps to get Node-RED running in an AWS environment.
+このガイドではAWS環境においてNode-REDを実行する手順を紹介します。
 
-There are two approaches:
+以下の2つの方法があります。
 
-1. [Running on the AWS Elastic Beanstalk Service (EB)](#running-on-aws-ebs)
-2. [Running on Elastic Beanstalk with High Availability](#running-on-elastic-beanstalk-with-high-availability)
-3. [Running under an Ubuntu image on AWS EC2](#running-on-aws-ec2-with-ubuntu)
+1. [AWS Elastic Beanstalk Service (EB)で実行](#aws-ebsで実行)
+2. [高可用性Elastic Beanstalkで実行](#高可用性elastic-beanstalkで実行)
+3. [AWS EC2のUbuntuイメージ環境で実行](#aws-ec2のubuntuイメージ環境で実行)
 
-### Running on AWS EBS
+### AWS EBSで実行
 
-#### Prerequisites
+#### 前提条件
 
-1. Ensure you have an AWS account with Elastic Beanstalk, SQS and S3 enabled
+1. Elastic Beanstalk、SQSおよびS3を利用できるAWSアカウントを保有していることを確認します。
 
-2. Download EB command line and install on your local computer - see [link](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/GettingStarted.html)
+2. EBコマンドラインをダウンロードし、ローカルPCにインストールします。[リンク先](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/GettingStarted.html) を参照してください。
 
-3. Create AWS credentials and save in a local file (~/.aws/config or Usersusername.awsconfig) as below
+3. AWS認証情報を作成し、以下のようにローカルファイル（~/.aws/configまたはUsersusername.awsconfig）として保存してください。
 
 ```
 [profile eb-cli]
@@ -31,20 +31,20 @@ aws_access_key_id = key id
 aws_secret_access_key = access key
 ```
 
-#### Create EB Environment
+#### EB環境を作成する
 
-1. Create a new directory (e.g. `demoapp`)
+1. ディレクトリを作成します（例. `demoapp`）。
 
-2. cd to that directory
+2. 作成したディレクトリに移動します。
 
-3. run `eb init` to create a new elastic beanstalk project. Select the preferred region and use node.js as the platform.
-You will be asked if you wish to use ssh. If you do, please ensure you have ssh installed on your computer if you wish to generate a new key pair.
+3. `exb init`を実行して新規のelastic beanstalkプロジェクトを作成します。好みのリージョンを選択し、プラットフォームにNode.jsを利用します。
+SSHを利用したい場合、新規のキーペアを生成するのであればコンピュータにSSHがインストールされていることを確認してください。
 
-4. Login to the AWS Console on your browser, select Identity and Access Management (IAM) and add the AmazonS3FullAccess policy to the aws-elasticbeanstalk-ec2-role. Note: this gives full access from EBS to S3 and you may wish to tailor this policy to meet your own security needs
+4. ブラウザでAWSコンソールにログインし、Identity and Access Management（IAM）を選択し、AmazonS3FullAccessポリシーをaws-elasticbeanstalk-ec2-roleに追加します。Note: これによってEBSからS3へのフルアクセスが可能になります。このポリシー自分のセキュリティ要件に応じて調整することを推奨します。
 
-#### Create a Node-RED environment
+#### Node-RED環境を構築する
 
-1. Create a `package.json` file with the following content (replacing "demoapp" with your app name)
+1. `package.json`ファイルを以下の内容で作成します（"demoapp"は自分のアプリ名に置換してください）。
 
 ```javascript
 {   
@@ -69,9 +69,9 @@ You will be asked if you wish to use ssh. If you do, please ensure you have ssh 
 }
 ```
 
-2. Copy the default [Node-RED settings.js file](https://github.com/node-red/node-red/blob/master/packages/node_modules/node-red/settings.js) to the demoapp directory
+2. [Node-RED settings.js file](https://github.com/node-red/node-red/blob/master/packages/node_modules/node-red/settings.js)をdemoapp ディレクトリにコピーしてください。
 
-3. Edit the settings.js file to add the following entries to module.exports (setting awsRegion to that used in eb init and replacing demoapp with your app name) :
+3. settings.jsファイルを編集して、以下のエントリをmodule.exportsに追加します（awsRegionをeb initで使用したものに設定し、demoappは自分のアプリ名に置換してください）。:
 
 ```
      awsRegion: 'eu-west-1',
@@ -79,86 +79,86 @@ You will be asked if you wish to use ssh. If you do, please ensure you have ssh 
      storageModule: require('node-red-contrib-storage-s3'),
 ```
 
-4. At the command prompt make sure you are in your application's top-level directory and run the command `eb create`; you may wish to specify a more unique application name. This will take a long time to run but eventually will return successfully.
+4. コマンドプロンプトで自分のアプリケーションのトップレベルディレクトリにいることを確認し、`eb create`コマンドを実行します; アプリケーション名をもっとユニークにしたいかもしれません。実行には長い時間がかかりますが、最終的には正常に完了します。
 
-#### Configuring Node-RED access
+#### Node-REDのアクセス設定
 
-Node-RED is now accessible directly from the web url of the application. However this is insecure and does not work very well for logging. Instead we will configure direct access to the administration port of node-red on the ec2 instance it is using.
+この段階でのNode-REDはアプリケーションのURLから直接アクセスすることができます。しかし、これはセキュアではなく、ログも充分に出力されません。そこで、使用中のEC2インスタンスのNode-REDの管理ポートへの直接アクセスを設定します。
 
-1. In the AWS Console, select EC2, then select security groups. You will see a set of security groups. Select one with the name of your environment and a description of "Security Group for ElasticBeanstalk Environment". Once selected, click on "Actions" and then "Edit inbound settings". A dialog box with rules with appear. Add a new rule. Set type to "all traffic" and source to "my ip". Save the rule.  
+1. AWSコンソールでEC2を選択、セキュリティグループを選択します。セキュリティグループの一覧が表示されます。自分の環境の名称および"Security Group for ElasticBeanstalk Environment"と説明されているグループを選択します。選択したら、"Actions" そして"Edit inbound settings"をクリックします。ルールが記載されたダイアログボックスが表示されます。新規のルールを追加します。typeを"all traffic"に、sourceを"my ip"に設定し、ルールを保存します。
 
-2. Select the EC2 instance which is running the node-red application. copy its IP address
+2. Node-REDアプリケーションが実行されているEC2インスタンスを選択します。IPアドレスをコピーします。
 
-3. Enter the IP address in the browser with a port of 8081. This will provide direct access to the node-red administration console.
+3. ポート番号8081でIPアドレスをブラウザに入力します。これでNode-REDの管理コンソールに直接アクセスできます。
 
-Note: the public IP address also provides access to the node-red application and it would be good practice to remove that access at the same time  i.e. the HTTP rule for port 80.
+Note: パブリックIPアドレスはNode-REDアプリケーションへのアクセスも可能にするため、同時にそのアクセス、つまりポート番号80でのアクセスをHTTPルールで削除することを推奨します。
 
-Your Node-RED instance is now running on EBS. Any flows you create will be saved to AWS S3 so you can tear down the environment and the flows will be accessible whenever you redeploy.
+Node-REDインスタンスがEBS上で実行できました。作成したフローはすべてAWS S3に保存されるため、環境を破壊することができ、フローは再デプロイするたびにアクセスできます。
 
-### Running on Elastic Beanstalk with High availability
+### 高可用性Elastic Beanstalkで実行
 
-This deployment option gives you a multiple node Node-RED setup, with a shared filesystem using Amazon Elastic File System (EFS). Because it runs multiple nodes behind a load balancer, you will have high availability - if a node dies, Elastic Beanstalk will replace it automatically.
+この開発選択肢は、Amazon Elastic File System (EFS)を利用することで共有ファイルシステムによってNode-REDがセットアップされた複数のノードが提供されます。ロードバランサの背後で複数ノードを実行するため、高い可用性を得ることができます - 或るノードが故障した場合、Elastic Beanstalkが自動的に切り替えをおこないます。
 
 ![solution diagram](/images/node-red-ha-on-aws.png "Node-RED on Elastic Beanstalk with High availability")
 
-To get started, clone the repository here [https://github.com/guysqr/node-red-ha-on-aws](https://github.com/guysqr/node-red-ha-on-aws) and follow the simple instructions. The infrastructure is created for you by a CloudFormation template, so you don't need to know much about AWS to set it up.
+始めるには、このリポジトリ[https://github.com/guysqr/node-red-ha-on-aws](https://github.com/guysqr/node-red-ha-on-aws)をクローンして簡単な指示に従います。CloudFormationによってインフラストラクチャが作成されるため、セットアップのためにAWSについて多くのことを知る必要はありません
 
-In addition, this deployment option enables you to run Node-RED under https and to login via Auth0 (or you can easily swap to in-built auth or any Passport-compatible ID provider).
+加えて、この選択肢はhttpsでNode-REDを実行することと、Auth0（もしくは、ビルトインの認証またはPasportに適合したIDプロバイダに簡単に切り替えることができます）を介してログインすることを可能にします。
 
 
-### Running on AWS EC2 with Ubuntu
+### AWS EC2のUbuntuイメージ環境で実行
 
-#### Create the base EC2 image
+#### ベースのEC2イメージを作成する
 
-1. Log in to the [AWS EC2 console](https://console.aws.amazon.com/ec2)
+1. [AWS EC2 console](https://console.aws.amazon.com/ec2)にログインします。
 
-2. Click 'Launch Instance'
+2. 「インスタンスの作成」をクリックします。
 
-3. In the list of Quick Start AMIs, select **Ubuntu Server**
+3. クイックスタートリストから**Ubuntu Server**を選びます。
 
-4. Select the Instance Type - `t2.micro` is a good starting point
+4. インスタンスタイプを選びます。`t2.micro`が始めるにはちょうど良いでしょう。
 
-5. On the 'Configure Security Group' tab, add a new 'Custom TCP Rule' for port 1880
+5. 「セキュリティグループの設定」タブの「ルールの追加」をクリックし、「カスタムTCPルール」ポート1880を指定、送信元「カスタム」0.0.0.0/0を指定します。
 
-6. On the final 'Review' step, click the 'Launch' button
+6. 「確認」タブの「作成」ボタンをクリックします。
 
-7. The console will prompt you to configure a set of SSH keys. Select 'Create a new key pair' and click 'Download key pair'. Your browser will save the `.pem` file - keep that safe. Finally, click 'Launch'.
+7. SSHキーの設定を求めるメッセージが表示されます。「新しいキーペアの作成」とキーペア名を指定し、「キーペアのダウンロード」をクリックします。 ブラウザに`.pem`ファイルが保存されます。ファイルを安全な場所に保管し、最後に「インスタンスの作成」をクリックします。
 
-After a couple of minutes your EC2 instance will be running. In the console
-you can find your instance's IP address.
+数分後、EC2インスタンスが起動します。
+コンソールからインスタンスのIPアドレスを見つけてください。
 
-#### Setup Node-RED
+#### Node-REDのセットアップ
 
-The next task is to log into the instance then install node.js and Node-RED.
+次はインスタンスにログインし、node.jsとNode-REDをインストールします。
 
-Follow the AWS guide for [connecting to your instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html).
+AWSガイド[Linuxインスタンスへの接続](http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/AccessingInstances.html)に従って接続します。
 
-Once logged in you need to install node.js and Node-RED
+ログインしたら、node.jsとNode-REDをインストールする必要があります
 
        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
        sudo apt-get install -y nodejs build-essential
        sudo npm install -g --unsafe-perm node-red
 
 
-At this point you can test your instance by running `node-red`. *Note*: you may
-get some errors regarding the Serial node - that's to be expected and can be
-ignored.
+この時点で、`node-red`インスタンスをテストすることができます。
+*Note*: シリアルノードに関するいくつかのエラーが発生する可能性があります。
+これは予想されうるもので、無視することができます。
 
-Once started, you can access the editor at `http://<your-instance-ip>:1880/`.
+起動したら、`http://<your-instance-ip>:1880/`でエディタにアクセスできます。
 
-To get Node-RED to start automatically whenever your instance is restarted, you
-can use pm2:
+インスタンスが再起動されるたびに
+Node-REDが自動的に起動するようにするにはpm2を使用できます。:
 
        sudo npm install -g --unsafe-perm pm2
        pm2 start `which node-red` -- -v
        pm2 save
        pm2 startup
 
-*Note:* this final command will prompt you to run a further command - make sure you do as it says.
+*Note:* この最後のコマンドでさらにコマンドを実行するように促されるので、従って実行して下さい。
 
-### Next steps
+### 次のステップ
 
-This guide barely scratches the surface of how you may choose to configure your
-instance to run in EC2. Node-RED is 'just' a node.js application that exposes an
-HTTP server - on that principle, there are many online guides you can use to
-learn what else is possible.
+このガイドでは、EC2で実行するようにインスタンスを構成する方法については
+ほとんど触れていません。
+Node-REDは、HTTPサーバを公開する単なるnode.jsアプリケーションです。
+他に何が可能なのかを学ぶために利用できる多くのオンラインガイドがあります。

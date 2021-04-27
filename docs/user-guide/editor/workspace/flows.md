@@ -2,106 +2,106 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/workspace"
-    label: "workspace"
-  - "flows"
+    label: "ワークスペース"
+  - "フロー"
 toc: toc-editor-guide.html
-title: Flows
+title: フロー
 ---
 
-A flow is represented as a tab within the editor workspace and is the main way
-to organise nodes.
+フローはエディタのワークスペース内でタブとして表現され、
+ノードをまとめる主な方法です。
 
 <div class="figure">
   <img src="../images/editor-flow-tabs.png" alt="Flow tabs">
-  <p class="caption">Flow tabs</p>
+  <p class="caption">フロータブ</p>
 </div>
 
 <div class="doc-callout">
-<em>Note</em> : The term "flow" is also used to informally describe a single set
-of connected nodes. So a flow (tab) can contain multiple flows (sets of connected nodes).
+<em>Note</em> : 「フロー」という単語は連結したノードの1セットを口語的に指すこともあります。
+つまり、フロー（タブ）は複数のフロー（連結したノードの複数セット）を持つことができます。
 </div>
 
-Each flow can have a name, and description that is displayed in the [Information sidebar](../sidebar/info).
+それぞれのフローは名前と[情報サイドバー](../sidebar/info)に表示される詳細を持つことができます。
 
-All of the nodes in a flow can access the same [flow-scoped context](/docs/user-guide/context).
+フロー内のすべてのノードは同じ[フロースコープのコンテキスト](/docs/user-guide/context)にアクセスすることができます。
 
 
-#### Adding a flow
+#### フローを追加する
 
-To add a new flow, either click the <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-plus"></i> button
-in the top bar, or double-click on free space in the tab bar.
+フローを追加するには、上部バーの <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-plus"></i>
+ボタンをクリックするか、タブバーの空いているスペースをダブルクリックします。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><code>Flows -&gt; Add</code></td></tr>
- <tr><td>Action</td><td><code>core:add-flow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
+ <tr><td>メニューオプション</td><td><code>フロー -&gt; フローを新規追加</code></td></tr>
+ <tr><td>動作</td><td><code>core:add-flow</code></td></tr>
 </table>
 
-#### Reordering flows
+#### フローの並び順を変更する
 
-Flows can be reordered in the workspace by dragging their tabs around in the tab bar.
+フローはワークスペースのタブバー内でタブをドラッグ&ドロップすることにより並び順を変更できます。
 
-#### Editing flow properties
+#### フロープロパティを編集する
 
 <div style="width:350px" class="figure align-right">
   <img src="../images/editor-edit-flow.png" alt="Flow properties editor">
-  <p class="caption">Flow properties editor</p>
+  <p class="caption">フロープロパティエディタ</p>
   <img src="../images/editor-sidebar-info.png" alt="Information Sidebar">
-  <p class="caption">Information Sidebar</p>
+  <p class="caption">情報サイドバー</p>
 </div>
 
-To edit a flow's properties, double-click on its tab in the top bar. This will
-open the Flow Properties dialog.
+フローのプロパティを編集するには、上部バーのタブをダブルクリックします。
+この操作でフロープロパティダイアログが開きます。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><code>Flows -&gt; Rename</code></td></tr>
- <tr><td>Action</td><td><code>core:edit-flow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
+ <tr><td>メニューオプション</td><td><code>フロー -&gt; フロー名を変更</code></td></tr>
+ <tr><td>動作</td><td><code>core:edit-flow</code></td></tr>
 </table>
 
-Within the dialog, the flow's name and description can be set. The description
-can use Markdown syntax for formatting and will appear in the [Information sidebar](../sidebar/info).
+ダイアログ内では、フロー名と詳細を設定できます。
+詳細は整形のためにMarkdownシンタックスを利用することができ、[情報サイドバー](../sidebar/info)に表示されます。
 
-#### Enabling or disabling a flow
+#### フローを有効化または無効化する
 
-The flow can be enabled or disabled using the toggle button at the bottom of the
-dialog. If a flow is disabled, none of the nodes it contains will be created when
-the flow is deployed.
+フローは、ダイアログの最下部のトグルボタンによって有効化・無効化できます。
+フローが無効化されていれば、
+ノードはがデプロイされたときに、フロー内のノードは作成されません。
 
 *Since Node-RED 1.1.0*
 
-The <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-circle-thin"></i> button in the [Information sidebar](../sidebar/info) can also be used to enable or disable the node/flow.
+[情報サイドバー](../sidebar/info)の<i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-circle-thin"></i>ボタンはノード/フローの有効化または無効化をおこなうこともできます。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><i>none</i></td></tr>
- <tr><td>Action</td><td><code>core:enable-flow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>none</i></td></tr>
+ <tr><td>メニューオプション</td><td><i>none</i></td></tr>
+ <tr><td>動作</td><td><code>core:enable-flow</code></td></tr>
 </table>
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><i>none</i></td></tr>
- <tr><td>Action</td><td><code>core:disable-flow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>none</i></td></tr>
+ <tr><td>メニューオプション</td><td><i>none</i></td></tr>
+ <tr><td>動作</td><td><code>core:disable-flow</code></td></tr>
 </table>
 
 
 <br style="clear: both;" />
 
-#### Deleting a flow
+#### フローを削除する
 
-To delete a flow, click the 'Delete' button in the Flow Properties dialog.
+フローを削除するには、フロープロパティダイアログで「削除」ボタンをクリックします。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><code>Flows -&gt; Delete</code></td></tr>
- <tr><td>Action</td><td><code>core:remove-flow</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
+ <tr><td>メニューオプション</td><td><code>フロー -&gt; フローを削除</code></td></tr>
+ <tr><td>動作</td><td><code>core:remove-flow</code></td></tr>
 </table>
 
 <div style="width:400px" class="figure align-right">
@@ -109,17 +109,17 @@ To delete a flow, click the 'Delete' button in the Flow Properties dialog.
   <p class="caption">Search flows</p>
 </div>
 
-#### Switching between flows
+#### フローを切り替える
 
 
-To open a list of the available flows, click the <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-list-ul"></i> button
-in the top bar.
+有効なフローのリストを表示するには、バー上部の
+<i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-list-ul"></i> ボタンをクリックします。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-Shift-f</code></td></tr>
- <tr><td>Menu option</td><td><i>none</i></td></tr>
- <tr><td>Action</td><td><code>core:list-flows</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Shift-f</code></td></tr>
+ <tr><td>メニューオプション</td><td><i>none</i></td></tr>
+ <tr><td>動作</td><td><code>core:list-flows</code></td></tr>
 </table>
 
 <table class="action-ref inline">

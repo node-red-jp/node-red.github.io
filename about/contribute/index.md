@@ -1,170 +1,171 @@
 ---
 layout: about-single
-title: Contributing to Node-RED
-slug: contributing
+title: Node-REDへの貢献
+slug: コントリビュート
 ---
 
-The starting point for any contribution should be a discussion with the community.
-Our preferred mechanism for that is the project forum, although discussions
-on the Slack team are equally valid. This serves two purposes:
+いかなる貢献も出発点はコミュニティでのディスカッションです。
+そのための望ましい過程はプロジェクトフォーラムですが、
+Slackチームでのディスカッションも同様に適切です。これらは次の2つの目的を果たしています。
 
- - it reaches a wide audience, including those who are not GitHub users.
- - It allows feature requests that are actually support requests or duplicate
-   items to get filtered out or rationalised and handled before being taken any
-   further.
+ - GitHubユーザではない人々を含む幅広い支援者に届けること。
+ - 実際には支援依頼であったり、
+   重複していたりする項目を除外や合理化して処理してから
+   対応できるようにすること。
 
-Once the community discussion reaches a conclusion, the request is either dropped
-or taken forward.
+コミュニティでのディスカッションで結論が出た時点で、
+リクエストは撤回されるか次の段階に進みます。
 
-For a feature request from a member of the community who is not in a position to
-also contribute the design or code, an item is added by a Committer to the
-[Trello Whiteboard](https://trello.com/b/R0O3CSrI/node-red-whiteboard). The
-Whiteboard acts as a backlog of features that can be drawn on when prioritising
-work.
+デザインまたはコードのコントリビュータの立場ではないコミュニティメンバからの機能要求は、
+コミッタによって
+[Trello Whiteboard](https://trello.com/b/R0O3CSrI/node-red-whiteboard)に追加されます。
+このホワイトボードは、
+作業の優先順位付けの際に技術委員会が汲み上げる可能性のある機能のバックログの役割を果たしています。
 
-If an item has a Contributor to do the work, the next step will depend on the nature
-of the change.
+アイテムに対して作業を担当するコントリビュータがいる場合、
+次のステップは変更の質に依ります。
 
-If it is a well-defined feature that has limited impact - such as adding a new
-option to an existing node - an issue should be raised in the appropriate
-repository with the `feature` label applied. The issue should provide a
-description of the feature and any key design points that are needed.
-This issue can then be used to help refine the proposal. The issue should
-clearly identify who is working on it - this is to avoid accidental duplication
-of work and ensure there is a focal point for the work.
+既存のノードに新しいオプションを追加するなどのように、
+影響が限定的で明確に定義されている機能である場合には、
+適切なリポジトリに`feature`ラベルがつけられたissueが挙げられる必要があります。
+issueには機能の詳細と必要なキーデザインポイントが書かれていなければなりません。
+このissueは提案を洗練することにも利用されます。 
+issueは現在誰が取り組んでいるかを明確に特定できるようにする必要があります。
+これは作業の偶発的な重複を避け、作業への集中を保証するためです。
 
-If it is a larger scoped feature that may require multiple pull-requests to
-implement, or has a great impact to the end user, a design note should be
-created in the [node-red/designs](https://github.com/node-red/designs) repo.
+実装するために複数のプルリクエストを必要とする、またはエンドユーザに与える影響が大きいような、
+より広いスコープの機能である場合、
+[node-red/designs](https://github.com/node-red/designs)リポジトリにデザインノードを作成する必要があります。
 
-Once the design has been approved and moved to the `in-progress` state, an issue
-should be raised in the appropriate repository with the `feature` label applied.
-If the design identifies multiple stages of delivery for the feature, an issue
-should be raised for each stage as needed. The issues should reference the design
-note. Each issue should have a milestone set if it is planned for a particular release.
+デザインが承認され、`in-progress`状態に移行すると、
+適切なリポジトリに`feature`ラベルがつけられたissueを挙げる必要があります。
+デザインが機能についての提供段階を決めている場合、必要に応じて各段階ごとにissueを挙げるべきです。
+issueはデザインノートを参照する必要があります。
+特定のリリースを予定している場合は、それぞれのissueにマイルストーンを設定する必要があります。
 
-At some point a pull request will arrive. This will go through the normal review
-processes. The Committer community have a responsibility to review the PR in a
-timely manner. For any significant changes, the PR should be allowed to sit on
-the list for at least 48 hours - with consideration for weekends and other
-holiday periods. This gives all committers a fair chance to review the PR, or at
-least register their desire to give it a proper review, regardless of their
-timezone.
+ある時点でプルリクエストが到着します。
+これは通常のレビュープロセスに入るでしょう。
+コミッタコミュニティは、適時にPRをレビューする責任があります。
+重大な変更があった場合は、週末やその他の休暇期間を考慮してPRを最低48時間リストに掲載されるようにしてください。
+これはすべてのコミッタに対して、
+それぞれのタイムゾーンに関係なくPRをレビューする、
+もしくは自身の希望を記述する公平な機会を提供します。
 
-If there are no outstanding objections, a Committer will accept the PR.
+未解決の異議がなければ、コミッタはPRを承認します。
 
-If there are objections, a suitable consensus amongst the Committers should be reached.
+異議がある場合、コミッタ間で適切な合意に達しなれければなりません。
 
-Once all PRs relating to an issue have been resolved, the issue can be closed.
+issueに関する全てのPRが解消された時点で、issueをクローズすることができます。
 
-Once it has been merged, the corresponding feature issue should be
-closed. If there is a corresponding design note, its history section should be
-updated to reflect where/when the item was delivered.
-
-
-### Pull-Request Requirements
-
-Any pull-request that introduces a code change is expected to meet certain
-criteria before it will be accepted:
-
-1. All committers to the PR must have signed the JS Foundation CLA. The project
-   cannot accept any changes from unknown committers.
-
-2. It should not be the first time the project is aware of the contribution. As
-   described above, any code contribution should have already been discussed with
-   the community and an Issue raised.
-
-   If the PR contains a bug fix, it can still be accepted as long as there are no
-   controversial changes.
-
-   If it is a larger change, it may get rejected until the proper contribution
-   process is followed. Whilst we do not want to discourage contributions, we do
-   want to avoid shortcutting the proper review/discussion process.
-
-3. The build tests should pass cleanly; they are run automatically on each PR and
-   reported back. This covers code style and linting as well as unit and functional
-   tests.
-
-4. The changes must have appropriate Test coverage included. The core project has
-   a goal to maintain over 90% code coverage. If a PR causes the code coverage to
-   decrease it will be rejected unless there is a good reason provided.
-
-The project places no requirements on what development methodology is used to
-make the code change prior to raising the PR. The project places high value on
-having good test coverage and documentation.
-
-### Git Workflow
-
-The following workflow is used in git for the main project repositories.
-
-As in traditional git workflows, multiple branches are used for different streams
-of activity. The following describes how we use it today.
-
- - `master` - this branch contains the latest shipped release of node-red, plus
-   any additional bug fixes that have been made since. At any time, this branch
-   could get shipped as the next maintenance release. At the time of writing,
-   this contains 0.16.2 and a few fixes that will be released as 0.16.3 at some point.
- - `dev` - this branch contains the development work on the next milestone release.
-   This is where new features are developed.
- - Larger features get developed in their own branches and merged to the
-   development branch as and when the feature is sufficiently stable for wider
-   consumption.
-
-### Tools
-
-The project uses a number of tools to support its activities. The following list
-is a current reflection of what is used and in what capacity.
+マージされたら、対応する機能のissueをクローズする必要があります。
+対応するデザインノートがある場合、
+その履歴セクションを更新し、項目がどこに/いつ提供されたのかを反映します。
 
 
- - [Forum](https://discourse.nodered.org)
+### プルリクエストの要件
 
-   This is the main discussion venue for the project. Anyone can join the forum.
+コードの変更をおこなったすべてのプルリクエストは、承認される前にいくつかの基準を満たしていることが求められます。
+
+1. PRへのすべてのコミッタはJS Foundation CLAに同意しなくてはなりません。
+   同意していないコミッタからの変更をプロジェクトは承認できません。
+
+2. PRによって初めてプロジェクトがコントリビュートに気がつくべきではありません。
+   前述のとおり、
+   すべてのコードコントリビュートはコミュニティや
+   事前に作成されているissueで既に議論されているべきです。
+   
+   PRがバグ修正を含んでいる場合、
+   議論が必要な変更がないかぎり承認されます。
+
+   重大な変更がある場合、適切なコントリビューションのプロセスに従っていなければ却下される可能性があります。
+   私達はコントリビューションを思いとどまらせたいわけではなく、
+   適切なレビュー/ディスカッションの過程を省略することを避けたいのです。
+
+3. ビルドテストはきれいに合格するはずです。
+   テストは各PRに対して自動実行され、報告されます。
+   このテストは、単体テストおよび機能テストと同様にコードスタイルおよびリントを含んでいます。
+
+4. 変更には適切なテストカバレッジが含まれている必要があります。
+   コアプロジェクトは90%以上のコードカバレッジの維持を目標としています。
+   PRがコードカバレッジを低下させる場合、正当な理由がないかぎり却下されます。
+
+このプロジェクトでは、
+PRをおこなう以前にコード変更のためにどの開発方法論を用いるかという要件は設けていません。
+優れたテストカバレッジとドキュメントに対して価値を見出しています。
+
+### Gitワークフロー
+
+主なプロジェクトのリポジトリのGitでは以下のワークフローが利用されています。
+
+従来のGitワークフローと同様に、異なる活動ごとに複数のブランチが使用されています。
+以下に現在の利用用途について記載しています。
+
+ - `master` - このブランチにはNode-REDの最新リリース版、およびそれに追加したバグ修正が含まれています。
+   このブランチはいつでも次のメンテナンスリリースとしてリリースできるでしょう。
+   このドキュメントを書いている時点では、
+   ブランチには0.16.2と0.16.3として将来リリースされる予定のいくつかの修正が含まれています。
+ - `dev` - このブランチは次回のマイルストーンリリースに向けた開発作業を含んでいます。
+   ここでは新しい機能が開発されています。
+ - より大きな機能はそれぞれ独自のブランチで開発され、
+   機能が幅広い利用に対して
+   十分に安定したときに開発ブランチにマージされます。
+
+### ツール
+
+プロジェクトではその活動を支援するため、数多くのツールが利用されています。
+以下のリストは、現在利用されているツールとその目的を示しています。
+
+
+ - [フォーラム](https://discourse.nodered.org)
+
+   ここはプロジェクトについての主なディスカッションの場です。誰でもフォーラムに参加することができます。
 
  - [Slack](https://nodered.org/slack)
 
-   For active, real-time, conversations, slack can be more productive than the
-   forum. Anyone can join the slack team. The `#dev` channel is used for discussions
-   on project development.
+   活発で、リアルタイムで、対話的なSlackはフォーラムよりも生産的です。
+   誰でもSlackチームに参加することができます。
+   `#dev`チャンネルはプロジェクト開発についてのディスカッションに利用されます。
 
  - [Trello - Whiteboard](https://trello.com/b/R0O3CSrI/node-red-whiteboard)
 
-   High level tracking of ideas and features. This is where items are captured
-   into the backlog that are considered enhancements to existing features or
-   larger "epic" items.
+   アイデアと機能を高度に追跡できます。
+   既存の機能を拡張したり、
+   より「偉大な」アイデアや機能をバックログに追加することができるツールです。
 
-   It is used by the TC to provide a sense of priority across the items. Anyone
-   can view the board. Committers have write access.
+   このツールは技術委員会がアイデアや機能に優先順位を決定するために利用します。
+   誰でもホワイトボードを閲覧することができます。コミッタは書き込み権限を有しています。
 
  - [Trello - Documentation](https://trello.com/b/m2mBMUYj/documentation)
 
-   A separate board is used for documentation tasks that are not tied to specific
-   code changes. This helps to ensure we have the right documentation for the
-   different types of user/developer/contributor. Anyone can view the board.
-   Committers have write access.
+   特定のコード変更に結び付けられていないドキュメント作成タスクのため、異なるホワイトボードが利用されています。
+   ユーザ/開発者/コントリビュータそれぞれに適したドキュメントを提供できるようにしています。
+   誰でもホワイトボードを閲覧することができます。
+   コミッタは書き込み権限を有しています。
 
  - [GitHub - code](https://github.com/node-red/node-red)
 
-   Version Control of the project source code. Anyone can clone or fork a
-   repository; there are no private repos. Committers can apply commits to a
-   repository.
+   プロジェクトのソースコードのバージョン管理。
+   誰でもリポジトリをクローンまたはフォークできます。
+   プライベートリポジトリは存在しません。コミッタはリポジトリへのコミットを適用できます。
 
  - [GitHub - issues](https://github.com/node-red/node-red/issues)
 
-   Reporting of bugs/issues and tracking of feature development. Anyone can
-   report an issue. Committers can "own" an issue.
+   バグ/課題の報告および機能開発の追跡。
+   誰でもissueを作成することができます。コミッタはissueを「所持」することができます。
 
  - [GitHub - pull requests](https://github.com/node-red/node-red/pulls)
 
-   How any contribution is made to a repository. Anyone can raise a pull-request.
-   The process for doing so is described separately.
+   コントリビューションをリポジトリに貢献する方法。誰でもプルリクエストを出すことができます。
+   そのためのプロセスは別途記載します。
 
  - [GitHub - wiki](https://github.com/node-red/node-red/wiki)
 
-   Each repository has a wiki associated with it. They are used as working spaces
-   to develop designs, ideas and documentation in a collaborative way.
+   それぞれのリポジトリは関連したwikiがあります。共同でデザイン、アイデアおよびドキュメンテーションを
+   開発するための作業スペースとして利用されています。
 
-   In particular, the core repository wiki has a set of [Design Notes](https://github.com/node-red/node-red/wiki/Design-Notes)
-   pages. These are where designs can be developed and feedback sought.
+   特に、コアリポジトリのwikiは一連の[Design Notes](https://github.com/node-red/node-red/wiki/Design-Notes)
+   ページがあります。これはデザインが開発され、フィードバックが求められるスペースです。
 
-   The wiki has no access control; anyone can make a change. But changes should
-   only be made in collaboration with those who are actively working on a page.
+   wikiにはアクセス権の制御がありません。誰でも変更をおこなうことができます。しかし、変更は
+   ページに積極的に取り組んでいる人々との共同作業によってのみ実施されるべきです。
+   

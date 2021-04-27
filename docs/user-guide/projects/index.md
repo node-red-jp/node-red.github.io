@@ -1,33 +1,33 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Projects
-slug: projects
+title: プロジェクト
+slug: プロジェクト
 ---
 
-### Introducing projects
+### プロジェクトを導入する
 
-Projects are a new way to manage your flow files. Rather than treat your flows as
-a simple pair of files, they represent everything you need to create a redistributable
-Node-RED application.
+プロジェクトはフローファイルを管理する新しい方法です。
+フローを単純なファイルのペアとして扱うのではなく、
+再配布可能なNode-REDアプリケーションを作成するために必要なすべてとします。
 
-They are backed by a Git repository, meaning all of the files are fully version
-controlled and allow developers to use familiar workflows to collaborate with others.
+この方法はGitリポジトリによって支えられています。
+つまり、すべてのファイルは完璧なバージョン管理がなされ、開発者は慣れ親しんだワークフローを使用して他のユーザーと共同作業できます。
 
-In the 0.18 release, the projects feature is in preview mode. That means it must be
-enabled in the settings file.
+0.18版のリリースでは、プロジェクト機能は試行段階です。
+よって、設定ファイル内で有効化する必要があります。
 
-*The feature is not currently available in the IBM Cloud environment.*
+*この機能は現在IBMクラウド環境では利用できません。*
 
-### Enabling projects
+### プロジェクトを有効化する
 
-To enable the projects feature, edit your `settings.js` file and add the following
-option within the `module.exports` block and restart Node-RED.
+プロジェクト機能を有効化するためには、
+自身の`settings.js`ファイルを編集し、`module.exports`ブロックに以下のオプションを追加、Node-REDを再起動します。
 
 <div class="doc-callout">
-<em>Note</em> :  The <code>settings.js</code> file exports a <em>JavaScript object</em>.
-To configure Node-RED you should understand how to modify a JavaScript object by adding
-new or modifying existing key/value pairs like the <code>editorTheme</code> below.
+<em>Note</em> :  <code>settings.js</code>ファイルは<em>JavaScriptオブジェクト</em>を出力します。
+Node-REDを設定するには、
+以下の<code>editorTheme</code>のようにキー/バリューペアを新規追加または既存のペアの編集する必要があり、JavaScriptオブジェクトの編集方法を理解しなければなりません。
 </div>
 
 ```
@@ -43,192 +43,189 @@ It is also possible to enable the projects feature by setting the `NODE_RED_ENAB
 The feature relies on having the `git` and `ssh-keygen` command line tools available.
 Node-RED will check for them on start-up and let you know if they are missing.
 
-### Creating your first project
+### はじめてのプロジェクト作成
 
-When you open the editor you'll be greeted by a welcome screen that invites you
-to create your first project using your existing flow files.
+エディタを開くと初期画面が表示され、
+既存のフローファイルを利用したはじめてのプロジェクト作成を勧められます。
 
 ![Projects Welcome Screen](images/project_welcome.png)
 
-It will take you through the following steps:
+以下のステップを通じて、プロジェクトを作成します。:
 
-1. **Setup your version control client**
+1. **バージョン管理クライアントを設定する**
 
-    Node-RED uses the open source tool Git for version control. It tracks changes
-    to your project files and lets you push them to remote repositories.
+    Node-REDはバージョン管理にオープンソースツールであるGitを利用します。
+    これはプロジェクトファイルの変更を追跡し、リモートリポジトリへのプッシュを可能にします。
 
-    When you commit a set of changes, Git records who made the changes with a
-    username and email address. The Username can be anything you want - it does
-    not need to be your real name.
+    一連の変更をコミットすると、Gitはユーザ名とEmailアドレスによって誰が変更をおこなったのかを記録します。
+    ユーザー名はあなたが望むものなら何でも構いません。
+    本名である必要はありません。
 
-    You may already have your Git client configured - in which Node-RED will reuse
-    those settings.
+    既にGitクライアントを設定しているかもしれません。
+    この場合、Node-REDはその設定を再利用します。
 
-    You can change these settings at any time via the main Node-RED settings dialog.
+    これらの設定はNode-RED設定ダイアログからいつでも変更できます。
 
-    - [More information on configuring your git client](https://help.github.com/articles/set-up-git/#setting-up-git) (GitHub)
+    - [Gitクライアント設定に関する追加情報](https://help.github.com/articles/set-up-git/#setting-up-git) (GitHub)
 
-2. **Create your project**
+2. **プロジェクトを作成する**
 
-    The next step lets you name your project and given it a description.
+    次のステップではプロジェクトに名前を付け、説明を設定します。
 
-3. **Create your project files**
+3. **プロジェクトファイルを作成する**
 
-    Node-RED will automatically migrate your existing flow files into your project.
-    You can choose to rename them here if you want.
+    Node-REDは既存のフローファイルをプロジェクトへ自動的に移行します。
+    必要に応じて、ここで名称を変更することができます。
 
-4. **Setup encryption of your credentials file**
+4. **認証情報ファイルの暗号化を設定する**
 
-    As you may choose to share your project on public sites such as GitHub, it is
-    *strongly* recommended that you encrypt your credentials file.
+    GitHubのような公開サイトでプロジェクトを共有する際、
+    認証情報ファイルを暗号化することを*強く*推奨します。
 
-    To encrypt it, you need to choose a key that will be used to secure the file.
-    This key is not stored within the project. If someone else clones your project,
-    you will need to provide them the key to decrypt the credentials file.
-    Otherwise they will need to edit the flow to provide their own credentials.
+    暗号化には、ファイルを保護するために利用するキーを選択する必要があります。
+    このキーはプロジェクト内に保管されません。
+    他の誰かがプロジェクトをクローンした場合、その人に認証情報ファイルを解読するためのキーを提供する必要があります。
+    それ以外の場合、その人自身の認証情報を提供するためにフローを編集する必要があります。
 
-The project is then created in the directory: `~/.node-red/projects/<project-name>`.
+プロジェクトは以下のディレクトリに作成されます。: `~/.node-red/projects/<project-name>`
 
-### Working with projects
+### プロジェクトを利用する
 
-Once you have created your project, you can continue to use the Node-RED editor
-just as you always have. There are some new parts of the editor that have been
-added to work with your project.
+プロジェクトを作成したら、
+いつもどおりNode-REDエディタの利用を続けられます。
+エディタには、プロジェクトを利用するために追加された新しい部分がいくつかあります。
 
-#### Accessing Project Settings
+#### プロジェクト設定にアクセスする
 
-The Info sidebar now shows what project you are working on at the top. Next to
-the project name is a button that opens up the Project Settings dialog.
+情報サイドバーの上部に、現在どのプロジェクトに取り組んでいるかが表示されます。
+プロジェクト名の横には、プロジェクト設定ダイアログを開くボタンがあります。
 
 <img src="images/project_info_sidebar.png" width="314px">
 
-You can also access this from the `Projects -> Project Settings` option in the
-main menu.
+また、
+メインメニューの`プロジェクト -> プロジェクト設定`オプションからもアクセスすることができます。
 
-The dialog has three tabs:
+ダイアログは3つのタブを保持しています。:
 
- - Project - lets you edit the project's README.md file.
- - [Dependencies](#project-dependencies) - manage the list of node modules your project depends on
- - [Settings](#project-settings) - manage the project settings, including the git remotes
+ - プロジェクト - プロジェクトのREADME.mdファイルを編集できます
+ - [依存関係](#project-dependencies) - プロジェクトが依存しているnodeモジュールの一覧を管理します
+ - [設定](#project-settings) - Gitリモートを含むプロジェクト設定を管理します
 
-##### Project Dependencies
+##### プロジェクトの依存関係
 
-Each project has its own `package.json` file that includes a list of node modules
-the project depends on. The Node-RED editor tracks what nodes you are using in a
-flow and helps you to keep that list of dependencies up to date.
+各プロジェクトはそれぞれの`package.json`ファイルを持っており、
+これにはプロジェクトが依存しているノードモジュールの一覧が含まれています。
+Node-REDエディタはフローで使用しているノードを追跡し、依存関係の一覧を最新に保ちます。
 
  <img src="images/project_dependencies.png" width="599px">
 
-In the screenshot above, the current project has three modules listed in its
-`package.json` file, each in a different state:
+上記のスクリーンショットでは、現在のプロジェクトが`package.json`ファイルでリスト化された3つのモジュールを持っており、
+それぞれは以下のように異なる状態になっています。:
 
- - `node-red-node-mysql` is not currently installed
- - `node-red-node-random` is used by the current flow
- - `node-red-node-rbe` is listed, but is unused by the current flow
+ - `node-red-node-mysql`は現在インストールされていません
+ - `node-red-node-random`は現在のフローで利用されています
+ - `node-red-node-rbe`はリストに含まれていますが、現在のフローでは利用されていません
 
-Finally `node-red-node-smooth` provides a node that is used by the current flow,
-but that module is not listed as a dependency.
+最後に`node-red-node-smooth`は現在のフローで利用されているノードを提供していますが、
+このモジュールは依存関係として一覧に含まれていません。
 
-Keeping the dependency list up to date is important if you want to share the project
-with others - as it will help users to install the necessary modules.
+プロジェクトを他者と共有したい場合、依存関係一覧を最新に保つことは重要です。
+なぜならば、この一覧は必要なモジュールのインストールを手助けするからです。
 
-##### Project Settings
+##### プロジェクトの設定
 
-The project settings tab lets you manage your flow files, the encryption configuration
-of your credentials and configure your local git branches and remote repositories.
+プロジェクト設定タブではフローファイルおよび認証情報の暗号化設定の管理、
+ローカルGitブランチおよびリモートリポジトリの設定をおこなうことができます。
 
-#### Version Control
+#### バージョン管理
 
-A new `history` tab has been added to the sidebar. This is where you manage the
-version control of your project. The tab has two sections:
+サイドバーに新しく`履歴（history）`タブが追加されました。
+ここではプロジェクトのバージョン管理をおこないます。このタブは2つのセクションがあります。:
 
 
- - Local Changes - shows project files that have changed, allowing you to stage
-   and commit them.
- - Commit History - a list of all commits in the repository, with tools to push
-   commits to remote repositories.
+ - ローカルの変更 - 変更されたプロジェクトファイルを表示し、
+   ステージングとコミットを可能にします。
+ - コミット履歴 - リポジトリ内の全コミットの一覧で、
+   コミットをリモートリポジトリへプッシュできます。
 
-##### Local Changes
+##### ローカルの変更
 
 <img src="images/project_local_changes.png" width="326px" style="float: right; margin-left: 20px">
 
-Whenever you change a project file, such as by deploying a new flow configuration,
-it will be listed in the 'Local files' section. You can click on the file name
-to see a diff of what has changed. When you hover over the file, you'll see a
-**+** button - clicking that will stage the file - moving it down to the 'Changes
-to commit' list.
+新しいフロー設定をデプロイした場合などプロジェクトファイルが変更される度に、「ローカルファイル（Local files）」セクションにファイルが一覧表示されます。
+ファイル名をクリックすることで変更箇所の差分を確認できます。
+ファイル上にマウスをホバーさせると、**+**ボタンが表示されます。
+これをクリックしてファイルをステージングし、
+「コミット対象とする変更（Changes to commit）」リストに移動させます。
 
-When you have staged the files you want to commit, click the `commit` button, enter
-a message and confirm.
+コミットしたいファイルをステージングしたあと、
+`コミット（commit）`ボタンをクリック、メッセージを入力し、確定します。
 
 <br style="clear:both">
 
-##### Commit History
+##### コミット履歴
 
 <img src="images/project_commit_history.png" width="327px" style="float: left; margin-right: 20px">
 
-The Commit History section lists all of the commits in the current branch of the
-repository. When you create a project, Node-RED automatically commits the initial
-set of default files for the project.
+コミット履歴（Commit History）セクションはリポジトリの現在のブランチの全コミット一覧を表示します。
+プロジェクトを作成したとき、
+Node-REDはプロジェクトの初期のデフォルトファイルを自動的にコミットします。
 
-At the top of the list is the 'Branch' button. That allows you to checkout/create
-branches within the repository.
+リスト上部に「ブランチ（Branch）」ボタンがあります。
+これはリポジトリ内でブランチのチェックアウト/作成を可能にします。
+また、追跡のためにリモート/ブランチを確認し、
+リモートに対して変更をプッシュ/プルすることを可能にします。
 
-If your repository has a remote repository configured, there is also a button that
-shows how many commits ahead and/or behind your local repository is compared with the
-remote. It allows you to pick the remote/branch to track, and push/pull your changes
-to the remote.
-
-This is one area that the Node-RED editor tries to simplify the user experience,
-and doesn't expose all of the various options git provides. This is an area we
-welcome feedback on. For example, it does not provide options to rebase your local
-commits, or force push your changes to the remote. You can still do those things
-by falling back to the command line.
+Node-REDエディタはシンプルなユーザ体験を提供しようとしており、
+Gitの提供する様々なオプションすべてを公開しないようにしています。
+この点についてフィードバックを歓迎しています。
+例えば、ここではローカルコミットのリベースやリモートへの強制プッシュといったオプションを提供していません。
+しかしながら、これらはコマンドラインによって実行することができます。
 
 <br style="clear:both">
 
-#### Creating new projects
+#### 新規プロジェクトを作成する
 
-After you have created your first project by migrating your existing flow files
-you can create additional projects.
+既存のフローファイルから移行して最初のプロジェクトファイルを作成したあと、
+追加してプロジェクトを作成することが可能です。
 
-Selecting `Projects -> New` from the menu opens the Projects dialog.
+メニューから`プロジェクト -> 新規`を選択肢、プロジェクトダイアログを開きます。
 
-This provides three options:
+このダイアログは3つの選択肢を表示します。:
 
- - open an existing project
- - create a new project
- - clone a project repository
+ - プロジェクトを開く
+ - プロジェクトを作成
+ - プロジェクトをクローン
 
-##### Open an existing project
+##### プロジェクトを開く
 
-Node-RED only runs one project at any time. By opening another project you
-change what flows are running.
+Node-REDは常時1つのプロジェクトのみを実行します。
+別のプロジェクト開くと、実行するフローを変更することになります。
 
-The 'open project' view also allows you to delete projects by hovering over them
-in the list and clicking the delete button. You cannot delete the active project.
+「プロジェクトを開く」画面では、一覧でプロジェクト上にマウスホバーし、削除ボタンをクリックすることでプロジェクトを削除することができます。
+現在利用しているプロジェクトを削除することはできません。
 
-##### Create a new project
+##### プロジェクトを作成
 
-This lets you create a new project. It provides the same options as the
-'create your first project' set of screens, but collapsed into one.
+新規プロジェクトの作成をおこないます。
+「はじめてのプロジェクト作成」での一連の画面と同じ選択肢が表示されますが、ここでは1つの画面にまとめられています。
 
-##### Clone a project repository
+##### プロジェクトをクローン
 
-This lets you clone an existing remote repository. You can use either an `http(s)`
-or `git/ssh` url for the repository. If the repository requires authentication
-you must provide it here.
+既存リモートリポジトリのクローンをおこないます。
+リポジトリの`http(s)`または`git/ssh` URLを利用することができます。
+リポジトリに認証が必要な場合、ここで認証情報を入力する必要があります。
 
-*Note:* for `http` urls, do not include your username and/or password in the url
-itself. You can should provide those separately when prompted.
+*Note:* `http` URLでは、URL自体にユーザ名およびまたはパスワードを含ませないでください。
+これらは入力を促されたときに別々に入力すべきです。
 
-*Node-RED does not currently make use of any credential helper you git client may be
-configured with. This is an area we look for feedback on from the community.*
+*Node-REDはあなたがGitクライアントに設定しているかもしれない如何なる認証情報ヘルパーも現在利用していません。
+この部分はコミュニティからのフィードバックを求めています。*
 
-For `git/ssh`, Node-RED will offer a list of available ssh public keys. This list
-is generated by scanning `~/.ssh` for files ending `.pub` that have corresponding
-private key files. It also allows you to generate a new public/private key pairs
-via the 'Git config' tab of the main settings dialog. These files are stored under
-`~/.node-red/projects/.sshkeys/`. If you have `adminAuth` enabled, the files are
-scoped to the current logged in user so they do not need to share credentials for
-the remote.
+`git/ssh`では、Node-REDは利用可能はssh公開鍵の一覧を提供します。
+この一覧は、対応する秘密鍵ファイルを持つ末尾が`.pub`ファイルを、`~/.ssh`のスキャンすることによって作成します。
+また、メイン設定ダイアログの「Git設定」タブから公開鍵/秘密鍵ペアを新規作成することもできます。
+これらのファイルは`~/.node-red/projects/.sshkeys/`下に保管されます。
+`adminAuth`を有効化した場合、
+このファイルのスコープは現在ログインしているユーザに限定され、
+リモートの認証情報を共有する必要がなくなります。

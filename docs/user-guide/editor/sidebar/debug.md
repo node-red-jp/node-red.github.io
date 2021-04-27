@@ -2,61 +2,61 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/sidebar"
-    label: "sidebar"
-  - "debug"
+    label: "サイドバー"
+  - "デバッグ"
 toc: toc-editor-guide.html
-title: 'Sidebar: Debug messages'
+title: 'サイドバー: デバッグメッセージ'
 ---
 
 <div style="width: 300px" class="figure align-right">
   <img src="../images/editor-sidebar-debug.png" alt="Debug messages Sidebar">
-  <p class="caption">Debug messages Sidebar</p>
+  <p class="caption">デバッグメッセージサイドバー</p>
 </div>
 
-The Debug sidebar displays messages passed to Debug nodes within the flow, as well
-as certain log messages from the runtime.
+デバッグサイドバーは、ランタイムからの特定のログメッセージと同様に、
+フロー内のDebugノードから受け渡されたメッセージを表示します。
 
-For more information on how to use the Debug sidebar to understand the structure
-of messages, read the [Working with messages](/docs/user-guide/messages) guide.
+メッセージの構造を理解するためにデバッグサイドバーを利用する方法については、
+[メッセージを利用する](/docs/user-guide/messages)ガイドを参照してください。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:show-debug-tab</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-g d</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:show-debug-tab</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-g d</code></td></tr>
 </table>
 
-By default, the Debug sidebar shows all messages passed to it. This can be filtered
-by clicking the <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-filter"></i> button to open the filter options panel.
+デフォルトでは、デバッグサイドバーは受け渡されたすべてのメッセージを表示します。
+<i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-filter"></i>ボタンをクリックし、フィルターオプションパネルを開くことでフィルタリングすることができます。
 
 <div style="width: 300px" class="figure">
   <img src="../images/editor-sidebar-debug-filter.png" alt="Debug filter options">
-  <p class="caption">Debug filter options</p>
+  <p class="caption">デバッグフィルターオプション</p>
 </div>
 
-The panel provides three options:
+パネルは3つの選択肢を提供します。:
 
- - *all nodes* - displays all messages
- - *selected nodes* - select particular Debug nodes from a list of all available nodes
- - *current flow* - only displays messages from nodes on the current flow in the workspace
+ - *すべてのフロー*（*all nodes*） - すべてのメッセージを表示します
+ - *選択したノード*（*selected nodes*） - すべてのDebugノードの一覧から特定のノードを選択します
+ - *現在のフロー*（*current flow*） - ワークスペースの現在のフローのノードからのメッセージを表示します
 
-**Note:** the Debug sidebar can only show the 100 most recent messages. If the sidebar
-is currently showing a filtered list of messages, the hidden messages still count towards
-the 100 limit. If a flow has noisy Debug nodes, rather than filter them from the sidebar
-it can be better to disable them by clicking their button in the workspace.
+**Note:** Debugノードは最新100件分のメッセージを表示します。
+現在のサイドバーにフィルタリングされたメッセージの一覧が表示されている場合、隠されているメッセージも100件の制限に含めてカウントされます。
+フローに出力の多いDebugノードが存在する場合、
+サイドバーでフィルダリングするよりもワークスペースでそのノードのボタンをクリックして無効化することをお勧めします。
 
-The sidebar can be cleared at any time by clicking the <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-trash"></i> button.
+サイドバーは <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-trash"></i>ボタンをクリックすることでいつでもクリアできます。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:clear-debug-messages</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-Alt-l</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:clear-debug-messages</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-Alt-l</code></td></tr>
 </table>
 
 
-The <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-desktop"></i> button
-in the sidebar footer can be used to open a separate browser window containing the Debug sidebar.
+サイドバーのフッタの<i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-desktop"></i>ボタンは、
+デバッグサイドバーを持つブラウザウィンドウを別で開くために利用することができます。
 
 
 

@@ -1,25 +1,25 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Securing Node-RED
-slug: security
+title: セキュリティ
+slug: セキュリティ
 redirect_from:
   - /docs/security
 ---
 
-By default, the Node-RED editor is not secured - anyone who can access its IP address
-can access the editor and deploy changes.
+デフォルトのNode-REDエディタはセキュアではありません。
+実行環境のIPアドレスとポートにアクセス可能な誰もがエディタにアクセスしてフローを変更することができます。
 
-This is only suitable if you are running on a trusted network.
+この方法は信頼できるネットワーク上で実行されている場合のみ適しています。
 
-This guide describes how you can secure Node-RED. The security is split into
-three parts:
+このセクションでは、Node-REDをセキュアにする方法を記載しています。
+セキュリティは3つのパートに分けられます:
 
- - [Enabling HTTPS access](#enabling-https-access)
- - [Securing the editor and admin API](#editor--admin-api-security)
- - [Securing the HTTP Nodes and Node-RED Dashboard](#http-node-security)
+ - [HTTPSアクセスの有効化](#httpsアクセスの有効化)
+ - [エディタおよび管理APIのセキュリティ](#エディタおよび管理apiのセキュリティ)
+ - [HTTPノード、Node-RED Dashboardのセキュリティ](#http-node-security)
 
-### Enabling HTTPS Access
+### HTTPSアクセスの有効化
 
 To enable access to the Node-RED Editor over HTTPS, rather than the default HTTP,
 you can use the `https` configuration option in your [settings file](settings-file).
@@ -43,7 +43,7 @@ For a guide on how to generate certificates, you can follow <a href="https://it.
 The default Node-RED settings file includes a commented out `https` section that
 can be used to load the certificates from local files.
 
-```javascript
+```
 https: {
     key: require("fs").readFileSync('privkey.pem'),
     cert: require("fs").readFileSync('cert.pem')
@@ -56,7 +56,7 @@ If the `https` property is a function, it can be used to return the options obje
 The function can optionally return a Promise that will resolve to the options object,
 allowing it to complete asynchronously.
 
-```javascript
+```
 https: function() {
     return new Promise((resolve, reject) => {
         var key, cert;
@@ -87,17 +87,17 @@ The `https` function should determine if the current certificates will expire wi
 is required, the function can return `undefined` or `null`.
 
 
-### Editor & Admin API security
+### エディタおよび管理APIのセキュリティ
 
-The Editor and Admin API supports two types of authentication:
+エディタおよび管理APIは以下の2種類の認証をサポートしています。:
 
- - username/password credential based authentication
- - authentication against any OAuth/OpenID provider such as Twitter or GitHub
+ - 認証に基づくユーザ名/パスワード資格情報
+ - TwitterやGitHubのようなOAuth/OpenIDプロバイダによる認証
 
-#### Username/password based authentication
+#### ユーザ名/パスワードによる認証
 
-To enable user authentication on the Editor and Admin API, uncomment the `adminAuth`
-property in your [settings file](settings-file):
+エディタおよび管理APIでのユーザ認証を有効化するためには、
+[設定ファイル](settings-file)の`adminAuth`プロパティのコメントアウトを解除します。
 
 ```javascript
 adminAuth: {
@@ -117,22 +117,22 @@ adminAuth: {
 }
 ```
 
-The `users` property is an array of user objects. This allows you to define
-multiple users, each of whom can have different permissions.
+`users`プロパティはユーザオブジェクトの配列です。
+これを使うと複数のユーザーが異なるアクセス許可を持つような設定が可能です。
 
-This example configuration above defines two users. One called `admin` who has
-permission to do everything within the editor and has a password of `password`.
-The other called `george` who is given read-only access.
+上述の設定例は2人のユーザを定義しています。
+`admin`というユーザはエディタ内のすべてを実施できる権限を持ち、`password`というパスワードを持っています。
+`george`というユーザは読み込み権限のみを与えられています。
 
-Note that the passwords are securely hashed using the bcrypt algorithm.
+パスワードは安全性を高めるためにbcryptアルゴリズムを使用してハッシュ化されていることに注意してください。
 
 <div class="doc-callout">
-<em>Note</em> : in previous releases of Node-RED, the setting <code>httpAdminAuth</code>
-could be used to enable HTTP Basic Authentication on the editor. This option is
-deprecated and should not be used.
+<em>Note</em> : Node-REDの以前のリリースでは、
+設定で <code>httpAdminAuth</code> を有効にするとエディタにHTTPベーシック認証を使用することができました。
+この設定は非推奨であり、使用ですべきではありません。
 </div>
 
-#### Generating the password hash
+#### パスワードのハッシュ値生成
 
 If you are using Node-RED 1.1.0 or later, you can use the command:
 ```
@@ -154,18 +154,18 @@ In all cases, you will get back the hashed version of your password which you ca
 paste into your settings file.
 
 
-#### OAuth/OpenID based authentication
+#### OAuth/OpenIDによる認証
 
-To use an external authentication source, Node-RED can take use a wide range of
-the strategies provided by [Passport](http://passportjs.org/).
+外部の認証機構を利用するため、Node-REDは[Passport](http://passportjs.org/)によって
+提供される幅広い認証機構を利用することができます。
 
-Node-RED authentication modules are available for both [Twitter](https://www.npmjs.com/package/node-red-auth-twitter)
-and [GitHub](https://www.npmjs.com/package/node-red-auth-github). They wrap up
-some of the strategy-specific detail to make it easier to use. But they can also
-be used as a template for authenticating with other similar strategies.
+Node-REDの認証モジュールは、[Twitter](https://www.npmjs.com/package/node-red-auth-twitter)および
+[GitHub](https://www.npmjs.com/package/node-red-auth-github)の両方を利用することができます。
+両者は、簡単に利用できるように、認証機構に応じた細部がラップされています。
+しかしながら、これらは同様の機構による認証の雛形としても利用することができます。
 
-The following example shows how to configure to authenticate against Twitter
-_without_ using the auth module we provide.
+以下の例は、Node-REDが提供した認証モジュールを利用_せず_に
+Twitterを利用した認証機能を設定する方法を示しています。
 
 ```javascript
 adminAuth: {
@@ -190,35 +190,35 @@ adminAuth: {
 }
 ```
 
-The `strategy` property takes the following options:
+`strategy`プロパティは以下の項目を設定します。:
 
- - `name` - the name of the passport strategy being used
- - `strategy` - the passport strategy module
- - `label`/`icon` - used on the login page. `icon` can be any FontAwesome icon name.
- - `options` - an options object passed to the passport strategy when it is created.
-   Refer to the strategy's own documentation for what it requires. See below for a
-   node on the `callbackURL`.
- - `verify` - the verify function used by the strategy. It must call `done` with
-   a user profile as the second argument if the user is valid. This is expected
-   to have a `username` property that is used to check against the list of valid
-   users. Passport attempts to standardize the user profile object, so most strategies
-   provide this property.
+ - `name` - Passportで利用されている認証方法の名称
+ - `strategy` - Passportの認証モジュール
+ - `label`/`icon` - ログインページで利用されます。`icon`はFontAwesomeのアイコン名です。
+ - `options` - Passportのstrategyが生成されてたときに引き渡されるoptionsオブジェクトです。
+   必要なものはstrategy自体のドキュメントを参照してください。
+   `callbackURL`については以下を参照してください。
+ - `verify` - この認証方法によって利用される検証処理を指定します。
+   ユーザが正当な場合、ユーザプロフィールを第2引数として`done`を呼び出す必要があります。
+   ユーザプロパティは、アクセスを許可されているユーザの一覧での確認に利用される`username`プロパティを保持させてください。
+   Passportはユーザプロフィールオブジェクトを標準化しようとしており、
+   そのためほとんどの認証方法でこのプロパティが提供されます。
 
-The `callbackURL` used by a strategy is where the authentication provider will
-redirect to following an auth attempt. It must be the URL of your Node-RED editor
-with `/auth/strategy/callback` added to the path. For example, if you access the
-editor at `http://localhost:1880`, you would use `http://localhost:1880/auth/strategy/callback`.
+strategyによって利用される`callbackURL`は、認証プロバイダが認証を試行したあとのリダイレクト先です。
+これは`/auth/strategy/callback`を付け足したNode-REDのエディタのURLにしなくてはなりません。
+例えば、エディタに`http://localhost:1880`というURLでアクセスする場合、
+`http://localhost:1880/auth/strategy/callback`という値を設定します。
 
 
-#### Setting a default user
+#### デフォルトユーザの設定
 
-The example configuration above will prevent anyone from accessing the editor
-unless they log in.
+上記の設定例では
+ログインしない限りエディタにアクセスできません。
 
-In some cases, it is desirable to allow everyone some level of access.
-Typically, this will be giving read-only access to the editor. To do this,
-the `default` property can be added to the `adminAuth` setting to define
-the default user:
+しかし、ユーザがログインしなくても任意のアクセスレベルを提供したい場合もあります。
+例えばエディタへの読み取り専用アクセス権の付与などです。
+これを行うには、デフォルトユーザを設定するため、
+`adminAuth`設定に`default`プロパティを以下のように追加します。
 
 ```javascript
 adminAuth: {
@@ -230,31 +230,31 @@ adminAuth: {
 }
 ```
 
-#### User permissions
+#### ユーザ権限
 
-Prior to Node-RED 0.14, users could have one of two permissions:
+Node-RED 0.14以前では、ユーザーは以下の2つの権限のうち、いずれかを持つことができました。
 
- - `*` - full access
- - `read` - read-only access
+ - `*` - フルアクセス
+ - `read` - 読み取り専用
 
-From Node-RED 0.14 the permissions can be much finer grained and to support that,
-the property can either be a single string as before, or an array containing multiple permissions.
+NodeRED 0.14以降は権限がより細かくなり、それをサポートするために
+以前と同様に単一の文字列または複数の権限を含んだ配列をプロパティに指定することができます。
 
-Each method of the [Admin API](/docs/api/admin) defines what permission level is needed to access it.
-The permission model is resource based. For example, to get the current flow configuration,
-a user will require the `flows.read` permission. But to update the flows they will require
-the `flows.write` permission.
+[Admin API](/docs/api/admin)の各メソッドは、アクセスするために必要な権限レベルが定義されています。
+権限モデルはリソースに依存します。
+例えば、現在のFlow設定を取得するためにはユーザは`flow.read`権限が必要になります。
+しかし、フローを更新するためには`flows.write`権限が必要になります。
 
 
 
-#### Token expiration
+#### トークン有効期限
 
-By default, access tokens expire after 7 days after they are created. We do not
-currently support refreshing the token to extend this period.
+デフォルトでは、アクセストークンのデフォルトの有効期限は7日間です。
+この期間を延長するためのトークンの更新は現在サポートされていません。
 
-The expiration time can be customised by setting the `sessionExpiryTime` property
-of the `adminAuth` setting. This defines, in seconds, how long a token is valid
-for. For example, to set the tokens to expire after 1 day:
+有効期限は設定ファイルの `adminAuth` の `sessionExpiryTime` プロパティを変更することでカスタマイズすることができます。
+トークンの有効期間は秒単位で定義します。
+例えば1日後にトークンの有効期限が切れるようにするには以下のように設定します。
 
 ```javascript
 adminAuth: {
@@ -263,68 +263,68 @@ adminAuth: {
 }
 ```
 
-#### Accessing the Admin API
+#### Admin APIへのアクセス
 
-With the `adminAuth` property set, the [Admin API documentation](/docs/api/admin/oauth)
-describes how to access the API.
+`adminAuth`プロパティの設定によるAdmin APIへのアクセスは、
+[Admin APIドキュメント](/docs/api/admin/oauth)で説明しています。
 
-#### Custom user authentication
+### カスタムユーザ認証
 
-Rather than hardcode users into the settings file, it is also possible to plug in
-custom code to authenticate users. This makes it possible to integrate with
-existing authentication schemes.
+設定ファイルにユーザ情報をハードコーディングせずにユーザー認証をおこなうことも可能です。
+これを利用すれば、
+既存の認証システムと統合することができます。
 
-The following example shows how an external module can be used to provide the
-custom authentication code.
+次の例ではカスタム認証コードを提供する外部モジュールを使用する方法を
+示しています。
 
 
- - Save the following in a file called `<node-red>/user-authentication.js`
-
+ - `<node-red>/user-authentication.js` を以下のように作成します。
+ 
 ```javascript
 module.exports = {
    type: "credentials",
    users: function(username) {
        return new Promise(function(resolve) {
-           // Do whatever work is needed to check username is a valid
-           // user.
+           // ここでユーザ名が許可されたユーザかどうかを
+           // チェックする処理を行う
            if (valid) {
-               // Resolve with the user object. It must contain
-               // properties 'username' and 'permissions'
+               // ユーザ名が存在すればユーザオブジェクトを返す。
+               // 'username' と 'permissions' プロパティは必須です。
                var user = { username: "admin", permissions: "*" };
                resolve(user);
            } else {
-               // Resolve with null to indicate this user does not exist
+               // ユーザ名が存在しない場合はnullを返す。
                resolve(null);
            }
        });
    },
    authenticate: function(username,password) {
        return new Promise(function(resolve) {
-           // Do whatever work is needed to validate the username/password
-           // combination.
+           // ここでユーザー名/パスワードの組み合わせを
+           // チェックする処理を行う
            if (valid) {
-               // Resolve with the user object. Equivalent to having
-               // called users(username);
+               // ユーザー名/パスワードの組み合わせが有効な場合はユーザオブジェクトを返す。
+               // users(username);を呼び出すのと同様です。
                var user = { username: "admin", permissions: "*" };
                resolve(user);
            } else {
-               // Resolve with null to indicate the username/password pair
-               // were not valid.
+               // ユーザー名/パスワードの組み合わせが無効な場合は
+               // nullを返す。
                resolve(null);
            }
        });
    },
    default: function() {
        return new Promise(function(resolve) {
-           // Resolve with the user object for the default user.
-           // If no default user exists, resolve with null.
+           // デフォルトユーザのユーザオブジェクトを返す。
+           // デフォルトユーザが存在しない場合、nullを返す。
            resolve({anonymous: true, permissions:"read"});
        });
    }
 }
 ```
 
- -  Set the `adminAuth` property in settings.js to load this module:
+ -  このモジュールをロードするため、setting.jsファイルの`adminAuth`プロパティを以下のように設定します。:
 
 ```javascript
 adminAuth: require("./user-authentication")
@@ -348,7 +348,7 @@ recognises as one of its own. It is passed the token provided in the request and
 return a Promise that resolves with either the authenticated user, or `null` if the
 token is not valid.
 
-```javascript
+```
 adminAuth: {
     ...
     tokens: function(token) {
@@ -377,7 +377,7 @@ passed to the function, containing both type and value.
 To use a different HTTP header, the `tokenHeader` setting can be used to identify
 which header to use:
 
-```javascript
+```
 adminAuth: {
     ...
     tokens: function(token) {
@@ -393,70 +393,66 @@ To access the editor using a custom token without the login prompt, add `?access
 to the URL. The editor will store that token locally and use it for all future requests.
 
 
-### HTTP Node security
+### HTTPノードのセキュリティ
 
-The routes exposed by the HTTP In nodes can be secured using basic authentication.
+HTTPノードによって公開されるルートはBasic認証を利用することで保護することができます。
 
-The `httpNodeAuth` property in your `settings.js` file can be used to define a single
-username and password that will be allowed to access the routes.
+`settings.js`ファイルの`httpNodeAuth`プロパティによって、
+ルートへアクセスできる単一のユーザ名およびパスワードを設定することができます。
 
 ```javascript
 httpNodeAuth: {user:"user",pass:"$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN."},
 ```
 
-The `pass` property uses the same format as `adminAuth`. See [Generating the password hash](#generating-the-password-hash) for more information.
+`pass`プロパティは、`adminAuth`と同様の書式で利用することができます。詳細な情報は[パスワードのハッシュ値生成](#generating-the-password-hash)を参照してください。
 
-Access to any static content defined by the `httpStatic` property can be secured
-using the `httpStaticAuth` property, which uses the same format.
+`httpStatic`プロパティによって設定された静的コンテンツへのアクセスは、
+`httpStaticAuth`プロパティを同様の書式で利用することにより保護できます。
 
 <div class="doc-callout">
-<em>Note</em> : in previous releases of Node-RED, the <code>pass</code> property
-was expected to be an MD5 hash. This is cryptographically insecure, so has been
-superseded with bcrypt, as used by <code>adminAuth</code>. For backwards compatibility, MD5
-hashes are still supported - but they are not recommended.
+<em>Note</em> : 以前のNode-REDでは、<code>pass</code>プロパティは
+MD5によるハッシュ値が利用されました。これは暗号論的に安全ではないため、
+<code>adminAuth</code>で利用されているような、bcryptに変更されています。
+後方互換性を確保するため、MD5ハッシュもサポートされていますが、推奨できません。
 </div>
 
-### Custom Middleware
+### カスタムミドルウエア
 
-It is possible to provide custom HTTP middleware that will be added in front of
-all `HTTP In` nodes and, since Node-RED 1.1.0, in front of all admin/editor routes.
+`HTTP In` ノードにおいては全て、admin/エディタのルートにおいてはNode-RED 1.1.0以降から、前面にカスタムHTTPミドルウェアを追加できます。
 
-##### Custom Middleware for http-in nodes
+##### http-in ノード向けのカスタムミドルウエア
 
-For the `HTTP In` nodes, the middleware is provided as the `httpNodeMiddleware` setting.
+`HTTP In` ノードに対しては、`httpNodeMiddleware` 設定でミドルウエアを提供できます。
 
-The following setting is an example to limit the HTTP access rate in http-in nodes.
+以下の設定は、http-in ノードのHTTPアクセスレートを制限する例です。
 
 ```javascript
-// Run `npm install express-rate-limit` on `~/.node-red/` directory in advance
+// 事前に `~/.node-red/` ディレクトリにて `npm install express-rate-limit` コマンドを実行します。
 var rateLimit = require("express-rate-limit");
 module.exports = {
     httpNodeMiddleware: rateLimit({
-        windowMs: 1000, // 1000 millisecounds is set as the window time.
-        max: 10 // limit access rate to 10 requests/secound
+        windowMs: 1000, // ウィンドウ時間として、1000ミリ秒を設定します。
+        max: 10 // アクセスレートを10リクエスト/秒に制限します。
     })
 }
 ```
 
-Using this configuration, the Node-RED process can avoid memory exhaustions even if the flows which start with the http-in node take time to process.
-When reaching the limitation, the endpoints will return the default message, "Too many requests, please try again later.".
+この設定を用いることで、Node-REDプロセスは、http-inノードで始まるフローが処理に時間がかかる場合でも、メモリが枯渇する問題を回避できます。
+制限に達すると、本エンドポイントは 「Too many requests, please try again later.」というデフォルトのメッセージを返します。
 
-##### Custom Middleware for Admin API
+##### Admin API向けのカスタムミドルウエア
 
-For the admin/editor routes, the middleware is provided as the `httpAdminMiddleware` setting.
+admin/エディタのルートに対しては、`httpAdminMiddleware`設定でミドルウエアを提供できます。
 
-For example, the following middleware could be used to set the `X-Frame-Options` http header
-on all admin/editor requests. This can be used to control how the editor is embedded on
-other pages.
+例えば、以下のミドルウエアは、全てのadmin/エディタへのリクエストに対して、`X-Frame-Options` HTTPヘッダを設定するために使われます。
+この方法を用いて、エディタを他のページに埋め込むことを制御できます。
 
 ```javascript
 httpAdminMiddleware: function(req, res, next) {
-    // Set the X-Frame-Options header to limit where the editor
-    // can be embedded
+    // エディタを埋め込む場所を制限するため、X-Frame-Optionsヘッダを設定します。
     res.set('X-Frame-Options', 'sameorigin');
     next();
 },
 ```
 
-Other possible uses would be to add additional layers of security or request verification
-to the routes.
+その他の考えられるミドルウエアの利用方法は、セキュリティーのレイヤーを追加したり、ルートの検証要求などが挙げられます。

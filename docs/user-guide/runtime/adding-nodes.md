@@ -1,38 +1,38 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Adding nodes to the palette
-slug: adding nodes
+title: パレットにノードを追加する
+slug: ノードを追加
 redirect_from:
   - /docs/getting-started/adding-nodes
 
 ---
 
-Node-RED comes with a core set of useful nodes, but there are many more available
-from both the Node-RED project as well as the wider community.
+Node-REDは有用なコアノードを一通り備えていますが、
+Node-REDプロジェクトおよびより多くのコミュニティの両方からさらに多くのノードを入手することができます。
 
-You can search for available nodes in the [Node-RED library](http://flows.nodered.org).
+[Node-REDライブラリ](http://flows.nodered.org)で入手可能なノードを探すことができます。
 
-### Using the Editor
+### エディタを利用する
 
-You can install nodes directly within the editor by selecting the `Manage Palette`
-option from the main menu to open the [Palette Manager](/docs/user-guide/editor/palette/manager).
+メインメニューから`パレットを管理する`オプションを選択して[パレットマネージャ](/docs/user-guide/editor/palette/manager)を開くことで、
+エディタ内で直接ノードをインストールすることができます。
 
-The 'Nodes' tab lists all of the modules you have installed. It shows which you
-are using and whether updates are available for any of them.
+「現在のノード」タブはインストール済の全モジュールを一覧にしています。
+どのノードを使用しているか、それらのどれかがアップデートできるかを示しています。
 
-The 'Install' tab lets you search the catalogue of available node modules
-and install them.
+「ノードを追加」タブでは入手可能なノードモジュールのカタログを検索し、
+インストールすることができます。
 
 
-### Installing with npm
+### npmでインストールする
 
-To install a node module from the command-line, you can use the following command
-from within your user data directory (by default, `$HOME/.node-red`):
+コマンドラインからノードモジュールをインストールするため、
+ユーザデータディレクトリ（デフォルトでは`$HOME/.node-red`）内から以下のコマンドを利用することができます:
 
     npm install <npm-package-name>
 
-You will then need to restart Node-RED for it to pick-up the new nodes.
+そして、新しいノードを見つけるためにNode-REDを再起動する必要があります。
 
 ### The package.json file
 
@@ -40,30 +40,30 @@ When first started, or a new project created, Node-RED will create an initial `p
 
 `npm` will automatically add additional installed modules to the dependencies section of the `package.json` file in your user directory.
 
-### Upgrading nodes
+### ノードをアップグレードする
 
-The easiest way to check for node updates is to open the [Palette Manager](/docs/user-guide/editor/palette/manager) in the editor. You can then apply those updates as
-needed.
+ノードのアップデートを確認する最も簡単な方法はエディタで[パレットマネージャ](/docs/user-guide/editor/palette/manager)を開くことです。
+そして必要であればアップデートを適用することができます。
 
-You can also check for updates from the command-line using `npm`. In your user
-directory, `~/.node-red` run the command:
+`npm`を利用することでコマンドラインからアップデートを確認することもできます。
+ユーザディレクトリ`~/.node-red`で以下のコマンドを実行する:
 
 ```
 npm outdated
 ```
 
-That will highlight any modules that have updates available. To install the latest
-version of any module, run the command:
+これはアップデートを利用可能なモジュールを強調します。
+モジュールの最新バージョンをインストールためには、以下のコマンドを実行します:
 
 ```
 npm install <name-of-module>@latest
 ```
 
-Whichever approach you take, you will need to restart Node-RED to load the updates.
+どちらの方法でも、アップデートをロードするためにはNode-REDを再起動する必要があります。
 
-<div class="doc-callout"><em>Note</em> : the reason for using the
-<code>--unsafe-perm</code> option is that when node-gyp tries to recompile any
-native libraries it tries to do so as a "nobody" user and then fails to get
-access to certain directories. This causes the nodes in question (for example,
-serialport) not to be installed. Allowing it root access during install
-allows the nodes to be installed correctly during the upgrade.</div>
+<div class="doc-callout"><em>Note</em> : <code>--unsafe-perm</code>オプションを使用する理由は、
+node-gypはネイティブなライブラリをリコンパイルしようとするときに「nobody」ユーザとして実行しようとし、
+特定の依存関係へのアクセスに失敗するからです。
+これにより、問題のノード（たとえば、serialportノード）はインストールされません。
+インストール時にルートアクセスを許可することで、
+アップグレード時にノードを正しくインストールできます。</div>

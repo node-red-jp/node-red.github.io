@@ -6,11 +6,11 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - revoke token
 ---
 
-Revoke an access token
+アクセストークンを取り消します。
 
 ### Headers
 
@@ -21,15 +21,15 @@ Header                     | Value
 
 ### Arguments
 
-The request body must be a JSON string with the following fields:
+リクエストボディは下記のようなJSON文字列とします:
 
 Field   | Description
 --------|------------------------
-`token` | The token to revoke
+`token` | 無効化するトークン
 
 ### Response
 
 Status Code | Reason         | Response
 ------------|----------------|--------------
-`200`       | Success        | _none_
-`401`       | Not authorized | _none_
+`200`       | 成功             | _無し_
+`401`       | 認証されなかった | _無し_

@@ -1,119 +1,119 @@
 ---
 layout: docs-user-guide
-title: Node-RED Concepts
-slug: concepts
+title: Node-REDの概念
+slug: 概念
 ---
 
 <ul class="multi-column-toc" id="concept-toc"></ul>
 
 ---
 
-<b id="node">Node</b>
-: A Node is the basic building block of a flow.
+<b id="node">ノード</b>
+: ノードはフローの基本的な構成要素です。
 
-  Nodes are triggered by either receiving a message from the previous node in a
-  flow, or by waiting for some external event, such as an incoming HTTP request,
-  a timer or GPIO hardware change. They process that message, or event, and then
-  may send a message to the next nodes in the flow.
+  ノードはフロー中の前方のノードからメッセージを受け取るか、
+  HTTPリクエストの受信やタイマー、GPIOハードウェアの変化のような外部イベントを受け取ることで起動します。
+  ノードはメッセージまたはイベントを処理し、
+  フロー中の次のノードにメッセージを送出します。
 
-  A node can have at most one input port and as many output ports as it requires.
+  ノードのほとんどは1つの入力ポートと、必要であれば多数の出力ポートを持っています。
 
-    - [Working with Nodes](/docs/user-guide/editor/workspace/nodes)
-    - [The Core Nodes](/docs/user-guide/nodes)
-    - [Creating Nodes](/docs/creating-nodes)
+    - [ノードを利用する](/docs/user-guide/editor/workspace/nodes)
+    - [コアノード](/docs/user-guide/nodes)
+    - [ノードの開発](/docs/creating-nodes)
 
-<b id="config-node">Configuration node</b>
-: A Configuration (config) Node is a special type of node that holds reusable
-  configuration that can be shared by regular nodes in a flow.
+<b id="config-node">設定ノード</b>
+: 設定ノードは、
+  フロー内の通常のノードと共有できる再利用可能な設定を持った特殊なノードです。
 
-  For example, the MQTT In and Out nodes use an MQTT Broker config node to represent a
-  shared connection to an MQTT broker.
+  例えば、MQTT InノードおよびMQTT OutノードはMQTTブローカ設定ノードを利用して、
+  MQTTブローカーへの共通した接続を表します。
 
-  Config nodes do not appear in the main workspace, but can be seen by opening
-  the Configuration nodes sidebar.
+  設定ノードはワークスペースには表示されず、
+  ノードの設定サイドバーを開くことで確認することができます。
 
-    - [Working with Configuration nodes](/docs/user-guide/editor/workspace/nodes#configuration-nodes)
-    - [Configuration node sidebar](/docs/user-guide/editor/sidebar/config)
-
-
-<b id="flow">Flow</b>
-: A Flow is represented as a tab within the editor workspace and is the main way to
-  organise nodes.
-
-  The term "flow" is also used to informally describe a single set of connected nodes.
-  So a flow (tab) can contain multiple flows (sets of connected nodes).
+    - [設定ノードを利用する](/docs/user-guide/editor/workspace/nodes#設定ノード)
+    - [ノードの設定サイドバー](/docs/user-guide/editor/sidebar/config)
 
 
-    - [Working with Flows](/docs/user-guide/editor/workspace/flows)
+<b id="flow">フロー</b>
+: フローはエディタのワークスペース内でタブとして表示され、
+  ノードをまとめる主な方法です。
 
-<b id="context">Context</b>
-: Context is a way to store information that can be shared between nodes without
-  using the messages that pass through a flow.
+  「フロー」という単語は口語的には連結したノードの1揃いに対しても使われます。
+  そのため、フロー（タブ）には複数のフロー（連結したノードのセット）を含むことになります。
 
-  There are three types of context;
 
-    - Node - only visible to the node that set the value
-    - Flow - visible to all nodes on the same flow (or tab in the editor)
-    - Global - visible to all nodes
+    - [フローを利用する](/docs/user-guide/editor/workspace/flows)
 
-  By default, Node-RED uses an in-memory Context store so values do not get saved
-  across restarts. It can be configured to use a file-system based store to make
-  the values persistent. It is also possible to plug-in alternative storage plugins.
+<b id="context">コンテキスト</b>
+: コンテキストはフロー内で受け渡されるメッセージを利用せずに、
+  ノード間で共有する情報を保管する方法です。
 
-    - [Working with context](/docs/user-guide/context)
+  コンテキストには3種類あります;
+
+    - ノード - 値を設定したノードのみが可視性を持ちます
+    - フロー - 同じフロー（つまりエディタ内のタブ）内の全てのノードが可視性を持っています
+    - グローバル - 全てのノードが可視性を持ちます
+
+  デフォルトでは、Node-REDは内蔵メモリコンテキストストアを利用しているため、再起動を乗り越えて値を保存することはできません。
+  値を永続化させるため、ファイルシステムをベースにしたストアを利用するように設定することができます。
+  また、別のストレージプラグインを導入することも可能です。
+
+    - [コンテキストを利用する](/docs/user-guide/context)
     - [Context Store API](/docs/api/context/)
 
-<b id="message">Message</b>
-: Messages are what pass between the nodes in a flow. They are plain JavaScript
-  objects that can have any set of properties. They are often referred to as `msg`
-  within the editor.
+<b id="message">メッセージ</b>
+: メッセージはフロー内のノード間で受け渡されるものです。
+  メッセージは単なるJavaScriptオブジェクトで、任意のプロパティセットを保持することができます。
+  エディタ内ではしばしば`msg`として参照されます。
 
-  By convention, they have a `payload` property containing the most useful information.
+  慣例的に、メッセージは最も有用な情報を含んでいる`payload`プロパティを持っています。
 
-  - [Working with messages](/docs/user-guide/messages)
-
-
-<b id="subflow">Subflow</b>
-: A Subflow is a collection of nodes that are collapsed into a single node in
-  the workspace.
-
-  They can be used to reduce some visual complexity of a flow, or to package up a group
-  of nodes as a reusable component used in multiple places.
-
-    - [Working with Subflows](/docs/user-guide/editor/workspace/subflows)
+  - [メッセージを利用する](/docs/user-guide/messages)
 
 
-<b id="wire">Wire</b>
-: Wires connect the nodes and represent how messages pass through the flow.
+<b id="subflow">サブフロー</b>
+: サブフローは、
+  ワークスペース内の1つのノードに折りたたんだ一連のノードです。
 
-    - [Working with Wires](/docs/user-guide/editor/workspace/wires)
+  サブフローはフローの見た目の複雑さを軽減させるため、
+  または複数の箇所で使用される再利用可能なコンポーネントとしてノード群をまとめるために利用することができます。
 
-<b id="palette">Palette</b>
-: The Palette is on the left of the editor and lists of the nodes that are available
-  to use in flows.
+    - [サブフローを利用する](/docs/user-guide/editor/workspace/subflows)
 
-  Extra nodes can be installed into the palette using either the command-line or
-  the Palette Manager.
 
-    - [Working with the Palette](/docs/user-guide/editor/palette/)
-    - [Adding nodes to the palette](/docs/user-guide/runtime/adding-nodes)
-    - [The Palette Manager](/docs/user-guide/editor/palette/manager)
+<b id="wire">ワイヤー</b>
+: ワイヤーはノードを繋ぎ、どのようにメッセージがフロー内で受け渡されるのかを表します。
 
-<b id="workspace">Workspace</b>
-: The Workspace is the main area where flows are developed by dragging nodes
-  from the palette and wiring them together.
+    - [ワイヤーを利用する](/docs/user-guide/editor/workspace/wires)
 
-  The workspace has a row of tabs along the top; one for each flow and any
-  subflows that have been opened.
+<b id="palette">パレット</b>
+: パレットはエディタの左側に位置し、
+  フローで利用できるノードの一覧のことです。
 
-    - [Working with the Workspace](/docs/user-guide/editor/workspace/)
+  コマンドラインまたはパレットマネージャを利用することで
+  追加のノードをパレットにインストールすることができます。
 
-<b id="sidebar">Sidebar</b>
-: The sidebar contains panels that provide a number of useful tools within the
-  editor. These include panels to view more information and help about a node,
-  to view debug message and to view the flow's configuration nodes.
+    - [パレットを利用する](/docs/user-guide/editor/palette/)
+    - [パレットにノードを追加する](/docs/user-guide/runtime/adding-nodes)
+    - [パレットマネージャ](/docs/user-guide/editor/palette/manager)
 
-    - [Working with the Sidebar](/docs/user-guide/editor/sidebar/)
+<b id="workspace">ワークスペース</b>
+: ワークスペースは、パレットからノードをドラッグし、
+  それらを繋げることでフローを開発するメインの場所です。
+
+  ワークスペースは上部に沿ってタブの列を持っています;
+  タブ一つ一つが展開されているそれぞれフローとサブフローに対応します。
+
+    - [ワークスペースを利用する](/docs/user-guide/editor/workspace/)
+
+<b id="sidebar">サイドバー</b>
+: サイドバーは、エディタ内に多くの便利なツールを提供するパネルを含んでいます。
+  これにはノードについてのさらなる情報やヘルプを確認するパネル、
+  デバッグメッセージを確認するパネル、フローの設定ノードを確認するパネルを含んでいます。
+
+    - [サイドバーを利用する](/docs/user-guide/editor/sidebar/)
 
 
 <script>

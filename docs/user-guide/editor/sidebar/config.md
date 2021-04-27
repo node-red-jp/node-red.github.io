@@ -2,33 +2,33 @@
 layout: docs-editor-guide
 slug:
   - url: /docs/user-guide/editor
-    label: editor
+    label: エディタ
   - url: "/docs/user-guide/editor/sidebar"
-    label: "sidebar"
-  - "config"
+    label: "サイドバー"
+  - "設定"
 toc: toc-editor-guide.html
-title: 'Sidebar: Configuration nodes'
+title: 'サイドバー: ノードの設定'
 ---
 
 <div style="width: 300px" class="figure align-right">
   <img src="../images/editor-sidebar-config-nodes.png" alt="Configuration nodes Sidebar">
-  <p class="caption">Configuration nodes Sidebar</p>
+  <p class="caption">ノードの設定サイドバー</p>
 </div>
 
-The Configuration nodes sidebar provides a list of all config nodes, organised
-by their scope.
+ノードの設定サイドバーは、
+スコープごとにすべてのConfigurationノードの一覧を表示します。
 
-Each node shows its type and label, along with a count of how many regular flow
-nodes currently use that config node.
+各ノードはタイプとラベルとともに、
+このConfigurationノードを現在利用している通常フローのノードの数を表示します。
 
-If the config node is unused, it is shown with a dotted outline. The view
-can also be filtered to show just the unused nodes by selecting the 'unused' filter
-in the header.
+Configurationノードが未使用の場合、破線の枠線が表示されます。
+ヘッダの「未使用（unused）」フィルターを選択することで、
+未使用のノードのみ表示するようにビューをフィルタリングできます。
 
-A config node's edit dialog can be opened by double clicking on the node.
+Configurationノード上でダブルクリックすると、そのノードの編集ダイアログを開くことができます。
 
 <table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Action</td><td><code>core:show-config-tab</code></td></tr>
- <tr><td>Key shortcut</td><td><code>Ctrl/⌘-g c</code></td></tr>
+ <tr><th colspan="2">リファレンス</th></tr>
+ <tr><td>動作</td><td><code>core:show-config-tab</code></td></tr>
+ <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-g c</code></td></tr>
 </table>

@@ -1,73 +1,73 @@
 ---
 layout: docs-user-guide
 toc: toc-user-guide.html
-title: Using environment variables
-slug: environment variables
+title: 環境変数を利用する
+slug: 環境変数
 ---
 
-### Setting a node property
+### ノードのプロパティとして設定する
 
-Any node property can be set with an environment variable by setting its value
-to a string of the form `${ENV_VAR}`. When the runtime loads the flows, it will
-substitute the value of that environment variable before passing it to the node.
+`${ENV_VAR}`という形式の文字列を値として設定することで、ノードのプロパティに環境変数を設定することができます。
+ランタイムがフローを読み込んだとき、
+ノードに文字列が渡される前に環境変数の値が代わりに使われます。
 
-This only works if it replaces the entire property - it cannot be used to substitute
-just part of the value. For example, it is *not* possible to use `CLIENT-${HOST}`.
+これはプロパティがまるごと置換できる場合のみ動作します - 値の一部だけに代入することはできません。
+例えば、`CLIENT-${HOST}`を使うことは*できません*。
 
-As nodes provide their own edit dialog, not all properties will provide a text
-input that can be used to enter the env-var string. In that case, you may consider
-hand-editing the flow file to set the property.
+ノードはそれぞれの編集ダイアログを提供しているため、
+全てのプロパティが環境変数の文字列を入力できるようなテキスト入力欄を提供しているわけではありません。
+この場合、プロパティを設定するためにフローファイルを直に編集することを考えることができるかもしれません。
 
 
-### Using the TypedInput widget
+### TypedInputウィジェットとして利用する
 
 <div style="width: 222px" class="figure align-right">
   <img src="editor/images/editor-typedInput-envvar-expanded.png" alt="TypedInput Environment Variable">
-  <p class="caption">TypedInput Environment Variable type</p>
+  <p class="caption">TypedInput環境変数型</p>
 </div>
 
 
-Within the editor, the TypedInput widget can offer 'environment variable' as a type.
-When this type is selected, its value will be evaluated as follows:
+エディタ内で、TypedInputウィジェットは型として「環境変数」を提供することができます。
+この型が選択されたとき、この値は以下のように評価されます。
 
- - if there is no `${}` present, uses the whole value as the name of the environment
-   variable.
-   For example, `"FOO"` will be replaced with the value of `process.env.FOO`
-
-
- - if `${}` is present, it will substitute the corresponding environment
-   variable into the result:
-   For example, given the value `"Hello ${FOO}"` and the env var `FOO` is set to `World`,
-   this results in the value `"Hello World"`
+ - `${}`が存在しない場合、値全体を環境変数名として利用します。
+   例えば、
+   `"FOO"`は`process.env.FOO`の値に置換されます。
 
 
+ - `${}`が存在する場合、評価結果には対応する環境変数が代用されます:
+   例えば、
+   `"Hello ${FOO}"`という値で環境変数`FOO`に`World`が設定されている場合、
+   この結果は`"Hello World"`という値になります。
 
-### JSONata Expressions
 
-Environment variables can be accessed in JSONata expressions, such as in the Change
-node, using the `$env` function:
+
+### JSONata式
+
+ChangeノードのようなノードからJSONana式の中で`$env`関数を利用することによって、
+環境変数にアクセスすることができます。
 
 ```javascript
 $env('ENV_VAR')
 ```
 
-### Function node
+### Functionノード
 
-Within a Function node, environment variables get be accessed using the `env.get`
-function:
+Functionノード内で、
+環境変数は`env.get`関数を利用することによってアクセスすることができます:
 
 ```javascript
 let foo = env.get("FOO");
 ```
 
 
-### Subflow Instance properties
+### サブフローインスタンスプロパティ
 
-Since 0.20, Subflows can be configured with instance properties. These appear as
-environment variables within the Subflow and can be customised for individual instances
-of the subflow.
+0.20版以降、サブフローはインスタンスプロパティを設定できます。
+これらは環境変数としてサブフロー内に表示され、
+サブフローの個々のインスタンスにあわせてカスタマイズすることができます。
 
-For example, given a REST API that provides access to different types of record,
-a subflow could be created to access the API and handle the response, using an
-environment variable to identify which type of record should be accessed. Individual
-instances of the Subflow can then be customised for those particular types.
+例えば、異なる種類のレコードへのアクセスを提供するREST APIがあり、
+環境変数を利用してアクセスする必要があるレコードの種類を識別し、
+サブフローはそのAPIにアクセスしてレスポンスを処理するように作成することができます。
+そして、サブフローの個々のインスタンスをそれらの特定の種類にあわせてカスタマイズすることができます。

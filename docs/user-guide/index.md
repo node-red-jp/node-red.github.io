@@ -1,47 +1,47 @@
 ---
 layout: docs-user-guide
-title: User Guide
+title: ユーザガイド
 ---
 
 ### Getting Started
 
- - [Installing Node-RED](/docs/getting-started)
- - [Creating your first flow](/docs/tutorials/first-flow)
- - [Node-RED Concepts](/docs/user-guide/concepts)
- - [Using the Node-RED Editor](/docs/user-guide/editor)
+ - [Node-REDをインストールする](/docs/getting-started)
+ - [はじめてのフロー作成](/docs/tutorials/first-flow)
+ - [Node-REDの概念](/docs/user-guide/concepts)
+ - [Node-REDエディタを利用する](/docs/user-guide/editor)
 
-### Configuring Node-RED
+### Node-REDを設定する
 
- - [The Settings file](/docs/user-guide/runtime/settings-file)
- - [Configuration options](/docs/user-guide/runtime/configuration)
- - [Securing Node-RED](/docs/user-guide/runtime/securing-node-red)
- - [Logging](/docs/user-guide/runtime/logging)
+ - [設定ファイル](/docs/user-guide/runtime/settings-file)
+ - [設定オプション](/docs/user-guide/runtime/configuration)
+ - [Node-REDのセキュリティ](/docs/user-guide/runtime/securing-node-red)
+ - [ログ](/docs/user-guide/runtime/logging)
 
-### Using Node-RED
+### Node-REDを利用する
 
-- [The core nodes](/docs/user-guide/nodes)
-- [Adding nodes to the palette](/docs/user-guide/runtime/adding-nodes)
-- [Using the Function node](/docs/user-guide/writing-functions)
-- [Working with context](/docs/user-guide/context)
-- [Working with messages](/docs/user-guide/messages)
-- [Using environment variables](/docs/user-guide/environment-variables)
-- [Handling errors](/docs/user-guide/handling-errors)
-- [Working with projects](/docs/user-guide/projects)
-- [Configuring Node-RED](/docs/user-guide/configuration)
-- [Command-line Admin](/docs/user-guide/node-red-admin)
+- [コアノード](/docs/user-guide/nodes)
+- [パレットにノードを追加する](/docs/user-guide/runtime/adding-nodes)
+- [Functionノードを利用する](/docs/user-guide/writing-functions)
+- [コンテキストを利用する](/docs/user-guide/context)
+- [メッセージを利用する](/docs/user-guide/messages)
+- [環境変数を利用する](/docs/user-guide/environment-variables)
+- [エラーをハンドリングする](/docs/user-guide/handling-errors)
+- [プロジェクトを利用する](/docs/user-guide/projects)
+- [Node-REDの設定](/docs/user-guide/configuration)
+- [コマンドラインAdminツール](/docs/user-guide/node-red-admin)
 
-### Advanced
+### 上級者
 
-- [Embedding into an existing app](/docs/user-guide/runtime/embedding)
+- [既存アプリへの組込む](/docs/user-guide/runtime/embedding)
 
-### Other places to get help
+### 助けが得られる別の場所
 
-If you have a question, suggestion or just want to say hello, there are various
-places you can do so:
+もし疑問や提案、またはただ単に挨拶した場合、
+それをおこなうことができる場所がたくさんあります。:
 
- - Join the [Node-RED Forum](https://discourse.nodered.org)
- - Join us on [Slack](http://nodered.org/slack/)
- - Subscribe to the [blog](http://blog.nodered.org)
- - Follow [@nodered](http://twitter.com/nodered) on Twitter
+ - [Node-REDフォーラム](https://discourse.nodered.org)に参加する
+ - [Slack](http://nodered.org/slack/)に参加する
+ - [ブログ](/blog)を購読する
+ - ツイッターで[@nodered](http://twitter.com/nodered)をフォローする
 
-We also have the old [Google Group mailing list](https://groups.google.com/forum/#!forum/node-red) - that is being retired in favour of the [forum](https://discourse.nodered.org), but there's still a lot of useful content on there that is worth searching.
+過去使われていた[Google Group mailing list](https://groups.google.com/forum/#!forum/node-red)もあります。 - これは役目を終えつつあり、現在[フォーラム](https://discourse.nodered.org)が利用されていますが、メーリングリストには検索する価値のある有用なコンテンツがまだ多く残っています。

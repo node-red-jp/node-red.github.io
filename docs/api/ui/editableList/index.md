@@ -1,20 +1,20 @@
 ---
 layout: docs-api
 toc: toc-api-ui.html
-title: EditableList Widget
+title: EditableListウィジェット
 slug:
   - url: "/docs/api/ui"
-    label: "ui widgets"
+    label: "uiウィジェット"
   - 'editablelist'
 ---
 
 
-A replacement for a `<ol>` element where the items can be complex elements in their
-own right. Used by the core `Switch` and `Change` nodes.
+複雑な要素になることができるような項目を`<ol>`要素に置換します。
+`Switch`および`Change`といったコアノードで利用されています。
 
 <div class="widget">
     <div class="col-4-12">
-        <h3>Options</h3>
+        <h3>オプション</h3>
         <table>
             <tr><td><a href="#options-addButton">addButton</a></td></tr>
             <tr><td><a href="#options-addItem">addItem</a></td></tr>
@@ -34,7 +34,7 @@ own right. Used by the core `Switch` and `Change` nodes.
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Methods</h3>
+        <h3>メソッド</h3>
         <table>
             <tr><td><a href="#methods-addItem">addItem</a></td></tr>
             <tr><td><a href="#methods-addItems">addItems</a></td></tr>
@@ -50,26 +50,26 @@ own right. Used by the core `Switch` and `Change` nodes.
         </table>
     </div>
     <div class="col-4-12">
-        <h3>Events</h3>
-        <h3>Types</h3>
+        <h3>イベント</h3>
+        <h3>型</h3>
     </div>
 </div>
 
 
-### Options
+### オプション
 
 #### <a href="#options-addButton" name="options-addButton">addButton</a>
 
-<span class="method-return">Type: Boolean|String</span>
+<span class="method-return">型: Boolean|String</span>
 
-Determines whether a button is shown below the list that, when clicked, will add
-a new entry to the list.
+クリックされた際、リストに新しい項目を追加するボタンを
+リスト下部に表示するか否かを決定します。
 
-If not specified, or set to `true` (boolean) a button is shown with the text 'Add'.
+設定されていない場合、または`true`（boolean）が設定された場合、「追加する」というテキスト付きのボタンが表示されます。
 
-If set to `false` (boolean), the button is not shown.
+`false`（boolean）が設定された場合、ボタンは非表示になります。
 
-If set to a non-blank string, a button is shown using its value as the text of the button.
+空白以外の文字列が設定された場合、その値がテキストとして利用されたボタンが表示されます。
 
 ```javascript
 $("ol.list").editableList({
@@ -79,16 +79,16 @@ $("ol.list").editableList({
 
 #### <a href="#options-addItem" name="options-addItem">addItem( row, index, data )</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A callback function that gets called when a new item is being added to the list.
+リストに新しい項目が追加されたとき、呼び出されるコールバック関数です。
 
- - `row` - the jQuery DOM element to which any row content should be added
- - `index` - the index of the row
- - `data` - the data object for the row
+ - `row` - 行内容を追加するjQuery DOM要素
+ - `index` - 行のインデックス
+ - `data` - 行のデータオブジェクト
 
-If it was triggered by clicking the 'add button', `data` will be `{}`. Otherwise
-it will be the data passed to the call to the [`addItem`](#methods-addItem) method.
+「追加ボタン」のクリックをトリガーとして、`data`は`{}`になります。
+それ以外の場合は、dataは[`addItem`](#methods-addItem)メソッドの引数として渡されるデータです。
 
 ```javascript
 $("ol.list").editableList({
@@ -130,10 +130,10 @@ $("ol.list").editableList({
 
 #### <a href="#options-connectWith" name="options-connectWith">connectWith</a>
 
-<span class="method-return">Type: CSS Selector</span>
+<span class="method-return">型: CSS Selector</span>
 
-If the list is [sortable](#options-sortable), this option allows items to be
-dragged from this list to any other jQuery `sortable` list, such as another `editableList`.
+リストが[ソート可能](#options-sortable)である場合、
+このオプションはこのリストから他のjQueryの`sortable`なリスト、つまり他の`editableList`に項目をドラッグして移動できるようにします。
 
 ```javascript
 $("ol.list").editableList({
@@ -143,9 +143,9 @@ $("ol.list").editableList({
 
 #### <a href="#options-header" name="options-header">header</a>
 
-<span class="method-return">Type: DOM/JQuery object</span>
+<span class="method-return">型: DOM/JQuery object</span>
 
-Inserts the DOM/JQuery object as a header for the list.
+リストのヘッダとしてDOM/jQueryオブジェクトに追加します。
 
 ```javascript
 $("ol.list").editableList({
@@ -155,9 +155,9 @@ $("ol.list").editableList({
 
 #### <a href="#options-height" name="options-height">height</a>
 
-<span class="method-return">Type: String|Number</span>
+<span class="method-return">型: String|Number</span>
 
-Sets the height of the list including, if enabled, its add button.  Setting height to 'auto' removes the vertical scrollbar and displays the list at the full height needed to contain the contents.
+可能であれば、追加ボタンを含めたリストの高さを設定します。heightに「auto」を設定すると、垂直方向のスクロールバーを除去し、コンテンツを収容するために必要な全高でリストを表示します。
 
 ```javascript
 $("ol.list").editableList({
@@ -167,14 +167,14 @@ $("ol.list").editableList({
 
 #### <a href="#options-filter" name="options-filter">filter( data )</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A callback function that gets called to filter what items are visible in the list.
+リストに表示される項目を絞り込むために呼び出されるコールバック関数。
 
- - `data` - the data object for the row
+ - `data` - 行のデータオブジェクト
 
-The function should return `true`/`false` (boolean) to indicate whether the item
-should be visible.
+項目が表示されるべきか否かを示すため、
+この関数は`true`/`false`（boolean）を返却しなくてはいけません。
 
 ```javascript
 $("ol.list").editableList({
@@ -187,9 +187,9 @@ $("ol.list").editableList({
 
 #### <a href="#options-resize" name="options-resize">resize()</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A function that gets called when the size of the list changes.
+リストのサイズが変更されたときに呼び出される関数です。
 
 ```javascript
 $("ol.list").editableList({
@@ -201,17 +201,17 @@ $("ol.list").editableList({
 
 #### <a href="#options-resizeItem" name="options-resizeItem">resizeItem( row, index )</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A function that gets called against each item in the list when the size
-of the list changes.
+リストのサイズが変更されたとき、
+リストの各項目に対して呼び出される関数。
 
- - `row` - the jQuery DOM element for the row
- - `index` - the index of the row
+ - `row` - 行のjQuery DOM要素
+ - `index` - 行のインデックス
 
-The original data for the item is stored under a property called `data`.
+項目の元のデータは`data`プロパティに保管されています。
 
-This callback is invoked after the main [`resize`](#options-resize) callback is called.
+このコールバック関数は、メインである[`resize`](#options-resize)コールバック関数が呼び出された後に呼び出されます。
 
 ```javascript
 $("ol.list").editableList({
@@ -224,15 +224,15 @@ $("ol.list").editableList({
 
 #### <a href="#options-scrollOnAdd" name="options-scrollOnAdd">scrollOnAdd</a>
 
-<span class="method-return">Type: Boolean</span>
+<span class="method-return">型: Boolean</span>
 
-Determines whether the list should automatically scroll to the bottom whenever a
-new item is added.
+新しい項目が追加されるたび、
+リストの最後尾まで自動的にスクロールされるか否かを決定します。
 
-If not specified, or set to `true` (boolean) the list will scroll to show newly
-added items.
+設定されていない場合、または`true`（boolean）の場合、
+新しく追加された項目にリストがスクロールされます。
 
-If set to `false` (boolean), the list will not scroll.
+`false`（boolean）が設定された場合、リストはスクロールされません。
 
 ```javascript
 $("ol.list").editableList({
@@ -242,19 +242,19 @@ $("ol.list").editableList({
 
 #### <a href="#options-sort" name="options-sort">sort( itemDataA, itemDataB )</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A callback function that gets called to compare two items in the list to determine
-their order.
+リストの2つの項目を比較し、
+項目の順序を決定するために呼び出されるコールバック関数。
 
- - `itemDataA` - a data item
- - `itemDataB` - a data item
+ - `itemDataA` - データ項目
+ - `itemDataB` - データ項目
 
-If the function returns a value less than 0, `itemDataA` comes before `itemDataB`.
+この関数が0より小さい値を返した場合、`itemDataA`は`itemDataB`の前になります。
 
-If the function returns 0, the items are left unchanged.
+この関数が0を返した場合、項目の並びは変わりません。
 
-If the function returns a value greater than 0, `itemDataA` comes after `itemDataB`.
+この関数が0より大きい値を返した場合、`itemDataA`は`itemDataB`の後になります。
 
 ```javascript
 $("ol.list").editableList({
@@ -266,14 +266,14 @@ $("ol.list").editableList({
 
 #### <a href="#options-sortable" name="options-sortable">sortable</a>
 
-<span class="method-return">Type: Boolean|CSS Selector</span>
+<span class="method-return">型: Boolean|CSS Selector</span>
 
-Determines whether the list items can be dragged to sort them.
+リストの項目をドラッグして並び替えることができるか否かを決定します。
 
-If set to `true` (boolean), a default drag handle is displayed alongside the item.
+`true`（boolean）が設定された場合、デフォルトのドラッグハンドルが項目の横に表示されます。
 
-If set to a CSS Selector, that is used to identify the element that should be used
-as the drag handle within the item's content element.
+CSSセレクタが設定された場合、
+そのセレクタは項目のコンテンツ要素内のドラッグハンドルとして使われる要素を特定するために利用されます。
 
 ```javascript
 $("ol.list").editableList({
@@ -283,13 +283,13 @@ $("ol.list").editableList({
 
 #### <a href="#options-sortItems" name="options-sortItems">sortItems( items )</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A function that is called after an item in the list is moved.
+リスト内の項目が移動させられたあとに呼び出される関数。
 
- - `items` - an Array of the jQuery DOM elements for each row, in order.
+ - `items` - 各行のjQuery DOM要素の配列
 
-Each row element stores the original data for the item under the property called `data`.
+各行の要素は、項目の元のデータを`data`プロパティに保管しています。
 
 ```javascript
 $("ol.list").editableList({
@@ -302,11 +302,11 @@ $("ol.list").editableList({
 
 #### <a href="#options-removable" name="options-removable">removable</a>
 
-<span class="method-return">Type: Boolean</span>
+<span class="method-return">型: Boolean</span>
 
-If set to `true`, each row is displayed with a delete button on the right-hand side.
-Clicking the button will remove the row from the list and trigger the
-[`removeItem`](#options-removeItem) callback, if set.
+`true`が設定された場合、各行は右側に削除ボタンを含んで表示されます。
+このボタンをクリックするとリストから行が削除され、
+もし設定されていれば[`removeItem`](#options-removeItem)コールバック関数を呼び出します。
 
 ```javascript
 $("ol.list").editableList({
@@ -316,14 +316,14 @@ $("ol.list").editableList({
 
 #### <a href="#options-removeItem" name="options-removeItem">removeItem( data )</a>
 
-<span class="method-return">Type: Function</span>
+<span class="method-return">型: Function</span>
 
-A function that is called when an item is removed from the list.
+リストから項目が削除されたときに呼び出される関数。
 
- - `data` - the original data item for the item
+ - `data` - 項目の元のデータ
 
-The remove can be triggered by either clicking an item's [remove button](#options-removable),
-or calling the [`remoteItem` method](#methods-removeItem).
+削除は、項目の[削除ボタン](#options-removable)がクリックされたとき、
+または[`removeItem`](#methods-removeItem)メソッドが呼び出されたときに実施されます。
 
 
 ```javascript
@@ -335,12 +335,12 @@ $("ol.list").editableList({
 ```
 
 
-### Methods
+### メソッド
 
 #### <a href="#methods-addItem" name="methods-addItem">addItem( itemData )</a>
 
-Adds an item to the end of the list. `itemData` is an object that will be associated
-with the item in the list.
+リストの最後尾に項目を追加します。
+`itemData`はリストの項目になるオブジェクトです。
 
 ```javascript
 $("ol.list").editableList('addItem',{fruit:"banana"});
@@ -348,8 +348,8 @@ $("ol.list").editableList('addItem',{fruit:"banana"});
 
 #### <a href="#methods-addItems" name="methods-addItems">addItems( itemData )</a>
 
-Adds items contained in an array to the end of the list. `itemData` is an array of objects that will be associated
-with the item in the list.
+配列に含まれている項目をリストの最後尾に追加します。
+`itemData`はリストの項目になるオブジェクトの配列です。
 
 ```javascript
 $("ol.list").editableList('addItems',[{fruit:"banana"},{fruit:"apple"},{fruit:"pear"}]);
@@ -357,8 +357,8 @@ $("ol.list").editableList('addItems',[{fruit:"banana"},{fruit:"apple"},{fruit:"p
 
 #### <a href="#methods-removeItem" name="methods-removeItem">removeItem( itemData )</a>
 
-Removes an item from the list. `itemData` is the object that identifies the item
-to be removed.
+リストから項目を削除します。
+`itemData`は削除する項目を特定するオブジェクトです。
 
 ```javascript
 $("ol.list").editableList('removeItem',{fruit:"banana"});
@@ -366,8 +366,8 @@ $("ol.list").editableList('removeItem',{fruit:"banana"});
 
 #### <a href="#methods-width" name="methods-width">width( width )</a>
 
-Sets the width of the editableList. This must be used in place of the standard
-`jQuery.width()` function as it ensures the component resizes properly.
+editableListの幅を設定します。
+コンポーネントのリサイズが適切に実施されるようにするため、一般的な`jQuery.width()`関数の代わりにこの関数を使用する必要があります。
 
 ```javascript
 $("ol.input").editableList('width', '200px');
@@ -375,8 +375,8 @@ $("ol.input").editableList('width', '200px');
 
 #### <a href="#methods-height" name="methods-height">height( height )</a>
 
-Sets the height of the editableList. This must be used in place of the standard
-`jQuery.height()` function as it ensures the component resizes properly.
+editableListの高さを設定します。
+コンポーネントのりサイズが適切におこなわれるため、一般的な`jQuery.height()`関数の代わりにこの関数を使用する必要があります。
 
 ```javascript
 $("ol.input").editableList('height', '200px');
@@ -384,11 +384,11 @@ $("ol.input").editableList('height', '200px');
 
 #### <a href="#methods-items" name="methods-items">items()</a>
 
-<span class="method-return">Type: Array</span>
+<span class="method-return">型: Array</span>
 
-Gets an Array of all list items. Each item is the jQuery DOM element for the item.
+リストの全項目の配列を取得します。各要素は、項目のjQuery DOM要素です。
 
-Each element stores the original data for the item under the property called `data`.
+各要素は、項目の元のデータを`data`プロパティに保管しています。
 
 ```javascript
 var items = $("ol.list").editableList('items');
@@ -396,7 +396,7 @@ var items = $("ol.list").editableList('items');
 
 #### <a href="#methods-empty" name="methods-empty">empty()</a>
 
-Clears the list of all items. This does not trigger any callbacks.
+リストの全項目を削除します。この関数は他のコールバック関数を呼び出しません。
 
 ```javascript
 $("ol.list").editableList('empty');
@@ -404,18 +404,18 @@ $("ol.list").editableList('empty');
 
 #### <a href="#methods-filter" name="methods-filter">filter( filter )</a>
 
-<span class="method-return">Type: Number</span>
+<span class="method-return">型: Number</span>
 
-Filters the list to show/hide items based on the active filter function and returns
-the number of visible items.
+利用可能なフィルター関数にもとづいてリスト内の項目の表示/非表示を仕分けし、
+表示する項目の数を返します。
 
-See <code><a href="#options-filter">filter</a></code> for details of the filter
-function.
+フィルター関数の詳細は、
+<code><a href="#options-filter">filter</a></code>を参照してください。
 
-If `filter` is not provided, the list is filtered using the currently active filter
-function.
+`filter`が設定されていない場合、
+リストは現在利用可能なフィルター関数を使って仕分けをおこないます。
 
-If `filter` is `null`, the filter is removed.
+`filter`が`null`の場合、フィルターは削除されます。
 
 ```javascript
 var filteredCount = $("ol.list").editableList('filter',function(data) {
@@ -425,9 +425,9 @@ var filteredCount = $("ol.list").editableList('filter',function(data) {
 
 #### <a href="#methods-show" name="methods-show">show( item )</a>
 
-*Since 0.20.0*
+*0.20.0から*
 
-Scrolls the list to ensure the specific item is in view.
+特定の項目が表示されるようにするため、リストをスクロールします。
 
 ```javascript
 $("ol.list").editableList('show', item);
@@ -435,19 +435,19 @@ $("ol.list").editableList('show', item);
 
 #### <a href="#methods-sort" name="methods-sort">sort( sort )</a>
 
-Sorts the list using the active sort function.
+利用可能なソート関数を用いてリストを並べ替えます。
 
-A callback function that gets called to compare two items in the list to determine
-their order.
+sortは2つの項目を比較し、
+リスト内の項目の順序を決定するために呼び出されるコールバック関数です。
 
- - `itemDataA` - a data item
- - `itemDataB` - a data item
+ - `itemDataA` - データ項目
+ - `itemDataB` - データ項目
 
-See <code><a href="#options-sort">sort</a></code> for details of the sort
-function.
+ソート関数の詳細は、
+<code><a href="#options-sort">sort</a></code>を参照してください。
 
-If `sort` is not provided, the list is sorted using the current active sort
-function.
+`sort`が設定されていない場合、
+リストは現在利用可能なソート関数によって並び替えられます。
 
 ```javascript
 $("ol.list").editableList('sort', function(dataA, dataB) {
@@ -457,9 +457,9 @@ $("ol.list").editableList('sort', function(dataA, dataB) {
 
 #### <a href="#methods-length" name="methods-length">length()</a>
 
-<span class="method-return">Type: Number</span>
+<span class="method-return">型: Number</span>
 
-Gets the number of list items.
+リストの項目数を取得します。
 
 ```javascript
 var length = $("ol.list").editableList('length');

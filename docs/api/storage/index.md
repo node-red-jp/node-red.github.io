@@ -5,42 +5,38 @@ title: Storage API
 slug: storage
 ---
 
-The Storage API provides a pluggable way to configure where the Node-RED runtime
-stores data.
+Node-REDランタイムがどこにデータを格納するか設定するための接続可能な方法を提供します。
 
-The information stored by the API includes:
+このAPIは下記の情報を格納します:
 
- - flow configuration
- - flow credentials
- - user settings
- - user sessions
- - node library content
+ - フロー設定
+ - フロークレデンシャル
+ - ユーザ設定
+ - ユーザセッション
+ - ノードライブラリコンテンツ
 
-By default, Node-RED uses a local file-system implementation of this API.
+デフォルトでは、Node-REDはこのAPIのローカルのファイルシステム実装を使用します。
 
-The API functions are documented [here](methods/).
+APIの機能は [こちら](methods/) にドキュメントとしてまとまっています。
 
-### Configuration
+### 設定
 
-The `storageModule` property in settings.js can be used to identify a custom module
-to use:
+settings.js内の `storageModule` プロパティは、カスタムモジュールを識別するために使用されます:
 
 {% highlight javascript %}
 storageModule: require("my-node-red-storage-plugin")
 {% endhighlight %}
 
-
 ### Promises
 
-The API makes extensive use of [JavaScript promises](https://promisesaplus.com/).
+APIは [JavaScriptのPromise](https://promisesaplus.com/) を広く利用しています。
 
-A promise represents the eventual result of an asynchronous operation. It acts as
-a placeholder until the result is available.
+Promiseは非同期処理の最終的な結果を表します。
+結果が有効になるまで、プレースホルダーとして振る舞います。
 
-Node-RED uses the [When.js](https://github.com/cujojs/when) library. The following
-example shows it in use. For a more complete example, the default file-system
-implementation is located in `red/runtime/storage/localfilesystem.js`.
-
+Node-REDは [When.js](https://github.com/cujojs/when) ライブラリを使用しています。
+下記が使用例です。より完全な例は `red/runtime/storage/localfilesystem.js` にある
+デフォルトのファイルシステム実装です。
 
 {% highlight javascript %}
 function getFlows() {

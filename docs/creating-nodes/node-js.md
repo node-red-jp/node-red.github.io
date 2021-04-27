@@ -1,34 +1,34 @@
 ---
 layout: docs-creating-nodes
 toc: toc-creating-nodes.html
-title: JavaScript file
+title: JavaScriptファイル
 slug: .js
 ---
 
-The node `.js` file defines the runtime behavior of the node.
+`.js`ファイルは、ノードのランタイム動作を定義します。
 
- - [Node constructor](#node-constructor)
- - [Receiving messages](#receiving-messages)
- - [Sending messages](#sending-messages)
-   - [Multiple outputs](#multiple-outputs)
-   - [Multiple messages](#multiple-messages)
- - [Closing the node](#closing-the-node)
-   - [Timeout behaviour](#timeout-behaviour)
- - [Logging events](#logging-events)
-   - [Handling errors](#handling-errors)
- - [Setting status](#setting-status)
- - [Custom node settings](#custom-node-settings)
+- [ノードコンストラクタ](#ノードコンストラクタ)
+- [メッセージ受信](#メッセージ受信)
+- [メッセージ送信](#メッセージ送信)
+  - [複数出力](#複数出力)
+  - [複数メッセージ](#複数メッセージ)
+- [ノードを閉じる](#ノードを閉じる)
+  - [タイムアウト動作](#タイムアウト動作)
+- [ロギングイベント](#ロギングイベント)
+  - [エラー処理](#エラー処理)
+- [ステータスの設定](#ステータスの設定)
+- [カスタムノードの設定](#カスタムノードの設定)
 
-### Node constructor
+### ノードコンストラクタ
 
-Nodes are defined by a constructor function that can be used to create new instances
-of the node. The function gets registered with the runtime so it can be called
-when nodes of the corresponding type are deployed in a flow.
+ノードは、ノードの新しいインスタンスを作成するために使用されるコンストラクタ関数によって定義されます。
+この関数はランタイムに登録されるため、
+対応するタイプのノードがフローにデプロイされたときに呼び出すことができます。
 
-The function is passed an object containing the properties set in the flow editor.
+この関数には、フローエディタで設定されたプロパティを含むオブジェクトが渡されます。
 
-The first thing it must do is call the `RED.nodes.createNode` function to initialize
-the features shared by all nodes. After that, the node-specific code lives.
+最初に`RED.nodes.createNode`関数を呼び出して、全てのノードが共通して持っている機能を初期化することが必要です。
+その後、ノード固有のコードが起動します。
 
 {% highlight javascript %}
 function SampleNode(config) {
@@ -40,16 +40,16 @@ function SampleNode(config) {
 RED.nodes.registerType("sample",SampleNode);
 {% endhighlight %}
 
-### Receiving messages
+### メッセージ受信
 
-Nodes register a listener on the `input` event to receive messages from the
-up-stream nodes in a flow.
+ノードは`input`イベントをリスナーに登録し、
+フロー内の上流にあるノードからメッセージを受信します。
 
-With Node-RED 1.0, a new style of the listener was introduced to allow the node
-to notify the runtime when it has finished handling a message. This added
-two new parameters to the listener function. Some care is needed to ensure
-the node can still be installed in Node-RED 0.x which does not use this new
-style of the listener.
+Node-RED 1.0では、ノードがメッセージの処理を終えたときにノードが実行環境に通知できるようにするため、
+新しいスタイルのリスナーが導入されました。
+これはリスナー機能に2つの新しいパラメータを追加しました。
+この新しいスタイルのリスナーを使っていないNode-RED 0.xに
+ノードがインストールされるということを保証するには、注意が必要です。
 
 {% highlight javascript %}
 this.on('input', function(msg, send, done) {
@@ -64,16 +64,16 @@ this.on('input', function(msg, send, done) {
 });
 {% endhighlight %}
 
-#### Handling errors
+#### エラー処理
 
-If the node encounters an error whilst handling the message, it should pass
-the details of the error to the `done` function.
+ノードがメッセージ処理中にエラーに遭遇した場合、
+`done`ファンクションにエラーの詳細を受け渡すべきです。
 
-This will trigger any Catch nodes present on the same tab, allowing the user to
-build flows to handle the error.
+これによって同じタブに存在するCatchノードがトリガーされ、
+ユーザはエラー処理フローを構築できます。
 
-Again, some care is needed in the case the node is installed in Node-RED 0.x which
-does not provide the `done` function. In that case, it should use `node.error`:
+また、`done`ファンクションが提供されていないNode-RED 0.xにノードがインストールされる場合には注意が必要です。
+このような場合には`node.error`を使用する必要があります:
 
 
 {% highlight javascript %}
@@ -95,19 +95,19 @@ this.on('input', function(msg, send, done) {
 {% endhighlight %}
 
 
-### Sending messages
+### メッセージ送信
 
-If the node sits at the start of the flow and produces messages in response to
-external events, it should use the `send` function on the Node object:
+フローの先頭にノードが置かれており、外部イベントに反応してメッセージを作成する場合、
+Nodeオブジェクトの`send`ファンクションを利用する必要があります。
 
 {% highlight javascript %}
 var msg = { payload:"hi" }
 this.send(msg);
 {% endhighlight %}
 
-If the node wants to send from inside the `input` event listener, in response to
-receiving a message, it should use the `send` function that is passed to the listener
-function:
+ノードがメッセージ受信に反応する`input`イベントリスナー内部からメッセージを送りたい場合、
+リスナーファンクションに渡される
+`send`ファンクションを使う必要があります:
 
 {% highlight javascript %}
 let node = this;
@@ -127,35 +127,35 @@ this.on('input', function(msg, send, done) {
 {% endhighlight %}
 
 
-If `msg` is null, no message is sent.
+`msg`がnullの場合、メッセージは送信されません。
 
-If the node is sending a message in response to having received one, it should reuse
-the received message rather than create a new message object. This ensures existing
-properties on the message are preserved for the rest of the flow.
+ノードがメッセージを受信したことに呼応してメッセージを送信している場合、
+ノードは新しいメッセージオブジェクトを生成するのではなく、受信したメッセージを再利用する必要があります。
+これにより、残りのフローに対してメッセージの既存のプロパティが保持されることを保証します。
 
-#### Multiple outputs
+#### 複数出力
 
-If the node has more than one output, an array of messages can be passed to `send`, with
-each one being sent to the corresponding output.
+ノードに複数の出力がある場合、メッセージの配列を`send`に渡すことができ、
+それぞれが対応する出力先に送られます。
 
 {% highlight javascript %}
 this.send([ msg1 , msg2 ]);
 {% endhighlight %}
 
-#### Multiple messages
+#### 複数メッセージ
 
-It is possible to send multiple messages to a particular output by passing an array
-of messages within this array:
+この配列内にメッセージの配列を渡すことで、
+特定の出力に複数のメッセージを送ることができます:
 
 {% highlight javascript %}
 this.send([ [msgA1 , msgA2 , msgA3] , msg2 ]);
 {% endhighlight %}
 
-### Closing the node
+### ノードを閉じる
 
-Whenever a new flow is deployed, the existing nodes are deleted. If any of them
-need to tidy up state when this happens, such as disconnecting
-from a remote system, they should register a listener on the `close` event.
+新しいフローがデプロイされるたびに、既存のノードは削除されます。
+このような状況が発生した時、リモートシステムとの接続を切断するなどのように状況を整理する必要がある場合、
+`close`イベントをリスナーに登録する必要があります。
 
 {% highlight javascript %}
 this.on('close', function() {
@@ -163,9 +163,9 @@ this.on('close', function() {
 });
 {% endhighlight %}
 
-If the node needs to do any asynchronous work to complete the tidy up, the
-registered listener should accept an argument which is a function to be called
-when all the work is complete.
+ノードが整理を完了するために非同期作業を行う必要がある場合、
+登録されたリスナーは、
+全ての作業が完了した時に呼び出される関数を引数として受け入れる必要があります。
 
 {% highlight javascript %}
 this.on('close', function(done) {
@@ -175,12 +175,12 @@ this.on('close', function(done) {
 });
 {% endhighlight %}
 
-*Since Node-RED 0.17*
+*Node-RED 0.17以降*
 
-If the registered listener accepts two arguments, the first will be a boolean
-flag that indicates whether the node is being closed because it has been removed
-entirely, or that it is just being restarted. It will also be set to *true* if the
-node has been disabled.
+登録されたリスナーが2つの引数を受け入れる場合、
+最初の引数はノードが完全に削除されたことでノードが閉じられたのか、
+ただ再起動されているためにノードが閉じられているかを示すbooleanフラグとなります。
+ノードが無効された場合にも、 *true* がセットされます。
 
 {% highlight javascript %}
 this.on('close', function(removed, done) {
@@ -193,20 +193,20 @@ this.on('close', function(removed, done) {
 });
 {% endhighlight %}
 
-#### Timeout behaviour
+#### タイムアウト動作
 
-*Since Node-RED 0.17*
+*Node-RED 0.17以降*
 
-Prior to Node-RED 0.17, the runtime would wait indefinitely for the `done` function
-to be called. This would cause the runtime to hang if a node failed to call it.
+Node-RED 0.17以前は、ランタイムは`done`関数が呼び出されるまでいつまでも待機していました。
+このため、ノードがこの関数を呼び出すことができなかった場合、ランタイムがハングしていました。
 
-In 0.17 and later, the runtime will timeout the node if it takes longer than 15
-seconds. An error will be logged and the runtime will continue to operate.
+0.17以降では、ランタイムは15秒以上かかるとノードをタイムアウトさせます。
+エラーが記録され、ランタイムは引き続き動作します。
 
 
-### Logging events
+### ロギングイベント
 
-If a node needs to log something to the console, it can use one of the following functions:
+ノードがコンソールに何かを記録する必要がある場合、ノードは以下の関数のうち１つを使用できます：
 
 {% highlight javascript %}
 this.log("Something happened");
@@ -220,43 +220,43 @@ this.debug("Log something more details for debugging the node's behaviour");
 
 {% endhighlight %}
 
-The `warn` and `error` messages also get sent to the flow editor debug tab.  
+`warn`および`error`メッセージもフローエディタのデバッグタブに送信されます。
 
-### Setting status
+### ステータスの設定
 
-Whilst running, a node is able to share status information with the editor UI.
-This is done by calling the `status` function:
+実行中は、ノードはエディタのUIとステータス情報を共有できます。
+これは`status`関数で呼び出すことでできます:
 
 {% highlight javascript %}
 this.status({fill:"red",shape:"ring",text:"disconnected"});
 {% endhighlight %}
 
-The details of the status api can be found [here](status).
+ステータスAPIの詳細は[こちら](status)にあります。
 
-### Custom node settings
+### カスタムノードの設定
 
-A node may want to expose configuration options in a user's `settings.js` file.
+ノードは、ユーザの`settings.js`ファイルに設定オプションを公開したいかもしれません。
 
-The name of any setting must follow the following requirements:
+設定の名称は、次の要件に従わなければなりません:
 
- - the name must be prefixed with the corresponding node type.
- - the setting must use camel-case - see below for more information.
- - the node must not require the user to have set it - it should have a sensible
-   default.
+ - 名称のプレフィックスとして対応するノードタイプを付ける必要があります。
+ - 設定にはキャメルケースを使用する必要があります。 詳細は下記を参照してください。
+ - ノードはユーザがそれを設定することを要求してはなりません。
+　　それはわかりやすいデフォルトでなければなりません。
 
-For example, if the node type `sample-node` wanted to expose a setting called
-`colour`, the setting name should be `sampleNodeColour`.
+たとえば、ノードタイプ`sample-node`が`colour`という設定を公開した場合、
+設定名は`sampleNodeColour`でなければなりません。
 
-Within the runtime, the node can then reference the setting as
-`RED.settings.sampleNodeColour`.
+ランタイム内で、ノードはその設定を
+`RED.setting.sampleNodeColour`として参照することができます。
 
 
-#### Exposing settings to the editor
+#### エディタに設定を公開する
 
-*Since Node-RED 0.17*
+*Node-RED 0.17以降*
 
-In some circumstances, a node may want to expose the value of the setting to the
-editor. If so, the node must register the setting as part of its call to `registerType`:
+状況によっては、ノードがエディタに設定値を公開したい場合があります。
+この場合、ノードは`registerType`の呼び出しの引数の一部として設定を登録しなければなりません:
 
 {% highlight javascript %}
 RED.nodes.registerType("sample",SampleNode, {
@@ -269,11 +269,11 @@ RED.nodes.registerType("sample",SampleNode, {
 });
 {% endhighlight %}
 
- - `value` field specifies the default value the setting should take.
- - `exportable` tells the runtime to make the setting available to the editor.
+ - `value`フィールドは、設定に必要なデフォルト値を指定します。
+ - `exportable`は、エディタで設定を利用可能にするようにランタイムに指示します。
 
-As with the runtime, the node can then reference the setting as
-`RED.settings.sampleNodeColour` within the editor.
+ランタイムと同様に、
+ノードはエディタ内で`RED.settings.sampleNodeColour`として設定を参照できるようになります。
 
-If a node attempts to register a setting that does not meet the naming requirements
-an error will be logged.
+ノードが命名要件を満たさない設定を登録しようとすると、
+エラーが記録されます。

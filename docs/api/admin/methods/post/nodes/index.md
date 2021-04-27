@@ -6,29 +6,29 @@ slug:
   - url: "/docs/api/admin"
     label: "admin"
   - url: "/docs/api/admin/methods"
-    label: "methods"
+    label: "メソッド"
   - add node module
 ---
 
-Install a new node module
+新しいノードモジュールをインストールします。
 
-Requires permission: <code>nodes.write</code>
+必要となる権限: <code>nodes.write</code>
 
 ### Headers
 
 Header          | Value
 ----------------|-------
-`Authorization` | `Bearer [token]` - if authentication is enabled
+`Authorization` | `Bearer [token]` - 認証が有効になっている場合
 `Content-type`  | `application/json`
 
 
 ### Arguments
 
-The request body must be a JSON string with the following fields:
+リクエストボディは下記のフィールドのようなJSON文字列でなければなりません:
 
 Field    | Description
 ---------|-----------------------
-`module` | Either the name of the node module to install from the npm repository, or a full path to a directory containing the node module. _Note_: this api does not support the full range of module specifiers used by npm such as `.tgz` files or version qualifiers.
+`module` | npmリポジトリからインストールするNodeモジュール名、またはNodeモジュールを含むディレクトリのフルパス。 _注意_: このAPIは `.tgz` のようなファイルやバージョン修飾子など、npmのすべてのモジュール指定形式をサポートしているわけではありません。
 
 {% highlight json %}
 {
@@ -38,12 +38,12 @@ Field    | Description
 
 ### Response
 
-Status Code | Reason         | Response
-------------|----------------|--------------
-`200`       | Success        | A [Node Module](/docs/api/admin/types#node-module) object. See example response body
-`400`       | Bad request    | An [Error response](/docs/api/admin/errors)
-`401`       | Not authorized | _none_
-`404`       | Not found      | _none_
+Status Code | Reason           | Response
+------------|------------------|--------------
+`200`       | 成功             | [Node Module](/docs/api/admin/types#node-module) オブジェクト。レスポンスボディの例を参照
+`400`       | 不正なリクエスト | [エラーを返す](/docs/api/admin/errors)
+`401`       | 認証されなかった | _無し_
+`404`       | 見つからなかった | _無し_
 
 {% highlight json %}
 {

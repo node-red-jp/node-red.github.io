@@ -1,8 +1,8 @@
 ---
 layout: docs-getting-started
 toc: toc-user-guide.html
-title: Running Node-RED locally
-slug: local
+title: ローカルでNode-REDを実行する
+slug: ローカル
 redirect_from:
   - /docs/getting-started/installation
   - /docs/getting-started/running
@@ -15,8 +15,8 @@ redirect_from:
 <img src="/images/logos/debian.svg" height="30">
 <img src="/images/logos/ubuntu.svg" height="30">
 </div>
-If you are on a Raspberry Pi or any Debian-based operating system, including
-Ubuntu and Diet-Pi, you can use the Pi install script available <a href="raspberrypi">here</a>.
+Raspberry PiまたはUbuntuまたはDiet-Piを含むDebianベースのオペレーティングシステムの場合、
+<a href="raspberrypi">こちら</a>のRaspberry Piのインストールスクリプトを利用できます。
 </div>
 
 <div class="doc-callout">
@@ -24,34 +24,34 @@ Ubuntu and Diet-Pi, you can use the Pi install script available <a href="raspber
 <img src="/images/logos/fedora.svg" height="30">
 <img src="/images/logos/centos.svg" height="40">
 </div>
-If you are on an RPM-based operating system, including
-RedHat, Fedora and CentOS, you can use the RPM install script available <a href="https://github.com/node-red/linux-installers">here</a>.
+RedHat、FedoraおよびCentOSを含むRPMベースのオペレーティングシステムを利用している場合、
+<a href="https://github.com/node-red/linux-installers">こちら</a>で入手できるRPMのインストールスクリプトを利用することができます。
 </div>
 
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px; margin-bottom: 10px;">
 <img src="/images/logos/windows.svg" height="30">
 </div>
-If you are using Windows, detailed instructions for installing Node-RED can be found <a href="/docs/getting-started/windows">here</a>.
+Windowsを利用している場合、Node-REDをインストールするための詳細な手順は<a href="/docs/getting-started/windows">こちら</a>で見つけることができます。
 </div>
 
-### Prerequisites
+### 必須条件
 
-To install Node-RED locally you will need a [supported version of Node.js](/docs/faq/node-versions).
+ローカル環境にNode-REDをインストールするためには[サポートされているNode.jsのバージョン](/docs/faq/node-versions)が必要です。
 
-### Installing with npm
+### npmによってインストールする
 
-To install Node-RED you can use the `npm` command that comes with node.js:
+Node-REDをインストールするため、Node.jsに同梱の`npm`コマンドを利用できます:
 
 ```
 sudo npm install -g --unsafe-perm node-red
 ```
 
-If you are using Windows, do not start the command with <code>sudo</code>.
+Windowsを利用している場合、このコマンドを<code>sudo</code>からは始めません。
 
-That command will install Node-RED as a global module along with its dependencies.
+このコマンドは、依存関係とともにNode-REDをグローバルモジュールとしてインストールします。
 
-You can confirm it has succeeded if the end of the command output looks similar to:
+コマンドの出力の最後が以下のようになった場合、インストールが成功したと確認できます。
 
 ```
 + node-red@1.1.0
@@ -59,40 +59,40 @@ added 332 packages from 341 contributors in 18.494s
 found 0 vulnerabilities
 ```
 
-### Installing with docker
+### Dockerでインストールする
 
-To run in Docker in its simplest form just run:
+最も簡単な方法によってDockerで直接実行するには、次のようにします:
 ```
 docker run -it -p 1880:1880 --name mynodered nodered/node-red
 ```
-For more detailed information see our [docker](/docs/getting-started/docker) guide.
+更なる追加情報は私達の[docker](/docs/getting-started/docker)のガイドを参照してください。
 
-### Installing with snap
+### Snapでインストールする
 
-If your OS supports [Snap](https://snapcraft.io/docs/core/install) you can install
-Node-RED with:
+OSが[Snap](https://snapcraft.io/docs/core/install)をサポートしている場合、
+以下のようにNode-REDをインストールすることができます:
 
 ```
 sudo snap install node-red
 ```
 
-When installed as a Snap package, it will run in a secure container that does
-not have access to some extra facilities that may be needed for you to use, such as:
+Snapパッケージとしてインストールした場合、
+利用しなくてはならない以下のような外部の機能へのアクセスを持っていないセキュアなコンテナで実行できます:
 
- - access to main system storage. Can only read/write to local home directories.
- - `gcc` - needed to compile any binary components of nodes you want to install
- - `git` - needed if you want to use the Projects feature
- - direct access to gpio hardware
- - access to any external commands your flows want to use with the Exec node (for example).
+ - メインシステムストレージにアクセスする。ローカルホームディレクトリへのread/writeのみ許可されています。
+ - `gcc` - インストールしたいノードのバイナリコンポーネントをコンパイルするために必要です
+ - `git` - プロジェクト機能を利用したい場合、必要になります
+ - GPIOハードウェアへの直接アクセス権
+ - フローの（例えば）Execノードで実行される外部コマンドへのアクセス権
 
-You can run it in "classic" mode which reduces the container security but then
-does provide wider access.
+コンテナのセキュリティは低下するものの
+より幅広いアクセスが可能な「クラシック」モードで実行することもできます。
 
-### Running
+### 実行する
 
-Once installed as a global module you can use the `node-red` command to start
-Node-RED in your terminal. You can use `Ctrl-C` or close the terminal window
-to stop Node-RED.
+一度グローバルモジュールとしてインストールしたら、
+ターミナルにおいて`node-red`コマンドを使ってNode-REDを起動することができます。
+`Ctrl-C`を使うか、ターミナルウィンドウを閉じることでNode-REDを停止することができます。
 
 ```
 $ node-red
@@ -116,22 +116,22 @@ Welcome to Node-RED
 30 Jun 23:43:44 - [info] Server now running at http://127.0.0.1:1880/red/
 ```
 
-You can then access the Node-RED editor by pointing your browser at <http://localhost:1880>.
+そして、ブラウザで<http://localhost:1880>を指定することでNode-REDエディタにアクセスすることができます。
 
-The log output provides you various pieces of information:
+ログ出力は様々な情報を提供してくれます。
 
- - The versions of Node-RED and Node.js
- - Any errors hit when it tried to load the palette nodes
- - The location of your Settings file and User Directory
- - The name of the flows file it is using.
+ - Node-REDおよびNode.jsのバージョン
+ - パレットにノードをロードしようとしたときに発生したエラー
+ - 設定ファイルおよびユーザディレクトリの位置
+ - 利用しているフローファイルの名称
 
-Node-RED uses `flows_<hostname>.json` as the default flows file. You can change
-this by providing the flow file name as argument to the `node-red` [command](/docs/getting-started/local#command-line-usage).
+Node-REDはデフォルトのフローファイルとして`flows_<hostname>.json`を利用します。
+`node-red`[コマンド](/docs/getting-started/local#command-line-usage)の引数としてフローファイル名を渡すことで、これを変更することができます。
 
-### Command-line Usage
+### コマンドラインの使い方
 
-Node-RED can be started using the command `node-red`. This command can take
-various arguments:
+Node-REDは`node-red`コマンドを使うことで起動できます。
+このコマンドは様々な引数をとることができます:
 
 ```
 node-red [-v] [-?] [--settings settings.js] [--userDir DIR]
@@ -139,41 +139,41 @@ node-red [-v] [-?] [--settings settings.js] [--userDir DIR]
          [-D X=Y|@file]
 ```
 
-Option                  | Description     |
+オプション                  | 詳細     |
 ------------------------|-----------------|
-`-p`, `--port PORT`     | Sets the TCP port the runtime listens on. Default: `1880` |
-`--safe`                | Starts Node-RED without starting the flows. This allows you to open the flows in the editor and make changes without the flows running. When you deploy your changes, the flows are then started. |
-`-s`, `--settings FILE` | Sets the settings file to use. Default: `settings.js` in `userDir` |
-`--title TITLE`         | Set process window title |
-`-u`, `--userDir DIR`   | Sets the user directory to use. Default: `~/.node-red` |
-`-v`                    | Enables verbose output |
-`-D X=Y|@file`          | [Override individual settings](#override-individual-settings) |
-`-?`, `--help`          | Shows command-line usage help and exits |
-`flows.json|projectName`| If the Projects feature is not enabled, this sets the flow file you want to work with. If the Projects feature is enabled, this identifies which project should be started. |
+`-p`, `--port PORT`     | ランタイムが待ち受けているTCPポートを設定します。デフォルト: `1880` |
+`--safe`                | フローを起動せずにNode-REDを起動します。このオプションはエディタでフローを開き、フローを起動せずに変更をおこなえるようにします。変更をデプロイしたとき、フローは起動されます。 |
+`-s`, `--settings FILE` | 利用する設定ファイルを設定する。デフォルト: `settings.js` in `userDir` |
+`--title TITLE`         | プロセスウィンドウタイトルを設定する。 |
+`-u`, `--userDir DIR`   | 利用するユーザディレクトリを設定する。デフォルト: `~/.node-red` |
+`-v`                    | 冗長な出力を取得します。 |
+`-D X=Y|@file`          | [個別に設定を上書きする](#個別に設定を上書きする) |
+`-?`, `--help`          | コマンドラインの使い方を表示し、終了します。 |
+`flows.json|projectName`| プロジェクト機能を有効にしていない場合、作業したいフローファイルをこのオプションで指定します。プロジェクト機能が有効な場合、どのプロジェクトを利用するのかを指定します。 |
 
-Node-RED uses `flows_<hostname>.json` as the default flows file. If the computer
-you are running on may change its hostname, then you should ensure you provide a
-static file name; either as a command-line argument or using the `flowsFile` option
-in your [settings file](/docs/user-guide/runtime/settings-file).
+Node-REDはデフォルトのフローファイルとして`flows_<hostname>.json`を利用します。
+実行しているコンピュータがホスト名を変更した場合、
+静的なファイル名をコマンドライン引数または[設定ファイル](/docs/user-guide/runtime/settings-file)内の`flowsFile`オプションとして、
+提供することを保証する必要があります。
 
-#### Override individual settings
+#### 個別に設定を上書きする
 
 *Since Node-RED 1.1.0*
 
-You can override individual settings on the command-line using the `-D` (or `--define`)
-option.
+コマンドライン上で`-D`（もしくは`--define`）オプションを使うことで
+個別に設定を上書きすることができます。
 
-For example, to change the logging level you can use:
+例えば、ログレベルを変更することができます:
 ```
 -D logging.console.level=trace
 ```
 
-You can also provide the custom settings as a file:
+また、ファイルによって設定をカスタマイズできます:
 ```
 -D @./custom-settings.txt
 ```
 
-The file should contain a list of the settings to override:
+ファイルには上書きする設定の一覧を含んでいる必要があります:
 ```
 logging.console.level=trace
 logging.console.audit=true
@@ -182,47 +182,48 @@ logging.console.audit=true
 
 
 
-### Passing arguments to the underlying Node.js process
+### 基盤であるNode.jsプロセスに引数を渡す
 
-There are occasions when it is necessary to pass arguments to the underlying
-Node.js process. For example, when running on devices like the Raspberry Pi or
-BeagleBone Black that have a constrained amount of memory.
 
-To do this, you must use the `node-red-pi` start script in place of `node-red`.
-_Note_: this script is not available on Windows.
+基盤であるNode.jsプロセスに引数を渡さなければならない機会はあります。
+例えば、Raspberry PiやBeagleBone Blackのように、
+メモリ容量が制限されたデバイスで実行する場合です。
 
-Alternatively, if are running Node-RED using the `node` command, you must provide
-arguments for the node process before specifying `red.js` and the arguments you
-want passed to Node-RED itself.
+これをおこなうためには、起動スクリプトの`node-red`の代わりに`node-red-pi`を利用する必要があります。
+_Note_: このスクリプトはWindowsでは利用できません。
 
-The following two commands show these two approaches:
+反対に、`node`コマンドを利用してNode-REDを起動した場合、
+`red.js`およびNode-RED自体に渡す引数を指定する前に
+Nodeプロセスに引数を渡す必要があります。
+
+以下の2つのコマンドは2種類のアプローチを紹介しています:
 
     node-red-pi --max-old-space-size=128 --userDir /home/user/node-red-data/
     node --max-old-space-size=128 red.js --userDir /home/user/node-red-data/
 
-### Upgrading Node-RED
+### Node-REDをアップグレードする
 
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px;"><img src="/images/logos/raspberrypi.svg" height="30">
 <img src="/images/logos/debian.svg" height="30">
 <img src="/images/logos/ubuntu.svg" height="30">
 </div>
-If you installed Node-RED using the Pi script, you can rerun it to upgrade. The
-script is available <a href="/docs/hardware/raspberrypi">here</a>.</div>
+Raspberry Piスクリプトを利用してNode-REDをインストールした場合、それを再利用することでアップグレードすることができます。
+スクリプトは<a href="/docs/hardware/raspberrypi">こちら</a>で入手できます。</div>
 
-If you have installed Node-RED as a global npm package, you can upgrade to the
-latest version with the following command:
+グローバルnpmパッケージとしてNode-REDをインストールした場合、
+以下のコマンドによって最新版にアップグレードすることができます:
 
 ```
 sudo npm install -g --unsafe-perm node-red
 ```
 
-If you are using Windows, do not start the command with <code>sudo</code>.
+Windowsを利用している場合、コマンドの先頭に<code>sudo</code>は不要です。
 
 
 
-### Next steps
+### 次のステップ
 
- - [Learn how to secure your editor](/docs/user-guide/runtime/securing-node-red)
- - [Create your first flow](/docs/tutorials/first-flow)
- - [Starting Node-RED on boot](/docs/faq/starting-node-red-on-boot)
+ - [エディタをセキュアにする方法を学習する](/docs/user-guide/runtime/securing-node-red)
+ - [はじめてのフローを作成する](/docs/tutorials/first-flow)
+ - [起動時にNode-REDを起動する](/docs/faq/starting-node-red-on-boot)

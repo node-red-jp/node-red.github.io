@@ -3,19 +3,19 @@ layout: docs-getting-started
 title: Getting Started
 ---
 
-This guide will help you get Node-RED installed and running in just a few minutes.
+わずか数分でNode-REDをインストールして実行するためのガイドです。
 
-Pick where you want to run Node-RED, whether on your local computer, a device
-such as a Raspberry Pi or in the cloud and follow the guides below.
+自分のローカルコンピュータ、Raspberry Piのようなデバイスまたはクラウドの中から
+Node-REDを実行したい環境を選び、以下のガイドに従ってください。
 
 <div class="post-preview">
   <a href="local">
     <div class="post-header">
       <img src="/images/platform-local.png">
-      <h2>Running locally</h2>
+      <h2>ローカルで実行</h2>
     </div>
     <div class="post-content">
-      Installing Node-RED on your local computer
+      自分のローカルコンピュータにNode-REDをインストールする
     </div>
   </a>
 </div>
@@ -27,7 +27,7 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
       <h2>Raspberry Pi</h2>
     </div>
     <div class="post-content">
-      Get started using our all-in-one install script for the mighty Raspberry Pi
+      Raspberry Piでオールインワンインストールスクリプトを使って始める
     </div>
   </a>
 </div>
@@ -39,7 +39,7 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
       <h2>Docker</h2>
     </div>
     <div class="post-content">
-      Running Node-RED using Docker
+      Dockerを使ってNode-REDを実行する
     </div>
   </a>
 </div>
@@ -48,11 +48,11 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
   <a href="development">
     <div class="post-header">
       <img src="/images/platform-local-dev.png">
-      <h2>Install from git</h2>
+      <h2>gitからインストールする</h2>
     </div>
     <div class="post-content">
-      Building Node-RED from source. Get the very latest development code and
-      start contributing.
+      ソースからNode-REDをビルドする。
+      最新の開発コードを入手し、コントリビュートを始める。
     </div>
   </a>
 </div>
@@ -61,10 +61,10 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
   <a href="beaglebone">
     <div class="post-header">
       <img src="/images/platform-device.png">
-      <h2>BeagleBone Boards</h2>
+      <h2>BeagleBone基板</h2>
     </div>
     <div class="post-content">
-      Running Node-RED on BeagleBone boards
+      BeagleBone基板でNode-REDを実行する
     </div>
   </a>
 </div>
@@ -76,7 +76,7 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
       <h2>Android</h2>
     </div>
     <div class="post-content">
-      A bit experimental, but you can run on Android devices using Termux
+      少々実験的ですが、Termuxを利用してAndroid端末で実行することができます
     </div>
   </a>
 </div>
@@ -88,7 +88,7 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
       <h2>IBM Cloud</h2>
     </div>
     <div class="post-content">
-      Deploying Node-RED from the IBM Cloud catalog in a couple of clicks
+      数クリックでIBMクラウドカタログからNode-REDをデプロイします
     </div>
   </a>
 </div>
@@ -101,7 +101,7 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
       <h2>AWS</h2>
     </div>
     <div class="post-content">
-      Get started running on Elastic Beanstalk or EC2
+      Elastic BeanstalkまたはEC2で実行して始める
     </div>
   </a>
 </div>
@@ -113,7 +113,7 @@ such as a Raspberry Pi or in the cloud and follow the guides below.
       <h2>Microsoft Azure</h2>
     </div>
     <div class="post-content">
-      Running on an Azure Virtual Machine instance
+      Azureバーチャルマシンインスタンスで実行する
     </div>
   </a>
 </div>
