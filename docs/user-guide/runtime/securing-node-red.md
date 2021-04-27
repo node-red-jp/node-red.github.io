@@ -187,7 +187,7 @@ adminAuth: {
     users: [
        { username: "knolleary",permissions: ["*"]}
     ]
-};
+}
 ```
 
 `strategy`プロパティは以下の項目を設定します。:

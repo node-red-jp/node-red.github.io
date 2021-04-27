@@ -38,8 +38,10 @@ Node-REDを設定するには、
    },
 ```
 
-この機能は`git`および`ssh-keygen`コマンドラインツールが利用可能であることに依存します。
-Node-REDは起動時にそれらを確認し、見つからなかった場合には通知をおこないます。
+It is also possible to enable the projects feature by setting the `NODE_RED_ENABLE_PROJECTS` environment variable to `true`.
+
+The feature relies on having the `git` and `ssh-keygen` command line tools available.
+Node-RED will check for them on start-up and let you know if they are missing.
 
 ### はじめてのプロジェクト作成
 

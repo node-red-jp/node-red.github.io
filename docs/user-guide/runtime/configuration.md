@@ -245,6 +245,9 @@ functionGlobalContext
  でのアクセスが推奨されます。この方法で保存されたデータは再起動後には取得できず、サイドバーのコンテキストビューアには表示されません。
  </div>
 
+functionExternalModules
+: if set to `true`, the Function node's Setup tab will allow adding additional modules that will become available to the function. See [Writing Functions](../writing-functions#using-the-functionexternalmodules-option) for more information. Default: `false`.
+
 debugMaxLength
 : DebugノードでサイドバーのDebugタブに表示される最大文字数を指定します。
   デフォルト: 1000

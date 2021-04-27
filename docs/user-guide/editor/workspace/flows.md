@@ -123,15 +123,15 @@ title: フロー
 </table>
 
 <table class="action-ref inline">
- <tr><th colspan="2">リファレンス</th></tr>
- <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-[</code></td></tr>
- <tr><td>メニューオプション</td><td><i>none</i></td></tr>
- <tr><td>動作</td><td><code>core:show-previous-tab</code></td></tr>
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Ctrl/⌘-[</code></td></tr>
+ <tr><td>Menu option</td><td><i>none</i></td></tr>
+ <tr><td>Action</td><td><code>core:show-previous-tab</code></td></tr>
 </table>
 
 <table class="action-ref inline">
- <tr><th colspan="2">リファレンス</th></tr>
- <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-]</code></td></tr>
- <tr><td>メニューオプション</td><td><i>none</i></td></tr>
- <tr><td>動作</td><td><code>core:show-next-tab</code></td></tr>
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Ctrl/⌘-]</code></td></tr>
+ <tr><td>Menu option</td><td><i>none</i></td></tr>
+ <tr><td>Action</td><td><code>core:show-next-tab</code></td></tr>
 </table>

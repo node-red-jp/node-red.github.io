@@ -250,7 +250,15 @@ COPY flows.json /data/flows.json
 #RUN npm install node-red-node-smooth
 ```
 
-#### Dockerファイルの順序とビルド速度
+**Note**: the `package.json` file must contain a start option within the script section. For example the default container is like this:
+
+```
+    "scripts": {
+        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+        ...
+```
+
+#### Dockerfile order and build speed
 
 必要ない限り、`COPY package... npm install...`ステップを早い段階でおこなうことが推奨されます。なぜならば、Node-REDを使う際に頻繁に`flows.json`を変更しますが、`package.json`はプロジェクトに含まれるモジュールを変更したときのみ変更するためです。また、`package.json`を変更したときに必要となる`npm install`ステップはしばしば時間を要するため、時間がかかり、一般的に変更のないステップをDockerファイル内の早い段階でおこない、ビルドイメージを再利用できるようにして、以降の全体のビルドを高速化することは推奨されます。
 
@@ -449,6 +457,13 @@ https://github.com/node-red/node-red/issues/15
 デフォルトのタイムゾーンを変更したい場合、[相対タイムゾーン](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)を用いたTZ環境変数を使用します。
 ```
 docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered -e TZ=America/New_York nodered/node-red
+```
+
+or within a docker-compose file
+```
+  node-red:
+    environment:
+      - TZ=America/New_York
 ```
 
 or within a docker-compose file

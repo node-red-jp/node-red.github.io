@@ -103,6 +103,29 @@ return messages;
 
 You can now configure number of outputs solely via edit dialog without making changes to the function itself.
 
+### Multiple Messages
+
+*Since Node-RED 1.3*
+
+`node.outputCount` contains the number of outputs configured for the function node.
+
+This makes it possible to write generic functions that can handle variable number of outputs set from the edit dialog.
+
+For example if you wish to spread incoming messages randomly between outputs, you could:
+
+{% highlight javascript %}
+// Create an array same length as there are outputs
+const messages = new Array(node.outputCount)
+// Choose random output number to send the message to
+const chosenOutputIndex = Math.floor(Math.random() * node.outputCount);
+// Send the message only to chosen output
+messages[chosenOutputIndex] = msg;
+// Return the array containing chosen output
+return messages;
+{% endhighlight %}
+
+You can now configure number of outputs solely via edit dialog without making changes to the function itself.
+
 ### 複数のメッセージを送る
 
 複数メッセージの配列を含む一つの配列を返すことで、
@@ -473,18 +496,18 @@ The modules are automatically installed under `~/.node-red/externalModules/` whe
 Functionノード内では以下のオブジェクトが利用できます。
 
 #### `node`
- * `node.id` : FunctionノードのID - *0.19で導入*
- * `node.name` : Functionノードの名前 - *0.19で導入*
+ * `node.id` : the id of the Function node - *added in 0.19*
+ * `node.name` : the name of the Function node - *added in 0.19*
  * `node.outputCount` : number of outputs set for Function node - *added in 1.3*
- * `node.log(..)` : [メッセージをログ出力する](#logging-events)
- * `node.warn(..)` : [warnレベルでメッセージをログ出力する](#logging-events)
- * `node.error(..)` : [errorレベルでメッセージをログ出力する](#logging-events)
- * `node.debug(..)` : [debugレベルでメッセージをログ出力する](#logging-events)
- * `node.trace(..)` : [traceレベルでメッセージをログ出力する](#logging-events)
- * `node.on(..)` : [イベントハンドラを登録する](#sending-messages-asynchronously)
- * `node.status(..)` : [ノードの状態を更新する](#adding-status)
- * `node.send(..)` : [メッセージを送信する](#sending-messages-asynchronously)
- * `node.done(..)` : [メッセージで終了する](#finishing-with-a-message)
+ * `node.log(..)` : [log a message](#logging-events)
+ * `node.warn(..)` : [log a warning message](#logging-events)
+ * `node.error(..)` : [log an error message](#logging-events)
+ * `node.debug(..)` : [log a debug message](#logging-events)
+ * `node.trace(..)` : [log a trace message](#logging-events)
+ * `node.on(..)` : [register an event handler](#sending-messages-asynchronously)
+ * `node.status(..)` : [update the node status](#adding-status)
+ * `node.send(..)` : [send a message](#sending-messages-asynchronously)
+ * `node.done(..)` : [finish with a message](#finishing-with-a-message)
 
 #### `context`
  * `context.get(..)` : ノードスコープコンテキストからプロパティ値を取得する
