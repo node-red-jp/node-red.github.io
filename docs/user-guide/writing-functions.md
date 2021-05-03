@@ -80,51 +80,29 @@ var newMsg = { payload: msg.payload.length };
 return [msg, newMsg];
 {% endhighlight %}
 
-#### Handling arbituary number of outputs
+#### 任意の数の出力を処理する
 
-*Since Node-RED 1.3*
+*Node-RED 1.3以降*
 
-`node.outputCount` contains the number of outputs configured for the function node.
+`node.outputCount` には、Functionノードに設定された出力の数が含まれます。
 
-This makes it possible to write generic functions that can handle variable number of outputs set from the edit dialog.
+これにより、編集ダイアログにセットされた出力数を変数にハンドルして関数を作成することができます。
 
-For example if you wish to spread incoming messages randomly between outputs, you could:
+例えば、もし
+たとえば、受信メッセージを出力の間でランダムに拡散したい場合は、次のように書きます:
 
 {% highlight javascript %}
-// Create an array same length as there are outputs
+// 出力数と同じ長さの配列を生成
 const messages = new Array(node.outputCount)
-// Choose random output number to send the message to
+// メッセージ送信する乱数出力を選択
 const chosenOutputIndex = Math.floor(Math.random() * node.outputCount);
-// Send the message only to chosen output
+// 選択した出力だけにメッセージを送信
 messages[chosenOutputIndex] = msg;
-// Return the array containing chosen output
+// 選択された出力を含む配列を返す
 return messages;
 {% endhighlight %}
 
-You can now configure number of outputs solely via edit dialog without making changes to the function itself.
-
-### Multiple Messages
-
-*Since Node-RED 1.3*
-
-`node.outputCount` contains the number of outputs configured for the function node.
-
-This makes it possible to write generic functions that can handle variable number of outputs set from the edit dialog.
-
-For example if you wish to spread incoming messages randomly between outputs, you could:
-
-{% highlight javascript %}
-// Create an array same length as there are outputs
-const messages = new Array(node.outputCount)
-// Choose random output number to send the message to
-const chosenOutputIndex = Math.floor(Math.random() * node.outputCount);
-// Send the message only to chosen output
-messages[chosenOutputIndex] = msg;
-// Return the array containing chosen output
-return messages;
-{% endhighlight %}
-
-You can now configure number of outputs solely via edit dialog without making changes to the function itself.
+関数自体を変更することなく、編集ダイアログの設定のみで出力数を構成できるようになりました。
 
 ### 複数のメッセージを送る
 
@@ -190,9 +168,9 @@ Functionノードは`node.send`に渡された第一引数を*クローンしな
 node.send(msg,false);
 {% endhighlight %}
 
-#### メッセージで終了する
+#### 終了時メッセージ
 
-*Since Node-RED 1.0*
+*Node-RED 1.0以降*
 
 Functionノードはメッセージについて非同期処理をおこなう場合、
 メッセージ処理が終了したとき実行環境は自動的に検知します。
@@ -467,27 +445,17 @@ functionGlobalContext: {
     cd ~/.node-red
     npm install name_of_3rd_party_module
 
-### Using the `functionExternalModules` option
+### `functionExternalModules` オプションを使う
 
-*Since Node-RED 1.3.0*
+*Node-RED 1.3.0以降*
 
-By setting `functionExternalModules` to `true` in you *settings.js* file, the Function
-node's edit dialog will provide a list where you can add additional modules
-that should be available to the node. You also specify the variable that will
-be used to refer to the module in the node's code.
+*settings.js* ファイルの `functionExternalModules` を `true` にセットすることで、Functionノードの
+編集ダイアログにはモジュールを追加できるリストが表示されます。
+また、ノードのコード内でモジュールを参照するために使用する変数を指定します。
 
 <img style="margin-left: 20px;" src="/docs/user-guide/images/function_external_modules.png" width="500px">
 
-The modules are automatically installed under `~/.node-red/externalModules/` when the node is deployed.
-
-
-
-
-
-
-
-
-
+追加するモジュールは、ノードがデプロイされる時に `~/.node-red/externalModules/` に自動的にインストールされます。
 
 ***
 
@@ -496,18 +464,18 @@ The modules are automatically installed under `~/.node-red/externalModules/` whe
 Functionノード内では以下のオブジェクトが利用できます。
 
 #### `node`
- * `node.id` : the id of the Function node - *added in 0.19*
- * `node.name` : the name of the Function node - *added in 0.19*
- * `node.outputCount` : number of outputs set for Function node - *added in 1.3*
- * `node.log(..)` : [log a message](#logging-events)
- * `node.warn(..)` : [log a warning message](#logging-events)
- * `node.error(..)` : [log an error message](#logging-events)
- * `node.debug(..)` : [log a debug message](#logging-events)
- * `node.trace(..)` : [log a trace message](#logging-events)
- * `node.on(..)` : [register an event handler](#sending-messages-asynchronously)
- * `node.status(..)` : [update the node status](#adding-status)
- * `node.send(..)` : [send a message](#sending-messages-asynchronously)
- * `node.done(..)` : [finish with a message](#finishing-with-a-message)
+ * `node.id` : Functionノードのid - *0.19で追加*
+ * `node.name` : Functionノードの名前 - *0.19で追加*
+ * `node.outputCount` : Functionノードの出力数をセット - *1.3で追加*
+ * `node.log(..)` : [メッセージをログ出力](#イベントのログ)
+ * `node.warn(..)` : [警告メッセージをログ出力](#イベントのログ)
+ * `node.error(..)` : [エラーメッセージをログ出力](#イベントのログ)
+ * `node.debug(..)` : [デバッグメッセージをログ出力](#イベントのログ)
+ * `node.trace(..)` : [トレースメッセージをログ出力](#イベントのログ)
+ * `node.on(..)` : [イベントハンドラーを登録](#メッセージの非同期送信)
+ * `node.status(..)` : [ノードステータスを更新](#ステータスの追加)
+ * `node.send(..)` : [メッセージを非同期に送信](#メッセージの非同期送信)
+ * `node.done(..)` : [終了時のメッセージ](#終了時メッセージ)
 
 #### `context`
  * `context.get(..)` : ノードスコープコンテキストからプロパティ値を取得する
