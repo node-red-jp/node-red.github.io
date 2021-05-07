@@ -246,7 +246,7 @@ functionGlobalContext
  </div>
 
 functionExternalModules
-: if set to `true`, the Function node's Setup tab will allow adding additional modules that will become available to the function. See [Writing Functions](../writing-functions#using-the-functionexternalmodules-option) for more information. Default: `false`.
+: `true`にセットすると、Function ノードの設定タブで、関数として使うことができる追加モジュールを追加できるようになります。詳しくは、 [Functionノードの書き方](../writing-functions#functionexternalmodules-オプションを使う) を参照してください。デフォルト: `false`.
 
 debugMaxLength
 : DebugノードでサイドバーのDebugタブに表示される最大文字数を指定します。
