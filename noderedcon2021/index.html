@@ -899,277 +899,30 @@
               <div class="schedule-tab-content col-12 clearfix">
                 <div class="tab-content" id="myTabContent">
 
-                  <!-- Global Track タイムテーブル ここから -->
-                  <div class="tab-pane fade show active" id="track-a" role="tabpanel" aria-labelledby="track-a-tab">
+                  !-- Global Track タイムテーブル ここから -->
+                  <div class="tab-pane fade active show" id="track-a" role="tabpanel" aria-labelledby="track-a-tab">
                     <div id="accordion">
                       <!-- Session -->
-                      <div class="card">
-                        <div id="headingZero">
+                      <div class="card" v-for="(session, i) in sessions_g">
+                        <div :id='"headingA"+i'>
                           <div class="schedule-slot-time">
-                            <span> 13.00 - 13.10 </span>
-                            Opening
+                            <span>{{ session.time }}</span>
+                            {{ session.type }}
                           </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseZero" aria-expanded="false" aria-controls="collapseZero">
+                          <div class="collapsed card-header" data-toggle="collapse" :data-target='"#collapseA"+i' aria-expanded="false" :aria-controls='"collapseA"+i'>
                             <div class="images-box">
-                              <img class="img-fluid" src="assets/img/speaker/seigo.jpg" alt="">
+                              <img class="img-fluid" :src=session.photo alt="">
                             </div>                     
-                            <h4>Welcome to Node-RED Con 2021!!</h4>
-                            <h5 class="name">田中正吾, 1ft Seabass/Node-RED UG Board Member</h5>
+                            <h4>{{ session.title }}</h4>
+                            <h5 class="name">{{ session.speaker }}, {{ session.company }}</h5>
                           </div>
                         </div>
-                        <div id="collapseZero" class="collapse" aria-labelledby="headingZero" data-parent="#accordion">
+                        <div :id='"collapseA"+i' class="collapse" :aria-labelledby='"headingA"+i' data-parent="#accordion">
                           <div class="card-body">
-                            <p>Welcome to Node-RED Con 2021!!</p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a>
-                            </div>
+                            <p><pre style="white-space: pre-wrap">{{ session.abstract }}</pre></p>
                           </div>
                         </div>
                       </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingOne">
-                          <div class="schedule-slot-time">
-                            <span> 13.10 - 13.50 </span>
-                            Keynote
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>                     
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingTwo">
-                          <div class="schedule-slot-time">
-                            <span> 14.00 - 14.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingThree">
-                          <div class="schedule-slot-time">
-                            <span> 14.30 - 14.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingFour">
-                          <div class="schedule-slot-time">
-                            <span> 15.00 - 15.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingFive">
-                          <div class="schedule-slot-time">
-                            <span> 15.30 - 15.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingSix">
-                          <div class="schedule-slot-time">
-                            <span> 16.00 - 16.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingSeven">
-                          <div class="schedule-slot-time">
-                            <span> 16.30 - 16.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingEight">
-                          <div class="schedule-slot-time">
-                            <span> 17.00 - 17.40 </span>
-                            Keynote
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingNine">
-                          <div class="schedule-slot-time">
-                            <span> 17.50 - 18.00 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                            <div class="images-box">
-                              <img class="img-fluid" src="assets/img/speaker/atsushi.jpg" alt="">
-                            </div>
-                            <h4>Thanks and Goodbye</h4>
-                            <h5 class="name">古城篤, Uhuru/Node-RED UG Board Member</h5>
-                          </div>
-                        </div>
-                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>
-                              Thank you for attending Node-RED Con 2021!
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
                     </div>
                   </div>
                   <!-- Global Track タイムテーブル ここまで -->
@@ -1178,167 +931,26 @@
                   <div class="tab-pane fade" id="track-b" role="tabpanel" aria-labelledby="track-b-tab">
                     <div id="accordion2">
                       <!-- Session -->
-                      <div class="card">
-                        <div id="headingTwo2">
+                      <div class="card" v-for="(session, i) in sessions_a">
+                        <div :id='"headingB"+i'>
                           <div class="schedule-slot-time">
-                            <span> 14.00 - 14.20 </span>
-                            Breakout
+                            <span>{{ session.time }}</span>
+                            {{ session.type }}
                           </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                          <div class="collapsed card-header" data-toggle="collapse" :data-target='"#collapseB"+i' aria-expanded="false" :aria-controls='"collapseB"+i'>
                             <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
+                              <img class="img-fluid" :src=session.photo alt="">
+                            </div>                     
+                            <h4>{{ session.title }}</h4>
+                            <h5 class="name">{{ session.speaker }}, {{ session.company }}</h5>
                           </div>
                         </div>
-                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordion2">
+                        <div :id='"collapseB"+i' class="collapse" :aria-labelledby='"headingB"+i' data-parent="#accordion2">
                           <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
+                            <p><pre style="white-space: pre-wrap">{{ session.abstract }}</pre></p>
                           </div>
                         </div>
                       </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingThree2">
-                          <div class="schedule-slot-time">
-                            <span> 14.30 - 14.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordion2">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingFour2">
-                          <div class="schedule-slot-time">
-                            <span> 15.00 - 15.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseFour2" aria-expanded="false" aria-controls="collapseFour2">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseFour2" class="collapse" aria-labelledby="headingFour2" data-parent="#accordion2">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank"></a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingFive2">
-                          <div class="schedule-slot-time">
-                            <span> 15.30 - 15.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseFive2" aria-expanded="false" aria-controls="collapseFive2">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseFive2" class="collapse" aria-labelledby="headingFive2" data-parent="#accordion2">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingSix2">
-                          <div class="schedule-slot-time">
-                            <span> 16.00 - 16.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseSix2" aria-expanded="false" aria-controls="collapseSix2">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseSix2" class="collapse" aria-labelledby="headingSix2" data-parent="#accordion2">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank"></a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingSeven2">
-                          <div class="schedule-slot-time">
-                            <span> 16.30 - 16.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseSeven2" aria-expanded="false" aria-controls="collapseSeven2">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseSeven2" class="collapse" aria-labelledby="headingSeven2" data-parent="#accordion2">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
                     </div>
                   </div>
                   <!-- Local Track A タイムテーブル ここまで -->
@@ -1347,167 +959,26 @@
                   <div class="tab-pane fade" id="track-c" role="tabpanel" aria-labelledby="track-c-tab">
                     <div id="accordion3">
                       <!-- Session -->
-                      <div class="card">
-                        <div id="headingTwo3">
+                      <div class="card" v-for="(session, i) in sessions_b">
+                        <div :id='"headingC"+i'>
                           <div class="schedule-slot-time">
-                            <span> 14.00 - 14.20 </span>
-                            Breakout
+                            <span>{{ session.time }}</span>
+                            {{ session.type }}
                           </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo3" aria-expanded="false" aria-controls="collapseTwo3">
+                          <div class="collapsed card-header" data-toggle="collapse" :data-target='"#collapseC"+i' aria-expanded="false" :aria-controls='"collapseC"+i'>
                             <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
+                              <img class="img-fluid" :src=session.photo alt="">
+                            </div>                     
+                            <h4>{{ session.title }}</h4>
+                            <h5 class="name">{{ session.speaker }}, {{ session.company }}</h5>
                           </div>
                         </div>
-                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo3" data-parent="#accordion3">
+                        <div :id='"collapseC"+i' class="collapse" :aria-labelledby='"headingC"+i' data-parent="#accordion3">
                           <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
+                            <p><pre style="white-space: pre-wrap">{{ session.abstract }}</pre></p>
                           </div>
                         </div>
                       </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingThree3">
-                          <div class="schedule-slot-time">
-                            <span> 14.30 - 14.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseThree3" class="collapse" aria-labelledby="headingThree3" data-parent="#accordion3">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingFour3">
-                          <div class="schedule-slot-time">
-                            <span> 15.00 - 15.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseFour3" aria-expanded="false" aria-controls="collapseFour3">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseFour3" class="collapse" aria-labelledby="headingFour3" data-parent="#accordion3">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingFive3">
-                          <div class="schedule-slot-time">
-                            <span> 15.30 - 15.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseFive3" aria-expanded="false" aria-controls="collapseFive3">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseFive3" class="collapse" aria-labelledby="headingFive3" data-parent="#accordion3">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingSix3">
-                          <div class="schedule-slot-time">
-                            <span> 16.00 - 16.20 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseSix3" aria-expanded="false" aria-controls="collapseSix3">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseSix3" class="collapse" aria-labelledby="headingSix3" data-parent="#accordion3">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
-                      <!-- Session -->
-                      <div class="card">
-                        <div id="headingSeven3">
-                          <div class="schedule-slot-time">
-                            <span> 16.30 - 16.50 </span>
-                            Breakout
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseSeven3" aria-expanded="false" aria-controls="collapseSeven3">
-                            <div class="images-box">
-                              <img class="img-fluid" src="#" alt="">
-                            </div>
-                            <h4>TBD</h4>
-                            <h5 class="name">TBD</h5>
-                          </div>
-                        </div>
-                        <div id="collapseSeven3" class="collapse" aria-labelledby="headingSeven3" data-parent="#accordion3">
-                          <div class="card-body">
-                            <p>
-                              
-                            </p>
-                            <div class="location">
-                              <span>Streaming URL:</span> <a href="#" target="_brank">TBD</a><br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Session -->
                     </div>
                   </div>
                   <!-- Local Track B タイムテーブル ここまで -->
@@ -2252,6 +1723,35 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/form-validator.min.js"></script>
     <script src="assets/js/contact-form-script.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      axios.defaults.baseURL = 'https://node-red-con-2021.herokuapp.com';
+
+      new Vue({
+        el: '#myTabContent',
+        data: {
+          sessions_g: [],
+          sessions_a: [],
+          sessions_b: []
+        },
+        props: [
+         'track'
+        ],
+        mounted :function(){
+          axios.get('/sessions/g')
+            .then(response => this.sessions_g = response.data)
+            .catch(error => console.log(error))
+          axios.get('/sessions/a')
+            .then(response => this.sessions_a = response.data)
+            .catch(error => console.log(error))
+          axios.get('/sessions/b')
+            .then(response => this.sessions_b = response.data)
+            .catch(error => console.log(error))
+        }
+      })
+    </script>
       
   </body>
 </html>
