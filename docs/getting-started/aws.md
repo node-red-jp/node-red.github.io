@@ -37,7 +37,7 @@ aws_secret_access_key = access key
 
 2. 作成したディレクトリに移動します。
 
-3. `exb init`を実行して新規のelastic beanstalkプロジェクトを作成します。好みのリージョンを選択し、プラットフォームにNode.jsを利用します。
+3. `eb init`を実行して新規のelastic beanstalkプロジェクトを作成します。好みのリージョンを選択し、プラットフォームにNode.jsを利用します。
 SSHを利用したい場合、新規のキーペアを生成するのであればコンピュータにSSHがインストールされていることを確認してください。
 
 4. ブラウザでAWSコンソールにログインし、Identity and Access Management（IAM）を選択し、AmazonS3FullAccessポリシーをaws-elasticbeanstalk-ec2-roleに追加します。Note: これによってEBSからS3へのフルアクセスが可能になります。このポリシー自分のセキュリティ要件に応じて調整することを推奨します。
