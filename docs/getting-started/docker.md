@@ -318,7 +318,7 @@ docker run -it -p 1880:1880 -v node_red_data:/data -e NODE_OPTIONS="--max_old_sp
 
 ### ヘッドレスで実行する
 
-ヘッドレス（つまりバックグラウンド）で実行するには、前述のほとんどのコマンドで`-d`を`-it`に置換するだけであり、
+ヘッドレス（つまりバックグラウンド）で実行するには、前述のほとんどのコマンドで`-it`を`-d`に置換するだけであり、
 以下の例のようになります:
 ```
 docker run -d -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
