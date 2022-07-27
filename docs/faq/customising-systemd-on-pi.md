@@ -17,7 +17,8 @@ systemdサービスを設定するために利用することができます。
 
 サービスは`pi`ユーザのために設定されています。
 実行するときのユーザを変更するには、サービス定義`/lib/systemd/system/nodered.service`を編集し、
-`User`、`Group`および`WorkingDirectory`の行を適した形に変更します:
+`User`、`Group`および`WorkingDirectory`の行を適した形に変更します。
+メモリスペースの数値をMBを使って設定することもできます。
 
 ```yaml
 [Service]
@@ -26,8 +27,8 @@ Type=simple
 User=<your_user>
 Group=<your_user>
 WorkingDirectory=/home/<your_user>
-Nice=5
-Environment="PI_NODE_OPTIONS=--max_old_space_size=256"
+
+Environment="NODE_OPTIONS=--max_old_space_size=256"
 ...
 ```
 
@@ -52,7 +53,7 @@ Node-REDフロー内のHTTPリクエストのためにプロキシを利用す�
 ```yaml
 ...
 Nice=5
-Environment="NODE_OPTIONS=--max-old-space-size=128"
+Environment="NODE_OPTIONS=--max-old-space-size=256"
 Environment="HTTP_PROXY=my-proxy-server-address"
 ...
 ```
