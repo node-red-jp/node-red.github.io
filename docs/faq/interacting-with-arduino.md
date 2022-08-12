@@ -15,6 +15,12 @@ Node-REDを利用してArduinoと連携するにはいくつかの方法があ�
 IDEからArduinoを再プログラムしたい場合、
 Node-REDの実行を停止する必要があります。
 
+### Arduino Cloud
+
+[Arduino Cloud](https://cloud.arduino.cc) allows to interact with Arduino boards registered as Internet-Of-Things devices. 
+Nodes are available to be installed in the palette to easily poll data from IoT devices, or receive real-time notifications (see https://flows.nodered.org/node/@arduino/node-red-contrib-arduino-iot-cloud for details and installation).
+
+
 ### シリアル
 
 Arduinoはシリアルデバイスと認識されるため、
