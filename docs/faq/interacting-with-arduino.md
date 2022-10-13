@@ -131,7 +131,7 @@ settings.jsのglobalContextSettingsセクションを以下のように編集す
 すべてにアクセスすることができます...
 
     var five = context.global.jfive;    // create a shorter alias
-    var led = new five.Led(13);         // instatiate the led
+    var led = new five.Led(13);         // instantiate the led
     led.blink(500);                     // blink it every 500 ms
 
 *Note:* これは単純ですが、functionノードが呼び出される度にLEDピンが生成されるため、不適切な例です。
