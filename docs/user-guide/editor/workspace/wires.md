@@ -51,66 +51,66 @@ title: ワイヤー
 もしポートが複数のワイヤーを持っていた場合、
 `Shift`キーを押したままボタンを押したときにどのワイヤーも選択されていなければ、すべてのワイヤーが移動します。
 
-#### Selecting multiple wires
+#### 複数のワイヤーを選択する
 
-You can also select multiple wires by holding <kbd>ctrl</kbd> while clicking on them.
+<kbd>ctrl</kbd>をホールドした状態でクリックすることで複数のワイヤーを選択することもできます。
 
-When you select multiple nodes, we also highlight any wires between them. This can make it easier to follow a flow once you have selected it.
+複数のノードを選択するとき、ノード間のワイヤーもハイライトされます。このことにより、一度選択したノードを追跡しやすくなります。
 
 <div class="figure">
   <img src="../images/select-multiple-wires.png" alt="">
-  <p class="caption">Selecting multiple wires</p>
+  <p class="caption">複数のワイヤーを選択する</p>
 </div>
 
 
-#### Deleting wires
+#### ワイヤーを削除する
 
-1. Select one or more wires 
-    1. To select a single wire, left click 1 wire.
-    1. To select multiple wires, left click 1 wire then while holding <kbd>ctrl/⌘</kbd>, click on the other wires.
-1. Press the <kbd>delete</kbd> key
+1. 1つ以上のワイヤーを選択します
+    1. 1つのワイヤーを選択するには、1つのワイヤーを左クリックします
+    1. 複数のワイヤーを選択するには、<kbd>ctrl/⌘</kbd>をホールドしている状態で1つのワイヤーを左クリックし、他のワイヤーをクリックします。
+1. <kbd>delete</kbd>キーを押します
 
 
-#### Slicing wires
-You can also remove wires by slicing through them. You do this by holding the ctrl (or cmd) key, then dragging the mouse with the right-hand button pressed:
+#### ワイヤーを切る
+ワイヤーを切ることでワイヤーを削除することもできます。ctrl（またはcmd）キーをホールドすることで、右クリックを押したままマウスをドラッグします:
 
 <div class="figure">
   <img src="../images/slicing-wires.gif" alt="">
-  <p class="caption">Slicing wires</p>
+  <p class="caption">ワイヤーを切る</p>
 </div>
 
 
-#### Detaching nodes
+#### ノードをデタッチする
 
-##### Delete Node, keep wires
-You can delete a node from the middle of a flow and have the wiring automatically repair itself in the background:
+##### ノードを削除し、ワイヤーを残す
+フローの中央からノードを削除することができ、バックグラウンドで結びつきが自動的に修正されます。
 
 
 <div class="row">
   <div class="figure column">
     <img src="../images/delete-node-keep-wires.gif" alt="">
-    <p class="caption">Delete Node, keep wires</p>
+    <p class="caption">ノードを削除し、ワイヤーを残す</p>
   </div>
   <table class="action-ref double-column">
-    <tr><th colspan="2">Reference</th></tr>
-    <tr><td>Action</td><td><code>core:core:delete-selection-and-reconnect</code></td></tr>
-    <tr><td>Key shortcut</td><td><kbd>Ctrl/⌘-delete</kbd></td></tr>
+    <tr><th colspan="2">リファレンス</th></tr>
+    <tr><td>動作</td><td><code>core:core:delete-selection-and-reconnect</code></td></tr>
+    <tr><td>ショートカットキー</td><td><kbd>Ctrl/⌘-delete</kbd></td></tr>
   </table>
 </div>
 
-##### Detach Node from wires
-You can also detach a node from the flow without deleting it:
+##### ワイヤーからノードをデタッチする
+ノードを削除せずにフローからノードをデタッチすることもできます:
 
 <div class="row">
   <div class="figure column">
     <img src="../images/detatch-node-from-wire.gif" alt="">
-    <p class="caption">Detach Node from wires</p>
+    <p class="caption">ワイヤーからノードをデタッチする</p>
   </div>
   <table class="action-ref double-column">
-    <tr><th colspan="2">Reference</th></tr>
-    <tr><td>Action</td><td><code>core:detach-selected-nodes</code></td></tr>
-    <tr><td>Key shortcut</td><td><code>*Not assigned</code></td></tr>
+    <tr><th colspan="2">リファレンス</th></tr>
+    <tr><td>動作</td><td><code>core:detach-selected-nodes</code></td></tr>
+    <tr><td>ショートカットキー</td><td><code>*割当なし</code></td></tr>
   </table>
 </div>
 
-<i>\* There is no default shortcut for **Detach Node from wires**, but you can assign one yourself in the Keyboard pane of the Settings dialog.</i> 
+<i>\* **ワイヤーからのノードのデタッチ**にはデフォルトのショートカットはありませんが、設定ダイアログのキーボードペインで割当をおこなうことができます。</i> 
