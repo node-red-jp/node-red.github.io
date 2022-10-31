@@ -36,10 +36,10 @@ Injectノードから送出されるメッセージには、
  - 文字列型、数値型、Boolean型、バッファ型、オブジェクト型
  - 1970年1月1日からのミリ秒で表現されるタイムスタンプ型
 
-The `interval` can be set up to a maximum of 596 hours (approximately 24 days).
-If you are looking at intervals greater than one day - consider using a scheduler node that can cope with power outages and restarts.
+`interval`は最大596時間（約24日）に設定できます。
+1日よりも長いインターバルを設定したい場合、停電や再起動に対応できるスケジューラノードの使用を検討してください。
 
-The `interval between times` and `at a specific time` options use the standard cron system. This means that 20 minutes will be at the next hour, 20 minutes past and 40 minutes past - not in 20 minutes time. If you want every 20 minutes from now - use the `interval` option.
+「指定した時間間隔、日時」と「指定した日時」オプションを一般的なcronシステムとして利用します。これは、ここでの20分は次の正時、そこから20分後、40分後を指すのであって、20分後ではないということです。もし、今から20分ごとにおこないたい場合、「指定した時間間隔」を使います。
 
 *Node-RED 1.1.0から*、Injectノードはメッセージに全てのプロパティをセットできます。
 ***
