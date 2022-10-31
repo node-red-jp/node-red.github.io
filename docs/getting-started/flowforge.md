@@ -7,10 +7,10 @@ redirect_from:
   - /docs/platforms/flowforge
 ---
 
-FlowForge offers a platform to collaborate on Node-RED projects and can be
-installed in a public cloud as well as on ones personal server or local machine.
+FlowForgeはNode-REDプロジェクトと連携するプラットフォームを提供しており、
+個人サーバーやローカルマシンにインストールするのと同じようにパブリッククラウドにインストールすることができます。
 
-There's multiple ways to run FlowForge; locally, docker-based, or in Kubernetes.
-When evaluating if FlowForge is for you, we recommend starting with a
-[local install](https://flowforge.com/docs/install/local/).
+FlowForgeを実行するには、ローカル、Docker、Kubernetesというようにいくつかの方法が存在します;
+自分にFlowForgeがあっているか確かめるには、
+[ローカルインストール](https://flowforge.com/docs/install/local/)から始めることを推奨します。
 
