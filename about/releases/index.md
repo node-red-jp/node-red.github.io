@@ -6,32 +6,32 @@ slug: releases
 
 _Updated: 2022-08-04_
 
-This plan is a guide for how the project plans to schedule upcoming releases, taking
-into account the release schedule of the underlying Node.js runtime.
+この計画は基礎となるNode.jsランタイムのリリーススケジュールを考慮して、
+どのようにプロジェクトが今後のリリースをスケジュールしているかをガイドしたものです。
 
 ![](release-plan.png)
 
 
-The active Node-RED stream (3.x) will get a new minor version release (for example, 3.1 ->  3.2)
-every three months. Maintenance releases (for example 3.1.0 -> 3.1.1) will continue
-to happen as and when they are needed.
+アクティブなNode-RED（3.x系）は3ヶ月ごとに新しいマイナーバージョンアップ（例えば、3.1 ->  3.2）をおこなう予定です。
+メンテナンスリリース (例えば、3.1.0 -> 3.1.1) は、
+必要になったときに随時おこないます。
 
-At the end of April 2023, when Node 14.x reaches its end-of-life, we will publish
-Node-RED 4.x that will *drop* support for Node 14.
+2023年4月末にNode 14.xはEOLになり、
+Node 14のサポートを終了したNode-RED 4.xを公開する予定です。
 
-The 3.x stream will then enter maintenance mode. It will only receive bug fixes
-and security updates. New features could get back-ported from 4.x if there was
-a very good reason to do so as well as people available to do the work.
+そして、3.x系はメンテナンスモードに入ります。
+バグ修正およびセキュリティアップデートのみを受け入れます。
+4.xからの新機能のバックポートするのは、それをおこなう非常に正統な理由と作業をおこなう人員がいる場合になります。
 
-The 4.x stream will continue in active development with a minor release every
-three months or so for a year, when the next major release is made.
+4.x系は、3ヶ月ごとのマイナーリリースと1年ごとのメジャーリリースに向けて、
+アクティブな開発をおこなう予定です。
 
-This proposal means:
+この案が意味するのは:
 
- - We have a regular cycle of releases - getting new features into the hands of users.
- - We have a schedule to help us prioritise and plan backlog items.
- - We can provide longer-term stable releases with a well-known end of life.
- - We have a plan that enables us to make potentially breaking changes once a year.
+ - 定期的なリリースをおこないます - ユーザの手元に新機能を届けます
+ - バックログの優先順位付けと計画に役立つスケジュールを持つことになります
+ - 明確なEOLがあることでより長期の安定したリリースを提供できます
+ - 年に1回、破壊的な変更をおこなえるプランを有することになります
 
 
 Release | Initial         | Maintenance Start    | End-of-life
@@ -41,9 +41,9 @@ Release | Initial         | Maintenance Start    | End-of-life
 3.x     | 2022-07-14      | *2023-04-30* *       | 2024-06-30
 4.x     | *2023-04-30* *  | *2024-04-30* *       | 2025-06-30
 
-_* Dates are subject to change_
+_* 日程は変更になる可能性があります_
 
-References:
+参考情報:
  - [Blog post: Going beyond Node-RED 1.x](https://nodered.org/blog/2020/07/01/release-plans)
  - [Node-RED Release Plan source](https://docs.google.com/spreadsheets/d/1swMH5DXVposBIdnm6Q3BvIplMjAZSZVnU_cRS0jAPjY/edit)
  - [Node.js Releases](https://nodejs.org/en/about/releases/)
