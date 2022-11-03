@@ -42,6 +42,7 @@ Injectノードから送出されるメッセージには、
 「指定した時間間隔、日時」と「指定した日時」オプションを一般的なcronシステムとして利用します。これは、ここでの20分は次の正時、そこから20分後、40分後を指すのであって、20分後ではないということです。もし、今から20分ごとにおこないたい場合、「指定した時間間隔」を使います。
 
 *Node-RED 1.1.0から*、Injectノードはメッセージに全てのプロパティをセットできます。
+
 ***
 
 <img alt="Debug node" style="float: right; margin-top: 20px;" src="/docs/user-guide/images/node_debug.png" width="169px">
