@@ -1,13 +1,13 @@
 ---
 layout: about-single
-title: License
+title: ライセンス
 slug: license
 ---
 
-### License
+### ライセンス
 
-Node-RED is licensed under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
+Node-REDは[Apache 2.0ライセンス](https://www.apache.org/licenses/LICENSE-2.0)下にあります。
 
-Copyright is retained by the OpenJS Foundation.
+コピーライトはOpenJS Foundationが保持しています。
 
-**Note**: any extra third party nodes you install may have their own license.
+**注意**: 自分自身でインストールした外部のサードパーティノードはそれぞれ独自のライセンスを持っていることがあります。

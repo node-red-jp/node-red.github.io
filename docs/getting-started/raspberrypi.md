@@ -44,19 +44,17 @@ npmがインストールする必要のあるバイナリコンポーネント�
  Node.jsが既にNodeSourceからインストールされていると認識され、それがNode 8以上とわかった場合、そのままにします
  - npmを利用して最新版のNode-REDをインストールします
  - 追加で有用なRaspberry Pi固有ノードのコレクションをインストールします
- - サービスとしてNode-REDを実行するように設定し、
- サービスとして動作するためのコマンド一覧を提供します
+ - サービスとしてNode-REDを実行するように設定し、サービスとして動作するためのコマンド一覧を提供します
 
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px;margin-bottom: 40px;">
 <img src="/images/logos/raspberrypi.svg" height="30">
 </div>
-Node-REDは既にRaspbianリポジトリとしてパッケージされており、
-「推奨ソフトウェア」の一覧に含まれています。
+Node-REDは既にRaspbianリポジトリとしてパッケージされており、「推奨ソフトウェア」の一覧に含まれています。
 これは<code>apt-get install nodered</code>によってインストールすることを可能にし、
-またRaspbianパッケージされたバージョンのNode.jsを含んでいますが、<code>npm</code>は含んで<em>いません</em>。
-<p>一見これらのパッケージを利用することは便利に見えますが、
-上述のインストールスクリプトを利用することを<b>強く推奨</b>します。</p>
+またRaspberry Pi OSパッケージされたバージョンのNode.jsを含んでいますが、
+<code>npm</code>は含まれて<em>いません</em>。
+<p><b>注意</b>: 現時点でRaspiOS Bullseyeに含まれているnode.jsはまだv12です。これはインストール可能な最新のNode-REDのバージョンは、2.xブランチとなります。一見これらのパッケージを利用することは便利に見えますが、上述のインストールスクリプトを利用することを<b>強く推奨</b>します。</p>
 </div>
 
 ### ローカルで実行する

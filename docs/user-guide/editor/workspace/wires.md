@@ -51,6 +51,66 @@ title: ワイヤー
 もしポートが複数のワイヤーを持っていた場合、
 `Shift`キーを押したままボタンを押したときにどのワイヤーも選択されていなければ、すべてのワイヤーが移動します。
 
+#### 複数のワイヤーを選択する
+
+<kbd>ctrl</kbd>をホールドした状態でクリックすることで複数のワイヤーを選択することもできます。
+
+複数のノードを選択するとき、ノード間のワイヤーもハイライトされます。このことにより、一度選択したノードを追跡しやすくなります。
+
+<div class="figure">
+  <img src="../images/select-multiple-wires.png" alt="">
+  <p class="caption">複数のワイヤーを選択する</p>
+</div>
+
+
 #### ワイヤーを削除する
 
-ワイヤーを削除するためには、まずワイヤーをクリックして選択し、`Delete`キーを押します。
+1. 1つ以上のワイヤーを選択します
+    1. 1つのワイヤーを選択するには、1つのワイヤーを左クリックします
+    1. 複数のワイヤーを選択するには、<kbd>ctrl/⌘</kbd>をホールドしている状態で1つのワイヤーを左クリックし、他のワイヤーをクリックします。
+1. <kbd>delete</kbd>キーを押します
+
+
+#### ワイヤーを切る
+ワイヤーを切ることでワイヤーを削除することもできます。ctrl（またはcmd）キーをホールドすることで、右クリックを押したままマウスをドラッグします:
+
+<div class="figure">
+  <img src="../images/slicing-wires.gif" alt="">
+  <p class="caption">ワイヤーを切る</p>
+</div>
+
+
+#### ノードをデタッチする
+
+##### ノードを削除し、ワイヤーを残す
+フローの中央からノードを削除することができ、バックグラウンドで結びつきが自動的に修正されます。
+
+
+<div class="row">
+  <div class="figure column">
+    <img src="../images/delete-node-keep-wires.gif" alt="">
+    <p class="caption">ノードを削除し、ワイヤーを残す</p>
+  </div>
+  <table class="action-ref double-column">
+    <tr><th colspan="2">リファレンス</th></tr>
+    <tr><td>動作</td><td><code>core:core:delete-selection-and-reconnect</code></td></tr>
+    <tr><td>ショートカットキー</td><td><kbd>Ctrl/⌘-delete</kbd></td></tr>
+  </table>
+</div>
+
+##### ワイヤーからノードをデタッチする
+ノードを削除せずにフローからノードをデタッチすることもできます:
+
+<div class="row">
+  <div class="figure column">
+    <img src="../images/detatch-node-from-wire.gif" alt="">
+    <p class="caption">ワイヤーからノードをデタッチする</p>
+  </div>
+  <table class="action-ref double-column">
+    <tr><th colspan="2">リファレンス</th></tr>
+    <tr><td>動作</td><td><code>core:detach-selected-nodes</code></td></tr>
+    <tr><td>ショートカットキー</td><td><code>*割当なし</code></td></tr>
+  </table>
+</div>
+
+<i>\* **ワイヤーからのノードのデタッチ**にはデフォルトのショートカットはありませんが、設定ダイアログのキーボードペインで割当をおこなうことができます。</i> 
