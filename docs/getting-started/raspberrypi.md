@@ -10,8 +10,7 @@ redirect_from:
 
 ### 必須条件
 
-Raspbianを利用している場合、最低でもRaspbian Stretch以降のバージョンが必要です。
-Raspbian Busterは現在サポートされています。
+Raspbianを利用している場合、Raspbian Busterは現在サポートされています。
 
 ### Node-REDをインストール・アップグレードする
 
@@ -25,6 +24,8 @@ Raspbian Busterは現在サポートされています。
 ```
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
+
+There are extra parameters you can pass to the script. Add ` --help` to the end of the above command to see them.
 
 <div class="doc-callout">
 <div style="float: left; margin-right: 10px; margin-bottom: 30px;">
@@ -40,8 +41,7 @@ npmがインストールする必要のあるバイナリコンポーネント�
 このスクリプトは以下のことを実行します:
 
  - 存在すれば事前にパッケージされているバージョンのNode-REDおよびNode.jsを除去します
- - [NodeSource](https://github.com/nodesource/distributions/blob/master/README.md)を利用して現行のNode.js LTSリリースをインストールします。
- Node.jsが既にNodeSourceからインストールされていると認識され、それがNode 8以上とわかった場合、そのままにします
+ - if it detects Node.js is already installed, it will ensure it is at least v14. If less than v14 it will stop and let the user decide whether to stay with Node-RED version 1 - or upgrade Nodejs to a more recent LTS version. If nothing is found it will install the Node.js 16 LTS release using the [NodeSource](https://github.com/nodesource/distributions/blob/master/README.md) package.
  - npmを利用して最新版のNode-REDをインストールします
  - 追加で有用なRaspberry Pi固有ノードのコレクションをインストールします
  - サービスとしてNode-REDを実行するように設定し、サービスとして動作するためのコマンド一覧を提供します
@@ -50,10 +50,12 @@ npmがインストールする必要のあるバイナリコンポーネント�
 <div style="float: left; margin-right: 10px;margin-bottom: 40px;">
 <img src="/images/logos/raspberrypi.svg" height="30">
 </div>
+
 Node-REDは既にRaspbianリポジトリとしてパッケージされており、「推奨ソフトウェア」の一覧に含まれています。
 これは<code>apt-get install nodered</code>によってインストールすることを可能にし、
 またRaspberry Pi OSパッケージされたバージョンのNode.jsを含んでいますが、
 <code>npm</code>は含まれて<em>いません</em>。
+
 <p><b>注意</b>: 現時点でRaspiOS Bullseyeに含まれているnode.jsはまだv12です。これはインストール可能な最新のNode-REDのバージョンは、2.xブランチとなります。一見これらのパッケージを利用することは便利に見えますが、上述のインストールスクリプトを利用することを<b>強く推奨</b>します。</p>
 </div>
 
