@@ -5,7 +5,7 @@ title: サポートされているNodeのバージョン
 slug: nodeバージョン
 ---
 
-Node-REDは現在 **Node 12.x LTS** を推奨しています。
+Node-REDは現在 **Node 16.x LTS** を推奨しています。
 
 Version    | Support Level   | Notes
 -----------|-----------------|------
