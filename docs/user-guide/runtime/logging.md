@@ -50,6 +50,7 @@ logging: {
 
 `off`を除き、各レベルはより高いレベルのメッセージを含みます。-
 例えば`warn`レベルは`error`および`fatal`レベルのメッセージを含みます。
+You can find the API reference for how to log to these different logging levels in the [Writing Functions Section](/docs/user-guide/writing-functions#node)
 
 #### `metrics`
 
