@@ -10,7 +10,7 @@ redirect_from:
 
 ### 必須条件
 
-Raspbianを利用している場合、Raspbian Busterは現在サポートされています。
+Raspbianを利用している場合、Raspbian Bullseyeは現在サポートされています。
 
 ### Node-REDをインストール・アップグレードする
 
