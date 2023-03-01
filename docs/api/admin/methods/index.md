@@ -15,8 +15,11 @@ slug:
 [<span class="method">POST</span>/auth/token](post/auth/token)             | アクセストークンを発行する
 [<span class="method">POST</span>/auth/revoke](post/auth/revoke)           | アクセストークンを取り消す
 [<span class="method">GET</span>/settings](get/settings)                   | ランタイムの設定を取得する
+[<span class="method">GET</span>/diagnostics](get/diagnostics)             | Get the runtime diagnostics
 [<span class="method">GET</span>/flows](get/flows)                         | アクティブなフローの設定を取得する
+[<span class="method">GET</span>/flows/state](get/flows/state)             | Get the active flow's runtime state
 [<span class="method">POST</span>/flows](post/flows)                       | アクティブなフローの設定を行う
+[<span class="method">POST</span>/flows/state](post/flows/state)           | Set the active flow's runtime state
 [<span class="method">POST</span>/flow](post/flow)                         | アクティブな設定にフローを追加する
 [<span class="method">GET</span>/flow/:id](get/flow)                       | フローの設定を取得する
 [<span class="method">PUT</span>/flow/:id](put/flow)                       | フローの設定を更新する
