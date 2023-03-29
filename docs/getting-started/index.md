@@ -94,19 +94,6 @@ Node-REDを実行したい環境を選び、以下のガイドに従ってくだ
 </div>
 
 <div class="post-preview">
-  <a href="ibmcloud">
-    <div class="post-header">
-      <img src="/images/platform-cloud.png">
-      <h2>IBM Cloud</h2>
-    </div>
-    <div class="post-content">
-      数クリックでIBMクラウドカタログからNode-REDをデプロイします
-    </div>
-  </a>
-</div>
-
-
-<div class="post-preview">
   <a href="aws">
     <div class="post-header">
       <img src="/images/platform-cloud.png">
