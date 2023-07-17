@@ -10,8 +10,15 @@ slug: パッケージング
 
 ### 命名規則
 
-自作のノードの名称に**node-red**を利用したい場合、Node-REDプロジェクトによってメンテナンスされていないことを明確にするため、プレフィックスとして`node-red-contrib-`を利用してください。
-あるいは、`node-red`をプレフィックスとして利用しない任意の名称を使用することができます。
+**We [updated our naming requirements](/blog/2022/01/31/introducing-scorecard) on 31st January 2022. The following applies to modules first published after that date.**
+
+Packages should use a [scoped name](https://docs.npmjs.com/cli/v8/using-npm/scope) - such as `@myScope/node-red-sample`. That can be under a user scope or an organisation scope.
+
+Nodes published under a scoped name have no further requirements on their name.
+They could use `@myScope/node-red-sample` or just `@myScope/sample` - although
+having `node-red` in the name does help to associate the module with the project.
+
+If you are forking an existing package to provide a fix, you can keep the same name but released under your own scope. But please keep in mind, forking should always be a last resort if the original maintainer is not responsive to your contributions.
 
 ### ディレクトリ構造
 
@@ -32,7 +39,8 @@ slug: パッケージング
 ```
 
 パッケージ内で使用されるディレクトリ構造に厳密な要件はありません。
-パッケージに複数のノードが含まれている場合、それらすべてが同じディレクトリに存在させることもできますが、
+パッケージに複数のノードが含まれている場合、
+それらすべてが同じディレクトリに存在させることもできますが、
 それぞれを独自のサブディレクトリに配置することもできます。
 
 ### ノードモジュールをローカルでテストする
@@ -78,6 +86,17 @@ npmリポジトリ内でノードを発見できるようにするため、
         "nodes": {
             "sample": "sample/sample.js"
         }
+    }
+}
+{% endhighlight %}
+
+You should specify what versions of Node-RED your nodes support with a `version` entry. For example, the following means the node requires Node-RED 2.0 or later.
+
+{% highlight json %}
+"node-red"     : {
+    "version": ">=2.0.0",
+    "nodes": {
+        "sample": "sample/sample.js"
     }
 }
 {% endhighlight %}

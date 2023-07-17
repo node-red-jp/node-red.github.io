@@ -12,29 +12,39 @@ __0.20.0版から__
 
 ツリー構造のデータを表示するためのリストです。これは0.20.0版で追加され、非常に最小限の機能を持っています。
 
+- [Options](#options)
+- [Methods](#methods)
+- [Events](#events)
+
 <div class="widget">
-    <div class="col-4-12">
-        <h3>オプション</h3>
-        <table>
-            <tr><td><a href="#options-data">data</a></td></tr>
-        </table>
+    <div style="clear:both">
+        <div class="col-1-2">
+            <h3>オプション</h3>
+            <table>
+                <tr><td><a href="#options-data">data</a></td></tr>
+            </table>
+        </div>
+        <div class="col-1-2">
+            <h3>メソッド</h3>
+            <table>
+                <tr><td><a href="#methods-data">data</a></td></tr>
+                <tr><td><a href="#methods-empty">empty</a></td></tr>
+                <tr><td><a href="#methods-show">show</a></td></tr>
+            </table>
+        </div>
     </div>
-    <div class="col-4-12">
-        <h3>メソッド</h3>
-        <table>
-            <tr><td><a href="#methods-data">data</a></td></tr>
-            <tr><td><a href="#methods-empty">empty</a></td></tr>
-            <tr><td><a href="#methods-show">show</a></td></tr>
-        </table>
-    </div>
-    <div class="col-4-12">
-        <h3>イベント</h3>
-        <table>
-            <tr><td><a href="#events-treelistselect">treelistselect</a></td></tr>
-            <tr><td><a href="#events-treelistmouseout">treelistmouseout</a></td></tr>
-            <tr><td><a href="#events-treelistmouseover">treelistmouseover</a></td></tr>
-        </table>
-        <h3>型</h3>
+    <div style="clear:both">
+        <div class="col-1-2">
+            <h3>イベント</h3>
+            <table>
+                <tr><td><a href="#events-treelistselect">treelistselect</a></td></tr>
+                <tr><td><a href="#events-treelistmouseout">treelistmouseout</a></td></tr>
+                <tr><td><a href="#events-treelistmouseover">treelistmouseover</a></td></tr>
+            </table>
+        </div>
+        <div class="col-1-2">
+            <h3>型</h3>
+        </div>
     </div>
 </div>
 
@@ -72,10 +82,13 @@ __0.20.0版から__
 `id`       | (オプション) 項目のユニークな識別子
 `class`    | (オプション) 項目に適用するCSSのクラス
 `icon`     | (オプション) アイコンとして適用するCSSのクラス、例としては`"fa fa-rocket"`
+`checkbox` | (optional) If set, displays a checkbox next to the item.
+`radio`    | (optional) *since 2.1* If set, and `checkbox` not set, displays a radio box next to the item. The value should be a string used to group the radio buttons.
 `selected` | (オプション) 設定されている場合、項目の横にチェックボックスを表示します。その状態はこのプロパティのブール値が設定されます。
 `children` | (オプション) この項目の子要素を特定します。子要素がすぐに分かる場合、配列として提供され、そうでない場合、非同期に子要素を取得できる関数として提供されます。詳細は以下を参照してください。
 `expanded` | (オプション) この項目が子要素を持つ場合、子要素を表示するかどうかを設定します
-
+`deferBuild` | (optional) Delay building any UI elements for the item's children until it is expanded for the first time. This can have a significant performance benefit for large data sets.
+`element` | (optional) Custom DOM element to be used in place of the node's label. This is ignored if `label` is set.
 
 `children`プロパティが関数として提供された場合、
 この関数はコールバック関数の唯一の引数を受け取る必要があります。
@@ -89,6 +102,28 @@ children: function(done) {
     })
 }
 ```
+
+After the item has been added to the treeList, it is augmented with some additional properties
+and functions:
+
+Property      | Description
+--------------|--------------------------
+`item.parent` | The parent item in the tree
+`item.depth`  | The depth in the tree, with `0` being the root of the tree
+`item.treeList.container` | The DOM element containing the item
+`item.treeList.label`     | The DOM element containing the label
+
+Function         | Description
+-----------------|---------------------------
+`item.treeList.remove(detach)` | Remove the item from the tree. Set `detach` to `true` to preserve any event handlers on the item - required if the item is going to be readded elsewhere.
+`item.treeList.makeLeaf(detachChildElements)` | Turns an element with children into a leaf node, removing the UI decoration. Set `detachChildElements` to `true` to preserve any child element event handlers.
+`item.treeList.makeParent(children)` | Make the item a parent item, adding the child items
+`item.treeList.insertChildAt(item, pos, select)` | Adds a new item at the desired position, optionally selecting it after doing so
+`item.treeList.addChild(item, select)` | Appends a child item, optionally selecting it after doing so
+`item.treeList.expand(done)` | Expand the item to show child items, with optional `done` callback that is called when complete
+`item.treeList.collapse()` | Collapse the item to hide its children
+`item.treeList.sortChildren(sortFunction)` | Sort the item's children using the provided sort function. The sort function should match the compareFunction used with [`Array.sort()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+`item.treeList.replaceElement(element)` | Replace the item's custom DOM element
 
 ### メソッド
 

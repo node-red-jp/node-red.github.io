@@ -6,7 +6,9 @@ title: ノードの開発
 
 Node-REDを拡張する主な方法は、パレットに新しいノードを追加することです。
 
-ノードはnpmモジュールとして[パブリックnpmリポジトリ](https://www.npmjs.com/)へ公開し、[Node-REDフローライブラリ](https://flows.nodered.org)へ追加することで、コミュニティで利用できるようになります。
+ノードはnpmモジュールとして[パブリックnpmリポジトリ](https://www.npmjs.com/)へ公開し、
+[Node-REDフローライブラリ](https://flows.nodered.org)へ追加することで
+コミュニティで利用できるようになります。
 
  - [はじめてのノード開発](first-node)
  - [JavaScriptファイル](node-js)

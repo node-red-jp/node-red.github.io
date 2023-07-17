@@ -41,7 +41,7 @@ title: ユーザガイド
 
  - [Node-REDフォーラム](https://discourse.nodered.org)に参加する
  - [Slack](http://nodered.org/slack/)に参加する
- - [ブログ](/blog)を購読する
+ - [ブログ](https://nodered.org/blog/)を購読する
  - ツイッターで[@nodered](http://twitter.com/nodered)をフォローする
 
 過去使われていた[Google Group mailing list](https://groups.google.com/forum/#!forum/node-red)もあります。 - これは役目を終えつつあり、現在[フォーラム](https://discourse.nodered.org)が利用されていますが、メーリングリストには検索する価値のある有用なコンテンツがまだ多く残っています。

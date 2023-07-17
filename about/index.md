@@ -3,7 +3,8 @@ layout: about-single
 title: 概要
 ---
 
-Node-REDはフローベースドプログラミング(flow-based programming)ツールであり、元は[IBM Emerging Technology Services](https://emerging-technology.co.uk)チームによって開発され、[JS Foundation](https://js.foundation)配下のプロジェクトを経て、2019年3月よりNode.js FoundationとJS Foundationが合併して設立された[OpenJS Foundation](https://openjsf.org/)にホストされています。
+Node-REDはフローベースドプログラミング(flow-based programming)ツールであり、元は[IBM's Emerging Technology Services](https://emerging-technology.co.uk)チームによって開発され、
+現在は[OpenJS Foundation](https://openjsf.org/)の一部となっています。
 
 ### フローベースドプログラミング
 
@@ -41,7 +42,9 @@ MQTTトピック間のマッピングを視覚化および操作するための�
 2013年9月にオープンソース化されて以来オープンで開発され、
 2016年10月にJS Foundationの創設プロジェクトの1つとなったことで
 最高潮に達しました。
-2018年には1,000,000インストールを記録しました。
+
+2019年、Node.js FoundationはJS Foundationと統合され、
+[OpenJS Foundation](https://openjsf.org/)となりました。
 
 <div class="doc-callout">
 <b>なぜ、Node-REDと呼ばれるのでしょうか?</b> この名称は「Code Red」に似た語感の気軽な言葉遊びです。
@@ -65,3 +68,12 @@ MQTTトピック間のマッピングを視覚化および操作するための�
 <div style="text-align: center">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/Bbg1017amZs" frameborder="0" allowfullscreen></iframe>
 </div>
+
+### Citing Node-RED
+
+If you need to cite the project in a paper, please use the following information:
+
+-----|----
+**Name** | `Node-RED`
+**Author** | `OpenJS Foundation & Contributors`
+**URL** |  If you are citing the project in general, use the project website URL - `https://nodered.org`. <br/>If you are citing a particular version, use either the website, or find the [release page on GitHub](https://github.com/node-red/node-red/releases) for the version you are citing.

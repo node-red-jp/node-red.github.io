@@ -466,12 +466,5 @@ or within a docker-compose file
       - TZ=America/New_York
 ```
 
-or within a docker-compose file
-```
-  node-red:
-    environment:
-      - TZ=America/New_York
-```
-
 リファレンス:
 https://groups.google.com/forum/#!topic/node-red/ieo5IVFAo2o

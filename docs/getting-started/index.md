@@ -82,17 +82,16 @@ Node-REDを実行したい環境を選び、以下のガイドに従ってくだ
 </div>
 
 <div class="post-preview">
-  <a href="ibmcloud">
+  <a href="flowforge">
     <div class="post-header">
       <img src="/images/platform-cloud.png">
-      <h2>IBM Cloud</h2>
+      <h2>FlowForge</h2>
     </div>
     <div class="post-content">
-      数クリックでIBMクラウドカタログからNode-REDをデプロイします
+      Node-REDを複数のテナントで実行する
     </div>
   </a>
 </div>
-
 
 <div class="post-preview">
   <a href="aws">
@@ -118,14 +117,4 @@ Node-REDを実行したい環境を選び、以下のガイドに従ってくだ
   </a>
 </div>
 
-<div class="post-preview">
-  <a href="flowforge">
-    <div class="post-header">
-      <img src="/images/platform-cloud.png">
-      <h2>FlowForge Community Edition</h2>
-    </div>
-    <div class="post-content">
-      Node-REDを複数のテナントで実行する
-    </div>
-  </a>
-</div>
+

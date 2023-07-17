@@ -173,8 +173,11 @@ Node-REDはプロジェクトの初期のデフォルトファイルを自動的
 
 リスト上部に「ブランチ（Branch）」ボタンがあります。
 これはリポジトリ内でブランチのチェックアウト/作成を可能にします。
-また、追跡のためにリモート/ブランチを確認し、
-リモートに対して変更をプッシュ/プルすることを可能にします。
+
+If your repository has a remote repository configured, there is also a button that
+shows how many commits ahead and/or behind your local repository is compared with the
+remote. It allows you to pick the remote/branch to track, and push/pull your changes
+to the remote.
 
 Node-REDエディタはシンプルなユーザ体験を提供しようとしており、
 Gitの提供する様々なオプションすべてを公開しないようにしています。
@@ -218,6 +221,9 @@ Node-REDは常時1つのプロジェクトのみを実行します。
 
 *Note:* `http` URLでは、URL自体にユーザ名およびまたはパスワードを含ませないでください。
 これらは入力を促されたときに別々に入力すべきです。
+
+For `ssh` urls from GitHub they will need to be changed from 
+`git@github.com:username/project` to `ssh://git@github.com/username/project`
 
 *Node-REDはあなたがGitクライアントに設定しているかもしれない如何なる認証情報ヘルパーも現在利用していません。
 この部分はコミュニティからのフィードバックを求めています。*

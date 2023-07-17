@@ -88,7 +88,6 @@ return [msg, newMsg];
 
 これにより、編集ダイアログにセットされた出力数を変数にハンドルして関数を作成することができます。
 
-例えば、もし
 たとえば、受信メッセージを出力の間でランダムに拡散したい場合は、次のように書きます:
 
 {% highlight javascript %}
@@ -449,13 +448,23 @@ functionGlobalContext: {
 
 *Node-RED 1.3.0以降*
 
-*settings.js* ファイルの `functionExternalModules` を `true` にセットすることで、Functionノードの
-編集ダイアログにはモジュールを追加できるリストが表示されます。
+*settings.js* ファイルの `functionExternalModules` を `true` にセットすることで、
+Functionノードの編集ダイアログには
+モジュールを追加できるリストが表示されます。
 また、ノードのコード内でモジュールを参照するために使用する変数を指定します。
 
 <img style="margin-left: 20px;" src="/docs/user-guide/images/function_external_modules.png" width="500px">
 
 追加するモジュールは、ノードがデプロイされる時に `~/.node-red/externalModules/` に自動的にインストールされます。
+
+
+
+
+
+
+
+
+
 
 ***
 

@@ -7,7 +7,7 @@ redirect_from:
   - /docs/platforms/windows
 ---
 
-このページでは、Microsoft Windows環境におけるNode-REDのセットアップについて具体的な手順を紹介しています。この手順はWindows 10固有ですが、Windows 7およびWindows Server 2008R2以降でも利用できるはずです。Windows 7またはWindows Server 2008R2以前のバージョンは現在サポートされていないため、推奨できません。
+このページでは、Microsoft Windows環境におけるNode-REDのセットアップについて具体的な手順を紹介しています。この手順はWindows 10固有です。Windows 7およびWindows Server 2008R2以降でも利用できるはずですが、現在サポートされていないことから推奨しません。
 
 <div class="doc-callout">
 <em>Note</em> : 以下の説明の中では、「コマンドプロンプト」についての説明があります。コマンドプロンプトと書かれている場合、Windows cmdまたはPowerShellターミナルシェルを指します。<a href="https://support.microsoft.com/en-us/help/4027690/windows-powershell-is-replacing-command-prompt">PowerShell</a>を使うことで、Windowsのすべての新しいバージョンでLinux/Macに似たコマンドやフォルダ名を利用できるため、PowerShellの利用を推奨します。
@@ -17,7 +17,7 @@ redirect_from:
 
 #### 1. Node.jsのインストール
 
-Node.jsの最新版12.x LTSを[Node.js公式ホームページ](https://nodejs.org/ja/)からダウンロードします。このサイトはあなたのシステムに最適なバージョンを提供します。
+Node.jsの最新版LTSを[Node.js公式ホームページ](https://nodejs.org/ja/)からダウンロードします。このサイトはあなたのシステムに最適なバージョンを提供します。
 
 ダウンロードしたMSIファイルを実行します。Node.jsのインストールにはローカル管理者権限が必要です。
 つまり、ローカル管理者ではない場合、インストール時に管理者パスワードの入力を求められます。デフォルト設定でインストールをおこなってください。
@@ -31,8 +31,8 @@ cmdを利用する場合: `node --version && npm --version`
 
 以下のような出力が戻ってくるはずです。:
 
-    v12.15.0
-    6.14.5
+    v18.15.0
+    9.5.0
 
 #### 2. Node-REDのインストール
 

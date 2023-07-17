@@ -38,8 +38,7 @@ redirect_from:
 
 ### 自動起動
 
-Termux内でアプリを起動する推奨の方法は、[Termux:Bootアプリ](https://github.com/termux/termux-boot)を使用することです。
-([F-droid](https://f-droid.org/en/packages/com.termux.boot/) または [Play Store](https://play.google.com/store/apps/details?id=com.termux.boot) にあります)
+Termux内でアプリを起動する推奨の方法は、[Termux:Bootアプリ](https://github.com/termux/termux-boot)を使用することです。([F-droid](https://f-droid.org/en/packages/com.termux.boot/) または [Play Store](https://play.google.com/store/apps/details?id=com.termux.boot) にあります)
 
 起動時のTermux自動起動に役立つアプリがあります。 - <a href="https://play.google.com/store/apps/details?id=com.autostart&amp;hl=en_GB">Autostart - No Root</a>
 

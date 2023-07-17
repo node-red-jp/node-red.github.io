@@ -1,16 +1,22 @@
 ---
 layout: docs-getting-started
-title: FlowForge Community Edition
+title: FlowForge
 slug: flowforge
 toc: toc-user-guide.html
 redirect_from:
   - /docs/platforms/flowforge
 ---
 
-FlowForgeはNode-REDプロジェクトと連携するプラットフォームを提供しており、
-個人サーバーやローカルマシンにインストールするのと同じようにパブリッククラウドにインストールすることができます。
+FlowForge allows organizations to reliably deliver Node-RED applications in a continuous, collaborative and secure manner. The key features of FlowForge are:
+* Collaborative development
+* Manage remote deployments
+* Steamline application delivery
+* Flexible deployment models
+* Professional support for Node-RED and FlowForge deployments
 
-FlowForgeを実行するには、ローカル、Docker、Kubernetesというようにいくつかの方法が存在します;
-自分にFlowForgeがあっているか確かめるには、
-[ローカルインストール](https://flowforge.com/docs/install/local/)から始めることを推奨します。
+
+A [free trial](https://app.flowforge.com/account/create) is available for FlowForge Cloud. 
+
+You can also run FlowForge locally, docker-based, or in Kubernetes. Check out our
+[installation instructions.](https://flowforge.com/docs/install/).
 
