@@ -4,15 +4,15 @@ toc: toc-creating-nodes.html
 title: 編集ダイアログ
 slug: edit dialog
 ---
-<script src="js/jquery-ui.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
 <script>
     var RED = {};
     RED.settings = {};
     RED.editor = { editJSON: function(){}}
 </script>
-<script src="js/utils.js"></script>
-<script src="js/typedInput.js"></script>
-<script src="js/popover.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/typedInput.js"></script>
+<script src="/js/popover.js"></script>
 <link rel="stylesheet" href="/css/editor-style.min.css">
 
 ノードの編集ダイアログの主な用途は、
@@ -134,11 +134,6 @@ Node-REDはいくつかの標準UIウィジェットを提供しており、
 `TypedInput`ウィジェットの全APIドキュメントは、
 利用可能なビルトインされている型一覧も含めて[こちら](/docs/api/ui/typedInput/)で入手できます。
 
-<i>`TypedInput`に含まれているドロップダウンメニューが
-このページにうまく組み込めていないことを認識しています。 - クリックされたときにページが移動してしまいます。
-これは修正される予定です。</i>
-
-
 <table class="ui-examples">
 <tr>
     <td>
@@ -218,6 +213,64 @@ Node-REDはいくつかの標準UIウィジェットを提供しており、
          </div>
     </td>
 </tr>
+<tr>
+    <td>
+        <h5>TypedInput<br>Select box</h5>
+        <span class="red-ui-editor"><input type="text" id="node-input-example4" value="payload"></span>
+    </td>
+    <td>
+        <div class="figure">
+            <pre>&lt;input type="text" id="node-input-example4"&gt;</pre>
+            <p class="caption">HTML</p>
+        </div>
+        <div class="figure">
+            <pre>$("#node-input-example4").typedInput({
+    types: [
+        {
+            value: "fruit",
+            options: [
+                { value: "apple", label: "Apple"},
+                { value: "banana", label: "Banana"},
+                { value: "cherry", label: "Cherry"},
+            ]
+        }
+    ]
+})</pre>
+            <p class="caption">oneditprepare</p>
+         </div>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <h5>TypedInput<br>Multiple Select box</h5>
+        <span class="red-ui-editor"><input type="text" id="node-input-example5" value="payload"></span>
+    </td>
+    <td>
+        <div class="figure">
+            <pre>&lt;input type="text" id="node-input-example5"&gt;</pre>
+            <p class="caption">HTML</p>
+        </div>
+        <div class="figure">
+            <pre>$("#node-input-example5").typedInput({
+    types: [
+        {
+            value: "fruit",
+            multiple: "true",
+            options: [
+                { value: "apple", label: "Apple"},
+                { value: "banana", label: "Banana"},
+                { value: "cherry", label: "Cherry"},
+            ]
+        }
+    ]
+})</pre>
+            <p class="caption">oneditprepare</p>
+         </div>
+         <div>The resulting value of the multiple select is a comma-separated list of the selected options.</div>
+    </td>
+</tr>
+
 </table>
 <script>
 $(function() {
@@ -225,6 +278,23 @@ $(function() {
     $("#node-input-example2").typedInput({type:'json',types:['json']})
     $("#node-input-example3").typedInput({type:"msg", types:["msg", "flow","global"]})
 
+    $("#node-input-example4").typedInput({type:"fruit", types:[{
+        value: "fruit",
+        options: [
+            { value: "apple", label: "Apple"},
+            { value: "banana", label: "Banana"},
+            { value: "cherry", label: "Cherry"},
+        ]
+        }]})
+    $("#node-input-example5").typedInput({type:"fruit", types:[{
+        value: "fruit",
+        multiple: true,
+        options: [
+            { value: "apple", label: "Apple"},
+            { value: "banana", label: "Banana"},
+            { value: "cherry", label: "Cherry"},
+        ]
+        }]})
     $(".my-button-group").on("click", function() {
         $(".my-button-group").removeClass("selected");
         $(this).addClass("selected");
@@ -234,12 +304,14 @@ $(function() {
 
 ### 複数行テキストエディタ
 
-Node-REDは[Aceコードエディタ](https://ace.c9.io/)を元にした複数行テキストエディタを持っています。
+Node-REDは[Aceコードエディタ](https://ace.c9.io/)を元にした複数行テキストエディタを持っていますが、
+ユーザ設定で有効化されることで[Monaco editor](https://microsoft.github.io/monaco-editor/)を使うことができます。
 
 <div style="width: 467px" class="figure align-centre">
   <img src="images/ace-editor.png" alt="Multi-line Text Editor">
   <p class="caption">複数行テキストエディタ</p>
 </div>
+
 
 以下の例では、編集するノードのプロパティを`exampleText`と呼びます。
 

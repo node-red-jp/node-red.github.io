@@ -86,9 +86,3 @@ Node-REDを起動するには
 以下のコマンドを手動で実行してインストールします。:
 
     sudo npm install -g --unsafe-perm beaglebone-io johnny-five node-red-contrib-gpio
-
-*Note*: BBB固有ノードセットも利用できます。
-しかし、これらは既にサポートされていないライブラリ（octalbonescript）であり、将来的に利用することは推奨できませんが、
-一般的なGPIOノード以上の追加機能を持っているために注目に値します。
-
-    sudo npm install -g --unsafe-perm node-red-node-beaglebone
