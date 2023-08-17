@@ -82,7 +82,7 @@ Node-REDを実行したい環境を選び、以下のガイドに従ってくだ
 </div>
 
 <div class="post-preview">
-  <a href="flowforge">
+  <a href="flowfuse">
     <div class="post-header">
       <img src="/images/platform-cloud.png">
       <h2>FlowFuse</h2>
