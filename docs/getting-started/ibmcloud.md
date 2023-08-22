@@ -7,6 +7,6 @@ redirect_from:
   - /docs/platforms/bluemix
 ---
 
-As of February 2023, IBM Cloud no longer provides a Node-RED Starter Kit.
+2023年2月時点で、IBM CloudはNode-REDスターターキットを提供していません。
 
-See this [announcement](https://www.ibm.com/cloud/blog/announcements/deprecation-of-ibm-cloud-starter-kits) for details.
+詳細はこちらの[アナウンス](https://www.ibm.com/cloud/blog/announcements/deprecation-of-ibm-cloud-starter-kits)をご覧ください。

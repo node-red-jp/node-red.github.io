@@ -8,17 +8,17 @@ redirect_from:
   - /docs/getting-started/flowforge
 ---
 
-FlowFuse allows organizations to reliably deliver Node-RED applications in a continuous,
-collaborative and secure manner. The key features of FlowFuse are:
-* Collaborative development
-* Manage remote deployments
-* Steamline application delivery
-* Flexible deployment models
-* Professional support for Node-RED and FlowFuse deployments
+FlowFuseによって組織はNode-REDアプリケーションを継続的、協調的でセキュアな方法で確実に提供できるようになります。
+FlowFuseの主な特徴は以下です：
+* 共同開発
+* リモートデプロイの管理
+* 効率的なアプリケーションデリバリ
+* 柔軟なデプロイモデル
+* Node-REDおよびFlowFuseデプロイに対するプロフェッショナルサポート
 
 
-A [free trial](https://app.flowforge.com/account/create) is available for FlowFuse Cloud. 
+FlowFuse Cloudの[フリートライアル](https://app.flowforge.com/account/create)が利用できます。
 
-You can also run FlowFuse locally, docker-based, or in Kubernetes. Check out our
-[installation instructions.](https://flowfuse.com/docs/install/).
+また、FlowFuseをローカル、Docker上、Kubernetesで実行することができます。
+[インストール手順](https://flowfuse.com/docs/install/)を確認してください。
 
