@@ -82,10 +82,10 @@ Node-REDを実行したい環境を選び、以下のガイドに従ってくだ
 </div>
 
 <div class="post-preview">
-  <a href="flowforge">
+  <a href="flowfuse">
     <div class="post-header">
       <img src="/images/platform-cloud.png">
-      <h2>FlowForge</h2>
+      <h2>FlowFuse</h2>
     </div>
     <div class="post-content">
       Node-REDを複数のテナントで実行する
