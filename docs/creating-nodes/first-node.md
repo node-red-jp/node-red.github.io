@@ -116,9 +116,9 @@ module.exports = function(RED) {
         defaults: {
             name: {value:""}
         },
-        inputs:1,
-        outputs:1,
-        icon: "file.png",
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
         label: function() {
             return this.name||"lower-case";
         }
