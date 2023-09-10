@@ -88,6 +88,13 @@ let foo = env.get("FOO");
 
 フローまたはグループレベルの環境変数を設定することができます。フローまたはグループの編集ダイアログの適切なタブで実行できます。
 
+### Global environment variables
+
+*Since [Node-RED 3.1](/blog/2023/09/06/version-3-1-released#global-environment-variables)*
+
+Environment variables can be set at a global level within the editor. This is done in the User Settings dialog.
+
+
 ### ネストされた環境変数にアクセスする
 
 サブフローで環境変数にアクセスするとき、
@@ -134,6 +141,10 @@ Node-REDはノード、フロー、グループに関する情報を公開する
 - `NR_GROUP_NAME` - 所属しているグループの名前
 - `NR_FLOW_ID` - ノードが存在するフローのID
 - `NR_FLOW_NAME` - ノードが存在するフローの名前
+- `NR_SUBFLOW_NAME` - the Name of the containing subflow instance node (*since Node-RED 3.1*)
+- `NR_SUBFLOW_ID` - the ID of the containing subflow instance node (*since Node-RED 3.1*)
+- `NR_SUBFLOW_PATH` - the Path of the containing subflow instance node (*since Node-RED 3.1*)
+
 
 Node-REDによって生成されたIDは一意であることが保証されていますが、名前はそうではないことに注意してください。ノード、フロー、グループが与えられた名前を持っていない場合、対応する環境変数は空の文字列となります。ノードがグループの一部ではない場合、そのグループID環境変数も空文字列となります。
 

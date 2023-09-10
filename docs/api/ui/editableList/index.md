@@ -51,6 +51,7 @@ slug:
                 <tr><td><a href="#methods-show">show</a></td></tr>
                 <tr><td><a href="#methods-sort">sort</a></td></tr>
                 <tr><td><a href="#methods-length">length</a></td></tr>
+                <tr><td><a href="#methods-cancel">cancel</a></td></tr>
             </table>
         </div>
     </div>
@@ -468,6 +469,16 @@ $("ol.list").editableList('sort', function(dataA, dataB) {
 
 ```javascript
 var length = $("ol.list").editableList('length');
+```
+
+#### <a href="#methods-show" name="methods-cancel">cancel()</a>
+
+*3.1.0から*
+
+リストのアイテムソート操作をキャンセルします。
+
+```javascript
+$("ol.list").editableList('cancel');
 ```
 
 <style>

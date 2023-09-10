@@ -27,7 +27,7 @@ slug: 外観
 
 {% highlight javascript %}
 ...
-icon: "file.png",
+icon: "file.svg",
 ...
 {% endhighlight %}
 
