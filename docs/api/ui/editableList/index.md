@@ -473,9 +473,9 @@ var length = $("ol.list").editableList('length');
 
 #### <a href="#methods-show" name="methods-cancel">cancel()</a>
 
-*Since 3.1.0*
+*3.1.0から*
 
-Cancels an item sort operation on the list.
+リストのアイテムソート操作をキャンセルします。
 
 ```javascript
 $("ol.list").editableList('cancel');
