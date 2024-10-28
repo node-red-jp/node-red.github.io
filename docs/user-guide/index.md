@@ -8,7 +8,6 @@ title: ユーザガイド
  - [Node-REDをインストールする](/docs/getting-started)
  - [はじめてのフロー作成](/docs/tutorials/first-flow)
  - [Node-REDの概念](/docs/user-guide/concepts)
- - [Node-REDエディタを利用する](/docs/user-guide/editor)
 
 ### Node-REDを設定する
 
@@ -19,6 +18,7 @@ title: ユーザガイド
 
 ### Node-REDを利用する
 
+- [Node-REDエディタを利用する](/docs/user-guide/editor)
 - [コアノード](/docs/user-guide/nodes)
 - [パレットにノードを追加する](/docs/user-guide/runtime/adding-nodes)
 - [Functionノードを利用する](/docs/user-guide/writing-functions)
@@ -41,7 +41,7 @@ title: ユーザガイド
 
  - [Node-REDフォーラム](https://discourse.nodered.org)に参加する
  - [Slack](http://nodered.org/slack/)に参加する
- - [ブログ](/blog)を購読する
- - ツイッターで[@nodered](http://twitter.com/nodered)をフォローする
-
-過去使われていた[Google Group mailing list](https://groups.google.com/forum/#!forum/node-red)もあります。 - これは役目を終えつつあり、現在[フォーラム](https://discourse.nodered.org)が利用されていますが、メーリングリストには検索する価値のある有用なコンテンツがまだ多く残っています。
+ - [ブログ](https://nodered.org/blog/)を購読する
+ - 我々をフォローする
+    - Mastodon: [@nodered@social.nodered.org](https://social.nodered.org/@nodered)
+    - Twitter: [@nodered](http://twitter.com/nodered)

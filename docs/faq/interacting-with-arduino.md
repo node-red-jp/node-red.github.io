@@ -15,6 +15,12 @@ Node-REDを利用してArduinoと連携するにはいくつかの方法があ�
 IDEからArduinoを再プログラムしたい場合、
 Node-REDの実行を停止する必要があります。
 
+### Arduino Cloud
+
+[Arduino Cloud](https://cloud.arduino.cc)はIoTデバイスとして登録したArduinoボードと連携することができます。
+パレットにノードをインストールしてIoTデバイスからデータを簡単にポーリングしたり、リアルタイムの通知を受信したりできます（詳細およびインストールはhttps://flows.nodered.org/node/@arduino/node-red-contrib-arduino-iot-cloudを参照してください）。
+
+
 ### シリアル
 
 Arduinoはシリアルデバイスと認識されるため、
@@ -125,7 +131,7 @@ settings.jsのglobalContextSettingsセクションを以下のように編集す
 すべてにアクセスすることができます...
 
     var five = context.global.jfive;    // create a shorter alias
-    var led = new five.Led(13);         // instatiate the led
+    var led = new five.Led(13);         // instantiate the led
     led.blink(500);                     // blink it every 500 ms
 
 *Note:* これは単純ですが、functionノードが呼び出される度にLEDピンが生成されるため、不適切な例です。

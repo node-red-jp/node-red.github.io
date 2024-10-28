@@ -43,6 +43,7 @@ The edit dialog contains two tabs:
 
 <ul>
     <li style="margin-bottom: 10px"><i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-cog"></i> : Properties - the groups properties to edit.</li>
+    <li style="margin-bottom: 10px"><i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-list"></i> : Environment Variables - properties that are exposed as environment variables within the group. <i>Since Node-RED 2.1</i></li>
     <li style="margin-bottom: 10px"><i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-file-text"></i> : Description - per-node documentation formatted using Markdown. This is displayed in the <a href="../sidebar/info">Information sidebar</a> when the group is selected.</li>
 </ul>
 
@@ -82,8 +83,24 @@ To apply that style to another group, select the group and press `Ctrl/⌘-Shift
 
 ### Adding nodes to a group
 
-Nodes can be added to an existing group by dragging them into the group. This only
-works for adding one node at a time.
+Nodes can be added to an existing group by dragging them into the group. Before Node-RED 3.1, this
+could only be done one node at a time. Since Node-RED 3.1, a whole selection of nodes/groups can be
+dragged into a group in one go.
+
+### Removing from a group
+
+To remove a node from a group, select the node then select the 'Groups -> Remove from group'
+option in the menu.
+
+Since Node-RED 3.1 you can press and hold the `Alt` key when dragging a selection and it will be
+removed from the parent group.
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><code>Groups -&gt; Remove from group</code></td></tr>
+ <tr><td>Action</td><td><code>core:remove-selection-from-group</code></td></tr>
+</table>
 
 ### Merging nodes/groups
 
@@ -109,19 +126,3 @@ option in the menu.
  <tr><td>Menu option</td><td><code>Groups -&gt; Ungroup selection</code></td></tr>
  <tr><td>Action</td><td><code>core:ungroup-selection</code></td></tr>
 </table>
-
-
-
-
-### Removing from a group
-
-To remove a node from a group, select the node then select the 'Groups -> Remove from group'
-option in the menu.
-
-<table class="action-ref inline">
- <tr><th colspan="2">Reference</th></tr>
- <tr><td>Key shortcut</td><td><i>none</i></td></tr>
- <tr><td>Menu option</td><td><code>Groups -&gt; Remove from group</code></td></tr>
- <tr><td>Action</td><td><code>core:remove-selection-from-group</code></td></tr>
-</table>
-

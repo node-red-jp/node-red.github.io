@@ -29,14 +29,16 @@ Node-REDを実行しているコンピュータのIPアドレスを使う必要�
 Injectノードはノード上のボタンをクリック、またはInject間隔を設定することにより、
 フローにメッセージを流すことができます。
 
-[パレット](/docs/user-guide/editor/palette/)から[ワークスペース](/docs/user-guide/editor/workspace/)上にInjectノードをドラッグします。
+[パレット](/docs/user-guide/editor/palette/)から
+[ワークスペース](/docs/user-guide/editor/workspace/)上にInjectノードをドラッグします。
 
 新規に追加したInjectノードを選択して[情報サイドバーペイン](/docs/user-guide/editor/sidebar/info)で
 そのプロパティ情報および何ができるかを確認します。
 
 ### 3. Debugノードの追加
 
-Debugノードは[サイドバーのデバッグタブ](/docs/user-guide/editor/sidebar/debug)にメッセージを表示させるノードです。
+Debugノードは
+[サイドバーのデバッグタブ](/docs/user-guide/editor/sidebar/debug)にメッセージを表示させるノードです。
 デフォルトでは`msg.payload`を表示し、
 設定次第では`msg`（メッセージオブジェクト全体）を表示させることもできます。
 
@@ -52,11 +54,13 @@ Inject/Debugノード双方のポートを[ドラッグ](/docs/user-guide/editor
 
 デプロイボタンをクリックするとサーバにデプロイできます。
 
-サイドバーのデバッグタブを選択した状態でInjectボタンをクリックするとデバッグタブに数字が表示されるはずです。
-デフォルトでは、Injectノードは1970年1月1日からのミリ秒数（タイムスタンプ）をペイロードとして利用します。
-それでは、より有用なことをやってみましょう。
+### 6. Inject 
 
-### 6. Functionノードの追加
+サイドバーのデバッグタブを選択した状態でInjectボタン（Injectノードの横の小さな四角のボタン）をクリックします。
+サイドバーに数字が表示されるはずです。
+デフォルトでは、Injectノードは1970年1月1日からのミリ秒数（タイムスタンプ）をペイロードとして利用します。
+
+### 7. Functionノードの追加
 
 Functionノードは実際にJavaScriptを書くことができます。
 

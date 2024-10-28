@@ -56,6 +56,13 @@ title: フロー
 フローのプロパティを編集するには、上部バーのタブをダブルクリックします。
 この操作でフロープロパティダイアログが開きます。
 
+<ul>
+    <li style="margin-bottom: 10px"><i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-cog"></i> : Properties - set the flow's name and description. The description
+    can use Markdown syntax for formatting and will appear in the <a href="../sidebar/info">Information sidebar</a>.</li>
+    <li style="margin-bottom: 10px"><i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-list"></i> : Environment Variables - properties that are exposed as environment variables within the flow. <i>Since Node-RED 2.1</i></li>
+</ul>
+
+
 <table class="action-ref inline">
  <tr><th colspan="2">リファレンス</th></tr>
  <tr><td>ショートカットキー</td><td><i>なし</i></td></tr>
@@ -63,8 +70,95 @@ title: フロー
  <tr><td>動作</td><td><code>core:edit-flow</code></td></tr>
 </table>
 
-ダイアログ内では、フロー名と詳細を設定できます。
-詳細は整形のためにMarkdownシンタックスを利用することができ、[情報サイドバー](../sidebar/info)に表示されます。
+#### Enabling or disabling a flow
+
+The flow can be enabled or disabled using the toggle button at the bottom of the
+dialog. If a flow is disabled, none of the nodes it contains will be created when
+the flow is deployed.
+
+The <i style="font-size: 0.8em; border-radius: 2px; display:inline-block;text-align:center; width: 20px; color: #777; border: 1px solid #777; padding: 3px;" class="fa fa-circle-thin"></i> button in the [Information sidebar](../sidebar/info) can also be used to enable or disable the node/flow.
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><i>none</i></td></tr>
+ <tr><td>Action</td><td><code>core:enable-flow</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><i>none</i></td></tr>
+ <tr><td>Action</td><td><code>core:disable-flow</code></td></tr>
+</table>
+
+<br style="clear: both;" />
+
+#### Hiding or showing a flow
+
+A flow can be hidden by right-clicking on it and selecting 'hide flow' in the context menu. The option
+can also be found in the tab bar drop-down menu.
+
+When hidden, the [Information sidebar](../sidebar/info) will show an <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-eye-slash"></i> icon next to it. Clicking that icon will show the flow again.
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-w</code></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Hide flow</code></td></tr>
+ <tr><td>Action</td><td><code>core:hide-flow</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-Shift-w</code></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Show last hidden flow</code></td></tr>
+ <tr><td>Action</td><td><code>core:show-last-hidden-flow</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Hide other flows</code></td></tr>
+ <tr><td>Action</td><td><code>core:hide-other-flows</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Hide all flows</code></td></tr>
+ <tr><td>Action</td><td><code>core:hide-all-flows</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Show all flows</code></td></tr>
+ <tr><td>Action</td><td><code>core:show-all-flows</code></td></tr>
+</table>
+
+#### Locking a flow
+
+Flows can be locked to prevent any changes being made to them.
+
+To lock/unlock a flow, you can:
+
+ - Right-click on its tab and select the 'lock flow' option
+ - Toggle the lock button in the bottom corner of the Flow Properties dialog
+ - Click the padlock icon in the Information Sidebar when hovering over the flow
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Lock Flow</code></td></tr>
+ <tr><td>Action</td><td><code>core:lock-flow</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><i>none</i></td></tr>
+ <tr><td>Menu option</td><td><code>[Tab Menu] Unlock Flow</code></td></tr>
+ <tr><td>Action</td><td><code>core:unlock-flow</code></td></tr>
+</table>
 
 #### フローを有効化または無効化する
 
@@ -110,7 +204,6 @@ title: フロー
 </div>
 
 #### フローを切り替える
-
 
 有効なフローのリストを表示するには、バー上部の
 <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-list-ul"></i> ボタンをクリックします。

@@ -19,12 +19,13 @@ slug:
 Header          | Value
 ----------------|-------
 `Authorization` | `Bearer [token]` - 認証が有効になっている場合
-`Content-type`  | `application/json`
+`Content-type`  | `application/json` - if installing from a npm repository
+`Content-type`  | `multipart/form-data` - if installing a tgz package
 
 
 ### Arguments
 
-リクエストボディは下記のフィールドのようなJSON文字列でなければなりません:
+npmリポジトリからパッケージをインストールするとき、リクエストボディは下記のフィールドのようなJSON文字列でなければなりません:
 
 Field    | Description
 ---------|-----------------------
@@ -35,6 +36,14 @@ Field    | Description
   "module": "node-red-node-suncalc"
 }
 {% endhighlight %}
+
+If installing a tgz package the request body must be a `multipart/form-data` 
+
+The following `curl` example will install `node-red-contrib-foo`.
+
+{% highlight shell %}
+curl -X POST http://localhost:1880/nodes -H "Content-Type: multipart/form-data" -F "tarball=@node-red-contrib-foo-1.0.3.tgz;type=application/x-compressed-tar;filename=node-red-contrib-foo-1.0.3.tgz"
+{% endhighlight  %}
 
 ### Response
 

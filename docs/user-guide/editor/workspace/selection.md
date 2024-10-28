@@ -17,6 +17,7 @@ title: 選択
 ノードをクリックするときに`Ctrl`または`Command`キーを押した場合、
 このノードが追加選択されます（または既にこのノードが選択状態であれば選択から外されます）。
 
+
 <div style="float: right; width: 400px; margin-left: 10px;">
 <table class="action-ref inline">
  <tr><th colspan="2">Reference</th></tr>
@@ -35,11 +36,12 @@ title: 選択
 </table>
 </div>
 
-ノードをクリックするときに`Shift`キーを押した場合、
-このノードおよび接続しているすべてのノードが選択されます。
-Clicking on the left-hand side of the node, it will select
+If the `Shift` key is held when clicking on the middle of the node, it will select that node
+and all other nodes it is connected to. Clicking on the left-hand side of the node, it will select
 that node and all nodes that come before it in the flow - "upstream" nodes. Clicking on the right-hand
 side of the node, it will select that node and all nodes that come after it in the flow - "downstream" nodes.
+
+
 
 ワイヤーをクリックすると、ワイヤーが選択状態になります。
 ノードとは異なり、一度に1つのワイヤーしか選択できません。
@@ -69,6 +71,36 @@ side of the node, it will select that node and all nodes that come after it in t
  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-a</code></td></tr>
 </table>
 
+
+### Selecting connected nodes
+
+To select all nodes connected to a particular node, click on the middle of the node
+whilst holding the `Shift` key.
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-s c</code></td></tr>
+ <tr><td>Menu option</td><td><code>Edit -&gt; Select all</code></td></tr>
+ <tr><td>Action</td><td><code>core:select-connected-nodes</code></td></tr>
+</table>
+
+
+### Selecting Upstream or Downstream nodes
+
+To select a node and all of its upstream or downstream nodes, click the left or right side
+of the node whilst holding the `Shift` key.
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-s u</code></td></tr>
+ <tr><td>Action</td><td><code>core:select-upstream-nodes</code></td></tr>
+</table>
+
+<table class="action-ref inline">
+ <tr><th colspan="2">Reference</th></tr>
+ <tr><td>Key shortcut</td><td><code>Alt-s d</code></td></tr>
+ <tr><td>Action</td><td><code>core:select-downstream-nodes</code></td></tr>
+</table>
 
 
 ### フローの選択

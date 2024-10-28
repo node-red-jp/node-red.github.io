@@ -116,9 +116,9 @@ module.exports = function(RED) {
         defaults: {
             name: {value:""}
         },
-        inputs:1,
-        outputs:1,
-        icon: "file.png",
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
         label: function() {
             return this.name||"lower-case";
         }
@@ -153,7 +153,8 @@ module.exports = function(RED) {
 
 上述の基本的なノードモジュールを作成したら、自分のNode-REDの実行環境にインストールすることができます。
 
-ローカルでノードモジュールの動作を確認するには、[`npm install <folder>`](https://docs.npmjs.com/cli/install)コマンドを利用します。
+ローカルでノードモジュールの動作を確認するには、
+[`npm install <folder>`](https://docs.npmjs.com/cli/install)コマンドを利用します。
 これはローカルディレクトリでのノードの開発および開発段階でのローカルのNode-REDとのリンクを作成します。
 
 ユーザディレクトリのNode-RED、一般的には`~/.node-red`において、以下のように実行します。:
@@ -170,7 +171,9 @@ Windowsでは、次を実行します:
     cd C:\Users\my_name\.node_red
     npm install C:\Users\my_name\Documents\GitHub\node-red-contrib-example-lower-case
 
-これは`~/.node-red/node_modules`にノードモジュールプロジェクトのディレクトリへのシンボリックリンクを作成し、Node-REDは起動時にそのノードを発見します。ノードのファイルの変更は、Node-REDの再起動によって反映されます。また、Windowsではnpm 5.xまたはそれ以上のバージョンで以下のように実行します。:
+これは`~/.node-red/node_modules`にノードモジュールプロジェクトのディレクトリへのシンボリックリンクを作成し、Node-REDは起動時にそのノードを発見します。
+ノードのファイルの変更は、Node-REDの再起動によって反映されます。
+また、Windowsではnpm 5.xまたはそれ以上のバージョンで以下のように実行します。:
 
 <div class="doc-callout">
 <em>Note</em> :  <code>npm</code>は自動的にユーザディレクトリ内の<code>package.json</code>ファイルにエントリを追加します。

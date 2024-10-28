@@ -87,11 +87,27 @@ disableEditor
 : `true`を指定するとフローエディタが無効になります。`httpAdminRoot`を`false`にした場合はUIもAPIも無効になりますが、こちらはUIのみ無効になります。デフォルト: `false`
 
 httpStatic
-: 静的ウェブコンテンツの提供元となるローカルディレクトリのパスです。
-  コンテンツはトップレベルURL、つまり`/`から提供されます。例えば`/home/username/.node-red/`と指定した場合、`/home/username/.node-red/index.html`を作成すると`/`へアクセスすると作成した`index.html`が表示されます。
-  `httpStatic`を指定する場合、`/`ではないパスでエディタUIを利用できるようにするため、`httpAdminRoot`は`/`より下層のパスにする必要があります。
+: a local directory from which to serve static web content from. This content is
+  served from the top level url, `/`. When this property is used, `httpAdminRoot` must
+  also be used to make editor UI available at a path other than `/`.
+
+  This property can also be set as an Array to support multiple static directories, each
+  with its own set of options. The options include the path to the local directory to serve
+  content from, the root url to serve them from and an optional custom middleware function.
+  
+  For example:
+
+      httpStatic: [
+        {
+            path: '/opt/static/',
+            root: '/private/',
+            middleware: myCustomHttpMiddleware
+        }
+      ]
 
   *スタンドアローンのみ*.
+
+
 
 httpStaticAuth
 : 静的コンテンツにBasic認証を設けます。書式は`httpAdminAuth`を参照してください。
@@ -194,6 +210,7 @@ paletteCategories
                 url: "http://example.com"
             }
         },
+        tours: false, // disable the Welcome Tour for new users
         userMenu: false, // Hide the user-menu even if adminAuth is enabled
         login: {
             image: "/absolute/path/to/login/page/big/image" // a 256x256 image
@@ -212,6 +229,14 @@ paletteCategories
         },
         projects: {
             enabled: false // Enable the projects feature
+        },
+        theme: "", // Select a color theme for the editor. See https://github.com/node-red-contrib-themes/theme-collection for a collection of themes to choose from
+        codeEditor: {
+            lib: "ace", // Select the text editor component used by the editor. Defaults to "ace", but can be set to "ace" or "monaco"
+            options: {
+                // The following only apply if the editor is set to "monaco"
+                theme: "vs", // Select a color theme for the text editor component. Must match the file name of a theme in packages/node_modules/@node-red/editor-client/src/vendor/monaco/dist/theme
+            }
         }
     },
 
@@ -247,6 +272,10 @@ functionGlobalContext
 
 functionExternalModules
 : `true`にセットすると、Function ノードの設定タブで、関数として使うことができる追加モジュールを追加できるようになります。詳しくは、 [Functionノードの書き方](../writing-functions#functionexternalmodules-オプションを使う) を参照してください。デフォルト: `false`.
+
+functionTimeout
+: Function Nodes - the default timeout, in seconds, to apply to newly configured Function nodes.
+  Default: 0 - meaning no timeout.
 
 debugMaxLength
 : DebugノードでサイドバーのDebugタブに表示される最大文字数を指定します。

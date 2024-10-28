@@ -25,7 +25,8 @@ title: 'サイドバー: コンテキストデータ'
  <tr><td>ショートカットキー</td><td><code>Ctrl/⌘-g x</code></td></tr>
 </table>
 
-パネルは、各コンテキストスコープに応じた、ノード・フロー・グローバルの3つのセクションに分かれています。
+パネルは、
+各コンテキストスコープに応じたノード・フロー・グローバルの3つのセクションに分かれています。
 
 コンテキストのデータをロードするには、更新ボタン <i style="border-radius: 2px; display:inline-block;text-align:center; width: 30px; color: #777; border: 1px solid #777; padding: 6px;" class="fa fa-refresh"></i>
 をクリックしなければいけません。

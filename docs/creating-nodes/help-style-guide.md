@@ -11,6 +11,10 @@ slug: ヘルプ
 以下に示すスタイルガイドは、
 多くのノードが統一された外観となるようにヘルプを構成する方法について説明しています。
 
+*Since 2.1.0* : The help text can be provided as markdown rather than HTML. In this
+case the `type` attribute of the `<script>` tag must be `text/markdown`.<br>
+When creating markdown help text be careful with indentation, markdown is whitespace sensitive so all lines should have no leading whitespace inside the `<script>` tags.
+
 <hr/>
 
 <link href="/css/node-help.css" rel="stylesheet">
@@ -108,7 +112,8 @@ slug: ヘルプ
 
 上記の例をHTMLで実装すると下記のようになります。
 
-~~~~~html
+{:.code-tab-html}
+```html
 <script type="text/html" data-help-name="node-type">
 <p>Connects to a MQTT broker and publishes messages.</p>
 
@@ -153,22 +158,70 @@ slug: ヘルプ
         <li><a>GitHub</a> - the nodes github repository</li>
     </ul>
 </script>
-~~~~~
+```
 
+{:.code-tab-md}
+```markdown
+<script type="text/markdown" data-help-name="node-type">
+Connects to a MQTT broker and publishes messages.
+
+### Inputs
+
+: payload (string | buffer) :  the payload of the message to publish.
+: *topic* (string)          :  the MQTT topic to publish to.
+
+
+### Outputs
+
+1. Standard output
+: payload (string) : the standard output of the command.
+
+2. Standard error
+: payload (string) : the standard error of the command.
+
+### Details
+
+`msg.payload` is used as the payload of the published message.
+If it contains an Object it will be converted to a JSON string before being sent.
+If it contains a binary Buffer the message will be published as-is.
+
+The topic used can be configured in the node or, if left blank, can be set
+`msg.topic`.
+
+Likewise the QoS and retain values can be configured in the node or, if left
+blank, set by `msg.qos` and `msg.retain` respectively.
+
+### References
+
+ - [Twitter API docs]() - full description of `msg.tweet` property
+ - [GitHub]() - the nodes github repository
+</script>
+```
 
 #### セクションヘッダ
 
 各セクションは`<h3>`タグでマークアップします。
 `Details`セクションにサブヘッダが必要な場合は、`<h4>`タグを使用します。
 
-~~~~~html
+{:.code-tab-html}
+```html
 <h3>Inputs</h3>
 ...
 <h3>Details</h3>
 ...
  <h4>A sub section</h4>
  ...
-~~~~~
+```
+
+{:.code-tab-md}
+```markdown
+### Inputs
+...
+### Details
+...
+#### A sub section
+...
+```
 
 #### メッセージのプロパティ
 
@@ -183,8 +236,8 @@ slug: ヘルプ
 
 それぞれの`<dd>`にはプロパティの要約を記述します。
 
-
-~~~~~html
+{:.code-tab-html}
+```html
 <dl class="message-properties">
     <dt>payload
         <span class="property-type">string | buffer</span>
@@ -195,7 +248,13 @@ slug: ヘルプ
     </dt>
     <dd> the MQTT topic to publish to.</dd>
 </dl>
-~~~~~
+```
+
+{:.code-tab-md}
+```markdown
+: payload (string | buffer) :  the payload of the message to publish.
+: *topic* (string)          :  the MQTT topic to publish to.
+```
 
 #### 複数出力
 
@@ -209,7 +268,8 @@ slug: ヘルプ
 <b>注意</b>: ノードの出力がひとつの場合は、
 このようなリストのラップは行わず単純に`<dl>`を使用します。
 
-~~~~~html
+{:.code-tab-html}
+```html
 <ol class="node-ports">
     <li>Standard output
         <dl class="message-properties">
@@ -224,7 +284,16 @@ slug: ヘルプ
         </dl>
     </li>
 </ol>
-~~~~~
+```
+
+{:.code-tab-md}
+```markdown
+1. Standard output
+: payload (string) : the standard output of the command.
+
+2. Standard error
+: payload (string) : the standard error of the command.
+```
 
 
 #### 全般的なガイダンス
@@ -233,11 +302,66 @@ slug: ヘルプ
 利用者にそれを明確に伝えるため`msg.`を接頭辞として付けます。
 これらは`<code>`タグにラップされるべきです。
 
-~~~~~html
+{:.code-tab-html}
+```html
 The interesting part is in <code>msg.payload</code>.
-~~~~~
+```
+
+{:.code-tab-md}
+```markdown
+The interesting part is in `msg.payload`.
+```
 
 ヘルプテキスト内では`<b>`、`<i>`のような他のタグでマークアップしないようにします。
 
 ノードのヘルプテキストは利用者が経験豊富であったり、ノードに精通していたりすることを前提としてはいけません。
 何よりもヘルプは利用者にとって役立つ必要があります。
+
+<style>
+
+.format-button {
+    padding: 2px 8px;
+    border: 1px solid #666;
+    margin-right: 8px;
+    background: #bbb;
+}
+.format-button.active {
+    background: white;
+    pointer-events: none;
+
+}
+.code-example-switcher pre {
+    margin-top: 0;
+}
+</style>
+
+<script>
+$(function() {
+    $(".code-tab-html").each(function() {
+        let htmlBlock = $(this);
+        let mdBlock = $(this).next(".code-tab-md").hide();
+        htmlBlock.wrap("<div></div>");
+        let container = htmlBlock.parent();
+        mdBlock.appendTo(container);
+
+        container.wrap('<div class="code-example-switcher"></div>');
+        let toplevel = container.parent();
+        let toolbar = $('<div></div>').prependTo(toplevel);
+
+        let htmlButton = $('<a href="#" class="active format-button">HTML</a>').appendTo(toolbar).on("click", function(evt) {
+            evt.preventDefault();
+            mdBlock.hide();
+            htmlBlock.show();
+            htmlButton.addClass('active');
+            mdButton.removeClass('active')
+        });
+        let mdButton = $('<a href="#" class="format-button">Markdown</a>').appendTo(toolbar).on("click", function(evt) {
+            evt.preventDefault();
+            mdBlock.show();
+            htmlBlock.hide();
+            htmlButton.removeClass('active');
+            mdButton.addClass('active')
+        });
+    })
+})
+</script>

@@ -15,7 +15,7 @@
 	<link href="/css/front.css?d=20200825" rel="stylesheet" media="screen">
 	<link href="/css/docs.css?d=20200825" rel="stylesheet" media="screen">
 	<link href="/css/blog.css?d=20200825" rel="stylesheet" media="screen">
-	<link href="/css/syntax.css?d=20200825" rel="stylesheet" media="screen">
+	<link href="/css/syntax.css?d=20211008" rel="stylesheet" media="screen">
 	<link type="application/atom+xml" rel="alternate" href="{{ site.url }}/feed.xml" />
 	{% if page.layout == 'blog' %}<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@nodered" />
@@ -44,11 +44,11 @@
         <ul class="navigation">
             <li {% if page.url == "/" %}class="current"{% endif %}><a href="/">ホーム</a></li>
             <li {% if page.url contains '/about/' %}class="current"{% endif %}><a href="/about/">概要</a></li>
-            <li {% if page.url contains '/blog/' %}class="current"{% endif %}><a href="/blog/">ブログ</a></li>
+	    <li><a href="https://nodered.org/blog/">ブログ</a></li>
             <li {% if page.url contains '/docs/' %}class="current"{% endif %}><a href="/docs/">ドキュメント</a></li>
-            <li><a href="https://discourse.nodered.org/" target="_blank">フォーラム</a></li>
-            <li><a href="https://flows.nodered.org/" target="_blank">flows</a></li>
-            <li><a href="https://github.com/node-red/node-red" target="_blank">github</a></li>
+            <li><a href="https://discourse.nodered.org/">フォーラム</a></li>
+            <li><a href="https://flows.nodered.org/">フロー</a></li>
+            <li><a href="https://github.com/node-red">github</a></li>
         </ul>
         <a href="#" class="menu"><i class="fa fa-reorder fa-2x"></i></a>
     </div>

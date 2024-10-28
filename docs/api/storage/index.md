@@ -5,7 +5,8 @@ title: Storage API
 slug: storage
 ---
 
-Node-REDランタイムがどこにデータを格納するか設定するための接続可能な方法を提供します。
+Node-REDランタイムがどこにデータを格納するかを
+設定するためのプラガブルな方法を提供します。
 
 このAPIは下記の情報を格納します:
 
@@ -21,11 +22,13 @@ APIの機能は [こちら](methods/) にドキュメントとしてまとまっ
 
 ### 設定
 
-settings.js内の `storageModule` プロパティは、カスタムモジュールを識別するために使用されます:
+settings.js内の `storageModule` プロパティは、
+カスタムモジュールを識別するために使用されます:
 
 {% highlight javascript %}
 storageModule: require("my-node-red-storage-plugin")
 {% endhighlight %}
+
 
 ### Promises
 
@@ -37,6 +40,7 @@ Promiseは非同期処理の最終的な結果を表します。
 Node-REDは [When.js](https://github.com/cujojs/when) ライブラリを使用しています。
 下記が使用例です。より完全な例は `red/runtime/storage/localfilesystem.js` にある
 デフォルトのファイルシステム実装です。
+
 
 {% highlight javascript %}
 function getFlows() {

@@ -21,9 +21,11 @@ redirect_from:
 
 ### HTTPSアクセスの有効化
 
-Node-RED エディタへ、デフォルトのHTTPではなくHTTPSを介したアクセスを有効にするには、[設定ファイル](settings-file) 中の `https` 設定オプションを使います。
+Node-RED エディタへ、デフォルトのHTTPではなくHTTPSを介したアクセスを有効にするには、
+[設定ファイル](settings-file) 中の `https` 設定オプションを使います。
 
-`https` オプションは、静的な設定オプションと、Node-RED 1.1.0以降ではオプションを返す関数のどちらかを使うことができます。
+`https` オプションは、静的な設定オプションと、
+Node-RED 1.1.0以降ではオプションを返す関数のどちらかを使うことができます。
 
 完全な設定オプションは [こちらに書かれています](https://nodejs.org/api/tls.html#tls_tls_createsecurecontext_options) 。
 
@@ -38,9 +40,10 @@ Node-RED エディタへ、デフォルトのHTTPではなくHTTPSを介した�
 証明書の生成方法は、 <a href="https://it.knightnet.org.uk/kb/nr-qa/https-valid-certificates/">このガイド</a> を参照してください。
 </div>
 
-Node-REDの設定ファイルのデフォルトでは、 `https` セクションにはローカルのファイルから証明書を読み込む設定がコメントアウトされた状態で含まれています。
+Node-REDの設定ファイルのデフォルトでは、
+`https` セクションにはローカルのファイルから証明書を読み込む設定がコメントアウトされた状態で含まれています。
 
-```
+```javascript
 https: {
     key: require("fs").readFileSync('privkey.pem'),
     cert: require("fs").readFileSync('cert.pem')
@@ -50,9 +53,10 @@ https: {
 *Node-RED 1.1.0以降*
 
 `https` プロパティが関数の場合、関数は設定オブジェクトを返すために使用できます。
-この関数は、オプションで、設定オブジェクトとして解決されるPromiseを返すことができ、非同期で完了することができます。
+この関数は、オプションで設定オブジェクトとして解決されるPromiseを返すことができ、
+非同期で完了することができます。
 
-```
+```javascript
 https: function() {
     return new Promise((resolve, reject) => {
         var key, cert;
@@ -60,7 +64,7 @@ https: function() {
         // ...
         resolve({
             key: key
-            cert: ccert
+            cert: cert
         })
     });
 }
@@ -70,14 +74,18 @@ https: function() {
 
 *Node-RED 1.1.0以降*
 
-Node-REDを再起動せずに、HTTPS証明書を定期的に更新するようにNode-REDを構成することができます。設定するためには: 
+Node-REDを再起動せずに、HTTPS証明書を定期的に更新するようにNode-REDを構成することができます。
+設定するためには: 
 
 1. *必ず* Node.js 11かそれ以降でないといけません
 2. `https` 設定は *必ず* 呼び出されたら更新された証明書を返す関数でないといけません
-3. Node-REDが `https` 関数で更新された情報をどのくらい頻繁に(時指定)取得するかを、 `httpsRefreshInterval` で設定します
+3. Node-REDが `https` 関数で更新された情報をどのくらい頻繁に(時指定)取得するかを、
+   `httpsRefreshInterval` で設定します
 
-`https` 関数は、現在の証明書が次の `httpsRefreshInterval` 期間内に期限切れになるかどうかを判断し、新しい証明書のセットを生成する必要があります。
+`https` 関数は、現在の証明書が次の `httpsRefreshInterval` 期間内に期限切れになるかどうかを判断し、
+新しい証明書のセットを生成する必要があります。
 更新する必要がない場合、関数は `undefined`または` null`を返します。
+
 
 ### エディタおよび管理APIのセキュリティ
 
@@ -141,7 +149,9 @@ node-red admin hash-pw
 
         node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));" your-password-here
 
-どのやり方を使う場合でも、ハッシュ化されたバージョンのパスワードが返りますので、それを設定ファイルに貼り付けます。
+
+どのやり方を使う場合でも、ハッシュ化されたバージョンのパスワードが返りますので、
+それを設定ファイルに貼り付けます。
 
 
 #### OAuth/OpenIDによる認証
@@ -185,9 +195,9 @@ adminAuth: {
  - `name` - Passportで利用されている認証方法の名称
  - `strategy` - Passportの認証モジュール
  - `label`/`icon` - ログインページで利用されます。`icon`はFontAwesomeのアイコン名です。
- - `options` - Passportのstrategyが生成されてたときに引き渡されるoptionsオブジェクトです。
+ - `options` - Passportのstrategyが生成されたときに引き渡されるoptionsオブジェクトです。
    必要なものはstrategy自体のドキュメントを参照してください。
-   `callbackURL`については以下を参照してください。
+   `callbackURL`および`callbackMethod`については以下を参照してください。
  - `verify` - この認証方法によって利用される検証処理を指定します。
    ユーザが正当な場合、ユーザプロフィールを第2引数として`done`を呼び出す必要があります。
    ユーザプロパティは、アクセスを許可されているユーザの一覧での確認に利用される`username`プロパティを保持させてください。
@@ -199,6 +209,8 @@ strategyによって利用される`callbackURL`は、認証プロバイダが�
 例えば、エディタに`http://localhost:1880`というURLでアクセスする場合、
 `http://localhost:1880/auth/strategy/callback`という値を設定します。
 
+By default, the `callbackURL` will listen for `GET` requests. To use `POST` requests
+instead, set `callbackMethod` to `POST`.
 
 #### デフォルトユーザの設定
 
@@ -324,15 +336,21 @@ adminAuth: require("./user-authentication")
 
 *Node-RED 1.1.0以降*
 
-いくつかの状況では、Node-REDによって生成されたものではなく、独自の認証トークンを使用したい場合があります。例えば:
+いくつかの状況では、Node-REDによって生成されたものではなく、独自の認証トークンを使用したい場合があります。
+例えば:
 
- - OAuthベースのユーザー認証を使用したいが、管理API(OAuthが必要とするインタラクティブな認証手順を実行できない)への自動アクセスも必要な場合
- - ユーザーがすでにログインしている既存のシステムにNode-REDが統合され、エディターにアクセスするときにユーザーが再度ログインする必要がないようにしたい
+ - OAuthベースのユーザー認証を使用したいが、
+   管理API(OAuthが必要とするインタラクティブな認証手順を実行できない)への自動アクセスも必要な場合
+ - ユーザーがすでにログインしている既存のシステムにNode-REDが統合され、
+   エディターにアクセスするときにユーザーが再度ログインする必要がないようにしたい
 
-`adminAuth`設定には` tokens`関数を含めることができます。この関数は、管理APIへのリクエストに、Node-REDが独自の認証トークンとして認識する認証トークンが含まれていない場合に呼び出されます。
-関数へは、リクエストで提供されたトークンが渡され、認証されたユーザーで解決されるPromiseを返すか、トークンが有効でない場合は「null」を返す必要があります。
+`adminAuth`設定には` tokens`関数を含めることができます。
+この関数は、管理APIへのリクエストにNode-REDが独自の認証トークンとして認識する認証トークンが含まれていない場合に呼び出されます。
+関数にはリクエストで提供されたトークンが渡され、
+認証されたユーザーで解決されるPromiseを返すか、
+トークンが有効でない場合は「null」を返す必要があります。
 
-```
+```javascript
 adminAuth: {
     ...
     tokens: function(token) {
@@ -353,12 +371,15 @@ adminAuth: {
 }
 ```
 
-デフォルトでは、 `Authorization` httpヘッダーを使用し、` Bearer`タイプのトークンを期待します-トークンの値だけを関数に渡します。
-`Bearer`タイプのトークンでない場合は、` Authorization`ヘッダーの完全な値が関数に渡されます。これにはタイプと値の両方が含まれます。
+デフォルトでは、 `Authorization` httpヘッダーを使用し、
+`Bearer`タイプのトークンを期待します-トークンの値だけを関数に渡します。
+`Bearer`タイプのトークンでない場合は、
+`Authorization`ヘッダーの完全な値が関数に渡されます。これにはタイプと値の両方が含まれます。
 
-別のHTTPヘッダーを使用するには、 `tokenHeader` 設定を使用して、使用するヘッダーを指定します:
+別のHTTPヘッダーを使用するには、
+`tokenHeader` 設定を使用して、使用するヘッダーを指定します:
 
-```
+```javascript
 adminAuth: {
     ...
     tokens: function(token) {
@@ -399,7 +420,8 @@ MD5によるハッシュ値が利用されました。これは暗号論的に�
 
 ### カスタムミドルウエア
 
-`HTTP In` ノードにおいては全て、admin/エディタのルートにおいてはNode-RED 1.1.0以降から、前面にカスタムHTTPミドルウェアを追加できます。
+`HTTP In` ノードにおいては全て、admin/エディタのルートにおいてはNode-RED 1.1.0以降から、
+前面にカスタムHTTPミドルウェアを追加できます。
 
 ##### http-in ノード向けのカスタムミドルウエア
 
@@ -418,22 +440,25 @@ module.exports = {
 }
 ```
 
-この設定を用いることで、Node-REDプロセスは、http-inノードで始まるフローが処理に時間がかかる場合でも、メモリが枯渇する問題を回避できます。
+この設定を用いることで、Node-REDプロセスはhttp-inノードで始まるフローが処理に時間がかかる場合でも、メモリが枯渇する問題を回避できます。
 制限に達すると、本エンドポイントは 「Too many requests, please try again later.」というデフォルトのメッセージを返します。
 
 ##### Admin API向けのカスタムミドルウエア
 
 admin/エディタのルートに対しては、`httpAdminMiddleware`設定でミドルウエアを提供できます。
 
-例えば、以下のミドルウエアは、全てのadmin/エディタへのリクエストに対して、`X-Frame-Options` HTTPヘッダを設定するために使われます。
+例えば、以下のミドルウエアは、
+全てのadmin/エディタへのリクエストに対して`X-Frame-Options` HTTPヘッダを設定するために使われます。
 この方法を用いて、エディタを他のページに埋め込むことを制御できます。
 
 ```javascript
 httpAdminMiddleware: function(req, res, next) {
-    // エディタを埋め込む場所を制限するため、X-Frame-Optionsヘッダを設定します。
+    // エディタを埋め込む場所を制限するため、
+    // X-Frame-Optionsヘッダを設定します。
     res.set('X-Frame-Options', 'sameorigin');
     next();
 },
 ```
 
-その他の考えられるミドルウエアの利用方法は、セキュリティーのレイヤーを追加したり、ルートの検証要求などが挙げられます。
+その他の考えられるミドルウエアの利用方法は、
+セキュリティーのレイヤーを追加したり、ルートの検証要求などが挙げられます。
