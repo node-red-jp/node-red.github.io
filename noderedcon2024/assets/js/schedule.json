@@ -23,7 +23,7 @@
         "title": "製造業IoTでのNode-RED運用について",
         "abstract": "製造業向けIoTにてNode-REDを活用し、５０設備以上の運用実績あり。事例紹介から安定稼働のノウハウや生成AIを活用した最新の活用法を紹介させていただきます。",
         "speaker": "三上 典秀",
-        "photo": "https://3up-tec.jp/wp-content/uploads/2022/07/mikami.jpg",
+        "photo": "../assets/img/speaker/mikami.jpg",
         "company": "スリーアップ・テクノロジー"
     },
     {
@@ -32,7 +32,7 @@
         "title": "Node-REDを活用した静岡県内企業へのIoT、デジタルツイン導入事例の紹介",
         "abstract": "静岡県工業技術研究所では、『誰でも簡単に自らの手で取り組める』をコンセプトにしたIoT実践講座を令和２年度より開催しています。教材はRaspberryPiとNode-REDを使用し、年間約30社のIoT導入を支援しています。また、IoT、DXにかかるコストや費用対効果等の導入障壁を解消するため、Node-REDとゲームエンジンのUnreal Engineを活用したデジタルツインの構築を進めています。本発表では、県内企業への導入事例について紹介します。",
         "speaker": "岩﨑 清斗",
-        "photo": "https://researchmap.jp/kiyoto1_iwasaki/",
+        "photo": "../assets/img/speaker/iwasaki.jpg",
         "company": "静岡県工業技術研究所"
     },
     {
@@ -41,7 +41,7 @@
         "title": "組込エンジニアにも役立つ！Node-RED活用術",
         "abstract": "Node-REDはサーバー/クラウド分野で広く活用されていますが、組込/デバイス開発の現場では、コンパイラやデバッガ、シリアルモニタで完結するケースが多く、その利便性を実感しにくいのが現状です。そこでセンサ開発やIoTシステムを得意とする当社の開発事例を通して、組込エンジニアがNode-REDを活用するメリットをご紹介します。組込エンジニアも従来の開発手法から一歩踏み出し、Node-REDの持つ柔軟性と迅速な開発力を活かしてみませんか？",
         "speaker": "稲玉 繁樹",
-        "photo": "https://drive.google.com/file/d/1ShAgo2HLmOljneMFwSaR_UJvuyxopN6A/view?usp=drive_link",
+        "photo": "../assets/img/speaker/inatama.jpg",
         "company": "ミイシステム株式会社"
     },
     {
@@ -50,7 +50,7 @@
         "title": "Node-RED MCUを使った子供向けIoTプログラミング事例",
         "abstract": "Node-RED MCUでボタン・ランプ・モーターを使ってMQTTでクイズサーバと連動する「早押しクイズマシン製作」が体験できる子供向けIoTプログラミングの事例を紹介します。",
         "speaker": "塩路 昌宏",
-        "photo": "https://drive.google.com/file/d/1W5SZun-a8PBGjJGosifFngvDn-pRXsES/view?usp=sharing",
+        "photo": "../assets/img/speaker/shioji.jpg",
         "company": "Open Creation Lab."
     },
     {
@@ -68,7 +68,7 @@
         "title": "Hazard Response Mission Pack built with Node-RED",
         "abstract": "An open-source AIoT solution with Node-RED to efficiently manage and mitigate hazard scenarios, from sensing to edge AI.",
         "speaker": "坪井 義浩",
-        "photo": "https://discovery2018.soracom.jp/img/guest_speakers/tsuboi_seeed.jpg",
+        "photo": "../assets/img/speaker/tsuboi.jpg",
         "company": "Seeed K.K."
     },
     {
@@ -77,7 +77,7 @@
         "title": "NR in DevOps & Platform Engineering",
         "abstract": "We'll discuss how Node-RED can simplify complex workflows, enable rapid prototyping, and automate repetitive tasks by connecting APIs, services, and devices through an intuitive drag-and-drop interface. Attendees will have a sight how to leverage Node-RED to streamline manage blind kubernetes environment, monitor infrastructure, and enhance collaboration between development and operations teams. Real-world examples will be presented, showcasing the flexibility and scalability of Node-RED in a DevOps ecosystem, helping teams to deliver faster and more reliably.",
         "speaker": "Erhan Siraci",
-        "photo": "https://media.licdn.com/dms/image/v2/D4E03AQGvEWGEMFIp7A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682491222756?e=1730332800&v=beta&t=lQl-lrR2hkZ67FGLa5wZlVk7TCAnT632Hw5pIcKik0I",
+        "photo": "../assets/img/speaker/erhan.jpg",
         "company": "adesso Turkey"
     },
     {
@@ -86,7 +86,7 @@
         "title": "Managing mainframe learning for 50000 students on zOS with Node-RED",
         "abstract": "Coordinating events between membership management, learning platform, and IBM Z mainframe hands-on environments, with new challenges, and user requirements is complicated - being able to experiment with APIS, interrogate webhooks and build data and logic flows quickly and securely using Node-RED has been essential in making it possible for a one-person technical team.",
         "speaker": "Ross Cruickshank",
-        "photo": "https://media.licdn.com/dms/image/v2/C4D03AQEzMcpx5ITkNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1564224122501?e=2147483647&v=beta&t=jPYeYO9w_Y59BsKN11SabslesolkYLp4zqPzbnljuX8",
+        "photo": "../assets/img/speaker/ross.jpg",
         "company": "IBM"
     },
     {
@@ -95,7 +95,7 @@
         "title": "Node-REDをライブイベントで使い倒す",
         "abstract": "前回はLINE Botを使用した実例を紹介したが、今回はLINE Botで収集したデータをQLabと連携して、ライブ会場のディスプレイにリアルタイムで更新表示する機能を開発したので、そのプロジェクトについて紹介する。また、現在作業進行中ではあるが、LINE BotのバックエンドサーバーとしてNode-REDを使用する際に、kubernetesを利用した可用性の高い環境にインストールして使用する実例も紹介したい。",
         "speaker": "高橋ヒロキ＆小久保碧音",
-        "photo": "https://www.facebook.com/photo/?fbid=6962701107106240&set=a.149714801738272",
+        "photo": "../assets/img/speaker/takahashi.jpg",
         "company": "シネマトリック合同会社"
     },
     {
