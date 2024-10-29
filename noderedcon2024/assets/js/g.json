@@ -1,1 +1,101 @@
-[{"time":"13:00-13:10","type":"Opening","title":"Welcome to Node-RED Con 2021!!","abstract":"Welcome to Node-RED Con 2021!!","speaker":"Seigo Tanaka","photo":"https://nodered.jp/images/seigo.jpg","company":"1ft Seabass/Node-RED UG Board Member"},{"time":"13:10-13:50","type":"Keynote","title":"How OpenJS Foundation is Supporting Node-RED's Path to Sustainability","abstract":"Node-RED is an At-Large project under the OpenJS Foundation umbrella. At-Large projects are ones deemed by the OpenJS Cross Project Council (CPC) to be important or impactful to the overall JavaScript ecosystem. \n\nSince the middle of 2021, Node-RED's showcase of users has grown to over 30 companies, and as JavaScript enters its next 25 years, there's more growth ahead for Node-RED. \n\nNode-RED has heard direct feedback from some contributors that being part of the OpenJS Foundation was a key factor in their decision to use Node-RED and engage with the project and wider community. (Reference: Why Satisfying User Needs Is Not a Zero-Sum Game – An Interview with Nick O’Leary, Node-RED)\n\nThe OpenJS Foundation helps through programs that support the stability and adoption of Code-RED globally.","speaker":"Robin Ginn","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/robin.jpg","company":"OpenJS Foundation, home of Node-RED and part of the Linux Foundation"},{"time":"14:00-14:20","type":"Breakout","title":"Installing Node-RED on an \"Always Free\" Arm Instance in the Oracle Cloud","abstract":"It's easy to install Node-RED on a Raspberry Pi or a spare laptop that we have lying around the house, but sometimes you need the power and flexibility of having an instance running in the cloud. Maybe you need to use it for a school or work project and need it to be accessible to the public web? In this session, I'll show you how to turn up an \"always free\" Ampere Arm instance in the Oracle Cloud and install Node-RED on that instance. We'll make sure the installation is web accessible and secure, and I'll show you a few other tips for integrating your Node-RED install into the free Oracle Cloud tier that can enable very powerful flows!","speaker":"Todd Sharp","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/todd.png","company":"Oracle"},{"time":"14:30-14:50","type":"Breakout","title":"Jacdac - Plug and Play for micro-controllers","abstract":"Jacdac (https://aka.ms/jacdac) is a protocol designed for easier physical connectivity. Jacdac devices communicate using packets over a bus, where each device can advertise itself and the set of services it provides. A service provides registers, events and commands to communicate with other devices. Jacdac relies on a 3-wire bus for power delivery and data transfer. A purpose-built connector is used to interface with the Jacdac PCB edge connector. Jacdac services are specified to abstract the hardware device from the software implementation. Jacdac integrates into Node-RED by exposing nodes to listen for sensor data, events or send commands.","speaker":"Jonathan \"Peli\" de Halleux","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/jonathan.jpg","company":"Microsoft Research"},{"time":"15:00-15:20","type":"Breakout","title":"Node-RED installer, Standalone Installer using Electron","abstract":"Recently, the visual programming tool, Node-RED has been used in factories to control industrial hardware based on the sensor and image data. Because non-IT engineers can easily develop their original programs without coding, the Node-RED has become crucial to make factories modern. To adopt Node-RED to the real factories in the closed network, Hitachi encountered issues to place servers and update software components because almost JavaScript technologies tend to require the online environment to download the components from the Internet. To solve the problem, they have utilized Electron to create a single package that includes all components related to Node-RED. Furthermore, based on their experiences using Electron, they started the \"Node-RED installer\" project under the OpenJS Foundation. In this presentation, he explains the project and demonstration in factory use cases.","speaker":"Kazuhito Yokoi","photo":"https://nodered.jp/images/yokoi.jpg","company":"Hitachi, Ltd."},{"time":"15:30-15:50","type":"Breakout","title":"Digital Transformation with Node-Red: Integrations and Use Cases in Malaysia","abstract":"In this session, the speaker would discuss the integrations and use-cases of Node-Red for industrial applications in Malaysia. The speaker would also discuss the application-based developments and initiatives undertaken by the technical team at Malaysian Smart Factory 4.0 @ Selangor Human Resource Development Centre (SHRDC), Malaysia as an emerging technology ecosystem builder to advocate the adoption of low code and flow based development tools such as Node-Red to accelerate digital transformation in Malaysia. The recent application-based development using Node-Red  that would be discussed in this session would include:- Node-Red integration with Smart Glasses, Digital Factory Simulation, Anomaly Detection applications, Robotic Process Automation (RPA) tools, and application of Node-Red for Remote Online Training (ROT). ","speaker":"Chua Wen Shyan","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/chua.jpg","company":"Malaysian Smart Factory 4.0 @ Selangor Human Resource Development Centre"},{"time":"16:00-16:20","type":"Breakout","title":"A perfect tool for our API first strategy","abstract":"Ericsson IoT Accelerator is a global mobile broadband connectivity management system which is offered to multiple Service Providers. They sell the service to Enterprises, to enable global connectivity coverage for their IoT devices. The service is exposed in form of APIs which the Enterprises integrate in their business processes. In this journey, we found a very powerful and flexible ally in NodeRed when it comes to API integration testing, which we expose in our Developer Portal in form of multiple tutorials. Thanks to the infinite possibilities and resources that NodeRed provides we were able to implement very articulated use cases which help the Enterprises to understand how to integrate our Services within their business processes, addressing their business needs. The way we can describe the integration logic through visual flows and the possibility to create Graphical User interfaces makes our tutorials very clear, and provides a very good tool for Enterprises to test themselves.","speaker":"Graziano Ponzo","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/graziano.jpg","company":"Ericsson "},{"time":"16:30-16:50","type":"Breakout","title":"Continuous Delivery of Node-RED flows with balena","abstract":"At balena, we help developers build and deploy IoT projects to fleets of connected devices using containers. \n\nFleets of devices running Node-RED service have a common problem related on updating the flows running on the devices. Furthermore there are common problems such as adding new services to their devices, run same version (or differents) on their fleets, and more. balena can help here simplifying the Continuous Delivery of the flows and services running on the Node-RED fleets of devices deployed all around the world.\n\nDuring the 20 minutes talk, the audience will learn about IoT fleet management and how to deploy new flows and servicesinto their Node-RED devices, the easy way. At the end we will do a live demo on how to do it and the audience will be able to do it with us if they bring a spare Raspberry Pi or a similar single board computer.","speaker":"Marc Pous","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/marc.jpg","company":"balena.io"},{"time":"17:00-17:40","type":"Keynote","title":"Node-RED for controlling the Internet of Things","abstract":"Andy has been using Node-RED from when it was still a very early prototype within IBM. His work as an enthusiastic inventor, \"maker\", experimenter and prototyper is a very natural fit with Node-RED. Andy will take you on a journey through some of the Internet of Things devices he has made for his home, work, and play, and will talk about 'Digital Twins' and his ideas about *Physical\" Digital Twins. He will illustrate his talk with examples from his work on data from Mayflower Autonomous Ship (MAS400.com) and other exciting projects.","speaker":"Professor Andy Stanford-Clark","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/andy.jpg","company":"IBM UK"},{"time":"17:40-18:20","type":"Keynote","title":"Node-RED 2.1 and beyond","abstract":"In this session Nick will review the state of the project in 2021 and look forward to what the future brings.","speaker":"Nick O'Leary","photo":"https://nodered.jp/noderedcon2021/assets/img/speaker/nick.jpg","company":"FlowForge Inc."},{"time":"18:20-18:30","type":"Closing","title":"Thanks and Goodbye","abstract":"Thank you for attending Node-RED Con 2021!","speaker":"Atsushi Kojo","photo":"https://nodered.jp/images/kojo.jpg","company":"Uhuru/Node-RED UG Board Member"}]
+[
+    {
+        "time": "15:30-15:40",
+        "type": "Opening",
+        "title": "Welcome to Node-RED Con 2024!!",
+        "abstract": "Welcome to Node-RED Con 2024!!",
+        "speaker": "Seigo Tanaka",
+        "photo": "https://nodered.jp/images/seigo.jpg",
+        "company": "1ft Seabass/Node-RED UG Board Member"
+    },
+    {
+        "time": "15:40-15:55",
+        "type": "Sponsor",
+        "title": "さくらインターネットの新拠点「Blooming Camp」のご紹介",
+        "abstract": "",
+        "speaker": "山坂 遼太郎",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/xxx.jpg",
+        "company": "さくらインターネット"
+    },
+    {
+        "time": "14:00-14:20",
+        "type": "Breakout",
+        "title": "Installing Node-RED on an \"Always Free\" Arm Instance in the Oracle Cloud",
+        "abstract": "It's easy to install Node-RED on a Raspberry Pi or a spare laptop that we have lying around the house, but sometimes you need the power and flexibility of having an instance running in the cloud. Maybe you need to use it for a school or work project and need it to be accessible to the public web? In this session, I'll show you how to turn up an \"always free\" Ampere Arm instance in the Oracle Cloud and install Node-RED on that instance. We'll make sure the installation is web accessible and secure, and I'll show you a few other tips for integrating your Node-RED install into the free Oracle Cloud tier that can enable very powerful flows!",
+        "speaker": "Todd Sharp",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/todd.png",
+        "company": "Oracle"
+    },
+    {
+        "time": "14:30-14:50",
+        "type": "Breakout",
+        "title": "Jacdac - Plug and Play for micro-controllers",
+        "abstract": "Jacdac (https://aka.ms/jacdac) is a protocol designed for easier physical connectivity. Jacdac devices communicate using packets over a bus, where each device can advertise itself and the set of services it provides. A service provides registers, events and commands to communicate with other devices. Jacdac relies on a 3-wire bus for power delivery and data transfer. A purpose-built connector is used to interface with the Jacdac PCB edge connector. Jacdac services are specified to abstract the hardware device from the software implementation. Jacdac integrates into Node-RED by exposing nodes to listen for sensor data, events or send commands.",
+        "speaker": "Jonathan \"Peli\" de Halleux",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/jonathan.jpg",
+        "company": "Microsoft Research"
+    },
+    {
+        "time": "15:00-15:20",
+        "type": "Breakout",
+        "title": "Node-RED installer, Standalone Installer using Electron",
+        "abstract": "Recently, the visual programming tool, Node-RED has been used in factories to control industrial hardware based on the sensor and image data. Because non-IT engineers can easily develop their original programs without coding, the Node-RED has become crucial to make factories modern. To adopt Node-RED to the real factories in the closed network, Hitachi encountered issues to place servers and update software components because almost JavaScript technologies tend to require the online environment to download the components from the Internet. To solve the problem, they have utilized Electron to create a single package that includes all components related to Node-RED. Furthermore, based on their experiences using Electron, they started the \"Node-RED installer\" project under the OpenJS Foundation. In this presentation, he explains the project and demonstration in factory use cases.",
+        "speaker": "Kazuhito Yokoi",
+        "photo": "https://nodered.jp/images/yokoi.jpg",
+        "company": "Hitachi, Ltd."
+    },
+    {
+        "time": "15:30-15:50",
+        "type": "Breakout",
+        "title": "Digital Transformation with Node-Red: Integrations and Use Cases in Malaysia",
+        "abstract": "In this session, the speaker would discuss the integrations and use-cases of Node-Red for industrial applications in Malaysia. The speaker would also discuss the application-based developments and initiatives undertaken by the technical team at Malaysian Smart Factory 4.0 @ Selangor Human Resource Development Centre (SHRDC), Malaysia as an emerging technology ecosystem builder to advocate the adoption of low code and flow based development tools such as Node-Red to accelerate digital transformation in Malaysia. The recent application-based development using Node-Red  that would be discussed in this session would include:- Node-Red integration with Smart Glasses, Digital Factory Simulation, Anomaly Detection applications, Robotic Process Automation (RPA) tools, and application of Node-Red for Remote Online Training (ROT). ",
+        "speaker": "Chua Wen Shyan",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/chua.jpg",
+        "company": "Malaysian Smart Factory 4.0 @ Selangor Human Resource Development Centre"
+    },
+    {
+        "time": "16:00-16:20",
+        "type": "Breakout",
+        "title": "A perfect tool for our API first strategy",
+        "abstract": "Ericsson IoT Accelerator is a global mobile broadband connectivity management system which is offered to multiple Service Providers. They sell the service to Enterprises, to enable global connectivity coverage for their IoT devices. The service is exposed in form of APIs which the Enterprises integrate in their business processes. In this journey, we found a very powerful and flexible ally in NodeRed when it comes to API integration testing, which we expose in our Developer Portal in form of multiple tutorials. Thanks to the infinite possibilities and resources that NodeRed provides we were able to implement very articulated use cases which help the Enterprises to understand how to integrate our Services within their business processes, addressing their business needs. The way we can describe the integration logic through visual flows and the possibility to create Graphical User interfaces makes our tutorials very clear, and provides a very good tool for Enterprises to test themselves.",
+        "speaker": "Graziano Ponzo",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/graziano.jpg",
+        "company": "Ericsson "
+    },
+    {
+        "time": "16:30-16:50",
+        "type": "Breakout",
+        "title": "Continuous Delivery of Node-RED flows with balena",
+        "abstract": "At balena, we help developers build and deploy IoT projects to fleets of connected devices using containers. \n\nFleets of devices running Node-RED service have a common problem related on updating the flows running on the devices. Furthermore there are common problems such as adding new services to their devices, run same version (or differents) on their fleets, and more. balena can help here simplifying the Continuous Delivery of the flows and services running on the Node-RED fleets of devices deployed all around the world.\n\nDuring the 20 minutes talk, the audience will learn about IoT fleet management and how to deploy new flows and servicesinto their Node-RED devices, the easy way. At the end we will do a live demo on how to do it and the audience will be able to do it with us if they bring a spare Raspberry Pi or a similar single board computer.",
+        "speaker": "Marc Pous",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/marc.jpg",
+        "company": "balena.io"
+    },
+    {
+        "time": "17:00-17:40",
+        "type": "Keynote",
+        "title": "Node-RED for controlling the Internet of Things",
+        "abstract": "Andy has been using Node-RED from when it was still a very early prototype within IBM. His work as an enthusiastic inventor, \"maker\", experimenter and prototyper is a very natural fit with Node-RED. Andy will take you on a journey through some of the Internet of Things devices he has made for his home, work, and play, and will talk about 'Digital Twins' and his ideas about *Physical\" Digital Twins. He will illustrate his talk with examples from his work on data from Mayflower Autonomous Ship (MAS400.com) and other exciting projects.",
+        "speaker": "Professor Andy Stanford-Clark",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/andy.jpg",
+        "company": "IBM UK"
+    },
+    {
+        "time": "17:40-18:20",
+        "type": "Keynote",
+        "title": "Node-RED 2.1 and beyond",
+        "abstract": "In this session Nick will review the state of the project in 2021 and look forward to what the future brings.",
+        "speaker": "Nick O'Leary",
+        "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/nick.jpg",
+        "company": "FlowForge Inc."
+    },
+    {
+        "time": "18:20-18:30",
+        "type": "Closing",
+        "title": "Thanks and Goodbye",
+        "abstract": "Thank you for attending Node-RED Con 2021!",
+        "speaker": "Atsushi Kojo",
+        "photo": "https://nodered.jp/images/kojo.jpg",
+        "company": "Uhuru/Node-RED UG Board Member"
+    }
+]
