@@ -972,7 +972,7 @@
          'track'
         ],
         mounted :function(){
-          axios.get('/assets/js/shcedule.json')
+          axios.get('/assets/js/schedule.json')
             .then(response => this.sessions_g = response.data)
             .catch(error => console.log(error))
         }
