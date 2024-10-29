@@ -19,7 +19,7 @@
     },
     {
         "time": "15:55-16:20",
-        "type": "基調講演",
+        "type": "Keynote",
         "title": "製造業IoTでのNode-RED運用について",
         "abstract": "製造業向けIoTにてNode-REDを活用し、５０設備以上の運用実績あり。事例紹介から安定稼働のノウハウや生成AIを活用した最新の活用法を紹介させていただきます。",
         "speaker": "三上 典秀",
@@ -32,7 +32,7 @@
         "title": "Node-REDを活用した静岡県内企業へのIoT、デジタルツイン導入事例の紹介",
         "abstract": "静岡県工業技術研究所では、『誰でも簡単に自らの手で取り組める』をコンセプトにしたIoT実践講座を令和２年度より開催しています。教材はRaspberryPiとNode-REDを使用し、年間約30社のIoT導入を支援しています。また、IoT、DXにかかるコストや費用対効果等の導入障壁を解消するため、Node-REDとゲームエンジンのUnreal Engineを活用したデジタルツインの構築を進めています。本発表では、県内企業への導入事例について紹介します。",
         "speaker": "岩﨑 清斗",
-        "photo": "./assets/img/speaker/iwasaki.jpg",
+        "photo": "./assets/img/speaker/iwasaki.png",
         "company": "静岡県工業技術研究所"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
         "time": "17:35-17:50",
-        "type": "休憩",
+        "type": "Interval",
         "title": "休憩",
         "abstract": "",
         "speaker": "",
@@ -102,7 +102,7 @@
         "time": "19:30-19:40",
         "type": "Closing",
         "title": "Thanks and Goodbye",
-        "abstract": "Thank you for attending Node-RED Con 2021!",
+        "abstract": "Thank you for attending Node-RED Con 2024!",
         "speaker": "Taiji Hagino",
         "photo": "https://nodered.jp/images/hagino.jpg",
         "company": "Datadog/Node-RED UG Board Member"
