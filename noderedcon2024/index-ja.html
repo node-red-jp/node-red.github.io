@@ -425,47 +425,19 @@
           <div class="col-12">
             <div class="section-title-header text-center">
               <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Session Schedules</h2>
-              <p class="wow fadeInDown" data-wow-delay="0.2s">日本語トラックと英語トラックのマルチトラックでお送りします <br> セッション情報は随時追加していきます </p>
+              <p class="wow fadeInDown" data-wow-delay="0.2s">日本語セッションと英語セッションの多言語でお送りします  </p>
             </div>
           </div>
         </div>
-
-        <!--
         <div class="row">
           <div class="col-12 mb-5 text-center">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="track-a-tab" data-toggle="tab" href="#track-a" role="tab" aria-controls="track-a" aria-expanded="true">
-                  <div class="item-text">
-                    <h4>グローバルトラック</h4>
-                    <h5>英語セッション</h5>
-                  </div>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="track-b-tab" data-toggle="tab" href="#track-b" role="tab" aria-controls="track-b">
-                  <div class="item-text">
-                    <h4>ローカルトラック A</h4>
-                    <h5>日本語セッション</h5>
-                  </div>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="track-c-tab" data-toggle="tab" href="#track-c" role="tab" aria-controls="track-c">
-                  <div class="item-text">
-                    <h4>ローカルトラック B</h4>
-                    <h5>日本語セッション</h5>
-                  </div>
-                </a>
-              </li>
-            </ul>
           </div>
           <div class="col-12">
             <div class="schedule-area row wow fadeInDown" data-wow-delay="0.3s">
               <div class="schedule-tab-content col-12 clearfix">
                 <div class="tab-content" id="myTabContent">
 
-                  <div class="tab-pane fade active show" id="track-a" role="tabpanel" aria-labelledby="track-a-tab">
+                  <div class="tab-pane fade active show" id="track-g" role="tabpanel" aria-labelledby="track-g-tab">
                     <div id="accordion">
                       <div class="card" v-for="(session, i) in sessions_g">
                         <div :id='"headingA"+i'>
@@ -490,37 +462,11 @@
                     </div>
                   </div>
 
-                  <div class="tab-pane fade" id="track-b" role="tabpanel" aria-labelledby="track-b-tab">
-                    <div id="accordion2">
-                      <div class="card" v-for="(session, i) in sessions_a">
-                        <div :id='"headingB"+i'>
-                          <div class="schedule-slot-time">
-                            <span>{{ session.time }}</span>
-                            {{ session.type }}
-                          </div>
-                          <div class="collapsed card-header" data-toggle="collapse" :data-target='"#collapseB"+i' aria-expanded="false" :aria-controls='"collapseB"+i'>
-                            <div class="images-box">
-                              <img class="img-fluid" :src=session.photo alt="">
-                            </div>                     
-                            <h4>{{ session.title }}</h4>
-                            <h5 class="name">{{ session.speaker }}, {{ session.company }}</h5>
-                          </div>
-                        </div>
-                        <div :id='"collapseB"+i' class="collapse" :aria-labelledby='"headingB"+i' data-parent="#accordion2">
-                          <div class="card-body">
-                            <p><pre style="white-space: pre-wrap">{{ session.abstract }}</pre></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
-        -->
       </div>
     </section>
     <!-- Schedule Section End -->
@@ -1020,22 +966,14 @@
       new Vue({
         el: '#myTabContent',
         data: {
-          sessions_g: [],
-          sessions_a: [],
-          sessions_b: []
+          sessions_g: []
         },
         props: [
          'track'
         ],
         mounted :function(){
-          axios.get('/assets/js/g.json')
+          axios.get('/assets/js/shcedule.json')
             .then(response => this.sessions_g = response.data)
-            .catch(error => console.log(error))
-          axios.get('/assets/js/a.json')
-            .then(response => this.sessions_a = response.data)
-            .catch(error => console.log(error))
-          axios.get('/assets/js/b.json')
-            .then(response => this.sessions_b = response.data)
             .catch(error => console.log(error))
         }
       })
