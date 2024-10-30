@@ -13,43 +13,43 @@
         "type": "Sponsor",
         "title": "さくらインターネットの新拠点「Blooming Camp」のご紹介",
         "abstract": "",
-        "speaker": "山坂 遼太郎",
+        "speaker": "Ryotaro Yamasaka",
         "photo": "https://nodered.jp/noderedcon2021/assets/img/speaker/noimage.png",
-        "company": "さくらインターネット"
+        "company": "SAKURA internet Inc.）"
     },
     {
         "time": "15:55-16:20",
         "type": "Keynote",
         "title": "製造業IoTでのNode-RED運用について",
         "abstract": "製造業向けIoTにてNode-REDを活用し、５０設備以上の運用実績あり。事例紹介から安定稼働のノウハウや生成AIを活用した最新の活用法を紹介させていただきます。",
-        "speaker": "三上 典秀",
+        "speaker": "Norihide Mikami",
         "photo": "./assets/img/speaker/mikami.jpg",
-        "company": "スリーアップ・テクノロジー"
+        "company": "THREE UP TECHNOLOGY"
     },
     {
         "time": "16:20-16:45",
         "type": "Breakout",
         "title": "Node-REDを活用した静岡県内企業へのIoT、デジタルツイン導入事例の紹介",
         "abstract": "静岡県工業技術研究所では、『誰でも簡単に自らの手で取り組める』をコンセプトにしたIoT実践講座を令和２年度より開催しています。教材はRaspberryPiとNode-REDを使用し、年間約30社のIoT導入を支援しています。また、IoT、DXにかかるコストや費用対効果等の導入障壁を解消するため、Node-REDとゲームエンジンのUnreal Engineを活用したデジタルツインの構築を進めています。本発表では、県内企業への導入事例について紹介します。",
-        "speaker": "岩﨑 清斗",
+        "speaker": "Kiyoto Iwasaki",
         "photo": "./assets/img/speaker/iwasaki.png",
-        "company": "静岡県工業技術研究所"
+        "company": "Industrial Research Institute of Shizuoka Prefecture"
     },
     {
         "time": "16:45-17:10",
         "type": "Breakout",
         "title": "組込エンジニアにも役立つ！Node-RED活用術",
         "abstract": "Node-REDはサーバー/クラウド分野で広く活用されていますが、組込/デバイス開発の現場では、コンパイラやデバッガ、シリアルモニタで完結するケースが多く、その利便性を実感しにくいのが現状です。そこでセンサ開発やIoTシステムを得意とする当社の開発事例を通して、組込エンジニアがNode-REDを活用するメリットをご紹介します。組込エンジニアも従来の開発手法から一歩踏み出し、Node-REDの持つ柔軟性と迅速な開発力を活かしてみませんか？",
-        "speaker": "稲玉 繁樹",
+        "speaker": "Shigeki Inatama",
         "photo": "./assets/img/speaker/inatama.jpg",
-        "company": "ミイシステム株式会社"
+        "company": "Mii System Co.,Ltd."
     },
     {
         "time": "17:10-17:35",
         "type": "Breakout",
         "title": "Node-RED MCUを使った子供向けIoTプログラミング事例",
         "abstract": "Node-RED MCUでボタン・ランプ・モーターを使ってMQTTでクイズサーバと連動する「早押しクイズマシン製作」が体験できる子供向けIoTプログラミングの事例を紹介します。",
-        "speaker": "塩路 昌宏",
+        "speaker": "Masahiro Shioji",
         "photo": "./assets/img/speaker/shioji.jpg",
         "company": "Open Creation Lab."
     },
@@ -67,7 +67,7 @@
         "type": "Breakout",
         "title": "Hazard Response Mission Pack built with Node-RED",
         "abstract": "An open-source AIoT solution with Node-RED to efficiently manage and mitigate hazard scenarios, from sensing to edge AI.",
-        "speaker": "坪井 義浩",
+        "speaker": "Yoshihiro Tsuboi",
         "photo": "./assets/img/speaker/tsuboi.jpg",
         "company": "Seeed K.K."
     },
@@ -94,7 +94,7 @@
         "type": "Breakout",
         "title": "Node-REDをライブイベントで使い倒す",
         "abstract": "前回はLINE Botを使用した実例を紹介したが、今回はLINE Botで収集したデータをQLabと連携して、ライブ会場のディスプレイにリアルタイムで更新表示する機能を開発したので、そのプロジェクトについて紹介する。また、現在作業進行中ではあるが、LINE BotのバックエンドサーバーとしてNode-REDを使用する際に、kubernetesを利用した可用性の高い環境にインストールして使用する実例も紹介したい。",
-        "speaker": "高橋ヒロキ＆小久保碧音",
+        "speaker": "Hiroki Takahashi & Aoto Kokubo",
         "photo": "./assets/img/speaker/takahashi.jpg",
         "company": "シネマトリック合同会社"
     },
