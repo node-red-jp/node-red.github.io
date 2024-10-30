@@ -47,7 +47,7 @@ Node-REDを実行する手順を紹介します。
 
 ログインしたら、node.jsとNode-REDをインストールする必要があります。
 
-       curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+       curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
        sudo apt-get install -y nodejs build-essential
        sudo npm install -g --unsafe-perm node-red
 
@@ -66,4 +66,10 @@ pm2を利用できます。:
        pm2 save
        pm2 startup
 
-*Note:* この最後のコマンドでさらにコマンドを実行するように促されるので、従って実行して下さい。
+*Note:* この最後のコマンドでさらにコマンドを実行するように促されるので、従って実行して下さい。環境によって異なりますが以下のような出力になるので、最終行の`sudo env ...`の行をコピーして実行しましょう。
+
+       [PM2] Init System found: systemd
+       [PM2] To setup the Startup Script, copy/paste the following command:
+       
+       sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u <USERNAME> --hp /home/<USERNAME>
+
