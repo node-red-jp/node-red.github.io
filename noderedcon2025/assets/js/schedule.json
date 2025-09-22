@@ -1,0 +1,83 @@
+[
+    {
+        "time": "14:30-14:40",
+        "type": "Opening",
+        "title": "Welcome to Node-RED Con 2025!!",
+        "abstract": "Welcome to Node-RED Con 2025!!",
+        "speaker": "Seigo Tanaka",
+        "photo": "https://nodered.jp/images/seigo.jpg",
+        "company": "1ft Seabass/Node-RED UG Board Member"
+    },
+    {
+        "time": "14:40-15:10",
+        "type": "Keynote",
+        "title": "小さな声を大切に 未来へ繋ぐIoT",
+        "abstract": "保育現場には多くの子どもたちがいます。自分の思いを聞いてもらいたいと先生の近くへ集まりますが1度に話しかけられると声を出している「気になる子ども」に意識が向きます。その中で空気を読むことができる子ほど、静かに待っている子もいます。なかなか話を聞いてもらえないとわかると声を届けることを諦めて、自分の心の奥底に気持ちをしまい込んでしまいます。本当にケアしてあげないといけない子は「気にならない子ども」です。そのような中で、今回はIoTを活用して子ども自身が意思表示することができ、園全体でその子どもの小さな声を見落とさないような仕組みを作りました。未来に繋ぐ保育の可能性について考えます。",
+        "speaker": "稲葉 夕莉",
+        "photo": "./assets/img/speaker/inaba.jpg",
+        "company": "フリーランス"
+    },
+    {
+        "time": "15:10-15:40",
+        "type": "Breakout",
+        "title": "映像エッジAIにおけるNode-RED活用事例",
+        "abstract": "EDGEMATRIX株式会社は、映像エッジAI技術を活用して社会の安全・安心や効率性を高める革新的なソリューションを提供しています。その製品として「Edge AI Station」があります。小規模から大規模かつ複雑な環境まで、幅広い状況に対応できる汎用性と優れた処理能力により、お客様のニーズに合わせた高度なソリューションを継続的に提供することができます。エッジ環境でAI検知処理をした後に、お客様や外部のシステムへの連携する際に、Node-REDを活用し、柔軟にビジネスロジックを組み立てることができます。講演では、Node-RED活用事例としてのデモとあわせて、「Edge AI Station」製品を紹介します。",
+        "speaker": "石田 徹",
+        "photo": "./assets/img/speaker/ishida.jpg",
+        "company": "EDGEMATRIX株式会社"
+    },
+    {
+        "time": "15:40-16:10",
+        "type": "Breakout",
+        "title": "立命館大学とのNode-REDを活用した共同事業のご紹介",
+        "abstract": "関西の有名大学である「立命館大学」との共同事業となる、『IoTをDIYする教育プラットフォーム（教育デバイス／Node-RED活用）』についてご紹介します。IoTを自ら構築される初心者向けに簡単で実践的な教育内容になっており、最短でIoT構築に関する知識とスキルを習得してもらうためのビジネスを大学と共同で構築。リスキリングを通じた労働人材不足の解消と、教育コンテンツを通じたIoT浸透による企業成長支援を目指しています。教育に強い大学と、IoTや流通に強い民間企業が共同で取り組むことで大学の研究を社会実装していくものです。",
+        "speaker": "飛永 勝也",
+        "photo": "./assets/img/speaker/tobinaga.png",
+        "company": "東邦インターナショナル株式会社"
+    },
+    {
+        "time": "16:10-16:20",
+        "type": "Interval",
+        "title": "休憩",
+        "abstract": "",
+        "speaker": "参加者同士でネットワーキング",
+        "photo": "",
+        "company": "コミュニケーションを！"
+    },
+    {
+        "time": "16:20-16:50",
+        "type": "Breakout",
+        "title": "Node-REDで広がるプログラミング教育の可能性",
+        "abstract": "名城大学での4年間のNode-RED教育実践とコミュニティ活動を通じて得られた知見を共有します。REST API利用から始まり、OSM地図データを活用したバス停プロット、LLMチャットボット開発まで段階的に学習することで、プログラミングを難しく感じていた学生も達成感を得られる教育手法を紹介します。Node-REDの視覚的プログラミング環境は技術差を吸収し、基本的な学びから実用的なプロダクト開発まで一貫した体験を提供します。具体的な授業設計、学生の反応、reCameraを使った画像処理演習などの事例とともに、教育現場でのNode-RED活用の可能性と今後の展望について報告します。",
+        "speaker": "上田 茂雄",
+        "photo": "./assets/img/speaker/ueda.jpg",
+        "company": "Chukyo TV Broadcasting Co., Ltd."
+    },
+    {
+        "time": "16:50-17:20",
+        "type": "Breakout",
+        "title": "Node-REDのノードの開発・活用事例とコミュニティとの関わり",
+        "abstract": "Node-REDおよびNode-RED MCU向けに開発したノードについて紹介し、開発を通じたコミュニティとの関わりについて発表する。ノードを開発して公開することで、これまでになかった機能を実装できるだけでなく、簡単に再利用でき、さらにコミュニティを通じて機能が洗練されていく。実際にpython-venvノードやmcu-serialノードなどの事例から海外の開発者と交流が生まれ、要望や改善が寄せられることで発展し、開発したノードを使って新しい機能を実装することも可能になった。こうした経験を踏まえ、ノードの開発の意義とコミュニティとの関りについて発表を行う。",
+        "speaker": "後地 拓真",
+        "photo": "./assets/img/speaker/ushiroji.jpg",
+        "company": "大阪公立大学"
+    },
+    {
+        "time": "17:20-17:50",
+        "type": "Breakout",
+        "title": "エッジで動くNode-REDを作る実験",
+        "abstract": "Node-REDはNode.jsで動くことが基本ですが、QuickJSなどのデバイスランタイムやCloudflare WorkersなどのエッジランタイムなどNode.jsではない環境が注目されているのでそういった場所でも動かせる仕組みを考えたいと思って試した話をしたいと思っています。",
+        "speaker": "菅原のびすけ",
+        "photo": "./assets/img/speaker/nobisuke.avif",
+        "company": "Protoout Studio"
+    },
+    {
+        "time": "17:50-18:00",
+        "type": "Closing",
+        "title": "Thanks and Goodbye",
+        "abstract": "Thank you for attending Node-RED Con 2024!",
+        "speaker": "Taiji Hagino",
+        "photo": "https://nodered.jp/images/hagino.jpg",
+        "company": "HERE Technologies/Node-RED UG Board Member"
+    }
+]
