@@ -2,8 +2,8 @@
     {
         "time": "15:30-15:40",
         "type": "Opening",
-        "title": "Welcome to Node-RED Con 2024!!",
-        "abstract": "Welcome to Node-RED Con 2024!!",
+        "title": "Welcome to Node-RED Con Japan 2024!!",
+        "abstract": "Welcome to Node-RED Con Japan 2024!!",
         "speaker": "Seigo Tanaka",
         "photo": "https://nodered.jp/images/seigo.jpg",
         "company": "1ft Seabass/Node-RED UG Board Member"
@@ -93,7 +93,7 @@
         "time": "18:20-18:30",
         "type": "Closing",
         "title": "Thanks and Goodbye",
-        "abstract": "Thank you for attending Node-RED Con 2021!",
+        "abstract": "Thank you for attending Node-RED Con Japan 2021!",
         "speaker": "Atsushi Kojo",
         "photo": "https://nodered.jp/images/kojo.jpg",
         "company": "Uhuru/Node-RED UG Board Member"

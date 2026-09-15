@@ -2,8 +2,8 @@
     {
         "time": "14:00-14:05",
         "type": "Opening",
-        "title": "Welcome to Node-RED Con 2026!!",
-        "abstract": "Welcome to Node-RED Con 2026!!",
+        "title": "Welcome to Node-RED Con Japan 2026!!",
+        "abstract": "Welcome to Node-RED Con Japan 2026!!",
         "speaker": "Node-RED User Group Japan",
         "photo": "./assets/img/speaker/noimage.png",
         "company": "Organizer"
@@ -75,7 +75,7 @@
         "time": "16:15-16:30",
         "type": "Closing",
         "title": "Thanks and Goodbye",
-        "abstract": "Thank you for attending Node-RED Con 2026!",
+        "abstract": "Thank you for attending Node-RED Con Japan 2026!",
         "speaker": "Node-RED User Group Japan",
         "photo": "./assets/img/speaker/noimage.png",
         "company": "Organizer"
