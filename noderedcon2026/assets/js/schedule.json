@@ -49,9 +49,9 @@
         "type": "Breakout",
         "title": "TBA",
         "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "TBA",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Coming soon"
+        "speaker": "Atsushi Kojo",
+        "photo": "./assets/img/organizer/atsushi.jpg",
+        "company": "Uhuru/Node-RED UG Board Member"
     },
     {
         "time": "15:35-15:55",
