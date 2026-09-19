@@ -4,36 +4,36 @@
         "type": "Opening",
         "title": "Welcome to Node-RED Con Japan 2026!!",
         "abstract": "Welcome to Node-RED Con Japan 2026!!",
-        "speaker": "Node-RED User Group Japan",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Organizer"
+        "speaker": "Atsushi Kojo",
+        "photo": "./assets/img/organizer/atsushi.jpg",
+        "company": "Uhuru/Node-RED UG Board Member"
     },
     {
         "time": "14:05-14:25",
         "type": "Keynote",
         "title": "TBA",
         "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "TBA",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Coming soon"
+        "speaker": "Masahiro Shioji",
+        "photo": "./assets/img/organizer/shioji.jpg",
+        "company": "Open Creation Lab."
     },
     {
         "time": "14:25-14:45",
         "type": "Breakout",
         "title": "TBA",
         "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "TBA",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Coming soon"
+        "speaker": "吉本 大亮",
+        "photo": "./assets/img/speaker/yoshimoto.jpg",
+        "company": "小学5年生"
     },
     {
         "time": "14:45-15:05",
         "type": "Breakout",
         "title": "TBA",
         "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "TBA",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Coming soon"
+        "speaker": "Ushiroji Takuma",
+        "photo": "./assets/img/organizer/ushiroji.jpg",
+        "company": "大阪公立大学"
     },
     {
         "time": "15:05-15:15",
@@ -76,8 +76,8 @@
         "type": "Closing",
         "title": "Thanks and Goodbye",
         "abstract": "Thank you for attending Node-RED Con Japan 2026!",
-        "speaker": "Node-RED User Group Japan",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Organizer"
+        "speaker": "Atsushi Kojo",
+        "photo": "./assets/img/organizer/atsushi.jpg",
+        "company": "Uhuru/Node-RED UG Board Member"
     }
 ]
