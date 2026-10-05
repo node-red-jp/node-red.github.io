@@ -67,9 +67,9 @@
         "type": "Breakout",
         "title": "TBA",
         "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "TBA",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Coming soon"
+        "speaker": "Seigo Tanaka",
+        "photo": "./assets/img/organizer/seigo.jpg",
+        "company": "1ft Seabass/Node-RED UG Board Member"
     },
     {
         "time": "16:15-16:30",
