@@ -29,52 +29,52 @@
     {
         "time": "14:45-15:05",
         "type": "Breakout",
-        "title": "TBA",
-        "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "Ushiroji Takuma",
-        "photo": "./assets/img/organizer/ushiroji.jpg",
-        "company": "大阪公立大学"
-    },
-    {
-        "time": "15:05-15:15",
-        "type": "Interval",
-        "title": "休憩",
-        "abstract": "",
-        "speaker": "参加者同士でネットワーキング",
-        "photo": "",
-        "company": "コミュニケーションを！"
-    },
-    {
-        "time": "15:15-15:35",
-        "type": "Breakout",
-        "title": "TBA",
-        "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "Atsushi Kojo",
-        "photo": "./assets/img/organizer/atsushi.jpg",
-        "company": "Uhuru/Node-RED UG Board Member"
-    },
-    {
-        "time": "15:35-15:55",
-        "type": "Breakout",
-        "title": "TBA",
-        "abstract": "セッション情報は近日公開予定です。",
-        "speaker": "TBA",
-        "photo": "./assets/img/speaker/noimage.png",
-        "company": "Coming soon"
-    },
-    {
-        "time": "15:55-16:15",
-        "type": "Breakout",
-        "title": "TBA",
-        "abstract": "セッション情報は近日公開予定です。",
+        "title": "自分の講義教材に学生の理解を助ける仕掛けをNode-RED でつくった話やライブデモ",
+        "abstract": "私は IoT 関連やゲーム関連の専門学校の学生に講義をする教材に Node-RED を取り入れています。\nNode-RED そのものを教える教材だけはありません。学生が中心で扱う技術の足場を大切につつ他技術へつながる API やデータの流れといった部分を Node-RED で作ることで視覚的にも連携が分かりやすく、学生自身が試しやすく、理解の負担を和らげて提供しています。\n当日は実際の教材のテキストや実際に動くライブデモを交えて Node-RED でできる理解を助ける仕組みの良いポイントや気づいたことをお伝えします！",
         "speaker": "Seigo Tanaka",
         "photo": "./assets/img/organizer/seigo.jpg",
         "company": "1ft Seabass/Node-RED UG Board Member"
     },
     {
-        "time": "16:15-16:30",
+        "time": "15:05-15:25",
+        "type": "Breakout",
+        "title": "ビジュアルプログラミングにおけるAIエディタの開発 - LLM Plugin for Node-RED",
+        "abstract": "LLM Plugin for Node-REDは、LLMとの対話でフローの作成・編集ができるプラグインです。AIエディタでコードを書くように、自然言語の指示でノードの追加・修正・配線を行い、結果をエディタへ反映します。本セッションでは、LLMがフローを扱う際の課題と、その解決のための工夫として、簡潔な独自スキーマ、既存フローを壊さない差分マージ、自動レイアウト、編集前の状態への復元などについて紹介します。また研究での活用、ノードの開発事例についても紹介します。\nAIエディタでNode-REDでの開発を効率化したい方や、LLMを利用したソフトウェア開発に関心のある方に役立つ内容です。",
+        "speaker": "Ushiroji Takuma",
+        "photo": "./assets/img/organizer/ushiroji.jpg",
+        "company": "大阪公立大学"
+    },
+    {
+        "time": "15:25-15:45",
+        "type": "Breakout",
+        "title": "プラスチック成型の製造現場におけるNode-REDとM5Stackを活用したローコードIoTへの挑戦",
+        "abstract": "プラスチック成型現場の手作業による集計・監視業務の解消に向け，「現場をよく知る生産技術者がNode-REDで自らIoT実装・運用できるか？」という問いに挑みました．本挑戦は地域研究会のプロジェクトとして発足．IoT現場実装を探る専門家（登壇者）の伴走と，定期的な進捗共有による会員からの助言を得つつ，M5StackとNode-REDを活用したレトロフィットIoTシステムを実現しました．現在は試験稼働を終えており，直近9ヶ月間は安定稼働に至っています．本発表では，専門家・現場・研究会の共創で「現場実装の答え合わせ」に挑んだ泥臭い取り組みの軌跡を紹介します．",
+        "speaker": "Tatsuhiro Oikawa",
+        "photo": "./assets/img/speaker/oikawa.jpg",
+        "company": "近畿職業能力開発大学校/熊本デジタルファクトリー研究会"
+    },
+    {
+        "time": "15:45-16:05",
+        "type": "Breakout",
+        "title": "5万円以下でできるだけ自動化してみる試み — Node-REDと光センサーによる卓上搬送ライン",
+        "abstract": "ECでの注文受付からレーザー刻印機での加工、コンベア排出までの工程を、Node-REDで5万円以下にて、できるだけ自動化する取り組みの発表です。BASEのWebhookで受信した注文データの整理・通知フローをNode-REDで構築。さらにAPI非公開かつオンライン制御不可な加工機に対し、本体改造を行わず照射時の散乱光を外付け光センサーで検知する方法を採用しました。加工完了を自動検知して24Vコンベアを駆動させることで、人間の作業を刻印ボタンを押すだけの最小限に抑えます。Web側のデータ処理と物理ハードをNode-REDで接続し、既存機器の制約の中で安価に省力化を実現する過程を紹介します。",
+        "speaker": "Gayu Yamaguchi",
+        "photo": "./assets/img/organizer/gayu.jpg",
+        "company": "中央大学/Node-RED UG Board Member"
+    },
+    {
+        "time": "16:05-16:25",
+        "type": "Breakout",
+        "title": "エッジロケーションのコンテナで動かすNode-RED",
+        "abstract": "Node-REDを用いてグローバルネットワーク上にアプリケーションを提供するには、安定して稼働させることが必要不可欠です。\nそこで、Cloudflare Containers上にNode-REDを展開し、世界中どこからでも低いレイテンシーでアクセスできるような仕組みを考えました。\nその際にフローの編集やコンテナ間でのコンテキストの同期なども考慮しつつ全てがCloudflare上で動作するようにします。",
+        "speaker": "Kokubo Aoto",
+        "photo": "./assets/img/speaker/kokubo.jpg",
+        "company": "Azux LLC"
+    },
+    {
+        "time": "16:25-16:30",
         "type": "Closing",
-        "title": "Thanks and Goodbye",
+        "title": "TBA",
         "abstract": "Thank you for attending Node-RED Con Japan 2026!",
         "speaker": "Atsushi Kojo",
         "photo": "./assets/img/organizer/atsushi.jpg",
