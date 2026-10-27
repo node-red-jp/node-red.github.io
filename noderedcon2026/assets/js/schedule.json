@@ -11,8 +11,8 @@
     {
         "time": "14:05-14:25",
         "type": "Keynote",
-        "title": "TBA",
-        "abstract": "セッション情報は近日公開予定です。",
+        "title": "ノーコードのその先へ — AIと人間が共創するNode-RED",
+        "abstract": "これまでNode-REDは「コアノードだけでいかに組むか」という、ノーコード的なアプローチで語られることが多くありました。\nLLMによるコード生成が身近になった今、Node-REDは「ノーコード」の枠を超え、AIと人間が協力してアイデアを形にする環境へと進化する可能性を持っています。\n\nメッセージ駆動型の仕組みは、複数のLLMを連携・制御するオーケストレーションに適しています。一方、生成AIでJavaScriptコードを作ってFunctionノードとしてモジュール化し、人間がフローでつなぐアプローチは、効率的な開発と仕組みの理解を両立します。\n\n本トークでは、Kids AI Workshopで複数AIを連携する体験と、AI生成コードを活用した植物栽培サポートデバイスの事例を紹介。AI時代に広がるNode-REDの新たな価値と、今後のプログラミング教育への可能性を共有します。",
         "speaker": "Masahiro Shioji",
         "photo": "./assets/img/organizer/shioji.jpg",
         "company": "Open Creation Lab."
