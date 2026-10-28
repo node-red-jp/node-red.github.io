@@ -20,8 +20,8 @@
     {
         "time": "14:25-14:45",
         "type": "Breakout",
-        "title": "TBA",
-        "abstract": "セッション情報は近日公開予定です。",
+        "title": "Node-REDでつくるカメのごはんお知らせシステム",
+        "abstract": "僕は、西アフリカヌマヨコクビガメを飼っています。ウヒョウヒョ動くので、名前は「ウヒョ太郎」です。エサは、3日に1回、赤虫とスティック状のエサを交互にあげています。3日に1回違う種類をあげていて、よくエサをあげるタイミングが分からなくなるので、Node-REDをつかってお知らせするシステムを作ってみました。",
         "speaker": "Daisuke Yoshimoto",
         "photo": "./assets/img/speaker/yoshimoto.jpg",
         "company": "小学5年生"
